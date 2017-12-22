@@ -18,7 +18,7 @@ public class LandingRegistrationFormType implements RegistrationFormType {
 
     @Override
     public InputBox getEmailInput() {
-        return  this.EMAIL_INPUT;
+        return this.EMAIL_INPUT;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class LandingRegistrationFormType implements RegistrationFormType {
 
     @Override
     public RadioButton getCurrencyUsdRadio() {
-       return this.CURRENCY_USD_RADIO;
+        return this.CURRENCY_USD_RADIO;
     }
 
     @Override
@@ -43,6 +43,6 @@ public class LandingRegistrationFormType implements RegistrationFormType {
 
     @Override
     public Button getRegisterButton() {
-       return this.REGISTER_BUTTON;
+        return this.REGISTER_BUTTON;
     }
 }

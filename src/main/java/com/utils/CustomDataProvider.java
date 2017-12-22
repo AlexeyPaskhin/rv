@@ -1,7 +1,6 @@
 package com.utils;
 
 
-
 public class CustomDataProvider {
     private static PropertyLoader propertyLoader;
     private String email;
@@ -11,7 +10,7 @@ public class CustomDataProvider {
     private String browser;
     private String pass;
 
-    public CustomDataProvider(){
+    public CustomDataProvider() {
         propertyLoader = new PropertyLoader();
         this.email = propertyLoader.getEmail();
         this.emailForAutogen = propertyLoader.getEmailForAutogen();
@@ -22,37 +21,34 @@ public class CustomDataProvider {
     }
 
 
-    public String generateRandomEmail() {
+    String generateRandomEmail() {
         int userLoginLength = emailForAutogen.length();
         int domainLength = domain.length();
-        return emailForAutogen + RandomGenerate.randomString(34-userLoginLength-domainLength) + domain;
-
+        return emailForAutogen + RandomGenerate.randomString(34 - userLoginLength - domainLength) + domain;
     }
 
     public String getBasicURL() {
-
         return this.URL;
     }
 
     public String getEmail() {
-        return this.email +this.domain;
+        return this.email + this.domain;
     }
 
     public String getEmailForAutogen() {
-        return this.emailForAutogen +this.domain;
+        return this.emailForAutogen + this.domain;
     }
 
-    public  String getBrowser() {
+    public String getBrowser() {
         return this.browser;
     }
 
 
-    public String generateRandomPass() {
-
+    String generateRandomPass() {
         return RandomGenerate.randomString(3, 33);
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return this.pass;
     }
 

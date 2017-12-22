@@ -2,13 +2,10 @@ package com.loggers;
 
 import org.apache.log4j.Layout;
 import org.apache.log4j.WriterAppender;
-
-import java.io.IOException;
 import java.io.StringWriter;
-import java.io.Writer;
 
 public class StringAppender extends WriterAppender {
-    private static volatile Writer testWriter;
+    private static volatile StringWriter testWriter;
     private Layout layout;
 
     public StringAppender() {
@@ -28,26 +25,14 @@ public class StringAppender extends WriterAppender {
     }
 
     public static String getLoggedMessages() {
-        String log = testWriter.toString();
-        try {
-            testWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return log;
+        return testWriter.toString();
     }
 
-    public static void resetAppender(){
-            testWriter=new StringWriter();
-        try {
-            testWriter.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static void resetAppender() {
+        testWriter.getBuffer().setLength(0);
 
 
     }
-
 
 
 }

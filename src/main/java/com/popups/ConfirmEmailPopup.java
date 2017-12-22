@@ -12,7 +12,7 @@ public class ConfirmEmailPopup extends AbstractPage {
     private final InputBox EMAIL_INPUTBOX = new InputBox(By.id("complete-form-login"));
     private final RadioButton CURRENCY_RUB = new RadioButton(By.xpath("//div[@id='popup_complete-registration']//input[@name='currency' and @value='RUB']"));
     private final Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_complete-registration']//input[@name='agree' and @type='checkbox']"));
-    private final Button COMPLETE_REGISTER_BUTTON = new Button(By.xpath("//button[@class='btn-popup-complete-registration']"));
+    private final Button COMPLETE_REGISTER_BUTTON = new Button(By.xpath("//*[text()='Завершить регистрацию']"));
 
     public ConfirmEmailPopup agreeWithRules(){
         AGREE_CHECKBOX.waitForElementToBeVisible(3);

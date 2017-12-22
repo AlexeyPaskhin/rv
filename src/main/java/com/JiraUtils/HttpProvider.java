@@ -24,14 +24,10 @@ import java.nio.charset.Charset;
 public class HttpProvider {
 
    private final static Logger logger = LogManager.getLogger(HttpProvider.class);
-    String authHeader;
-    HttpClient httpclient;
-    String login = "a.kvasko@playtini.ua";
-    String pass = "tY62TztCseSR";
-
-//    HttpResponse response = httpclient.execute(postMethod);
-//            System.out.println(response);
-
+   private String authHeader;
+   private HttpClient httpclient;
+   private String login = "autobot@playtini.ua";
+   private String pass = "deiVim6haid01";
 
     public HttpProvider() {
         httpclient = HttpClientBuilder.create().build();

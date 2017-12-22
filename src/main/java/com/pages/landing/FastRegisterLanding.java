@@ -20,11 +20,11 @@ public class FastRegisterLanding extends AbstractPage {
     private RadioButton CURRENCY_USD_RADIO;
     private Checkbox AGREE_CHECKBOX;
     private Button REGISTER_BUTTON;
-    private final Button VK_BUTTON =  new Button(By.xpath("//div[@class='social-vk']"));
-    private final Button FB_BUTTON =  new Button(By.xpath("//div[@class='social-fb']"));
-    private final Button MAILRU_BUTTON =  new Button(By.xpath("//div[@class='social-mr']"));
-    private final Button OK_BUTTON =  new Button(By.xpath("//div[@class='social-ok']"));
-    private final Button YA_BUTTON =  new Button(By.xpath("//div[@class='social-ya']"));
+    private final Button VK_BUTTON = new Button(By.xpath("//div[@class='social-vk']"));
+    private final Button FB_BUTTON = new Button(By.xpath("//div[@class='social-fb']"));
+    private final Button MAILRU_BUTTON = new Button(By.xpath("//div[@class='social-mr']"));
+    private final Button OK_BUTTON = new Button(By.xpath("//div[@class='social-ok']"));
+    private final Button YA_BUTTON = new Button(By.xpath("//div[@class='social-ya']"));
 
 
     public FastRegisterLanding(RegistrationFormType registrationType) {
@@ -70,36 +70,37 @@ public class FastRegisterLanding extends AbstractPage {
         return new GiftPopup();
     }
 
-    public SocialFrame clickVK(){
+    public SocialFrame clickVK() {
         VK_BUTTON.click();
         swithToSocialFrame();
         return new VkRegisterPage();
     }
 
-    public SocialFrame clickFB(){
+    public SocialFrame clickFB() {
         FB_BUTTON.click();
         swithToSocialFrame();
         return new FBregisterPage();
     }
 
-    public SocialFrame clickOK(){
+    public SocialFrame clickOK() {
         OK_BUTTON.click();
         swithToSocialFrame();
         return new OKRegisterPage();
     }
 
-    public SocialFrame clickYA(){
+    public SocialFrame clickYA() {
         YA_BUTTON.click();
         swithToSocialFrame();
         return new YARegisterPage();
     }
-public SocialFrame clickMailRu(){
-        MAILRU_BUTTON.click();
-    swithToSocialFrame();
-        return new MailRuRegisterPage();
-}
 
-   private void swithToSocialFrame() {
+    public SocialFrame clickMailRu() {
+        MAILRU_BUTTON.click();
+        swithToSocialFrame();
+        return new MailRuRegisterPage();
+    }
+
+    private void swithToSocialFrame() {
         AbstractPage.parentWindow = getDriver().getWindowHandle();
         waitForCountOfWindows(2);
         for (String winHandle : getDriver().getWindowHandles()) {

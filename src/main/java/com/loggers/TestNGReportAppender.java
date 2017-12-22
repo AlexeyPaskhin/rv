@@ -9,16 +9,13 @@ public class TestNGReportAppender extends AppenderSkeleton {
 
     @Override
     protected void append(LoggingEvent event) {
-
-        //System.out.print(eventToString(event));
-      Reporter.log(eventToString(event));
-//        logger.info(eventToString(event));
+        Reporter.log(eventToString(event));
     }
 
     private String eventToString(final LoggingEvent event) {
         final StringBuilder result = new StringBuilder(layout.format(event));
 
-        if(layout.ignoresThrowable()) {
+        if (layout.ignoresThrowable()) {
             final String[] s = event.getThrowableStrRep();
             if (s != null) {
                 for (final String value : s) {
