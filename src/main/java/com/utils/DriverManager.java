@@ -1,6 +1,9 @@
 package com.utils;
 
 import com.loggers.WebDriverEventHandler;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.client.ClientUtil;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,6 +12,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
@@ -25,13 +30,30 @@ public class DriverManager {
     private static final String OPERA = "opera";
     private static WebDriver driver;
     private static WebDriverEventListener events = new WebDriverEventHandler();
-
+    public static BrowserMobProxyServer server;
     public static WebDriver setupDriver(String browser){
+
+
+//        server = new BrowserMobProxyServer();
+//        server.start();
+//        int port = server.getPort();
+//        Proxy proxy = ClientUtil.createSeleniumProxy(server);
+//        String PROXY = "193.124.182.229:3348";
+//
+//        Proxy proxy = new Proxy();
+//        proxy.setHttpProxy(PROXY);
+//        DesiredCapabilities cap = new DesiredCapabilities();
+//        cap.setCapability(CapabilityType.PROXY, proxy);
+
+
 
         if(browser.equalsIgnoreCase(CHROME)){
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
             ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--disable-blink-features=BlockCredentialedSubresources");
+            //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
            // chromeOptions.addArguments("--headless");
+
         driver = new EventFiringWebDriver(new ChromeDriver(chromeOptions)).register(events);}
 
         else if(browser.equalsIgnoreCase(FIREFOX)){

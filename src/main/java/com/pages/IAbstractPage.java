@@ -39,11 +39,12 @@ public interface IAbstractPage {
 
                  return getDriver().getWindowHandle();
              }
-    default public void waitForPageToLoad() {
+    default void waitForPageToLoad() {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), 15);
         wait.until(new Function<WebDriver, Boolean>() {
             public Boolean apply(WebDriver driver) {
-
+                System.out.println(String
+                        .valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState")));
                 return String
                         .valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState"))
                         .equals("complete");

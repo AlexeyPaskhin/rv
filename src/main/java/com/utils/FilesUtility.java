@@ -1,5 +1,7 @@
 package com.utils;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
@@ -17,7 +19,7 @@ import java.util.Date;
 import static com.utils.DriverManager.getDriver;
 
 public class FilesUtility {
-
+    private final static Logger logger = LogManager.getLogger(FilesUtility.class);
 
     private static String getFormattedDate(){
         SimpleDateFormat smd = new SimpleDateFormat("dd.MMM hh.mm");
@@ -54,7 +56,8 @@ public class FilesUtility {
         try {
             Files.copy(Paths.get(fromPath),Paths.get(toPath),StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-
+            logger.error("Something wrong with screenshots");
+            e.printStackTrace();
         }
         return toPath;
     }

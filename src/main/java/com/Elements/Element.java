@@ -59,12 +59,9 @@ public class Element {
     }
 
     public void click() {
-        try {
+
             click(slaveElement());
-        }
-        catch (WebDriverException e){
-            clickWithJS();
-        }
+
     }
 
     public String getText() {

@@ -6,6 +6,7 @@ import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import com.pages.Helpers.Dictionaries.RegistrationFormType;
+import com.pages.HomePage;
 import com.pages.landing.social.*;
 import com.popups.GiftPopup;
 import org.openqa.selenium.By;
@@ -65,9 +66,15 @@ public class FastRegisterLanding extends AbstractPage {
     }
 
     public GiftPopup clickRegisterButtonToGift() {
-        //wait(1500);
+       // wait(1500);
         REGISTER_BUTTON.clickUntilDisappeared();
+        waitForPageToLoad();
         return new GiftPopup();
+    }
+    public HomePage clickRegisterButtonToHome() {
+        // wait(1500);
+        REGISTER_BUTTON.clickUntilDisappeared();
+        return new HomePage();
     }
 
     public SocialFrame clickVK() {

@@ -3,11 +3,14 @@ package RulVulaknTests.Registration;
 import RulVulaknTests.BaseTestPage;
 import com.Elements.Button;
 import com.PreContidions.LandingPage;
+import com.PreContidions.RemoveUser;
 import com.listeners.RussianVulcanListener;
+import com.pages.HomePage;
 import com.pages.landing.LandingChooseBonusWinthContinue;
 import com.pages.landing.LandingWithBonus;
 import com.pages.landing.LandingWithButton;
 import com.pages.landing.LandingWithForm;
+import com.popups.LotteryPopup;
 import com.utils.User;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -28,9 +31,9 @@ import static com.utils.DriverManager.getDriver;
 
 @Listeners({RussianVulcanListener.class})
 public class FirstTest extends BaseTestPage {
-  private final static Logger logger = LogManager.getLogger(FirstTest.class);
+    private final static Logger logger = LogManager.getLogger(FirstTest.class);
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing","register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     public void landingComplexRegister(User user, String page) {
 
@@ -50,8 +53,9 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
+    @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
 
         LandingWithButton lp = new LandingWithButton();
@@ -61,21 +65,22 @@ public class FirstTest extends BaseTestPage {
                 setPassword(user.getPass())
                 .clickRegister().
                 agreeWithRules()
-                .clickCompleteRegister();
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
 
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
+    @RemoveUser
     public void landingComplexRegisterFB(User user, String page) {
 
         LandingWithButton lp = new LandingWithButton();
@@ -85,20 +90,21 @@ public class FirstTest extends BaseTestPage {
                 setPassword(user.getPass())
                 .clickRegister().
                 agreeWithRules()
-                .clickCompleteRegister();
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
+    @RemoveUser
     public void landingComplexRegisterOK(User user, String page) {
 
         LandingWithButton lp = new LandingWithButton();
@@ -106,22 +112,23 @@ public class FirstTest extends BaseTestPage {
                 clickOK().
                 setEmail(user.getLogin()).
                 setPassword(user.getPass())
-                .clickRegister().
+                .clickRegister().setEmail(user.getLogin()).
                 agreeWithRules()
-                .clickCompleteRegister();
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
+    @RemoveUser
     public void landingComplexRegisterMailRU(User user, String page) {
 
         LandingWithButton lp = new LandingWithButton();
@@ -131,20 +138,21 @@ public class FirstTest extends BaseTestPage {
                 setPassword(user.getPass())
                 .clickRegister().
                 agreeWithRules()
-                .clickCompleteRegister();
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
+    @RemoveUser
     public void landingComplexRegisterYA(User user, String page) {
 
         LandingWithButton lp = new LandingWithButton();
@@ -154,19 +162,19 @@ public class FirstTest extends BaseTestPage {
                 setPassword(user.getPass())
                 .clickRegister().
                 agreeWithRules()
-                .clickCompleteRegister();
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing","register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     public void landingFormRegister(User user, String page) {
 
@@ -185,8 +193,9 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @RemoveUser
     public void landingFormRegisterVK(User user, String page) {
 
         new LandingWithForm().switchToRegistration().
@@ -195,244 +204,7 @@ public class FirstTest extends BaseTestPage {
                 setPassword(user.getPass())
                 .clickRegister().
                 agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-
-    }
-
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
-    public void landingFormRegisterFB(User user, String page) {
-
-        new LandingWithForm().switchToRegistration().
-                clickFB().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
-    public void landingFormRegisterOK(User user, String page) {
-
-        new LandingWithForm().switchToRegistration().
-                clickOK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
-    public void landingFormRegisterMailRU(User user, String page) {
-
-        new LandingWithForm().switchToRegistration().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
-    public void landingFormRegisterYA(User user, String page) {
-
-        new LandingWithForm().switchToRegistration().
-                clickYA().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"12"})
-    public void landingChooseContRegister(User user, String page) {
-
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().typeLogin(user.getLogin())
-                .typePass(user.getPass()).agreeWithRules()
-                .clickRegisterButtonToGift();
-
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (Exception e) {
-            logger.error("ERROR ON PAGE " + page);
-            logger.error(e);
-            Assert.fail();
-        }
-
-    }
-
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"12"})
-    public void landingChooseContRegisterVK(User user, String page) {
-
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickVK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-
-    }
-
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"12"})
-    public void landingChooseContRegisterFB(User user, String page) {
-
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickFB().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"12"})
-    public void landingChooseContRegisterOK(User user, String page) {
-
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickOK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"12"})
-    public void landingChooseContRegisterMailRU(User user, String page) {
-
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
-    @LandingPage(pageNo = {"12"})
-    public void landingChooseContRegisterYA(User user, String page) {
-
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickYA().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister();
-        try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing","register"})
-    @LandingPage(pageNo = {"7"})
-    public void landingChooseRegister(User user, String page) {
-
-        new LandingWithBonus().clickCashBack().switchToRegistration().typeLogin(user.getLogin())
-                .typePass(user.getPass()).agreeWithRules()
-                .clickRegisterButtonToGift()
+                .clickCompleteRegister().getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -445,8 +217,258 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @RemoveUser
+    public void landingFormRegisterFB(User user, String page) {
+
+        new LandingWithForm().switchToRegistration().
+                clickFB().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @RemoveUser
+    public void landingFormRegisterOK(User user, String page) {
+
+        new LandingWithForm().switchToRegistration().
+                clickOK().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().setEmail(user.getLogin()).
+                agreeWithRules()
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @RemoveUser
+    public void landingFormRegisterMailRU(User user, String page) {
+
+        new LandingWithForm().switchToRegistration().
+                clickMailRu().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @RemoveUser
+    public void landingFormRegisterYA(User user, String page) {
+
+        new LandingWithForm().switchToRegistration().
+                clickYA().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister().getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"12"})
+    public void landingChooseContRegister(User user, String page) {
+
+        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().typeLogin(user.getLogin())
+                .typePass(user.getPass()).agreeWithRules().
+                clickRegisterButtonToHome();
+        new LotteryPopup().closePopup();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+
+    }
+
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"12"})
+    @RemoveUser
+    public void landingChooseContRegisterVK(User user, String page) {
+
+        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
+                clickVK().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+
+    }
+
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @LandingPage(pageNo = {"12"})
+    @RemoveUser
+    public void landingChooseContRegisterFB(User user, String page) {
+
+        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
+                clickFB().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister();
+
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"12"})
+    @RemoveUser
+    public void landingChooseContRegisterOK(User user, String page) {
+
+        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
+                clickOK().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().setEmail(user.getLogin()).
+                agreeWithRules()
+                .clickCompleteRegister();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"12"})
+    @RemoveUser
+    public void landingChooseContRegisterMailRU(User user, String page) {
+
+        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
+                clickMailRu().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @LandingPage(pageNo = {"12"})
+    @RemoveUser
+    public void landingChooseContRegisterYA(User user, String page) {
+
+        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
+                clickYA().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass())
+                .clickRegister().
+                agreeWithRules()
+                .clickCompleteRegister();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"7"})
+    public void landingChooseRegister(User user, String page) {
+
+        new LandingWithBonus().clickCashBack().switchToRegistration().typeLogin(user.getLogin())
+                .typePass(user.getPass()).agreeWithRules()
+                .clickRegisterButtonToHome();
+        new LotteryPopup().closePopup();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+
+    }
+
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @LandingPage(pageNo = {"7"})
+    @RemoveUser
     public void landingChooseRegisterVK(User user, String page) {
 
         new LandingWithBonus().clickCashBack().switchToRegistration().
@@ -456,20 +478,21 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
+
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
 
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
     @LandingPage(pageNo = {"7"})
+    @RemoveUser
     public void landingChooseRegisterFB(User user, String page) {
 
         new LandingWithBonus().clickCashBack().switchToRegistration().
@@ -479,41 +502,43 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
+
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"7"})
-    public void llandingChooseRegisterOK(User user, String page) {
+    @RemoveUser
+    public void landingChooseRegisterOK(User user, String page) {
 
         new LandingWithBonus().clickCashBack().switchToRegistration().
                 clickOK().
                 setEmail(user.getLogin()).
                 setPassword(user.getPass())
-                .clickRegister().
+                .clickRegister().setEmail(user.getLogin()).
                 agreeWithRules()
                 .clickCompleteRegister();
+
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"7"})
+    @RemoveUser
     public void landingChooseRegisterMailRU(User user, String page) {
 
         new LandingWithBonus().clickCashBack().switchToRegistration().
@@ -523,19 +548,20 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
+
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing","register","social"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"7"})
+    @RemoveUser
     public void landingChoosetRegisterYA(User user, String page) {
 
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
@@ -545,18 +571,18 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
+
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        }
-        catch (Exception e){
-            logger.error("ERROR ON PAGE " +page);
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, enabled = false)
     public void checkSikuli(User user) throws FindFailed {
         home.clickRegister().typeLogin(user.getLogin()).typePass(user.getPass()).selectCurrencyRUB().agreeWithRules().clickRegisterButton().withdrawFromGift();
         getDriver().navigate().to("https://rc-stable.fe.rv.dev.77xy.net/games/singles-day");
@@ -568,9 +594,9 @@ public class FirstTest extends BaseTestPage {
         }
         b.click();
         Screen sc = new Screen();
-        Pattern pt = new Pattern(System.getProperty("user.dir")+ File.separator+"Screenshot_5.png");
+        Pattern pt = new Pattern(System.getProperty("user.dir") + File.separator + "Screenshot_5.png");
 
-        Pattern pt1 = new Pattern(System.getProperty("user.dir")+ File.separator+"Screenshot_6.png");
+        Pattern pt1 = new Pattern(System.getProperty("user.dir") + File.separator + "Screenshot_6.png");
         try {
             Thread.sleep(7000);
         } catch (InterruptedException e) {
@@ -586,5 +612,7 @@ public class FirstTest extends BaseTestPage {
         }
 
     }
+
+
 
 }

@@ -67,14 +67,14 @@ public class RegisterData {
             obj = new Object[pageNumber.length][2];
 
             for (int i = 0; i < pageNumber.length; i++) {
-               user = new User.Builder().withLogin("yr@playtini.ua").withPass("playtini123456").build();
+               user = new User.Builder().withLogin("a.kvasko@playtini.ua").withPass("h8ppXBQS").build();
 
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
         } else {
             obj = new Object[1][1];
-            user = new User.Builder().withLogin("yr@playtini.ua").withPass("playtini123456").build();
+            user = new User.Builder().withLogin("a.kvasko@playtini.ua").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
         clearEmailFromDB(user);
@@ -113,14 +113,14 @@ public class RegisterData {
             obj = new Object[pageNumber.length][2];
 
             for (int i = 0; i < pageNumber.length; i++) {
-                 user = new User.Builder().withLogin("ai.test-11@mail.ru").withPass("h8ppXBQS").build();
+                 user = new User.Builder().withLogin("ai.test-12@mail.ru").withPass("h8ppXBQS").build();
 
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
         } else {
             obj = new Object[1][1];
-             user = new User.Builder().withLogin("ai.test-11@mail.ru").withPass("h8ppXBQS").build();
+             user = new User.Builder().withLogin("ai.test-12@mail.ru").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
         clearEmailFromDB(user);
@@ -152,25 +152,20 @@ public class RegisterData {
     }
 
     private void clearEmailFromDB(User user) {
-        String oldName = user.getLogin();
-
-        String[] splitter = oldName.split("@");
-
-        String newName = splitter[0] + "+" + RandomGenerate.randomString(2, 6) + splitter[1];
-
-        try {
-            SSHManager manager = new SSHManager();
-            manager.executeQuery("docker exec -it psup-db-stage mysql -pmypass \"psup_app\"");
-            manager.executeQuery("update players set email='" + newName + "' where email ='" + oldName + "';");
-            Thread.sleep(1000);
-            manager.disconnectFromConsole();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        String oldName = user.getLogin();
+//        try {
+//            SSHManager manager = new SSHManager();
+//            manager.executeQuery("docker exec -it psup-db-stage mysql -pmypass \"psup_app\"");
+//            manager.executeQuery("UPDATE players SET email=CONCAT('autotest+', SUBSTRING(SHA2(RAND(), 512) FROM 1 FOR 6), '@playtini.ua'), login=CONCAT('autotest+', SUBSTRING(SHA2(RAND(), 512) FROM 1 FOR 6), '@playtini.ua'), social_id = NULL, social_data = NULL, 1gp_login = NULL, full_name = NULL, real_name = NULL WHERE email = '"+oldName+"';");
+//            Thread.sleep(1000);
+//            manager.disconnectFromConsole();
+//
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
