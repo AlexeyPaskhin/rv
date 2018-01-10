@@ -53,7 +53,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
@@ -78,7 +78,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterFB(User user, String page) {
@@ -102,7 +102,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterOK(User user, String page) {
@@ -126,7 +126,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterMailRU(User user, String page) {
@@ -150,7 +150,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterYA(User user, String page) {
@@ -193,7 +193,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterVK(User user, String page) {
@@ -217,7 +217,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterFB(User user, String page) {
@@ -240,7 +240,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterOK(User user, String page) {
@@ -263,7 +263,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterMailRU(User user, String page) {
@@ -286,7 +286,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterYA(User user, String page) {
@@ -329,7 +329,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterVK(User user, String page) {
@@ -353,7 +353,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterFB(User user, String page) {
@@ -377,7 +377,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterOK(User user, String page) {
@@ -400,7 +400,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterMailRU(User user, String page) {
@@ -423,7 +423,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterYA(User user, String page) {
@@ -466,7 +466,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterVK(User user, String page) {
@@ -490,7 +490,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"},enabled = false)
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterFB(User user, String page) {
@@ -513,7 +513,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterOK(User user, String page) {
@@ -536,7 +536,7 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterMailRU(User user, String page) {
@@ -559,12 +559,12 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
-    public void landingChoosetRegisterYA(User user, String page) {
+    public void landingChooseRegisterYA(User user, String page) {
 
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
+        new LandingWithBonus().clickCashBack().switchToRegistration().
                 clickYA().
                 setEmail(user.getLogin()).
                 setPassword(user.getPass())

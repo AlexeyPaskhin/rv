@@ -76,10 +76,10 @@ public class SSHManager {
     public void updateUserForSocial(String oldName, String newName){
 
         executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"UPDATE players SET email='" + newName + "', login='" + newName + "', social_id = NULL, social_data = NULL," +
-                " 1gp_login = NULL, full_name = NULL, real_name = NULL WHERE email = '" + oldName + "';\"");
+                " 1gp_login = NULL, full_name = NULL, real_name = NULL WHERE email = '" + oldName + "';\" -e \"select id from players where email='"+newName+"'\\G;\"");
 
         logger.info("User name and email changed from: "+oldName+"  to: "+newName);
-        executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"select id from players where email='"+newName+"'\\G;\"");
+       // executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"select id from players where email='"+newName+"'\\G;\"");
 
 
 

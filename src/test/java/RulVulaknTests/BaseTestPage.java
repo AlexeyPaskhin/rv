@@ -14,6 +14,7 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 
 import static com.utils.DriverManager.*;
 
@@ -48,7 +49,11 @@ public class BaseTestPage {
             User us = (User) o[0];
             logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
-        setupDriver(customDataProvider.getBrowser());
+        try {
+            setupDriver(customDataProvider.getBrowser());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
 
         if (method.isAnnotationPresent(LandingPage.class)) {

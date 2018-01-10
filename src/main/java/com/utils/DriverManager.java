@@ -1,9 +1,7 @@
 package com.utils;
 
 import com.loggers.WebDriverEventHandler;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.client.ClientUtil;
-import org.openqa.selenium.Proxy;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,11 +10,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
@@ -30,8 +30,7 @@ public class DriverManager {
     private static final String OPERA = "opera";
     private static WebDriver driver;
     private static WebDriverEventListener events = new WebDriverEventHandler();
-    public static BrowserMobProxyServer server;
-    public static WebDriver setupDriver(String browser){
+    public static WebDriver setupDriver(String browser) throws MalformedURLException {
 
 
 //        server = new BrowserMobProxyServer();
@@ -49,12 +48,16 @@ public class DriverManager {
 
         if(browser.equalsIgnoreCase(CHROME)){
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--disable-blink-features=BlockCredentialedSubresources");
+            DesiredCapabilities cap = DesiredCapabilities.chrome();
+           // cap.setBrowserName("chrome");
+            cap.setPlatform(Platform.WINDOWS);
+          //  cap.setVersion("63.0");
+
+              URL url  = new URL("http://localhost:4444/wd/hub");
             //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
            // chromeOptions.addArguments("--headless");
 
-        driver = new EventFiringWebDriver(new ChromeDriver(chromeOptions)).register(events);}
+        driver = new EventFiringWebDriver(new ChromeDriver()).register(events);}
 
         else if(browser.equalsIgnoreCase(FIREFOX)){
             System.setProperty("webdriver.gecko.driver",FIREFOX_DRIVER_PATH);
