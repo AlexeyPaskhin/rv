@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
 
-public class FastRegisterLanding extends AbstractPage {
+public class FastRegister extends AbstractPage {
 
     private InputBox EMAIL_INPUT;
     private InputBox PASSWORD_INPUT;
@@ -28,7 +28,7 @@ public class FastRegisterLanding extends AbstractPage {
     private final Button YA_BUTTON = new Button(By.xpath("//div[@class='social-ya']"));
 
 
-    public FastRegisterLanding(RegistrationFormType registrationType) {
+    public FastRegister(RegistrationFormType registrationType) {
 
         this.EMAIL_INPUT = registrationType.getEmailInput();
         this.PASSWORD_INPUT = registrationType.getPasswordInput();
@@ -39,28 +39,28 @@ public class FastRegisterLanding extends AbstractPage {
 
     }
 
-    public FastRegisterLanding typeLogin(String login) {
+    public FastRegister typeLogin(String login) {
         EMAIL_INPUT.fillIn(login);
         return this;
     }
 
-    public FastRegisterLanding typePass(String pass) {
+    public FastRegister typePass(String pass) {
         PASSWORD_INPUT.fillIn(pass);
         return this;
     }
 
-    public FastRegisterLanding selectCurrencyRUB() {
+    public FastRegister selectCurrencyRUB() {
         CURRENCY_RUB_RADIO.click();
         return this;
     }
 
-    public FastRegisterLanding selectCurrencyUSD() {
+    public FastRegister selectCurrencyUSD() {
         CURRENCY_USD_RADIO.click();
         return this;
 
     }
 
-    public FastRegisterLanding agreeWithRules() {
+    public FastRegister agreeWithRules() {
         AGREE_CHECKBOX.click();
         return this;
     }
@@ -105,14 +105,5 @@ public class FastRegisterLanding extends AbstractPage {
         MAILRU_BUTTON.click();
         swithToSocialFrame();
         return new MailRuRegisterPage();
-    }
-
-    private void swithToSocialFrame() {
-        AbstractPage.parentWindow = getDriver().getWindowHandle();
-        waitForCountOfWindows(2);
-        for (String winHandle : getDriver().getWindowHandles()) {
-            swithToWindow(winHandle);
-        }
-        waitForPageToLoad();
     }
 }

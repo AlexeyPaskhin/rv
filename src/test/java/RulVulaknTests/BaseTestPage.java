@@ -36,7 +36,6 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
-
         if (method.isAnnotationPresent(RemoveUser.class)) {
             if (o[0] instanceof User) {
                 User us = (User) o[0];

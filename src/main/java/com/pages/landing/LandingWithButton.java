@@ -13,9 +13,9 @@ public class LandingWithButton extends AbstractPage {
         return this;
     }
 
-    public FastRegisterLanding switchToRegistration() {
+    public FastRegister switchToRegistration() {
 
-        return new FastRegisterLanding(new LandingRegistrationFormType());
+        return new FastRegister(new LandingRegistrationFormType());
     }
 
 }

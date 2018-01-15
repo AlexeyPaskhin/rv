@@ -20,7 +20,6 @@ public class CustomDataProvider {
         this.pass = propertyLoader.getPass();
     }
 
-
     String generateRandomEmail() {
         int userLoginLength = emailForAutogen.length();
         int domainLength = domain.length();

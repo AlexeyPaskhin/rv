@@ -21,22 +21,82 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.io.DataInput;
 import java.io.File;
 
 import static com.utils.DriverManager.getDriver;
-
 
 @Listeners({RussianVulcanListener.class})
 public class FirstTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(FirstTest.class);
 
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
+    public void registrationFromHomePageRub(User user) {
+        HomePage homePage = new HomePage();
+        homePage.clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTRATION BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
+    public void registrationFromHomePageUsd(User user) {
+        HomePage homePage = new HomePage();
+        homePage.clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyUSD()
+                .clickRegisterButton()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTRATION BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = "fb")
+    @RemoveUser
+    public void mainPageRegisterFB(User user){
+        HomePage homePage = new HomePage();
+        homePage.clickRegister()
+                .clickFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     public void landingComplexRegister(User user, String page) {
-
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().typeLogin(user.getLogin())
                 .typePass(user.getPass()).agreeWithRules()
@@ -50,21 +110,19 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
-
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
-                clickVK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+                clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister().getGiftPopup()
                 .withdrawFromGift();
         try {
@@ -75,14 +133,12 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterFB(User user, String page) {
-
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
                 clickFB().
@@ -102,11 +158,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterOK(User user, String page) {
-
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
                 clickOK().
@@ -126,11 +181,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterMailRU(User user, String page) {
-
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
                 clickMailRu().
@@ -150,11 +204,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterYA(User user, String page) {
-
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
                 clickYA().
@@ -177,7 +230,6 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     public void landingFormRegister(User user, String page) {
-
         new LandingWithForm().switchToRegistration().typeLogin(user.getLogin())
                 .typePass(user.getPass()).agreeWithRules()
                 .clickRegisterButtonToGift()
@@ -190,14 +242,12 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterVK(User user, String page) {
-
         new LandingWithForm().switchToRegistration().
                 clickVK().
                 setEmail(user.getLogin()).
@@ -214,14 +264,12 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterFB(User user, String page) {
-
         new LandingWithForm().switchToRegistration().
                 clickFB().
                 setEmail(user.getLogin()).
@@ -240,11 +288,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterOK(User user, String page) {
-
         new LandingWithForm().switchToRegistration().
                 clickOK().
                 setEmail(user.getLogin()).
@@ -263,11 +310,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterMailRU(User user, String page) {
-
         new LandingWithForm().switchToRegistration().
                 clickMailRu().
                 setEmail(user.getLogin()).
@@ -286,11 +332,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterYA(User user, String page) {
-
         new LandingWithForm().switchToRegistration().
                 clickYA().
                 setEmail(user.getLogin()).
@@ -312,12 +357,10 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"12"})
     public void landingChooseContRegister(User user, String page) {
-
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().typeLogin(user.getLogin())
                 .typePass(user.getPass()).agreeWithRules().
                 clickRegisterButtonToHome();
         new LotteryPopup().closePopup();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -326,14 +369,12 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterVK(User user, String page) {
-
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
                 clickVK().
                 setEmail(user.getLogin()).
@@ -341,7 +382,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -350,14 +390,12 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterFB(User user, String page) {
-
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
                 clickFB().
                 setEmail(user.getLogin()).
@@ -365,8 +403,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -377,11 +413,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterOK(User user, String page) {
-
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
                 clickOK().
                 setEmail(user.getLogin()).
@@ -389,7 +424,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().setEmail(user.getLogin()).
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -400,11 +434,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterMailRU(User user, String page) {
-
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
                 clickMailRu().
                 setEmail(user.getLogin()).
@@ -412,7 +445,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -423,11 +455,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterYA(User user, String page) {
-
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
                 clickYA().
                 setEmail(user.getLogin()).
@@ -435,7 +466,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -449,12 +479,10 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"7"})
     public void landingChooseRegister(User user, String page) {
-
         new LandingWithBonus().clickCashBack().switchToRegistration().typeLogin(user.getLogin())
                 .typePass(user.getPass()).agreeWithRules()
                 .clickRegisterButtonToHome();
         new LotteryPopup().closePopup();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -463,10 +491,9 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterVK(User user, String page) {
@@ -478,7 +505,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -487,14 +513,12 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","fb"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterFB(User user, String page) {
-
         new LandingWithBonus().clickCashBack().switchToRegistration().
                 clickFB().
                 setEmail(user.getLogin()).
@@ -502,7 +526,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -513,11 +536,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ok"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterOK(User user, String page) {
-
         new LandingWithBonus().clickCashBack().switchToRegistration().
                 clickOK().
                 setEmail(user.getLogin()).
@@ -525,7 +547,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().setEmail(user.getLogin()).
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -536,11 +557,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","mailru"})
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterMailRU(User user, String page) {
-
         new LandingWithBonus().clickCashBack().switchToRegistration().
                 clickMailRu().
                 setEmail(user.getLogin()).
@@ -548,7 +568,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -559,11 +578,10 @@ public class FirstTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","ya"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterYA(User user, String page) {
-
         new LandingWithBonus().clickCashBack().switchToRegistration().
                 clickYA().
                 setEmail(user.getLogin()).
@@ -571,7 +589,6 @@ public class FirstTest extends BaseTestPage {
                 .clickRegister().
                 agreeWithRules()
                 .clickCompleteRegister();
-
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -610,9 +627,5 @@ public class FirstTest extends BaseTestPage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
-
-
 }
