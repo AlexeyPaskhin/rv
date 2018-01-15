@@ -10,10 +10,8 @@ public class LandingWithBonus extends AbstractPage {
     private Button CHOOSE_BONUS = new Button(By.xpath("//label[@class='choose-gift right']"));
     private Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//label[@class='link-like']"));
 
-
-    public FastRegisterLanding switchToRegistration(){
-
-        return new FastRegisterLanding(new LandingWithChooseBonusType());
+    public FastRegister switchToRegistration(){
+        return new FastRegister(new LandingWithChooseBonusType());
     }
 
     public LandingWithBonus clickCashBack(){
@@ -28,5 +26,4 @@ public class LandingWithBonus extends AbstractPage {
         WITHDRAW_FROM_GIFT.click();
         return this;
     }
-
 }

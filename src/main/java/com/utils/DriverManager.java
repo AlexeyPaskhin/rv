@@ -31,14 +31,25 @@ public class DriverManager {
     private static WebDriver driver;
     public static String BROWSER=System.getProperty("browser");
     private static WebDriverEventListener events = new WebDriverEventHandler();
-
-
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
         if(BROWSER==null) {
             BROWSER=browser;
         }
         URL url  = new URL("http://localhost:4444/wd/hub");
-        if(BROWSER.equalsIgnoreCase(CHROME)){
+
+
+//        server = new BrowserMobProxyServer();
+//        server.start();
+//        int port = server.getPort();
+//        Proxy proxy = ClientUtil.createSeleniumProxy(server);
+//        String PROXY = "193.124.182.229:3348";
+//
+//        Proxy proxy = new Proxy();
+//        proxy.setHttpProxy(PROXY);
+//        DesiredCapabilities cap = new DesiredCapabilities();
+//        cap.setCapability(CapabilityType.PROXY, proxy);
+
+        if(browser.equalsIgnoreCase(CHROME)){
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
             DesiredCapabilities cap = DesiredCapabilities.chrome();
            // cap.setBrowserName("chrome");
@@ -49,24 +60,24 @@ public class DriverManager {
             //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
            // chromeOptions.addArguments("--headless");
 
-        driver = new EventFiringWebDriver(new RemoteWebDriver(url,cap)).register(events);}
+        driver = new EventFiringWebDriver(new ChromeDriver()).register(events);}
 
-        else if(BROWSER.equalsIgnoreCase(FIREFOX)){
+        else if(browser.equalsIgnoreCase(FIREFOX)){
             System.setProperty("webdriver.gecko.driver",FIREFOX_DRIVER_PATH);
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+           // firefoxOptions.addArguments("--headless");
+             firefoxOptions.addArguments("--screenshot");
 
-             DesiredCapabilities cap = DesiredCapabilities.firefox();
-             cap.setPlatform(Platform.WINDOWS);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url,cap)).register(events);
-           // driver = new EventFiringWebDriver(new RemoteWebDriver(url,cap)).register(events);
+            driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
+
         }
-        else if (BROWSER.equalsIgnoreCase(EDGE)){
+        else if (browser.equalsIgnoreCase(EDGE)){
             System.setProperty("webdriver.edge.driver",EDGE_DRIVER_PATH);
             driver = new EventFiringWebDriver(new EdgeDriver()).register(events);
 
             //TODO implement EDGE
         }
-        else if(BROWSER.equalsIgnoreCase(OPERA)){
-
+        else if(browser.equalsIgnoreCase(OPERA)){
             System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
             OperaOptions oo = new OperaOptions();
             oo.addArguments("no-sandbox");
@@ -74,10 +85,9 @@ public class DriverManager {
             driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
         }
         // Hack before operadriver 2.33 will release
-        if(!BROWSER.equalsIgnoreCase(OPERA)) {
+        if(!browser.equalsIgnoreCase(OPERA)) {
             driver.manage().window().maximize();
         }
-
         setImplicity(10);
         return driver;
     }
@@ -87,11 +97,6 @@ public class DriverManager {
 
     }
     public static WebDriver getDriver(){
-
         return driver;
     }
-
-
-
-
 }

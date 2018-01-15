@@ -1,6 +1,5 @@
 package com.Elements;
 
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
@@ -36,17 +35,14 @@ public class Element {
         element = getDriver().findElement(by);
         logger.info("--OK! Element " + by + " found successfully");
         return element;
-
     }
-
 
     public void sendKeys(CharSequence sequence) {
         sendKeys(slaveElement(), sequence);
-
     }
 
     private void sendKeys(WebElement element, CharSequence sequence) {
-        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class)
+        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class,ElementNotInteractableException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .withTimeout(3, TimeUnit.SECONDS)
                 .until(new Function<WebDriver, Boolean>() {
@@ -59,9 +55,7 @@ public class Element {
     }
 
     public void click() {
-
             click(slaveElement());
-
     }
 
     public String getText() {
@@ -70,7 +64,6 @@ public class Element {
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .ignoring(StaleElementReferenceException.class)
                 .until(driver -> slaveElement().getText());
-
     }
 
     private void click(WebElement element) {
@@ -85,7 +78,6 @@ public class Element {
     }
 
     public boolean isPresent() {
-
         setImplicity(0);
         List<WebElement> list = getDriver().findElements(by);
         setImplicity(15);
@@ -94,7 +86,6 @@ public class Element {
         } else {
             return list.get(0).isDisplayed();
         }
-
     }
 
     public boolean isVisible() {
@@ -133,7 +124,6 @@ public class Element {
     public void doubleClick() {
         Actions doubleClick = new Actions(getDriver());
         doubleClick.doubleClick(slaveElement()).build().perform();
-
     }
 
     public void clickUntilDisappeared(){

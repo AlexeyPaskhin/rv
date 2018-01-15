@@ -12,5 +12,4 @@ public class RadioButton extends Element {
             slaveElement().click();
         }
     }
-
 }

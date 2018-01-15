@@ -34,13 +34,12 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
-
         if (method.isAnnotationPresent(RemoveUser.class)) {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
                 String oldName = us.getLogin();
                 String newName = "autotest+" + RandomGenerate.randomString(3, 10) + "@playtini.ua";
-                    manager.updateUserForSocial(oldName,newName);
+                manager.updateUserForSocial(oldName, newName);
             }
         }
         if (o[0] instanceof User) {
@@ -53,18 +52,13 @@ public class BaseTestPage {
             e.printStackTrace();
         }
 
-
         if (method.isAnnotationPresent(LandingPage.class)) {
-
             String pageNumber = o[1].toString();
-
-
             getDriver().get(customDataProvider.getBasicURL() + "lp/" + pageNumber);
         } else {
             getDriver().get(customDataProvider.getBasicURL());
         }
         home = new HomePage();
-
     }
 
     @AfterMethod(alwaysRun = true)
@@ -97,5 +91,4 @@ catch (SessionNotCreatedException e){}
     public void releaseResources() {
         manager.disconnectFromConsole();
     }
-
 }

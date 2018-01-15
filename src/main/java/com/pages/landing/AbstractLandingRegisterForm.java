@@ -18,28 +18,28 @@ public abstract class AbstractLandingRegisterForm extends AbstractPage{
 //    private final Checkbox AGREE_CHECKBOX ;
 //    private final Button REGISTER_BUTTON ;
 //
-//    public FastRegisterLanding typeLogin(String login) {
+//    public FastRegister typeLogin(String login) {
 //        EMAIL_INPUT.fillIn(login);
 //        return this;
 //    }
 //
-//    public FastRegisterLanding typePass(String pass) {
+//    public FastRegister typePass(String pass) {
 //        PASSWORD_INPUT.fillIn(pass);
 //        return this;
 //    }
 //
-//    public FastRegisterLanding selectCurrencyRUB() {
+//    public FastRegister selectCurrencyRUB() {
 //        CURRENCY_RUB_RADIO.click();
 //        return this;
 //    }
 //
-//    public FastRegisterLanding selectCurrencyUSD() {
+//    public FastRegister selectCurrencyUSD() {
 //        CURRENCY_USD_RADIO.click();
 //        return this;
 //
 //    }
 //
-//    public FastRegisterLanding agreeWithRules() {
+//    public FastRegister agreeWithRules() {
 //        AGREE_CHECKBOX.click();
 //        return this;
 //    }

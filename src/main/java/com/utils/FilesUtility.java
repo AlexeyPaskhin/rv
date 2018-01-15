@@ -24,7 +24,6 @@ public class FilesUtility {
     private static String getFormattedDate(){
         SimpleDateFormat smd = new SimpleDateFormat("dd.MMM hh.mm");
         return smd.format(new Date());
-
     }
 
     public static String copyFailLogs(ITestResult iTestResult){

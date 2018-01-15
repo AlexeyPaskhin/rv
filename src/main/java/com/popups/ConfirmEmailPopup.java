@@ -29,8 +29,4 @@ public class ConfirmEmailPopup extends AbstractPage {
         COMPLETE_REGISTER_BUTTON.click();
         return new HomePage();
     }
-
-
-
-
 }

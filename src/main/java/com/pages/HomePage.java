@@ -51,15 +51,6 @@ public class HomePage extends AbstractPage {
         return new YARegisterPage();
     }
 
-    private void swithToSocialFrame() {
-        AbstractPage.parentWindow = getDriver().getWindowHandle();
-        waitForCountOfWindows(2);
-        for (String winHandle : getDriver().getWindowHandles()) {
-            swithToWindow(winHandle);
-        }
-        waitForPageToLoad();
-    }
-
     public FastRegisterPopup clickRegister() {
         REGISTER_BUTTON.click();
         return new FastRegisterPopup();

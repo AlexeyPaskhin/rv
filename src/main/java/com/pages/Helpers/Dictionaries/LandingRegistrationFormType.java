@@ -15,7 +15,6 @@ public class LandingRegistrationFormType implements RegistrationFormType {
     private Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register-landing']//input[@name='agree' and @type='checkbox']"));
     private Button REGISTER_BUTTON = new Button(By.xpath("//button[@class='btn-popup-register-landing']"));
 
-
     @Override
     public InputBox getEmailInput() {
         return this.EMAIL_INPUT;

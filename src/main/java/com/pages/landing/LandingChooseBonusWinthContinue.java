@@ -13,9 +13,8 @@ public class LandingChooseBonusWinthContinue extends AbstractPage{
     private Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//label[@class='link-like']"));
     private Button CONTINUE_BUTTON = new Button(By.xpath("//button[@id='choose-gift-landing-12-submit']"));
 
-    public FastRegisterLanding switchToRegistration(){
-
-        return new FastRegisterLanding(new LandingWithChooseBonusType());
+    public FastRegister switchToRegistration(){
+        return new FastRegister(new LandingWithChooseBonusType());
     }
 
     public LandingChooseBonusWinthContinue clickCashBack(){

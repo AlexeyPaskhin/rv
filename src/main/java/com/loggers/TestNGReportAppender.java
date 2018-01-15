@@ -28,7 +28,6 @@ public class TestNGReportAppender extends AppenderSkeleton {
 
     @Override
     public void close() {
-
     }
 
     @Override

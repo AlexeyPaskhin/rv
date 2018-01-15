@@ -20,6 +20,12 @@ public class FastRegisterPopup extends AbstractPage  {
     private final Button VK_BUTTON = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
     private final Button MAILRU_BUTTON = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
 
+    private static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
+    private static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-fb']"));
+    private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
+    private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
+    private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
+
     public FastRegisterPopup typeLogin(String login){
         ENTER_EMAIL_INPUT.fillIn(login);
         return this;
@@ -62,13 +68,9 @@ public class FastRegisterPopup extends AbstractPage  {
         swithToSocialFrame();
         return new MailRuRegisterPage();
     }
-
-    private void swithToSocialFrame() {
-        AbstractPage.parentWindow = getDriver().getWindowHandle();
-        waitForCountOfWindows(2);
-        for (String winHandle : getDriver().getWindowHandles()) {
-            swithToWindow(winHandle);
-        }
-        waitForPageToLoad();
+    public SocialFrame clickFB() {
+        FB_BUTTON_HOME_PAGE.click();
+        swithToSocialFrame();
+        return new FBregisterPage();
     }
 }

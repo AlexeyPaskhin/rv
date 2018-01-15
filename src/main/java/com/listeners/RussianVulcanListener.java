@@ -22,7 +22,6 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestStart(ITestResult iTestResult) {
         logger.info("Test method " + iTestResult.getMethod().getMethodName() + " started");
-
     }
 
     @Override
@@ -34,7 +33,6 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-
         String pathToScreenshot = FilesUtility.captureScreenshot(iTestResult);
 
         logger.error(iTestResult.getThrowable().getMessage());
@@ -45,31 +43,24 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
                         iTestResult.getMethod().getMethodName() +
                         " failed " + " Browser: " + dp.getBrowser(),
                 issueLog, "Automation Fail", pathToScreenshot);
-
-
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
         logger.info("===================================================" +
                 "==================================================");
-
     }
 
 
@@ -81,6 +72,5 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onFinish(ISuite iSuite) {
-
     }
 }
