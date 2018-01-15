@@ -4,7 +4,10 @@ import com.Elements.Button;
 import com.Elements.Checkbox;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.landing.social.*;
 import org.openqa.selenium.By;
+
+import static com.utils.DriverManager.getDriver;
 
 public class FastRegisterPopup extends AbstractPage  {
     private static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
@@ -13,6 +16,9 @@ public class FastRegisterPopup extends AbstractPage  {
     private static final Checkbox CURRENCY_RUB_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='RUB']"));
     private static final Checkbox CURRENCY_USD_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='USD']"));
     private static final Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='agree' and @type='checkbox']"));
+
+    private final Button VK_BUTTON = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
+    private final Button MAILRU_BUTTON = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
 
     public FastRegisterPopup typeLogin(String login){
         ENTER_EMAIL_INPUT.fillIn(login);
@@ -43,5 +49,26 @@ public class FastRegisterPopup extends AbstractPage  {
     public GiftPopup clickRegisterButton(){
         REGISTER_BUTTON.clickUntilDisappeared();
         return new GiftPopup();
+    }
+
+    public SocialFrame clickVK() {
+        VK_BUTTON.click();
+        swithToSocialFrame();
+        return new VkRegisterPage();
+    }
+
+    public SocialFrame clickMailRu() {
+        MAILRU_BUTTON.click();
+        swithToSocialFrame();
+        return new MailRuRegisterPage();
+    }
+
+    private void swithToSocialFrame() {
+        AbstractPage.parentWindow = getDriver().getWindowHandle();
+        waitForCountOfWindows(2);
+        for (String winHandle : getDriver().getWindowHandles()) {
+            swithToWindow(winHandle);
+        }
+        waitForPageToLoad();
     }
 }

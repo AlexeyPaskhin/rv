@@ -611,6 +611,52 @@ public class FirstTest extends BaseTestPage {
 
     }
 
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"register", "social", "vk"})
+    @RemoveUser
+    public void mainPageRegisterVK(User user) {
+        new HomePage().clickRegister().
+                clickVK().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass()).
+                clickRegister().
+                agreeWithRules().
+                clickCompleteRegister().
+                getGiftPopup().
+                withdrawFromGift();
 
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON MAIN PAGE");
+            logger.error(e);
+            Assert.fail();
+        }
+
+    }
+
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"register", "social", "mailru"})
+    @RemoveUser
+    public void mainPageRegisterMailRu(User user) {
+        new HomePage().clickRegister().
+                clickMailRu().
+                setEmail(user.getLogin()).
+                setPassword(user.getPass()).
+                clickRegister().
+                agreeWithRules().
+                clickCompleteRegister().
+                getGiftPopup().
+                withdrawFromGift();
+
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON MAIN PAGE");
+            logger.error(e);
+            Assert.fail();
+        }
+
+    }
 
 }
