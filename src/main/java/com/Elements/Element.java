@@ -42,7 +42,7 @@ public class Element {
     }
 
     private void sendKeys(WebElement element, CharSequence sequence) {
-        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class)
+        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class,ElementNotInteractableException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .withTimeout(3, TimeUnit.SECONDS)
                 .until(new Function<WebDriver, Boolean>() {
