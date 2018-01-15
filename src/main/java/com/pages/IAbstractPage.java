@@ -23,7 +23,6 @@ public interface IAbstractPage {
     }
 
     default void wait(int ms){
-
            try {
                Thread.sleep(ms);
            } catch (InterruptedException e) {
