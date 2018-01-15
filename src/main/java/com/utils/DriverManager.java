@@ -32,7 +32,6 @@ public class DriverManager {
     private static WebDriverEventListener events = new WebDriverEventHandler();
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
 
-
 //        server = new BrowserMobProxyServer();
 //        server.start();
 //        int port = server.getPort();
@@ -43,8 +42,6 @@ public class DriverManager {
 //        proxy.setHttpProxy(PROXY);
 //        DesiredCapabilities cap = new DesiredCapabilities();
 //        cap.setCapability(CapabilityType.PROXY, proxy);
-
-
 
         if(browser.equalsIgnoreCase(CHROME)){
         System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
@@ -75,7 +72,6 @@ public class DriverManager {
             //TODO implement EDGE
         }
         else if(browser.equalsIgnoreCase(OPERA)){
-
             System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
             OperaOptions oo = new OperaOptions();
             oo.addArguments("no-sandbox");
@@ -86,7 +82,6 @@ public class DriverManager {
         if(!browser.equalsIgnoreCase(OPERA)) {
             driver.manage().window().maximize();
         }
-
         setImplicity(10);
         return driver;
     }
@@ -96,11 +91,6 @@ public class DriverManager {
 
     }
     public static WebDriver getDriver(){
-
         return driver;
     }
-
-
-
-
 }

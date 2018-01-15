@@ -77,7 +77,6 @@ public class SSHManager {
         logger.info("User name and email changed from: " + oldName + "  to: " + newName);
         // executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"select id from players where email='"+newName+"'\\G;\"");
 
-
         for (int i = 0; i < responce.size(); i++) {
             if (responce.get(i).matches("id: [0-9]{1,11}")) {
                 logger.info(" Old user ID is :" + responce.get(i));

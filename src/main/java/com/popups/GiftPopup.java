@@ -12,5 +12,4 @@ public class GiftPopup extends AbstractPage {
         WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
-
 }

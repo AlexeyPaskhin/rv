@@ -13,31 +13,30 @@ import static com.utils.DriverManager.getDriver;
 
 public interface IAbstractPage {
 
-    default String getTitle(){
-
+    default String getTitle() {
         return getDriver().getTitle();
     }
 
-    default String getURL(){
+    default String getURL() {
         return getDriver().getCurrentUrl();
     }
 
-    default void wait(int ms){
-           try {
-               Thread.sleep(ms);
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-       }
+    default void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
-    default void swithToWindow(String window){
-              getDriver().switchTo().window(window);
-          }
+    default void swithToWindow(String window) {
+        getDriver().switchTo().window(window);
+    }
 
-    default String handleCurrentWindow(){
+    default String handleCurrentWindow() {
+        return getDriver().getWindowHandle();
+    }
 
-                 return getDriver().getWindowHandle();
-             }
     default void waitForPageToLoad() {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), 15);
         wait.until(new Function<WebDriver, Boolean>() {
@@ -50,8 +49,9 @@ public interface IAbstractPage {
             }
         });
     }
-    default void waitForCountOfWindows(int windowsCount){
-        new WebDriverWait(getDriver(),10).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
+
+    default void waitForCountOfWindows(int windowsCount) {
+        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
     }
 
     default void swithToSocialFrame() {

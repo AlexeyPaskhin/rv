@@ -22,11 +22,11 @@ import java.nio.charset.Charset;
 
 public class HttpProvider {
 
-   private final static Logger logger = LogManager.getLogger(HttpProvider.class);
-   private String authHeader;
-   private HttpClient httpclient;
-   private String login = "autobot@playtini.ua";
-   private String pass = "deiVim6haid01";
+    private final static Logger logger = LogManager.getLogger(HttpProvider.class);
+    private String authHeader;
+    private HttpClient httpclient;
+    private String login = "autobot@playtini.ua";
+    private String pass = "deiVim6haid01";
 
     public HttpProvider() {
         httpclient = HttpClientBuilder.create().build();
@@ -63,8 +63,8 @@ public class HttpProvider {
 
         try {
 
-            HttpResponse response= httpclient.execute(request);
-           // System.out.println("EXECUTION METHOD"+EntityUtils.toString(response.getEntity(), "UTF-8"));
+            HttpResponse response = httpclient.execute(request);
+            // System.out.println("EXECUTION METHOD"+EntityUtils.toString(response.getEntity(), "UTF-8"));
             //
             return response;
 
@@ -72,16 +72,14 @@ public class HttpProvider {
             logger.error("Something wrong with jira server");
             e.printStackTrace();
         }
-return null;
+        return null;
     }
-
 
     private void setCredentials(String login, String pass) {
         String auth = login + ":" + pass;
         byte[] encodedAuth = Base64.encodeBase64(
                 auth.getBytes(Charset.forName("ISO-8859-1")));
         authHeader = "Basic " + new String(encodedAuth);
-
     }
 
     public HttpClient getHttpClient() {

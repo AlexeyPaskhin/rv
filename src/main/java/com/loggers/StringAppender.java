@@ -18,7 +18,6 @@ public class StringAppender extends WriterAppender {
         activateOptions();
     }
 
-
     public void activateOptions() {
         setWriter(testWriter);
         super.activateOptions();
@@ -30,9 +29,5 @@ public class StringAppender extends WriterAppender {
 
     public static void resetAppender() {
         testWriter.getBuffer().setLength(0);
-
-
     }
-
-
 }

@@ -1,6 +1,5 @@
 package com.JiraUtils;
 
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -16,23 +15,17 @@ public class JiraTicketManager {
     private final static Logger logger = LogManager.getLogger(JiraTicketManager.class);
     HttpProvider httpProvider;
 
-
     public JiraTicketManager(HttpProvider httpProvider) {
-
         this.httpProvider = httpProvider;
-
     }
 
-
     public void createIssueTicket(String projectKey, String summary, String description, String issueType) {
-
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode fieldsNode = mapper.createObjectNode();
         ObjectNode projectNode = mapper.createObjectNode();
         ObjectNode issueNode = mapper.createObjectNode();
         ObjectNode rootNode = mapper.createObjectNode();
-
 
         projectNode.put("key", projectKey);
         issueNode.put("name", issueType);
@@ -42,18 +35,15 @@ public class JiraTicketManager {
         fieldsNode.put("issuetype", issueNode);
         rootNode.put("fields", fieldsNode);
 
-
         HttpResponse response=  httpProvider.executePost(httpProvider.createPostRequestJSON("https://playtini.atlassian.net/rest/api/2/issue", rootNode.toString()));
         try {
             System.out.println("create ticket method" +EntityUtils.toString(response.getEntity(), "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void addScreenshotToTicket(String pathToScreenshot) {
-
         httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/PROD-4325/attachments", pathToScreenshot));
     }
 
@@ -67,7 +57,6 @@ public class JiraTicketManager {
         ObjectNode projectNode = mapper.createObjectNode();
         ObjectNode issueNode = mapper.createObjectNode();
         ObjectNode rootNode = mapper.createObjectNode();
-
 
         projectNode.put("key", projectKey);
         issueNode.put("name", issueType);
@@ -92,16 +81,13 @@ public class JiraTicketManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private String getIssueKey(HttpResponse httpResponse){
-
         try {
             JsonNode rootNode = new ObjectMapper().readTree(new StringReader(EntityUtils.toString(httpResponse.getEntity())));
            return rootNode.get("key").asText();
         } catch (IOException e) {
-
             return null;
         }
     }

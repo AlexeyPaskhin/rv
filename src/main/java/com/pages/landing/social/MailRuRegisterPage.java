@@ -29,7 +29,6 @@ public class MailRuRegisterPage extends AbstractPage implements SocialFrame{
         waitForCountOfWindows(1);
         swithToWindow(parentWindow);
         return new ConfirmEmailPopup();
-
     }
 
     public ConfirmEmailPopup switchToConfirmEmail(){

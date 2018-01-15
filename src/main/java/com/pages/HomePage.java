@@ -12,8 +12,6 @@ public class HomePage extends AbstractPage {
     private final Panel CONTENT_PANE = new Panel(By.xpath("//div[@class='wrap cf']"));
     private final GiftPopup GIFT_POPUP = new GiftPopup();
 
-
-
     public FastRegisterPopup clickRegister() {
         REGISTER_BUTTON.click();
         return new FastRegisterPopup();

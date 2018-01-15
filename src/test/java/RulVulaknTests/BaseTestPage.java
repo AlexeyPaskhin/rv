@@ -54,7 +54,6 @@ public class BaseTestPage {
             e.printStackTrace();
         }
 
-
         if (method.isAnnotationPresent(LandingPage.class)) {
             String pageNumber = o[1].toString();
             getDriver().get(customDataProvider.getBasicURL() + "lp/" + pageNumber);
@@ -62,7 +61,6 @@ public class BaseTestPage {
             getDriver().get(customDataProvider.getBasicURL());
         }
         home = new HomePage();
-
     }
 
     @AfterMethod(alwaysRun = true)
@@ -83,5 +81,4 @@ public class BaseTestPage {
     public void releaseResources() {
         manager.disconnectFromConsole();
     }
-
 }

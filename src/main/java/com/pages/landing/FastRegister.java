@@ -27,16 +27,13 @@ public class FastRegister extends AbstractPage {
     private final Button OK_BUTTON = new Button(By.xpath("//div[@class='social-ok']"));
     private final Button YA_BUTTON = new Button(By.xpath("//div[@class='social-ya']"));
 
-
     public FastRegister(RegistrationFormType registrationType) {
-
         this.EMAIL_INPUT = registrationType.getEmailInput();
         this.PASSWORD_INPUT = registrationType.getPasswordInput();
         this.CURRENCY_RUB_RADIO = registrationType.getCurrencyRubRadio();
         this.CURRENCY_USD_RADIO = registrationType.getCurrencyUsdRadio();
         this.AGREE_CHECKBOX = registrationType.getAgreeCheckbox();
         this.REGISTER_BUTTON = registrationType.getRegisterButton();
-
     }
 
     public FastRegister typeLogin(String login) {
@@ -57,7 +54,6 @@ public class FastRegister extends AbstractPage {
     public FastRegister selectCurrencyUSD() {
         CURRENCY_USD_RADIO.click();
         return this;
-
     }
 
     public FastRegister agreeWithRules() {

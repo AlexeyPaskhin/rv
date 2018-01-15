@@ -14,7 +14,6 @@ public class LandingChooseBonusWinthContinue extends AbstractPage{
     private Button CONTINUE_BUTTON = new Button(By.xpath("//button[@id='choose-gift-landing-12-submit']"));
 
     public FastRegister switchToRegistration(){
-
         return new FastRegister(new LandingWithChooseBonusType());
     }
 

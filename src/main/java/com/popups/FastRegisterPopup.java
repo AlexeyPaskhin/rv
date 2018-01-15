@@ -19,10 +19,10 @@ public class FastRegisterPopup extends AbstractPage  {
     private static final Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='agree' and @type='checkbox']"));
 
     private static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
-    private static final Button FB_BUTTON_HOME_PAGE = new Button(By.cssSelector("//div[@id='popup_register']//div[@class='social-fb']"));
-    private static final Button OK_BUTTON_HOME_PAGE = new Button(By.cssSelector("//div[@id='popup_register']//div[@class='social-ok']"));
-    private static final Button YA_BUTTON_HOME_PAGE = new Button(By.cssSelector("//div[@id='popup_register']//div[@class='social-ya']"));
-    private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.cssSelector("//div[@id='popup_register']//div[@class='social-mr']"));
+    private static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-fb']"));
+    private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
+    private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
+    private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
 
     public FastRegisterPopup typeLogin(String login){
         ENTER_EMAIL_INPUT.fillIn(login);

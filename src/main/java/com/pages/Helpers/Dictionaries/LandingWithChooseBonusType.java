@@ -14,6 +14,7 @@ public class LandingWithChooseBonusType implements RegistrationFormType {
     private RadioButton CURRENCY_USD_RADIO = new RadioButton(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@name='currency' and @value='USD']"));
     private Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@type='checkbox']"));
     private Button REGISTER_BUTTON = new Button(By.xpath("//div[contains(@id,'popup_register-landing')]//button[@class='btn-popup-register']"));
+
     @Override
     public InputBox getEmailInput() {
         return  this.EMAIL_INPUT;

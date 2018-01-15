@@ -36,8 +36,7 @@ public class FirstTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
     public void registrationFromHomePageRub(User user) {
-        HomePage homePage = new HomePage();
-        homePage.clickRegister()
+        new HomePage().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
@@ -55,8 +54,7 @@ public class FirstTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
     public void registrationFromHomePageUsd(User user) {
-        HomePage homePage = new HomePage();
-        homePage.clickRegister()
+        new HomePage().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
@@ -74,9 +72,8 @@ public class FirstTest extends BaseTestPage {
 
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = "fb")
     @RemoveUser
-    public void mainPageRegisterFB(User user){
-        HomePage homePage = new HomePage();
-        homePage.clickRegister()
+    public void mainPageRegisterFB(User user) {
+        new HomePage().clickRegister()
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
@@ -98,8 +95,11 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     public void landingComplexRegister(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
-        lp.clickRegisterButton().switchToRegistration().typeLogin(user.getLogin())
-                .typePass(user.getPass()).agreeWithRules()
+        lp.clickRegisterButton()
+                .switchToRegistration()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
                 .clickRegisterButtonToGift()
                 .withdrawFromGift();
         try {
@@ -117,13 +117,15 @@ public class FirstTest extends BaseTestPage {
     @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
-        lp.clickRegisterButton().switchToRegistration().
-                clickVK()
+        lp.clickRegisterButton()
+                .switchToRegistration()
+                .clickVK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
                 .clickRegister()
                 .agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -140,13 +142,15 @@ public class FirstTest extends BaseTestPage {
     @RemoveUser
     public void landingComplexRegisterFB(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
-        lp.clickRegisterButton().switchToRegistration().
-                clickFB().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        lp.clickRegisterButton()
+                .switchToRegistration()
+                .clickFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -164,12 +168,14 @@ public class FirstTest extends BaseTestPage {
     public void landingComplexRegisterOK(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
-                clickOK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().setEmail(user.getLogin()).
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+                clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .setEmail(user.getLogin())
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -186,13 +192,15 @@ public class FirstTest extends BaseTestPage {
     @RemoveUser
     public void landingComplexRegisterMailRU(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
-        lp.clickRegisterButton().switchToRegistration().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        lp.clickRegisterButton()
+                .switchToRegistration()
+                .clickMailRu()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -209,13 +217,15 @@ public class FirstTest extends BaseTestPage {
     @RemoveUser
     public void landingComplexRegisterYA(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
-        lp.clickRegisterButton().switchToRegistration().
-                clickYA().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        lp.clickRegisterButton()
+                .switchToRegistration()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -230,8 +240,11 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     public void landingFormRegister(User user, String page) {
-        new LandingWithForm().switchToRegistration().typeLogin(user.getLogin())
-                .typePass(user.getPass()).agreeWithRules()
+        new LandingWithForm()
+                .switchToRegistration()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
                 .clickRegisterButtonToGift()
                 .withdrawFromGift();
         try {
@@ -248,13 +261,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterVK(User user, String page) {
-        new LandingWithForm().switchToRegistration().
-                clickVK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -270,13 +285,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterFB(User user, String page) {
-        new LandingWithForm().switchToRegistration().
-                clickFB().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -292,13 +309,16 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterOK(User user, String page) {
-        new LandingWithForm().switchToRegistration().
-                clickOK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().setEmail(user.getLogin()).
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .setEmail(user.getLogin())
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -314,13 +334,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterMailRU(User user, String page) {
-        new LandingWithForm().switchToRegistration().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickMailRu()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -336,13 +358,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
     public void landingFormRegisterYA(User user, String page) {
-        new LandingWithForm().switchToRegistration().
-                clickYA().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
-                .clickCompleteRegister().getGiftPopup()
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
                 .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -357,10 +381,16 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
     @LandingPage(pageNo = {"12"})
     public void landingChooseContRegister(User user, String page) {
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().typeLogin(user.getLogin())
-                .typePass(user.getPass()).agreeWithRules().
-                clickRegisterButtonToHome();
-        new LotteryPopup().closePopup();
+        new LandingChooseBonusWinthContinue()
+                .clickCashBack()
+                .clickContinue()
+                .switchToRegistration()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .clickRegisterButtonToHome();
+        new LotteryPopup()
+                .closePopup();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -375,12 +405,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterVK(User user, String page) {
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickVK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingChooseBonusWinthContinue()
+                .clickCashBack()
+                .clickContinue()
+                .switchToRegistration()
+                .clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -396,12 +429,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterFB(User user, String page) {
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickFB().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingChooseBonusWinthContinue()
+                .clickCashBack()
+                .clickContinue()
+                .switchToRegistration()
+                .clickFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -417,12 +453,16 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterOK(User user, String page) {
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickOK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().setEmail(user.getLogin()).
-                agreeWithRules()
+        new LandingChooseBonusWinthContinue()
+                .clickCashBack()
+                .clickContinue()
+                .switchToRegistration()
+                .clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .setEmail(user.getLogin())
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -438,12 +478,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterMailRU(User user, String page) {
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingChooseBonusWinthContinue()
+                .clickCashBack()
+                .clickContinue()
+                .switchToRegistration()
+                .clickMailRu()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -459,12 +502,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     public void landingChooseContRegisterYA(User user, String page) {
-        new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().
-                clickYA().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingChooseBonusWinthContinue()
+                .clickCashBack()
+                .clickContinue()
+                .switchToRegistration()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -479,10 +525,15 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"7"})
     public void landingChooseRegister(User user, String page) {
-        new LandingWithBonus().clickCashBack().switchToRegistration().typeLogin(user.getLogin())
-                .typePass(user.getPass()).agreeWithRules()
+        new LandingWithBonus()
+                .clickCashBack()
+                .switchToRegistration()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
                 .clickRegisterButtonToHome();
-        new LotteryPopup().closePopup();
+        new LotteryPopup()
+                .closePopup();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -497,13 +548,14 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterVK(User user, String page) {
-
-        new LandingWithBonus().clickCashBack().switchToRegistration().
-                clickVK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingWithBonus()
+                .clickCashBack()
+                .switchToRegistration()
+                .clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -519,12 +571,14 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterFB(User user, String page) {
-        new LandingWithBonus().clickCashBack().switchToRegistration().
-                clickFB().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingWithBonus()
+                .clickCashBack()
+                .switchToRegistration()
+                .clickFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -540,12 +594,15 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterOK(User user, String page) {
-        new LandingWithBonus().clickCashBack().switchToRegistration().
-                clickOK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().setEmail(user.getLogin()).
-                agreeWithRules()
+        new LandingWithBonus()
+                .clickCashBack()
+                .switchToRegistration()
+                .clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .setEmail(user.getLogin())
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -561,12 +618,14 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterMailRU(User user, String page) {
-        new LandingWithBonus().clickCashBack().switchToRegistration().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingWithBonus()
+                .clickCashBack()
+                .switchToRegistration()
+                .clickMailRu()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -582,12 +641,14 @@ public class FirstTest extends BaseTestPage {
     @LandingPage(pageNo = {"7"})
     @RemoveUser
     public void landingChooseRegisterYA(User user, String page) {
-        new LandingWithBonus().clickCashBack().switchToRegistration().
-                clickYA().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass())
-                .clickRegister().
-                agreeWithRules()
+        new LandingWithBonus()
+                .clickCashBack()
+                .switchToRegistration()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
                 .clickCompleteRegister();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -601,7 +662,13 @@ public class FirstTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, enabled = false)
     public void checkSikuli(User user) throws FindFailed {
-        home.clickRegister().typeLogin(user.getLogin()).typePass(user.getPass()).selectCurrencyRUB().agreeWithRules().clickRegisterButton().withdrawFromGift();
+        home.clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .selectCurrencyRUB()
+                .agreeWithRules()
+                .clickRegisterButton()
+                .withdrawFromGift();
         getDriver().navigate().to("https://rc-stable.fe.rv.dev.77xy.net/games/singles-day");
         Button b = new Button(By.xpath("//div[@id='popup_out-of-money']//a[@href='/users/playMode/fun']"));
         try {

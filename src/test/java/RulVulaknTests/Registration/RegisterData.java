@@ -13,7 +13,6 @@ import java.lang.reflect.Method;
 
 public class RegisterData {
 
-
     @DataProvider
     public Object[][] randomUserProvider(Method method) {
         Object[][] obj;
@@ -54,7 +53,6 @@ public class RegisterData {
              user = new User.Builder().withLogin("yr@playtini.ua").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
-
         return obj;
     }
 
@@ -77,7 +75,6 @@ public class RegisterData {
             user = new User.Builder().withLogin("a.kvasko+2@playtini.ua").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
-
         return obj;
     }
 
@@ -100,7 +97,6 @@ public class RegisterData {
             user = new User.Builder().withLogin("yr+usd@playtini.ua").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
-
         return obj;
     }
 
@@ -123,7 +119,6 @@ public class RegisterData {
              user = new User.Builder().withLogin("ai.test-12@mail.ru").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
-
         return obj;
     }
 
@@ -147,11 +142,8 @@ public class RegisterData {
             user = new User.Builder().withLogin("dtplaytini@yandex.ru").withPass("h8ppXBQS").build();
             obj[0][0] = user;
         }
-
         return obj;
     }
-
-
 
 //    private Object[][] userForLanding(String[] pageNumber){
 //
