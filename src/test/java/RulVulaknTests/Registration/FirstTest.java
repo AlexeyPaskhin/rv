@@ -10,7 +10,6 @@ import com.pages.landing.LandingChooseBonusWinthContinue;
 import com.pages.landing.LandingWithBonus;
 import com.pages.landing.LandingWithButton;
 import com.pages.landing.LandingWithForm;
-import com.popups.LotteryPopup;
 import com.utils.User;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -53,7 +52,7 @@ public class FirstTest extends BaseTestPage {
 
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social","vk"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
@@ -316,7 +315,6 @@ public class FirstTest extends BaseTestPage {
         new LandingChooseBonusWinthContinue().clickCashBack().clickContinue().switchToRegistration().typeLogin(user.getLogin())
                 .typePass(user.getPass()).agreeWithRules().
                 clickRegisterButtonToHome();
-        new LotteryPopup().closePopup();
 
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -453,7 +451,7 @@ public class FirstTest extends BaseTestPage {
         new LandingWithBonus().clickCashBack().switchToRegistration().typeLogin(user.getLogin())
                 .typePass(user.getPass()).agreeWithRules()
                 .clickRegisterButtonToHome();
-        new LotteryPopup().closePopup();
+
 
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");

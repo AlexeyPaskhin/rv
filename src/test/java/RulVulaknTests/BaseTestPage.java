@@ -3,13 +3,11 @@ package RulVulaknTests;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
 import com.pages.HomePage;
-import com.utils.CustomDataProvider;
-import com.utils.RandomGenerate;
-import com.utils.SSHManager;
-import com.utils.User;
+import com.utils.*;
 import jdk.nashorn.internal.ir.ObjectNode;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.SessionNotCreatedException;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -75,15 +73,27 @@ public class BaseTestPage {
             User us = (User) o[0];
             manager.getUserID(us.getLogin());
         }
+
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 
-        if (!customDataProvider.getBrowser().equalsIgnoreCase("firefox")) {
+        if(DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+try {
+    getDriver().quit();
+}
+catch (SessionNotCreatedException e){}
+        }
+
+
+
+
+        if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+
             getDriver().quit();
         }
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void releaseResources() {
         manager.disconnectFromConsole();
     }
