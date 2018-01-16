@@ -1,4 +1,4 @@
-package RulVulaknTests.Registration;
+package RulVulaknTests.registration;
 
 import RulVulaknTests.BaseTestPage;
 import com.Elements.Button;
@@ -21,18 +21,16 @@ import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.io.DataInput;
 import java.io.File;
 
 import static com.utils.DriverManager.getDriver;
 
 @Listeners({RussianVulcanListener.class})
-public class FirstTest extends BaseTestPage {
-    private final static Logger logger = LogManager.getLogger(FirstTest.class);
+public class RegistrationTest extends BaseTestPage {
+    private final static Logger logger = LogManager.getLogger(RegistrationTest.class);
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
     public void registrationFromHomePageRub(User user) {
@@ -699,16 +697,15 @@ public class FirstTest extends BaseTestPage {
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"register", "social", "vk"})
     @RemoveUser
     public void mainPageRegisterVK(User user) {
-        new HomePage().clickRegister().
-                clickVK().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass()).
-                clickRegister().
-                agreeWithRules().
-                clickCompleteRegister().
-                getGiftPopup().
-                withdrawFromGift();
-
+        new HomePage().clickRegister()
+                .clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -717,22 +714,20 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"register", "social", "mailru"})
     @RemoveUser
     public void mainPageRegisterMailRu(User user) {
-        new HomePage().clickRegister().
-                clickMailRu().
-                setEmail(user.getLogin()).
-                setPassword(user.getPass()).
-                clickRegister().
-                agreeWithRules().
-                clickCompleteRegister().
-                getGiftPopup().
-                withdrawFromGift();
-
+        new HomePage().clickRegister()
+                .clickMailRu()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
+                .withdrawFromGift();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -741,7 +736,50 @@ public class FirstTest extends BaseTestPage {
             logger.error(e);
             Assert.fail();
         }
-
     }
 
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"register", "social", "ok"})
+    @RemoveUser
+    public void mainPageRegisterOk(User user) {
+        new HomePage().clickRegister()
+                .clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .setEmail(user.getLogin())
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON MAIN PAGE");
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test (dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"register", "social", "ya"})
+    @RemoveUser
+    public void mainPageRegisterYa(User user) {
+        new HomePage().clickRegister()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getGiftPopup()
+                .withdrawFromGift();
+        try {
+            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+        } catch (Exception e) {
+            logger.error("ERROR ON MAIN PAGE");
+            logger.error(e);
+            Assert.fail();
+        }
+    }
 }

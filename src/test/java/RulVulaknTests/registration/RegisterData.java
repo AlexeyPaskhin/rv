@@ -1,14 +1,10 @@
-package RulVulaknTests.Registration;
+package RulVulaknTests.registration;
 
 import com.PreContidions.LandingPage;
-import com.jcraft.jsch.JSchException;
 import com.utils.CustomDataProvider;
-import com.utils.RandomGenerate;
-import com.utils.SSHManager;
 import com.utils.User;
 import org.testng.annotations.DataProvider;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 
 public class RegisterData {
