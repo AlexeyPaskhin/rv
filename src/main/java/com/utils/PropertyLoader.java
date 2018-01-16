@@ -51,18 +51,31 @@ public class PropertyLoader {
         return prop.getProperty("password");
     }
 
-    protected  String getEmailVK() { return prop.getProperty("userLoginVK"); }
-    protected  String getPassVK() { return prop.getProperty("userPassVK"); }
+    /*
+     * email's and pass's for social authorization from config.properties
+     * */
+    protected  String getAuthEmailVK() { return prop.getProperty("userAuthLoginVK"); }
+    protected  String getAuthPassVK() { return prop.getProperty("userAuthPassVK"); }
+    protected  String getAuthEmailFB() { return prop.getProperty("userAuthLoginFB"); }
+    protected  String getAuthPassFB() { return prop.getProperty("userAuthPassFB"); }
+    protected  String getAuthEmailOK() { return prop.getProperty("userAuthLoginOK"); }
+    protected  String getAuthPassOK() { return prop.getProperty("userAuthPassOK"); }
+    protected  String getAuthEmailYA() { return prop.getProperty("userAuthLoginYA"); }
+    protected  String getAuthPassYA() { return prop.getProperty("userAuthPassYA"); }
+    protected  String getAuthEmailMailRU() { return prop.getProperty("userAuthLoginMailRU"); }
+    protected  String getAuthPassMailRU() { return prop.getProperty("userAuthPassMailRU"); }
 
-    protected  String getEmailFB() { return prop.getProperty("userLoginFB"); }
-    protected  String getPassFB() { return prop.getProperty("userPassFB"); }
-
-    protected  String getEmailOK() { return prop.getProperty("userLoginOK"); }
-    protected  String getPassOK() { return prop.getProperty("userPassOK"); }
-
-    protected  String getEmailYA() { return prop.getProperty("userLoginYA"); }
-    protected  String getPassYA() { return prop.getProperty("userPassYA"); }
-
-    protected  String getEmailMailRU() { return prop.getProperty("userLoginMailRU"); }
-    protected  String getPassMailRU() { return prop.getProperty("userPassMailRU"); }
+    /*
+     * email's and pass's for social registration from config.properties
+     * */
+    protected  String getRegisterEmailVK() { return prop.getProperty("userRegisterLoginVK"); }
+    protected  String getRegisterPassVK() { return prop.getProperty("userRegisterPassVK"); }
+    protected  String getRegisterEmailFB() { return prop.getProperty("userRegisterLoginFB"); }
+    protected  String getRegisterPassFB() { return prop.getProperty("userRegisterPassFB"); }
+    protected  String getRegisterEmailOK() { return prop.getProperty("userRegisterLoginOK"); }
+    protected  String getRegisterPassOK() { return prop.getProperty("userRegisterPassOK"); }
+    protected  String getRegisterEmailYA() { return prop.getProperty("userRegisterLoginYA"); }
+    protected  String getRegisterPassYA() { return prop.getProperty("userRegisterPassYA"); }
+    protected  String getRegisterEmailMailRU() { return prop.getProperty("userRegisterLoginMailRU"); }
+    protected  String getRegisterPassMailRU() { return prop.getProperty("userRegisterPassMailRU"); }
 }

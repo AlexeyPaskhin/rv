@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import sun.security.krb5.internal.AuthorizationData;
+
 
 /**
  * Created by ai on 2018-01-15.

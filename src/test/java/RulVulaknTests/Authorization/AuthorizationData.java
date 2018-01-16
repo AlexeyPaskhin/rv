@@ -1,57 +1,57 @@
-package RulVulaknTests.Authorization;
+package RulVulaknTests.authorization;
 
 import com.utils.CustomDataProvider;
 import com.utils.User;
 import org.testng.annotations.DataProvider;
-
-import java.lang.reflect.Method;
 
 /**
  * Created by ai on 2018-01-15.
  */
 public class AuthorizationData {
 
+    private final CustomDataProvider customDataProvider = new CustomDataProvider();
+
     @DataProvider
-    public Object[][] authorizationUserForVK(Method method){
+    public Object[][] authorizationUserForVK(){
         User user = new User.Builder()
-                .withLogin(new CustomDataProvider().getEmailVK())
-                .withPass(new CustomDataProvider().getPassVK())
+                .withLogin(customDataProvider.getAuthEmailVK())
+                .withPass(customDataProvider.getAuthPassVK())
                 .build();
         return new Object[][]{{user}};
     }
 
     @DataProvider
-    public Object[][] authorizationUserForFB(Method method){
+    public Object[][] authorizationUserForFB(){
         User user = new User.Builder()
-                .withLogin(new CustomDataProvider().getEmailFB())
-                .withPass(new CustomDataProvider().getPassFB())
+                .withLogin(customDataProvider.getAuthEmailFB())
+                .withPass(customDataProvider.getAuthPassFB())
                 .build();
         return new Object[][]{{user}};
     }
 
     @DataProvider
-    public Object[][] authorizationUserForOK(Method method){
+    public Object[][] authorizationUserForOK(){
         User user = new User.Builder()
-                .withLogin(new CustomDataProvider().getEmailOK())
-                .withPass(new CustomDataProvider().getPassOK())
+                .withLogin(customDataProvider.getAuthEmailOK())
+                .withPass(customDataProvider.getAuthPassOK())
                 .build();
         return new Object[][]{{user}};
     }
 
     @DataProvider
-    public Object[][] authorizationUserForMailRU(Method method){
+    public Object[][] authorizationUserForMailRU(){
         User user = new User.Builder()
-                .withLogin(new CustomDataProvider().getEmailMailRU())
-                .withPass(new CustomDataProvider().getPassMailRU())
+                .withLogin(customDataProvider.getAuthEmailMailRU())
+                .withPass(customDataProvider.getAuthPassMailRU())
                 .build();
         return new Object[][]{{user}};
     }
 
     @DataProvider
-    public Object[][] authorizationUserForYA(Method method){
+    public Object[][] authorizationUserForYA(){
         User user = new User.Builder()
-                .withLogin(new CustomDataProvider().getEmailYA())
-                .withPass(new CustomDataProvider().getPassYA())
+                .withLogin(customDataProvider.getAuthEmailYA())
+                .withPass(customDataProvider.getAuthPassYA())
                 .build();
         return new Object[][]{{user}};
     }
