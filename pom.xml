@@ -70,7 +70,12 @@
             <artifactId>httpmime</artifactId>
             <version>4.3.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.0-BETA21</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -92,14 +97,26 @@
                     <!--<forkMode>never</forkMode>-->
                   <!--  <testFailureIgnore>true</testFailureIgnore> -->
                   <groups>${groups}</groups>
-                </configuration>
 
+
+                    <argLine>
+                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
         </plugins>
     </build>
     <properties>
         <groups>social,register,landing,vk,fb,ok,mailru</groups>
+        <aspectj.version>1.8.10</aspectj.version>
     </properties>
 
 </project>

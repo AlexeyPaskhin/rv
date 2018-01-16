@@ -1,4 +1,4 @@
-package RulVulaknTests.authorization;
+package RulVulaknTests.Authorization;
 
 import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
