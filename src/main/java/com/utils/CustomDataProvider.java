@@ -9,20 +9,33 @@ public class CustomDataProvider {
     private String browser;
     private String pass;
 
-    private  String emailVK;
-    private  String passVK;
+    /*
+      * email's and pass's for social authorization
+      * */
+    private  String emailAuthVK;
+    private  String passAuthVK;
+    private  String emailAuthFB;
+    private  String passAuthFB;
+    private  String emailAuthOK;
+    private  String passAuthOK;
+    private  String emailAuthYA;
+    private  String passAuthYA;
+    private  String emailAuthMailRU;
+    private  String passAuthMailRU;
 
-    private  String emailFB;
-    private  String passFB;
-
-    private  String emailOK;
-    private  String passOK;
-
-    private  String emailYA;
-    private  String passYA;
-
-    private  String emailMailRU;
-    private  String passMailRU;
+    /*
+      * email's and pass's for social registeration
+      * */
+    private  String emailRegisterVK;
+    private  String passRegisterVK;
+    private  String emailRegisterFB;
+    private  String passRegisterFB;
+    private  String emailRegisterOK;
+    private  String passRegisterOK;
+    private  String emailRegisterYA;
+    private  String passRegisterYA;
+    private  String emailRegisterMailRU;
+    private  String passRegisterMailRU;
 
     public CustomDataProvider() {
         propertyLoader = new PropertyLoader();
@@ -33,20 +46,33 @@ public class CustomDataProvider {
         this.browser = propertyLoader.getBrowser();
         this.pass = propertyLoader.getPass();
 
-        this.emailVK = propertyLoader.getEmailVK();
-        this.passVK = propertyLoader.getPassVK();
+        /*
+         * get email's and pass's for social authorization from PropertyLoader
+         * */
+        this.emailAuthVK = propertyLoader.getAuthEmailVK();
+        this.passAuthVK = propertyLoader.getAuthPassVK();
+        this.emailAuthFB = propertyLoader.getAuthEmailFB();
+        this.passAuthFB = propertyLoader.getAuthPassFB();
+        this.emailAuthOK = propertyLoader.getAuthEmailOK();
+        this.passAuthOK = propertyLoader.getAuthPassOK();
+        this.emailAuthYA = propertyLoader.getAuthEmailYA();
+        this.passAuthYA = propertyLoader.getAuthPassYA();
+        this.emailAuthMailRU = propertyLoader.getAuthEmailMailRU();
+        this.passAuthMailRU = propertyLoader.getAuthPassMailRU();
 
-        this.emailFB = propertyLoader.getEmailFB();
-        this.passFB = propertyLoader.getPassFB();
-
-        this.emailOK = propertyLoader.getEmailOK();
-        this.passOK = propertyLoader.getPassOK();
-
-        this.emailYA = propertyLoader.getEmailYA();
-        this.passYA = propertyLoader.getPassYA();
-
-        this.emailMailRU = propertyLoader.getEmailMailRU();
-        this.passMailRU = propertyLoader.getPassMailRU();
+        /*
+         * email's and pass's for social registeration from PropertyLoader
+         * */
+        this.emailRegisterVK = propertyLoader.getRegisterEmailVK();
+        this.passRegisterVK = propertyLoader.getRegisterPassVK();
+        this.emailRegisterFB = propertyLoader.getRegisterEmailFB();
+        this.passRegisterFB = propertyLoader.getRegisterPassFB();
+        this.emailRegisterOK = propertyLoader.getRegisterEmailOK();
+        this.passRegisterOK = propertyLoader.getRegisterPassOK();
+        this.emailRegisterYA = propertyLoader.getRegisterEmailYA();
+        this.passRegisterYA = propertyLoader.getRegisterPassYA();
+        this.emailRegisterMailRU = propertyLoader.getRegisterEmailMailRU();
+        this.passRegisterMailRU = propertyLoader.getRegisterPassMailRU();
     }
 
     String generateRandomEmail() {
@@ -79,19 +105,34 @@ public class CustomDataProvider {
         return this.pass;
     }
 
-    public String getEmailVK() { return this.emailVK; }
-    public String getPassVK() { return this.passVK; }
+    /*
+     * getters for social auth users email's and pass's
+     * */
+    public String getAuthEmailVK() { return this.emailAuthVK; }
+    public String getAuthPassVK() { return this.passAuthVK; }
+    public String getAuthEmailFB() { return this.emailAuthFB; }
+    public String getAuthPassFB() { return this.passAuthFB; }
+    public String getAuthEmailOK() { return this.emailAuthOK; }
+    public String getAuthPassOK() { return this.passAuthOK; }
+    public String getAuthEmailYA() { return this.emailAuthYA; }
+    public String getAuthPassYA() { return this.passAuthYA; }
+    public String getAuthEmailMailRU() { return this.emailAuthMailRU; }
+    public String getAuthPassMailRU() { return this.passAuthMailRU; }
 
-    public String getEmailFB() { return this.emailFB; }
-    public String getPassFB() { return this.passFB; }
+    /*
+     * getters for social register users email's and pass's
+     * */
+    public String getRegisterEmailVK() { return this.emailRegisterVK; }
+    public String getRegisterPassVK() { return this.passRegisterVK; }
+    public String getRegisterEmailFB() { return this.emailRegisterFB; }
+    public String getRegisterPassFB() { return this.passRegisterFB; }
+    public String getRegisterEmailOK() { return this.emailRegisterOK; }
+    public String getRegisterPassOK() { return this.passRegisterOK; }
+    public String getRegisterEmailYA() { return this.emailRegisterYA; }
+    public String getRegisterPassYA() { return this.passRegisterYA; }
+    public String getRegisterEmailMailRU() { return this.emailRegisterMailRU; }
+    public String getRegisterPassMailRU() { return this.passRegisterMailRU; }
 
-    public String getEmailOK() { return this.emailOK; }
-    public String getPassOK() { return this.passOK; }
 
-    public String getEmailYA() { return this.emailYA; }
-    public String getPassYA() { return this.passYA; }
-
-    public String getEmailMailRU() { return this.emailMailRU; }
-    public String getPassMailRU() { return this.passMailRU; }
 
 }
