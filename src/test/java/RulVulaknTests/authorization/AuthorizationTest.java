@@ -1,4 +1,4 @@
-package RulVulaknTests.Authorization;
+package RulVulaknTests.authorization;
 
 import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
@@ -9,14 +9,15 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import sun.security.krb5.internal.AuthorizationData;
 
 /**
  * Created by ai on 2018-01-15.
  */
 
 @Listeners({RussianVulcanListener.class})
-public class SecondTest extends BaseTestPage {
-    private final static Logger logger = LogManager.getLogger(SecondTest.class);
+public class AuthorizationTest extends BaseTestPage {
+    private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
 
     @Test(dataProvider = "authorizationUserForVK", dataProviderClass = AuthorizationData.class, groups = {"auth", "vk"})
     public void authorizationUserFromVK(User user){

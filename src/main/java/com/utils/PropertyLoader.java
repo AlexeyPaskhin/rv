@@ -50,4 +50,19 @@ public class PropertyLoader {
     protected String getPass() {
         return prop.getProperty("password");
     }
+
+    protected  String getEmailVK() { return prop.getProperty("userLoginVK"); }
+    protected  String getPassVK() { return prop.getProperty("userPassVK"); }
+
+    protected  String getEmailFB() { return prop.getProperty("userLoginFB"); }
+    protected  String getPassFB() { return prop.getProperty("userPassFB"); }
+
+    protected  String getEmailOK() { return prop.getProperty("userLoginOK"); }
+    protected  String getPassOK() { return prop.getProperty("userPassOK"); }
+
+    protected  String getEmailYA() { return prop.getProperty("userLoginYA"); }
+    protected  String getPassYA() { return prop.getProperty("userPassYA"); }
+
+    protected  String getEmailMailRU() { return prop.getProperty("userLoginMailRU"); }
+    protected  String getPassMailRU() { return prop.getProperty("userPassMailRU"); }
 }
