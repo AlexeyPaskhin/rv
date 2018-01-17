@@ -9,6 +9,7 @@ import com.pages.Helpers.Dictionaries.RegistrationFormType;
 import com.pages.HomePage;
 import com.pages.landing.social.*;
 import com.popups.GiftPopup;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
@@ -35,68 +36,69 @@ public class FastRegister extends AbstractPage {
         this.AGREE_CHECKBOX = registrationType.getAgreeCheckbox();
         this.REGISTER_BUTTON = registrationType.getRegisterButton();
     }
-
+    @Step
     public FastRegister typeLogin(String login) {
         EMAIL_INPUT.fillIn(login);
         return this;
     }
-
+    @Step
     public FastRegister typePass(String pass) {
         PASSWORD_INPUT.fillIn(pass);
         return this;
     }
-
+    @Step
     public FastRegister selectCurrencyRUB() {
         CURRENCY_RUB_RADIO.click();
         return this;
     }
-
+    @Step
     public FastRegister selectCurrencyUSD() {
         CURRENCY_USD_RADIO.click();
         return this;
     }
-
+    @Step
     public FastRegister agreeWithRules() {
         AGREE_CHECKBOX.click();
         return this;
     }
-
+    @Step
     public GiftPopup clickRegisterButtonToGift() {
        // wait(1500);
         REGISTER_BUTTON.clickUntilDisappeared();
         waitForPageToLoad();
         return new GiftPopup();
     }
+    @Step
     public HomePage clickRegisterButtonToHome() {
         // wait(1500);
         REGISTER_BUTTON.clickUntilDisappeared();
         return new HomePage();
     }
-
+    @Step
     public SocialFrame clickVK() {
         VK_BUTTON.click();
         swithToSocialFrame();
         return new VkRegisterPage();
     }
-
+    @Step
     public SocialFrame clickFB() {
         FB_BUTTON.click();
         swithToSocialFrame();
         return new FBregisterPage();
     }
-
+    @Step
     public SocialFrame clickOK() {
         OK_BUTTON.click();
         swithToSocialFrame();
         return new OKRegisterPage();
     }
-
+    @Step
     public SocialFrame clickYA() {
         YA_BUTTON.click();
         swithToSocialFrame();
         return new YARegisterPage();
     }
-
+    @Step
     public SocialFrame clickMailRu() {
         MAILRU_BUTTON.click();
         swithToSocialFrame();

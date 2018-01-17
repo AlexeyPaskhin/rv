@@ -68,7 +68,7 @@ public class RegistrationTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = "fb")
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"fb"})
     @RemoveUser
     public void mainPageRegisterFB(User user) {
         new HomePage().clickRegister()
@@ -110,7 +110,7 @@ public class RegistrationTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk","D"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
@@ -387,8 +387,6 @@ public class RegistrationTest extends BaseTestPage {
                 .typePass(user.getPass())
                 .agreeWithRules()
                 .clickRegisterButtonToHome();
-        new LotteryPopup()
-                .closePopup();
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -530,8 +528,7 @@ public class RegistrationTest extends BaseTestPage {
                 .typePass(user.getPass())
                 .agreeWithRules()
                 .clickRegisterButtonToHome();
-        new LotteryPopup()
-                .closePopup();
+
         try {
             Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");

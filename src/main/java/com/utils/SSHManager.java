@@ -12,7 +12,7 @@ import java.util.Properties;
 public class SSHManager {
     private final static Logger logger = LogManager.getLogger(SSHManager.class);
     private String pathToKey = System.getProperty("user.dir") + File.separator + "src"
-            + File.separator + "main" + File.separator + "resources" + File.separator + "ssh" + File.separator + "id_rsa";
+            + File.separator + "main" + File.separator + "resources" + File.separator + "ssh" + File.separator + "id_rsa.ppk";
 
     List<String> responce = new ArrayList<>();
 
@@ -24,7 +24,6 @@ public class SSHManager {
             JSch jsch = new JSch();
             jsch.addIdentity(pathToKey);
             session = jsch.getSession("root", "144.76.43.170", 22);
-
             Properties config = new Properties();
             config.put("StrictHostKeyChecking", "no");
             session.setConfig(config);
@@ -70,10 +69,8 @@ public class SSHManager {
     }
 
     public void updateUserForSocial(String oldName, String newName) {
-
         executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"UPDATE players SET email='" + newName + "', login='" + newName + "', social_id = NULL, social_data = NULL," +
                 " 1gp_login = NULL, full_name = NULL, real_name = NULL WHERE email = '" + oldName + "';\" -e \"select id from players where email='" + newName + "'\\G;\"");
-
         logger.info("User name and email changed from: " + oldName + "  to: " + newName);
         // executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"select id from players where email='"+newName+"'\\G;\"");
 

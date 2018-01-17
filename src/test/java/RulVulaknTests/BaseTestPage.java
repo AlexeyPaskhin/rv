@@ -4,7 +4,6 @@ import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
 import com.pages.HomePage;
 import com.utils.*;
-import jdk.nashorn.internal.ir.ObjectNode;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.SessionNotCreatedException;
@@ -20,10 +19,10 @@ public class BaseTestPage {
     private final static Logger logger = LogManager.getLogger(BaseTestPage.class);
     public CustomDataProvider customDataProvider;
     public HomePage home;
-    SSHManager manager = null;
+    public SSHManager manager = null;
 
-    @BeforeSuite(alwaysRun = true)
-    public void setupHelpers() {
+    @BeforeClass(alwaysRun = true)
+    public void setUp() {
         customDataProvider = new CustomDataProvider();
         try {
             manager = new SSHManager();
@@ -47,7 +46,7 @@ public class BaseTestPage {
             logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
         try {
-            setupDriver(customDataProvider.getBrowser());
+           setupDriver(customDataProvider.getBrowser());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -62,8 +61,8 @@ public class BaseTestPage {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(Object[] o) {
-        if (o[0] instanceof User) {
+    public void tearDown(Method method, Object[] o) {
+        if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
             User us = (User) o[0];
             manager.getUserID(us.getLogin());
         }
@@ -87,7 +86,7 @@ catch (SessionNotCreatedException e){}
         }
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass()
     public void releaseResources() {
         manager.disconnectFromConsole();
     }
