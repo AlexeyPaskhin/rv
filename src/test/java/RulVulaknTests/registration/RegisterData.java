@@ -20,7 +20,6 @@ public class RegisterData {
 
             for (int i = 0; i < pageNumber.length; i++) {
                 User user = new User().generateRandomUser(new CustomDataProvider());
-
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
@@ -45,7 +44,6 @@ public class RegisterData {
                         .withLogin(customDataProvider.getRegisterEmailVK())
                         .withPass(customDataProvider.getRegisterPassVK())
                         .build();
-
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
@@ -55,7 +53,6 @@ public class RegisterData {
                     .withLogin(customDataProvider.getRegisterEmailVK())
                     .withPass(customDataProvider.getRegisterPassVK())
                     .build();
-
             obj[0][0] = user;
         }
         return obj;
@@ -74,7 +71,6 @@ public class RegisterData {
                         .withLogin(customDataProvider.getRegisterEmailFB())
                         .withPass(customDataProvider.getRegisterPassFB())
                         .build();
-
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
@@ -84,7 +80,6 @@ public class RegisterData {
                     .withLogin(customDataProvider.getRegisterEmailFB())
                     .withPass(customDataProvider.getRegisterPassFB())
                     .build();
-
             obj[0][0] = user;
         }
         return obj;
@@ -103,7 +98,6 @@ public class RegisterData {
                         .withLogin(customDataProvider.getRegisterEmailOK())
                         .withPass(customDataProvider.getRegisterPassOK())
                         .build();
-
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
@@ -113,7 +107,6 @@ public class RegisterData {
                     .withLogin(customDataProvider.getRegisterEmailOK())
                     .withPass(customDataProvider.getRegisterPassOK())
                     .build();
-
             obj[0][0] = user;
         }
         return obj;
@@ -132,7 +125,6 @@ public class RegisterData {
                         .withLogin(customDataProvider.getRegisterEmailMailRU())
                         .withPass(customDataProvider.getRegisterPassMailRU())
                         .build();
-
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
@@ -142,7 +134,6 @@ public class RegisterData {
                     .withLogin(customDataProvider.getRegisterEmailMailRU())
                     .withPass(customDataProvider.getRegisterPassMailRU())
                     .build();
-
             obj[0][0] = user;
         }
         return obj;
@@ -161,10 +152,8 @@ public class RegisterData {
                         .withLogin(customDataProvider.getRegisterEmailYA())
                         .withPass(customDataProvider.getRegisterPassYA())
                         .build();
-
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
-
             }
         } else {
             obj = new Object[1][1];
@@ -172,7 +161,6 @@ public class RegisterData {
                     .withLogin(customDataProvider.getRegisterEmailYA())
                     .withPass(customDataProvider.getRegisterPassYA())
                     .build();
-
             obj[0][0] = user;
         }
         return obj;
