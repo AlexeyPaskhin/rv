@@ -9,6 +9,15 @@ public class AuthorizationData {
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
 
     @DataProvider
+    public Object[][] authorizationUserEmail(){
+        User user = new User.Builder()
+                .withLogin(customDataProvider.getAuthEmail())
+                .withPass(customDataProvider.getAuthPass())
+                .build();
+        return new Object[][]{{user}};
+    }
+
+    @DataProvider
     public Object[][] authorizationUserForVK(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmailVK())

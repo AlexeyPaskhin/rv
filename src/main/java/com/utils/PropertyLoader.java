@@ -66,6 +66,12 @@ public class PropertyLoader {
     protected  String getAuthPassMailRU() { return prop.getProperty("userAuthPassMailRU"); }
 
     /*
+     * email's and pass's for email authorization from config.properties
+     * */
+    protected  String getAuthEmail() { return prop.getProperty("userAuthLogin"); }
+    protected  String getAuthPass() { return prop.getProperty("userAuthPass"); }
+
+    /*
      * email's and pass's for social registration from config.properties
      * */
     protected  String getRegisterEmailVK() { return prop.getProperty("userRegisterLoginVK"); }
@@ -79,6 +85,9 @@ public class PropertyLoader {
     protected  String getRegisterEmailMailRU() { return prop.getProperty("userRegisterLoginMailRU"); }
     protected  String getRegisterPassMailRU() { return prop.getProperty("userRegisterPassMailRU"); }
 
+    /*
+     * MasterCard credential from config.properties
+     * */
     protected String getCardNumberMaster() { return prop.getProperty("cardNumberMaster"); }
     protected String getCardHolderMaster() { return prop.getProperty("cardHolderMaster"); }
     protected String getCardCvvMaster() { return prop.getProperty("cardCvvMaster"); }

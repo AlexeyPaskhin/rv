@@ -14,31 +14,39 @@ public class CustomDataProvider {
     /*
       * email's and pass's for social authorization
       * */
-    private  String emailAuthVK;
-    private  String passAuthVK;
-    private  String emailAuthFB;
-    private  String passAuthFB;
-    private  String emailAuthOK;
-    private  String passAuthOK;
-    private  String emailAuthYA;
-    private  String passAuthYA;
-    private  String emailAuthMailRU;
-    private  String passAuthMailRU;
+    private String emailAuthVK;
+    private String passAuthVK;
+    private String emailAuthFB;
+    private String passAuthFB;
+    private String emailAuthOK;
+    private String passAuthOK;
+    private String emailAuthYA;
+    private String passAuthYA;
+    private String emailAuthMailRU;
+    private String passAuthMailRU;
+    /*
+      * email's and pass's for authorization via email
+      * */
+    private String emailAuth;
+    private String passAuth;
 
     /*
       * email's and pass's for social registeration
       * */
-    private  String emailRegisterVK;
-    private  String passRegisterVK;
-    private  String emailRegisterFB;
-    private  String passRegisterFB;
-    private  String emailRegisterOK;
-    private  String passRegisterOK;
-    private  String emailRegisterYA;
-    private  String passRegisterYA;
-    private  String emailRegisterMailRU;
-    private  String passRegisterMailRU;
+    private String emailRegisterVK;
+    private String passRegisterVK;
+    private String emailRegisterFB;
+    private String passRegisterFB;
+    private String emailRegisterOK;
+    private String passRegisterOK;
+    private String emailRegisterYA;
+    private String passRegisterYA;
+    private String emailRegisterMailRU;
+    private String passRegisterMailRU;
 
+    /*
+      * credential for MasterCard
+      * */
     private String cardNumberMaster;
     private String cardHolderMaster;
     private String cardCvvMaster;
@@ -67,6 +75,12 @@ public class CustomDataProvider {
         this.passAuthMailRU = propertyLoader.getAuthPassMailRU();
 
         /*
+         * email's and pass's for authorization via email
+         * */
+        this.emailAuth = propertyLoader.getAuthEmail();
+        this.passAuth = propertyLoader.getAuthPass();
+
+        /*
          * email's and pass's for social registeration from PropertyLoader
          * */
         this.emailRegisterVK = propertyLoader.getRegisterEmailVK();
@@ -80,6 +94,9 @@ public class CustomDataProvider {
         this.emailRegisterMailRU = propertyLoader.getRegisterEmailMailRU();
         this.passRegisterMailRU = propertyLoader.getRegisterPassMailRU();
 
+        /*
+         * email and pass for authorization from PropertyLoader
+         * */
         this.cardNumberMaster = propertyLoader.getCardNumberMaster();
         this.cardHolderMaster = propertyLoader.getCardHolderMaster();
         this.cardCvvMaster = propertyLoader.getCardCvvMaster();
@@ -130,6 +147,12 @@ public class CustomDataProvider {
     public String getAuthPassMailRU() { return this.passAuthMailRU; }
 
     /*
+     * getters for auth via email
+     * */
+    public String getAuthEmail() { return this.emailAuth; }
+    public String getAuthPass() { return this.passAuth; }
+
+    /*
      * getters for social register users email's and pass's
      * */
     public String getRegisterEmailVK() { return this.emailRegisterVK; }
@@ -143,6 +166,9 @@ public class CustomDataProvider {
     public String getRegisterEmailMailRU() { return this.emailRegisterMailRU; }
     public String getRegisterPassMailRU() { return this.passRegisterMailRU; }
 
+    /*
+     * getters for card credential
+     * */
     public String getCardNumberMaster() { return this.cardNumberMaster; }
     public String getCardHolderMaster() { return this.cardHolderMaster; }
     public String getCardCvvMaster() { return this.cardCvvMaster; }
