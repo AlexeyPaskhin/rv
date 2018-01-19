@@ -4,9 +4,6 @@ import com.utils.CustomDataProvider;
 import com.utils.User;
 import org.testng.annotations.DataProvider;
 
-/**
- * Created by ai on 2018-01-15.
- */
 public class AuthorizationData {
 
     private final CustomDataProvider customDataProvider = new CustomDataProvider();

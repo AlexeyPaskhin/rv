@@ -2,6 +2,8 @@ package RulVulaknTests;
 
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
+import com.pages.HeaderAutorizedUser;
+import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
@@ -20,6 +22,8 @@ public class BaseTestPage {
     public CustomDataProvider customDataProvider;
     public HomePage home;
     public SSHManager manager = null;
+    public HeaderNotAutorizedUser headerNotAutorizedUser;
+    public HeaderAutorizedUser headerAutorizedUser;
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -46,7 +50,7 @@ public class BaseTestPage {
             logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
         try {
-           setupDriver(customDataProvider.getBrowser());
+            setupDriver(customDataProvider.getBrowser());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -58,6 +62,8 @@ public class BaseTestPage {
             getDriver().get(customDataProvider.getBasicURL());
         }
         home = new HomePage();
+        headerNotAutorizedUser = new HeaderNotAutorizedUser();
+        headerAutorizedUser = new HeaderAutorizedUser();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -70,14 +76,12 @@ public class BaseTestPage {
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 
-        if(DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-try {
-    getDriver().quit();
-}
-catch (SessionNotCreatedException e){}
+        if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+            try {
+                getDriver().quit();
+            } catch (SessionNotCreatedException e) {
+            }
         }
-
-
 
 
         if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
