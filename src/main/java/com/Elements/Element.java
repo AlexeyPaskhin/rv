@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -68,7 +67,7 @@ public class Element {
 
     private void click(WebElement element) {
         new FluentWait<>(getDriver())
-                .withTimeout(2, TimeUnit.SECONDS)
+                .withTimeout(20, TimeUnit.SECONDS)
                 .ignoring(NoSuchElementException.class,ElementNotVisibleException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS).until((Function<WebDriver, Boolean>) driver -> {
             element.click();
@@ -110,6 +109,11 @@ public class Element {
 
     public void waitForElementToBePresent(int seconds) {
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+
+    public void waitForElementToBeClickable(int seconds) {
+        new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(by));
+
     }
 
     public void waitForElementToBeVisible(int seconds) {
