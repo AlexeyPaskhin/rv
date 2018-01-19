@@ -1,8 +1,8 @@
 package RulVulaknTests.cashbox;
 
 import RulVulaknTests.BaseTestPage;
-import RulVulaknTests.registration.RegisterData;
 import com.listeners.RussianVulcanListener;
+import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.utils.Card;
 import com.utils.User;
@@ -22,7 +22,7 @@ public class CashboxTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
     public void makeDepositRandomUser(User user, Card card) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
@@ -40,16 +40,12 @@ public class CashboxTest extends BaseTestPage {
                 .swtichToParent();
 
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test
-    public void fuck() {
-        System.out.println("WORKED");
-    }
 }

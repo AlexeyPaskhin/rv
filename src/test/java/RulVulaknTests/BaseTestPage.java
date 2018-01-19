@@ -2,9 +2,10 @@ package RulVulaknTests;
 
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
+import com.pages.HeaderAutorizedUser;
+import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.utils.*;
-import jdk.nashorn.internal.ir.ObjectNode;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.SessionNotCreatedException;
@@ -20,10 +21,12 @@ public class BaseTestPage {
     private final static Logger logger = LogManager.getLogger(BaseTestPage.class);
     public CustomDataProvider customDataProvider;
     public HomePage home;
-    SSHManager manager = null;
+    public SSHManager manager = null;
+    public HeaderNotAutorizedUser headerNotAutorizedUser;
+    public HeaderAutorizedUser headerAutorizedUser;
 
-    @BeforeSuite(alwaysRun = true)
-    public void setupHelpers() {
+    @BeforeClass(alwaysRun = true)
+    public void setUp() {
         customDataProvider = new CustomDataProvider();
         try {
             manager = new SSHManager();
@@ -42,11 +45,9 @@ public class BaseTestPage {
                 manager.updateUserForSocial(oldName, newName);
             }
         }
-        if(!o.equals(null) && o.length >0) {
-            if (o[0] instanceof User) {
-                User us = (User) o[0];
-                logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
-            }
+        if (o[0] instanceof User) {
+            User us = (User) o[0];
+            logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
         try {
             setupDriver(customDataProvider.getBrowser());
@@ -61,27 +62,25 @@ public class BaseTestPage {
             getDriver().get(customDataProvider.getBasicURL());
         }
         home = new HomePage();
+        headerNotAutorizedUser = new HeaderNotAutorizedUser();
+        headerAutorizedUser = new HeaderAutorizedUser();
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(Object[] o) {
-        if(!o.equals(null) && o.length >0) {
-            if (o[0] instanceof User) {
-                User us = (User) o[0];
-                manager.getUserID(us.getLogin());
-            }
+    public void tearDown(Method method, Object[] o) {
+        if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+            User us = (User) o[0];
+            manager.getUserID(us.getLogin());
         }
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 
-        if(DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-try {
-    getDriver().quit();
-}
-catch (SessionNotCreatedException e){}
+        if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+            try {
+                getDriver().quit();
+            } catch (SessionNotCreatedException e) {
+            }
         }
-
-
 
 
         if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
@@ -90,7 +89,7 @@ catch (SessionNotCreatedException e){}
         }
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass()
     public void releaseResources() {
         manager.disconnectFromConsole();
     }
