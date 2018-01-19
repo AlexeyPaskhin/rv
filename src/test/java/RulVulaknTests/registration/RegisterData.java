@@ -35,7 +35,7 @@ public class RegisterData {
     @DataProvider
     public Object[][] createUserForVK(Method method) {
         Object[][] obj;
-        User user=null;
+        User user = null;
         if (method.isAnnotationPresent(LandingPage.class)) {
             String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
             obj = new Object[pageNumber.length][2];
@@ -51,10 +51,10 @@ public class RegisterData {
             }
         } else {
             obj = new Object[1][1];
-             user = new User.Builder()
-                     .withLogin(customDataProvider.getRegisterEmailVK())
-                     .withPass(customDataProvider.getRegisterPassVK())
-                     .build();
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailVK())
+                    .withPass(customDataProvider.getRegisterPassVK())
+                    .build();
 
             obj[0][0] = user;
         }
@@ -64,16 +64,16 @@ public class RegisterData {
     @DataProvider
     public Object[][] createUserForFB(Method method) {
         Object[][] obj;
-        User user=null;
+        User user = null;
         if (method.isAnnotationPresent(LandingPage.class)) {
             String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
             obj = new Object[pageNumber.length][2];
 
             for (int i = 0; i < pageNumber.length; i++) {
-               user = new User.Builder()
-                       .withLogin(customDataProvider.getRegisterEmailFB())
-                       .withPass(customDataProvider.getRegisterPassFB())
-                       .build();
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailFB())
+                        .withPass(customDataProvider.getRegisterPassFB())
+                        .build();
 
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
@@ -93,16 +93,16 @@ public class RegisterData {
     @DataProvider
     public Object[][] createUserForOK(Method method) {
         Object[][] obj;
-        User user=null;
+        User user = null;
         if (method.isAnnotationPresent(LandingPage.class)) {
             String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
             obj = new Object[pageNumber.length][2];
 
             for (int i = 0; i < pageNumber.length; i++) {
-                 user = new User.Builder()
-                         .withLogin(customDataProvider.getRegisterEmailOK())
-                         .withPass(customDataProvider.getRegisterPassOK())
-                         .build();
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailOK())
+                        .withPass(customDataProvider.getRegisterPassOK())
+                        .build();
 
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
@@ -122,26 +122,26 @@ public class RegisterData {
     @DataProvider
     public Object[][] createUserForMailRU(Method method) {
         Object[][] obj;
-        User user=null;
+        User user = null;
         if (method.isAnnotationPresent(LandingPage.class)) {
             String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
             obj = new Object[pageNumber.length][2];
 
             for (int i = 0; i < pageNumber.length; i++) {
-                 user = new User.Builder()
-                         .withLogin(customDataProvider.getRegisterEmailMailRU())
-                         .withPass(customDataProvider.getRegisterPassMailRU())
-                         .build();
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailMailRU())
+                        .withPass(customDataProvider.getRegisterPassMailRU())
+                        .build();
 
                 obj[i][0] = user;
                 obj[i][1] = pageNumber[i];
             }
         } else {
             obj = new Object[1][1];
-             user = new User.Builder()
-                     .withLogin(customDataProvider.getRegisterEmailMailRU())
-                     .withPass(customDataProvider.getRegisterPassMailRU())
-                     .build();
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailMailRU())
+                    .withPass(customDataProvider.getRegisterPassMailRU())
+                    .build();
 
             obj[0][0] = user;
         }
@@ -151,7 +151,7 @@ public class RegisterData {
     @DataProvider
     public Object[][] createUserForYA(Method method) {
         Object[][] obj;
-        User user=null;
+        User user = null;
         if (method.isAnnotationPresent(LandingPage.class)) {
             String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
             obj = new Object[pageNumber.length][2];
