@@ -72,7 +72,6 @@ public class BaseTestPage {
             User us = (User) o[0];
             manager.getUserID(us.getLogin());
         }
-
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 
