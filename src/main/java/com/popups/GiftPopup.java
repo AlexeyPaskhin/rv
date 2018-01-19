@@ -8,7 +8,7 @@ import com.pages.HomePage;
 import org.openqa.selenium.By;
 
 /**
- * Class of pop-up Chouse gift - after registration
+ * Class of pop-up Choose gift - after registration
  */
 
 public class GiftPopup extends AbstractPage {
@@ -35,6 +35,11 @@ public class GiftPopup extends AbstractPage {
 
     public HomePage clickButtonSaveGift() {
         SAVE_GIFT_BUTTON.click();
+        return new HomePage();
+    }
+
+    public HomePage withdrawFromGift(){
+        WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
 
