@@ -78,4 +78,8 @@ public class PropertyLoader {
     protected  String getRegisterPassYA() { return prop.getProperty("userRegisterPassYA"); }
     protected  String getRegisterEmailMailRU() { return prop.getProperty("userRegisterLoginMailRU"); }
     protected  String getRegisterPassMailRU() { return prop.getProperty("userRegisterPassMailRU"); }
+
+    protected String getCardNumberMaster() { return prop.getProperty("cardNumberMaster"); }
+    protected String getCardHolderMaster() { return prop.getProperty("cardHolderMaster"); }
+    protected String getCardCvvMaster() { return prop.getProperty("cardCvvMaster"); }
 }
