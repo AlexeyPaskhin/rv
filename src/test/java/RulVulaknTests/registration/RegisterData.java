@@ -35,7 +35,7 @@ public class RegisterData {
     @DataProvider
     public Object[][] createUserForVK(Method method) {
         Object[][] obj;
-        User user=null;
+        User user;
         if (method.isAnnotationPresent(LandingPage.class)) {
             String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
             obj = new Object[pageNumber.length][2];

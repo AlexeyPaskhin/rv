@@ -1,5 +1,7 @@
 package com.utils;
 
+import java.security.PublicKey;
+
 public class CustomDataProvider {
     private static PropertyLoader propertyLoader;
     private String email;
@@ -37,6 +39,10 @@ public class CustomDataProvider {
     private  String emailRegisterMailRU;
     private  String passRegisterMailRU;
 
+    private String cardNumberMaster;
+    private String cardHolderMaster;
+    private String cardCvvMaster;
+
     public CustomDataProvider() {
         propertyLoader = new PropertyLoader();
         this.email = propertyLoader.getEmail();
@@ -73,6 +79,10 @@ public class CustomDataProvider {
         this.passRegisterYA = propertyLoader.getRegisterPassYA();
         this.emailRegisterMailRU = propertyLoader.getRegisterEmailMailRU();
         this.passRegisterMailRU = propertyLoader.getRegisterPassMailRU();
+
+        this.cardNumberMaster = propertyLoader.getCardNumberMaster();
+        this.cardHolderMaster = propertyLoader.getCardHolderMaster();
+        this.cardCvvMaster = propertyLoader.getCardCvvMaster();
     }
 
     String generateRandomEmail() {
@@ -133,6 +143,7 @@ public class CustomDataProvider {
     public String getRegisterEmailMailRU() { return this.emailRegisterMailRU; }
     public String getRegisterPassMailRU() { return this.passRegisterMailRU; }
 
-
-
+    public String getCardNumberMaster() { return this.cardNumberMaster; }
+    public String getCardHolderMaster() { return this.cardHolderMaster; }
+    public String getCardCvvMaster() { return this.cardCvvMaster; }
 }

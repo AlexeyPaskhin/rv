@@ -42,9 +42,11 @@ public class BaseTestPage {
                 manager.updateUserForSocial(oldName, newName);
             }
         }
-        if (o[0] instanceof User) {
-            User us = (User) o[0];
-            logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
+        if(!o.equals(null) && o.length >0) {
+            if (o[0] instanceof User) {
+                User us = (User) o[0];
+                logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
+            }
         }
         try {
             setupDriver(customDataProvider.getBrowser());
@@ -63,11 +65,12 @@ public class BaseTestPage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(Object[] o) {
-        if (o[0] instanceof User) {
-            User us = (User) o[0];
-            manager.getUserID(us.getLogin());
+        if(!o.equals(null) && o.length >0) {
+            if (o[0] instanceof User) {
+                User us = (User) o[0];
+                manager.getUserID(us.getLogin());
+            }
         }
-
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 

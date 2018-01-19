@@ -738,7 +738,7 @@ public class RegistrationTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"register", "social", "ok"})
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"register", "social", "ok", "1"})
     @RemoveUser
     public void mainPageRegisterOk(User user) {
         new HomePage().clickRegister()
@@ -761,7 +761,7 @@ public class RegistrationTest extends BaseTestPage {
         }
     }
 
-    @Test (dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"register", "social", "ya"})
+    @Test (dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"register", "social", "ya", "1"})
     @RemoveUser
     public void mainPageRegisterYa(User user) {
         new HomePage().clickRegister()
