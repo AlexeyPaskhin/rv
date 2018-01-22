@@ -8,6 +8,7 @@ import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.landing.*;
 import com.utils.User;
+import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -35,7 +36,8 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(RegistrationWithoutGiftsTest.class);
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
-    public void registrationFromHomePageRub(User user) {
+    @Description("Registration without gifts from button 'Register' in header - RUB")
+    public void registrationFromHeaderRub(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -54,7 +56,8 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
-    public void registrationFromHomePageUsd(User user) {
+    @Description("Registration without gifts from button 'Register' in header - USD")
+    public void registrationFromHeaderUsd(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -74,6 +77,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"fb"})
     @RemoveUser
+    @Description("Social registration without gifts from 'Register' pop-up - via Facebook")
     public void mainPageRegisterFB(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .clickFB()
@@ -96,6 +100,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
+    @Description("Registration without gifts from lending pages 1, 2, 4, 5, 14")
     public void landingComplexRegister(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton()
@@ -119,6 +124,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk", "D"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 1, 2, 4, 5, 14 - via VK.com")
     public void landingComplexRegisterVK(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton()
@@ -145,6 +151,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 1, 2, 4, 5, 14 - via Facebook.com")
     public void landingComplexRegisterFB(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton()
@@ -171,6 +178,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 1, 2, 4, 5, 14 - via OK.ru")
     public void landingComplexRegisterOK(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton().switchToRegistration().
@@ -197,6 +205,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 1, 2, 4, 5, 14 - via Mail.ru")
     public void landingComplexRegisterMailRU(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton()
@@ -223,6 +232,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 1, 2, 4, 5, 14 - via Yandex.ru")
     public void landingComplexRegisterYA(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton()
@@ -248,6 +258,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @Description("Registration without gifts from Landing pages 3, 6, 9, 10, 11, 13")
     public void landingFormRegister(User user, String page) {
         new LandingWithForm()
                 .switchToRegistration()
@@ -270,6 +281,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 11, 13 - via VK.com")
     public void landingFormRegisterVK(User user, String page) {
         new LandingWithForm()
                 .switchToRegistration()
@@ -295,6 +307,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 11, 13 - via Facebook.com")
     public void landingFormRegisterFB(User user, String page) {
         new LandingWithForm()
                 .switchToRegistration()
@@ -320,6 +333,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 11, 13 - via OK.ru")
     public void landingFormRegisterOK(User user, String page) {
         new LandingWithForm()
                 .switchToRegistration()
@@ -346,6 +360,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 11, 13 - via Mail.ru")
     public void landingFormRegisterMailRU(User user, String page) {
         new LandingWithForm()
                 .switchToRegistration()
@@ -371,6 +386,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 11, 13 - via Yandex.ru")
     public void landingFormRegisterYA(User user, String page) {
         new LandingWithForm()
                 .switchToRegistration()
@@ -393,8 +409,9 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"12"})
+    @Description("Registration without gifts from Landing page 12")
     public void landingChooseContRegister(User user, String page) {
         new LandingChooseBonusWinthContinue()
                 .clickWithDrawFromGift()
@@ -417,6 +434,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 12 - via VK.com")
     public void landingChooseContRegisterVK(User user, String page) {
         new LandingChooseBonusWinthContinue()
                 .clickWithDrawFromGift()
@@ -441,6 +459,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 12 - via Facebook.com")
     public void landingChooseContRegisterFB(User user, String page) {
         new LandingChooseBonusWinthContinue()
                 .clickWithDrawFromGift()
@@ -465,6 +484,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 12 - via OK.ru")
     public void landingChooseContRegisterOK(User user, String page) {
         new LandingChooseBonusWinthContinue()
                 .clickWithDrawFromGift()
@@ -490,6 +510,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 12 - via Mail.ru")
     public void landingChooseContRegisterMailRU(User user, String page) {
         new LandingChooseBonusWinthContinue()
                 .clickWithDrawFromGift()
@@ -514,6 +535,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 12 - via Yandex.com")
     public void landingChooseContRegisterYA(User user, String page) {
         new LandingChooseBonusWinthContinue()
                 .clickWithDrawFromGift()
@@ -537,6 +559,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"7"})
+    @Description("Registration without gifts from Landing page 7")
     public void landingChooseRegister(User user, String page) {
         new LandingWithBonus()
                 .clickWithDrawFromGift()
@@ -559,6 +582,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 7 - via VK.com")
     public void landingChooseRegisterVK(User user, String page) {
         new LandingWithBonus()
                 .clickWithDrawFromGift()
@@ -583,6 +607,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 7 - via FaceBook.com")
     public void landingChooseRegisterFB(User user, String page) {
         new LandingWithBonus()
                 .clickWithDrawFromGift()
@@ -607,6 +632,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 7 - via OK.ru")
     public void landingChooseRegisterOK(User user, String page) {
         new LandingWithBonus()
                 .clickWithDrawFromGift()
@@ -632,6 +658,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 7 - via Mail.ru")
     public void landingChooseRegisterMailRU(User user, String page) {
         new LandingWithBonus()
                 .clickWithDrawFromGift()
@@ -656,6 +683,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
     @LandingPage(pageNo = {"7"})
     @RemoveUser
+    @Description("Social registration without gifts from Landing page 7 - via Yandex.ru")
     public void landingChooseRegisterYA(User user, String page) {
         new LandingWithBonus()
                 .clickWithDrawFromGift()
@@ -715,6 +743,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"register", "social", "vk"})
     @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via VK.com")
     public void mainPageRegisterVK(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .clickVK()
@@ -738,6 +767,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"register", "social", "mailru"})
     @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via Mail.ru")
     public void mainPageRegisterMailRu(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .clickMailRu()
@@ -761,6 +791,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"register", "social", "ok"})
     @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via OK.ru")
     public void mainPageRegisterOk(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .clickOK()
@@ -785,6 +816,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
 
     @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"register", "social", "ya"})
     @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via Yandex.com")
     public void mainPageRegisterYa(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .clickYA()
