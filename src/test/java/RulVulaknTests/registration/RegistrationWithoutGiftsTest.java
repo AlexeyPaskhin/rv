@@ -705,42 +705,6 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, enabled = false)
-    public void checkSikuli(User user) throws FindFailed {
-        headerNotAutorizedUser.clickRegister()
-                .typeLogin(user.getLogin())
-                .typePass(user.getPass())
-                .selectCurrencyRUB()
-                .agreeWithRules()
-                .clickRegisterButton()
-                .clickWithdrawFromGift();
-        getDriver().navigate().to("https://rc-stable.fe.rv.dev.77xy.net/games/singles-day");
-        Button b = new Button(By.xpath("//div[@id='popup_out-of-money']//a[@href='/users/playMode/fun']"));
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        b.click();
-        Screen sc = new Screen();
-        Pattern pt = new Pattern(System.getProperty("user.dir") + File.separator + "Screenshot_5.png");
-
-        Pattern pt1 = new Pattern(System.getProperty("user.dir") + File.separator + "Screenshot_6.png");
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        sc.click(pt);
-        sc.click(pt1);
-        try {
-            System.out.println("Нажали но походу нихуя не произошло");
-            Thread.sleep(15000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"register", "social", "vk"})
     @RemoveUser
     @Description("Social registration without gifts from 'Registration' pop-up - via VK.com")
