@@ -4,12 +4,18 @@ import com.utils.CustomDataProvider;
 import com.utils.User;
 import org.testng.annotations.DataProvider;
 
-/**
- * Created by ai on 2018-01-15.
- */
 public class AuthorizationData {
 
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
+
+    @DataProvider
+    public Object[][] authorizationUserEmail(){
+        User user = new User.Builder()
+                .withLogin(customDataProvider.getAuthEmail())
+                .withPass(customDataProvider.getAuthPass())
+                .build();
+        return new Object[][]{{user}};
+    }
 
     @DataProvider
     public Object[][] authorizationUserForVK(){

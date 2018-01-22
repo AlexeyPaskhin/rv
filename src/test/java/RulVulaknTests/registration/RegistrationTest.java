@@ -5,11 +5,9 @@ import com.Elements.Button;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
 import com.listeners.RussianVulcanListener;
+import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
-import com.pages.landing.LandingChooseBonusWinthContinue;
-import com.pages.landing.LandingWithBonus;
-import com.pages.landing.LandingWithButton;
-import com.pages.landing.LandingWithForm;
+import com.pages.landing.*;
 import com.popups.LotteryPopup;
 import com.utils.User;
 import org.apache.log4j.LogManager;
@@ -34,7 +32,7 @@ public class RegistrationTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
     public void registrationFromHomePageRub(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
@@ -42,8 +40,8 @@ public class RegistrationTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTRATION BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTRATION BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -52,7 +50,7 @@ public class RegistrationTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
     public void registrationFromHomePageUsd(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
@@ -60,8 +58,8 @@ public class RegistrationTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTRATION BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTRATION BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -71,7 +69,7 @@ public class RegistrationTest extends BaseTestPage {
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"fb"})
     @RemoveUser
     public void mainPageRegisterFB(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
@@ -81,8 +79,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -101,8 +99,8 @@ public class RegistrationTest extends BaseTestPage {
                 .clickRegisterButtonToGift()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -110,7 +108,7 @@ public class RegistrationTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk","D"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk", "D"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     public void landingComplexRegisterVK(User user, String page) {
@@ -126,8 +124,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -151,8 +149,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -176,8 +174,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -201,8 +199,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -226,8 +224,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -246,8 +244,8 @@ public class RegistrationTest extends BaseTestPage {
                 .clickRegisterButtonToGift()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -270,8 +268,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -294,8 +292,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -319,8 +317,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -343,8 +341,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -367,8 +365,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -388,8 +386,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickRegisterButtonToHome();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -412,8 +410,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -436,8 +434,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -461,8 +459,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -485,8 +483,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -509,8 +507,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -530,8 +528,8 @@ public class RegistrationTest extends BaseTestPage {
                 .clickRegisterButtonToHome();
 
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -553,8 +551,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -576,8 +574,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -600,8 +598,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -623,8 +621,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -646,8 +644,8 @@ public class RegistrationTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -657,7 +655,7 @@ public class RegistrationTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, enabled = false)
     public void checkSikuli(User user) throws FindFailed {
-        home.clickRegister()
+        headerNotAutorizedUser.clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .selectCurrencyRUB()
@@ -694,7 +692,7 @@ public class RegistrationTest extends BaseTestPage {
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"register", "social", "vk"})
     @RemoveUser
     public void mainPageRegisterVK(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .clickVK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
@@ -704,8 +702,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
             logger.error(e);
@@ -716,7 +714,7 @@ public class RegistrationTest extends BaseTestPage {
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"register", "social", "mailru"})
     @RemoveUser
     public void mainPageRegisterMailRu(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .clickMailRu()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
@@ -726,8 +724,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
             logger.error(e);
@@ -738,7 +736,7 @@ public class RegistrationTest extends BaseTestPage {
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"register", "social", "ok"})
     @RemoveUser
     public void mainPageRegisterOk(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .clickOK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
@@ -749,8 +747,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
             logger.error(e);
@@ -758,10 +756,10 @@ public class RegistrationTest extends BaseTestPage {
         }
     }
 
-    @Test (dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"register", "social", "ya"})
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"register", "social", "ya"})
     @RemoveUser
     public void mainPageRegisterYa(User user) {
-        new HomePage().clickRegister()
+        new HeaderNotAutorizedUser().clickRegister()
                 .clickYA()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
@@ -771,8 +769,8 @@ public class RegistrationTest extends BaseTestPage {
                 .getGiftPopup()
                 .withdrawFromGift();
         try {
-            Assert.assertTrue(home.UserZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(home.RegisterButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
             logger.error(e);
