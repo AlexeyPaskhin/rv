@@ -1613,7 +1613,6 @@ public class RegistrationTest extends BaseTestPage {
      * Registration with "100% deposit bonus" gift
      */
 
-
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
     public void registrationFromHomePageRubBonus(User user) {
         new HeaderNotAutorizedUser().clickRegister()
