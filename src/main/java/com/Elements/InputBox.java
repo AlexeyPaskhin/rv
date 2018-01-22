@@ -20,4 +20,9 @@ public class InputBox extends Element {
         fillIn(text);
         pressEnter();
     }
+
+    public void cleaIn(){
+        slaveElement().sendKeys(Keys.chord(Keys.CONTROL, "a",Keys.BACK_SPACE));
+
+    }
 }

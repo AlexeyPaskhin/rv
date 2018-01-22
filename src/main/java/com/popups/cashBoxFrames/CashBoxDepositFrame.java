@@ -6,6 +6,7 @@ import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 /**
  * Created by ai on 2018-01-17.
@@ -81,6 +82,11 @@ public class CashBoxDepositFrame extends AbstractPage implements SwithToFrame{
 
     public CashBoxDepositFrame clickOnInputButton() {
         INPUT_SUM_RADIOBUTTON.click();
+        return this;
+    }
+
+    public CashBoxDepositFrame cleanDepositInputField() {
+        CARD_DEPOSIT_SUM_INPUT_FIELD.cleaIn();
         return this;
     }
 
