@@ -31,18 +31,23 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
         StringAppender.resetAppender();
     }
 
+    /**
+     * Creating ticket in Jira if tests was failed
+     *
+     * @param iTestResult
+     */
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        String pathToScreenshot = FilesUtility.captureScreenshot(iTestResult);
-
-        logger.error(iTestResult.getThrowable().getMessage());
-        String issueLog = StringAppender.getLoggedMessages();
-        StringAppender.resetAppender();
-
-        jiraManager.createTicketWithScreenshot("PROD", " Test Case : " +
-                        iTestResult.getMethod().getMethodName() +
-                        " failed " + " Browser: " + dp.getBrowser(),
-                issueLog, "Automation Fail", pathToScreenshot);
+//        String pathToScreenshot = FilesUtility.captureScreenshot(iTestResult);
+//
+//        logger.error(iTestResult.getThrowable().getMessage());
+//        String issueLog = StringAppender.getLoggedMessages();
+//        StringAppender.resetAppender();
+//
+//        jiraManager.createTicketWithScreenshot("PROD", " Test Case : " +
+//                        iTestResult.getMethod().getMethodName() +
+//                        " failed " + " Browser: " + dp.getBrowser(),
+//                issueLog, "Automation Fail", pathToScreenshot);
     }
 
     @Override
