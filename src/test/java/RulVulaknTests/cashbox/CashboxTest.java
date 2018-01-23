@@ -40,7 +40,6 @@ public class CashboxTest extends BaseTestPage {
                 .typeCardDepositSum("6000")
                 .clickOnConfirmButton()
                 .swtichToParent();
-
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -49,7 +48,6 @@ public class CashboxTest extends BaseTestPage {
             Assert.fail();
         }
     }
-
 
     @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
     public void make500DepositRandomUser(User user, Card card) {
@@ -69,7 +67,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOn500RubButton()
                 .clickOnConfirmButton()
                 .swtichToParent();
-
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -97,7 +94,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOn1000RubButton()
                 .clickOnConfirmButton()
                 .swtichToParent();
-
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -125,7 +121,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOn3000RubButton()
                 .clickOnConfirmButton()
                 .swtichToParent();
-
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -153,7 +148,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOn10000RubButton()
                 .clickOnConfirmButton()
                 .swtichToParent();
-
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -181,7 +175,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOn30000RubButton()
                 .clickOnConfirmButton()
                 .swtichToParent();
-
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");

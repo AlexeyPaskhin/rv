@@ -20,13 +20,14 @@ public class HomePage extends AbstractPage {
         return new CashBoxPopup();
     }
 
-    public HeaderNotAutorizedUser getNotAuthorizedHeader(){
+    public HeaderNotAutorizedUser getNotAuthorizedHeader() {
         return new HeaderNotAutorizedUser();
     }
 
-    public HeaderAutorizedUser getAuthorizedHeader(){
+    public HeaderAutorizedUser getAuthorizedHeader() {
         return new HeaderAutorizedUser();
     }
+
     public GiftPopup getGiftPopup() {
         return GIFT_POPUP;
     }
