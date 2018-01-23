@@ -26,7 +26,7 @@ public class LotteryPopups extends AbstractPage {
         return new HomePage();
     }
 
-    public HomePage closeResultLotteryPopUpOpened() {
+    public HomePage closeResultLotteryPopUp() {
         if (REMINDER_POP_UP_HEADER.isVisible()) {
             CLOSE_LOTTERY_REMINDER_POPUP.clickUntilDisappeared();
         }

@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 public class CashboxTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     public void makeCustomDepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
@@ -49,7 +49,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     public void make500DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
@@ -76,7 +76,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     public void make1000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
@@ -103,7 +103,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     public void make3000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
@@ -130,7 +130,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     public void make10000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
@@ -157,7 +157,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     public void make30000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
