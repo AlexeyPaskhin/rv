@@ -36,7 +36,7 @@ public class DriverManager {
         if (BROWSER == null) {
             BROWSER = browser;
         }
-        URL url = new URL("http://localhost:4444/wd/hub");
+        URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
 
 
 //        server = new BrowserMobProxyServer();
@@ -61,7 +61,7 @@ public class DriverManager {
             //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
             // chromeOptions.addArguments("--headless");
 
-            driver = new EventFiringWebDriver(new ChromeDriver()).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url,cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
             FirefoxOptions firefoxOptions = new FirefoxOptions();
