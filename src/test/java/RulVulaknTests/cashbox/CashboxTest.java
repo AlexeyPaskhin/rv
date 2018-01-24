@@ -3,7 +3,6 @@ package RulVulaknTests.cashbox;
 import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
-import com.pages.HomePage;
 import com.utils.Card;
 import com.utils.User;
 import org.apache.log4j.LogManager;
@@ -11,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+import java.util.Random;
 
 /**
  * Created by ai on 2018-01-18.
@@ -22,6 +23,7 @@ public class CashboxTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
     public void makeCustomDepositRandomUser(User user, Card card) {
+        String randomDeposit = Integer.toString(new Random().nextInt(300000) + 1);
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -30,20 +32,22 @@ public class CashboxTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift()
                 .clickHeadCashBox()
-                .swithToCashBoxDepositFrame()
+                .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
                 .typeCardHolder(card.getHolder())
                 .typeCardCVV(card.getCvv())
                 .clickOnInputButton()
                 .cleanDepositInputField()
-                .typeCardDepositSum("6000")
+                .typeCardDepositSum(randomDeposit)
                 .clickOnConfirmButton()
-                .swtichToParent();
+                .clickOnOkayButton()
+                .switchToParent();
 
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != Double.parseDouble(randomDeposit), "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -61,18 +65,20 @@ public class CashboxTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift()
                 .clickHeadCashBox()
-                .swithToCashBoxDepositFrame()
+                .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
                 .typeCardHolder(card.getHolder())
                 .typeCardCVV(card.getCvv())
                 .clickOn500RubButton()
                 .clickOnConfirmButton()
-                .swtichToParent();
+                .clickOnOkayButton()
+                .switchToParent();
 
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 500D, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 500D, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -89,18 +95,20 @@ public class CashboxTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift()
                 .clickHeadCashBox()
-                .swithToCashBoxDepositFrame()
+                .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
                 .typeCardHolder(card.getHolder())
                 .typeCardCVV(card.getCvv())
                 .clickOn1000RubButton()
                 .clickOnConfirmButton()
-                .swtichToParent();
+                .clickOnOkayButton()
+                .switchToParent();
 
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 1000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 1000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -117,18 +125,20 @@ public class CashboxTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift()
                 .clickHeadCashBox()
-                .swithToCashBoxDepositFrame()
+                .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
                 .typeCardHolder(card.getHolder())
                 .typeCardCVV(card.getCvv())
                 .clickOn3000RubButton()
                 .clickOnConfirmButton()
-                .swtichToParent();
+                .clickOnOkayButton()
+                .switchToParent();
 
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 3000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 3000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -145,18 +155,20 @@ public class CashboxTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift()
                 .clickHeadCashBox()
-                .swithToCashBoxDepositFrame()
+                .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
                 .typeCardHolder(card.getHolder())
                 .typeCardCVV(card.getCvv())
                 .clickOn10000RubButton()
                 .clickOnConfirmButton()
-                .swtichToParent();
+                .clickOnOkayButton()
+                .switchToParent();
 
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 10000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 10000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -173,18 +185,20 @@ public class CashboxTest extends BaseTestPage {
                 .clickRegisterButton()
                 .withdrawFromGift()
                 .clickHeadCashBox()
-                .swithToCashBoxDepositFrame()
+                .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
                 .typeCardHolder(card.getHolder())
                 .typeCardCVV(card.getCvv())
                 .clickOn30000RubButton()
                 .clickOnConfirmButton()
-                .swtichToParent();
+                .clickOnOkayButton()
+                .switchToParent();
 
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 30000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 30000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();

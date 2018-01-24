@@ -22,9 +22,7 @@ public class CashboxData {
                 .withCvv(customDataProvider.getCardCvvMaster())
                 .build();
 
-
-
-        return new Object[][]{{user,card}};
+        return new Object[][]{{user, card}};
     }
 
 }
