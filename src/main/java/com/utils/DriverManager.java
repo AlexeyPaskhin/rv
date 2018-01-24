@@ -56,7 +56,7 @@ public class DriverManager {
              cap.setBrowserName("chrome");
            // cap.setPlatform(Platform.WINDOWS);
               cap.setVersion("63.0");
-
+                cap.setCapability("enableVNC",true);
 
             //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
             // chromeOptions.addArguments("--headless");
@@ -84,7 +84,7 @@ public class DriverManager {
         }
         // Hack before operadriver 2.33 will release
         if (!browser.equalsIgnoreCase(OPERA)) {
-            driver.manage().window().maximize();
+       //     driver.manage().window().maximize();
         }
         setImplicity(10);
         return driver;
