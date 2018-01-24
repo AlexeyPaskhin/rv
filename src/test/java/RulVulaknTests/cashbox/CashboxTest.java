@@ -46,8 +46,8 @@ public class CashboxTest extends BaseTestPage {
 
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == Double.parseDouble(randomDeposit), "USER BALANCE ...");
-            Assert.assertFalse(headerAutorizedUser.getUserBalance() != Double.parseDouble(randomDeposit), "USER BALANCE ...");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != Double.parseDouble(randomDeposit), "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -77,8 +77,8 @@ public class CashboxTest extends BaseTestPage {
 
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 500D, "USER BALANCE ...");
-            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 500D, "USER BALANCE ...");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 500D, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 500D, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -107,8 +107,8 @@ public class CashboxTest extends BaseTestPage {
 
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 1000, "USER BALANCE ...");
-            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 1000, "USER BALANCE ...");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 1000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 1000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -137,8 +137,8 @@ public class CashboxTest extends BaseTestPage {
 
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 3000, "USER BALANCE ...");
-            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 3000, "USER BALANCE ...");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 3000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 3000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -167,8 +167,8 @@ public class CashboxTest extends BaseTestPage {
 
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 10000, "USER BALANCE ...");
-            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 10000, "USER BALANCE ...");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 10000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 10000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -197,8 +197,8 @@ public class CashboxTest extends BaseTestPage {
 
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 30000, "USER BALANCE ...");
-            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 30000, "USER BALANCE ...");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == 30000, "USER BALANCE NOT CHANGED");
+            Assert.assertFalse(headerAutorizedUser.getUserBalance() != 30000, "USER BALANCE CHANGED INCORRECT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();

@@ -25,10 +25,9 @@ public class HeaderAutorizedUser extends AbstractPage {
     }
 
     public void waitForBalanceChange(double oldBalance) {
-        while(oldBalance== getUserBalance()){
+        for (int i = 0; oldBalance == getUserBalance() && i < 10; i++) {
             refreshPage();
             REAL_BALANCE_PANEL.waitForElementToBeVisible(5);
-            if (oldBalance!=getUserBalance()) break;
         }
     }
 }
