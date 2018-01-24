@@ -2,7 +2,6 @@ package com.pages;
 
 import com.Elements.Button;
 import com.Elements.InputBox;
-import com.Elements.Panel;
 import com.pages.landing.social.*;
 import com.popups.FastRegisterPopup;
 import org.openqa.selenium.By;
@@ -21,6 +20,10 @@ public class HeaderNotAutorizedUser extends AbstractPage {
     private final InputBox EMAIL_INPUT_BOX_IN_HEADER = new InputBox(By.xpath("//input[@id='top-user-form__login']"));
     private final InputBox PASS_INPUT_BOX_IN_HEADER = new InputBox(By.xpath("//input[@id='top-user-form__password']"));
     private final Button LOGIN_BUTTON_IN_HEADER = new Button(By.xpath("//button[@class='btn-auth-top']//span"));
+
+    private final InputBox EMAIL_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-login']"));
+    private final InputBox PASS_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-password']"));
+    private final Button LOGIN_BUTTON_IN_POPUP = new Button(By.xpath("//button[@class='btn-popup-enter']//span[(text()='Вход')]"));
 
     public VkRegisterPage clickHeadVK() {
         HEAD_VK_BUTTON.click();
@@ -76,6 +79,21 @@ public class HeaderNotAutorizedUser extends AbstractPage {
         homePage = new HomePage();
         homePage.homePageLoaded();
         return REGISTER_BUTTON.isPresent();
+    }
+
+    public HeaderAutorizedUser clickLoginInPopup() {
+        LOGIN_BUTTON_IN_POPUP.click();
+        return new HeaderAutorizedUser();
+    }
+
+    public HeaderNotAutorizedUser typeEmailInPopupField(String email) {
+        EMAIL_INPUT_BOX_IN_POPUP.fillIn(email);
+        return this;
+    }
+
+    public HeaderNotAutorizedUser typePassInPopupField(String pass) {
+        PASS_INPUT_BOX_IN_POPUP.fillIn(pass);
+        return this;
     }
 
 }
