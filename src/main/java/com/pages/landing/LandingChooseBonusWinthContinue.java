@@ -6,6 +6,10 @@ import com.pages.AbstractPage;
 import com.pages.Helpers.Dictionaries.LandingWithChooseBonusType;
 import org.openqa.selenium.By;
 
+/**
+ * Class for choosing bonuses in Landing Pages 7 and 12
+ */
+
 public class LandingChooseBonusWinthContinue extends AbstractPage{
 
     private Button CHOOSE_CASHBACK = new Button(By.xpath("//label[@class='gift-option option-one']"));
