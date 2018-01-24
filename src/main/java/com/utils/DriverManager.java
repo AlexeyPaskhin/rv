@@ -53,9 +53,9 @@ public class DriverManager {
         if (browser.equalsIgnoreCase(CHROME)) {
             System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
             DesiredCapabilities cap = DesiredCapabilities.chrome();
-            // cap.setBrowserName("chrome");
-            cap.setPlatform(Platform.WINDOWS);
-            //  cap.setVersion("63.0");
+             cap.setBrowserName("chrome");
+           // cap.setPlatform(Platform.WINDOWS);
+              cap.setVersion("63.0");
 
 
             //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
