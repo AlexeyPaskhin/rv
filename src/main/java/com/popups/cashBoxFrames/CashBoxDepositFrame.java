@@ -1,17 +1,15 @@
 package com.popups.cashBoxFrames;
 
 import com.Elements.Button;
-//import com.Elements.Frame;
 import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 
 /**
  * Created by ai on 2018-01-17.
  */
-public class CashBoxDepositFrame extends AbstractPage implements SwithToFrame{
+public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     private Button CARD_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='1']"));
 
@@ -26,6 +24,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwithToFrame{
     private RadioButton CARD_DEPOSIT_30000_RUB = new RadioButton(By.xpath("//label[@id='label_amount_30000']"));
     private RadioButton INPUT_SUM_RADIOBUTTON = new RadioButton(By.xpath("//label[@id='label_custom_amount']"));
     private Button CONFIRM_BUTTON = new Button(By.xpath("//button[@id='submit_button']"));
+    private Button OKAY_BUTTON = new Button(By.xpath("//div[@class='payment_message success']//button[@class='pretty_button']"));
 
     public CashBoxDepositFrame clickCardPaymentMethod() {
         CARD_PAYMENT_BUTTON.click();
@@ -92,6 +91,12 @@ public class CashBoxDepositFrame extends AbstractPage implements SwithToFrame{
 
     public CashBoxDepositFrame clickOnConfirmButton() {
         CONFIRM_BUTTON.click();
+        return this;
+    }
+
+    public CashBoxDepositFrame clickOnOkayButton() {
+        OKAY_BUTTON.waitForElementToBeClickable(5);
+        OKAY_BUTTON.click();
         return this;
     }
 }

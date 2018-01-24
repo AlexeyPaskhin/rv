@@ -6,13 +6,13 @@ import com.pages.AbstractPage;
 import com.pages.HomePage;
 import com.popups.cashBoxFrames.CashBoxDepositFrame;
 import com.popups.cashBoxFrames.CashBoxWithdrawalFrame;
-import com.popups.cashBoxFrames.SwithToFrame;
+import com.popups.cashBoxFrames.SwitchToFrame;
 import org.openqa.selenium.By;
 
 /**
  * Created by ai on 2018-01-17.
  */
-public class CashBoxPopup extends AbstractPage implements SwithToFrame{
+public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
     private final Button TAB_DEPOSIT = new Button(By.xpath("//a[@class='profile-switch__tab tab-deposit']"));
     private final Button TAB_WITHDRAWAL = new Button(By.xpath("//a[@class='profile-switch__tab tab-withdrawal"));
     private final Button TAB_PAYMENT_HISTORY = new Button(By.xpath("//a[@class='profile-switch__tab tab-history']"));
@@ -41,14 +41,14 @@ public class CashBoxPopup extends AbstractPage implements SwithToFrame{
         return new HomePage();
     }
 
-    public CashBoxDepositFrame swithToCashBoxDepositFrame() {
-        swithToFrame(CASH_BOX_DEPOSIT_FRAME);
+    public CashBoxDepositFrame switchToCashBoxDepositFrame() {
+        switсhToFrame(CASH_BOX_DEPOSIT_FRAME);
         wait(1000);
         return new CashBoxDepositFrame();
     }
 
-    public CashBoxWithdrawalFrame swithToCashBoxWithdrawalFrame() {
-        swithToFrame(CASH_BOX_WITHDRAWAL_FRAME);
+    public CashBoxWithdrawalFrame switchToCashBoxWithdrawalFrame() {
+        switсhToFrame(CASH_BOX_WITHDRAWAL_FRAME);
         wait(1000);
         return new CashBoxWithdrawalFrame();
     }
