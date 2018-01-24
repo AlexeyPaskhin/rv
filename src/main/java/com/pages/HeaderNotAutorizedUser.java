@@ -60,9 +60,9 @@ public class HeaderNotAutorizedUser extends AbstractPage {
         return new FastRegisterPopup();
     }
 
-    public HeaderAutorizedUser clickLogin() {
+    public HomePage clickLogin() {
         LOGIN_BUTTON_IN_HEADER.click();
-        return new HeaderAutorizedUser();
+        return new HomePage();
     }
 
     public HeaderNotAutorizedUser typeEmailInHeadField(String email) {

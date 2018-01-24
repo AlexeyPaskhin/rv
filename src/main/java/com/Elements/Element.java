@@ -130,6 +130,7 @@ public class Element {
         doubleClick.doubleClick(slaveElement()).build().perform();
     }
 
+
     public void clickUntilDisappeared(){
         click();
         for (int i=0;i<2;i++) {
@@ -144,5 +145,7 @@ public class Element {
     public void clickWithJS() {
         executeJS("arguments[0].click();");
     }
+
+    public boolean isEnabled() { return slaveElement().isEnabled(); }
 
 }

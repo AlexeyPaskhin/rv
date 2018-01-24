@@ -6,6 +6,8 @@ import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import org.openqa.selenium.By;
 
+import javax.swing.text.StyledEditorKit;
+
 /**
  * Created by ai on 2018-01-17.
  */
@@ -16,6 +18,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     private InputBox CARD_NUMBER_INPUT_FIELD = new InputBox(By.xpath("//input[@name='card_number']"));
     private InputBox CARD_HOLDER_INPUT_FIELD = new InputBox(By.xpath("//input[@id='card_holder']"));
     private InputBox CARD_CVV_INPUT_FIELD = new InputBox(By.xpath("//input[@id='cvv']"));
+    private InputBox CARD_CVV_STORED_INPUT_FIELD = new InputBox(By.xpath("//input[@id='cvv_stored']"));
     private InputBox CARD_DEPOSIT_SUM_INPUT_FIELD = new InputBox(By.xpath("//input[@id='amount_input']"));
     private RadioButton CARD_DEPOSIT_500_RUB = new RadioButton(By.xpath("//label[@id='label_amount_500']"));
     private RadioButton CARD_DEPOSIT_1000_RUB = new RadioButton(By.xpath("//label[@id='label_amount_1000']"));
@@ -47,6 +50,11 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     public CashBoxDepositFrame typeCardCVV(String cvv) {
         CARD_CVV_INPUT_FIELD.fillIn(cvv);
         return this;
+    }
+
+    public CashBoxDepositFrame typeCardStoredCVV(String cvv) {
+        CARD_CVV_STORED_INPUT_FIELD.fillIn(cvv);
+        return  this;
     }
 
     public CashBoxDepositFrame typeCardDepositSum(String depositSum) {
@@ -98,5 +106,9 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
         OKAY_BUTTON.waitForElementToBeClickable(5);
         OKAY_BUTTON.click();
         return this;
+    }
+
+    public boolean checkAvailableConfirmButton() {
+        return CONFIRM_BUTTON.isEnabled();
     }
 }
