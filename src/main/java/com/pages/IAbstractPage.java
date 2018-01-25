@@ -60,4 +60,8 @@ public interface IAbstractPage {
         }
         waitForPageToLoad();
     }
+
+    default void refreshPage() {
+        getDriver().navigate().refresh();
+    }
 }

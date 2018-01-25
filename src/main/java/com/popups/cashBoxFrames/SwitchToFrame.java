@@ -3,12 +3,15 @@ package com.popups.cashBoxFrames;
 import com.Elements.Frame;
 import static com.utils.DriverManager.getDriver;
 
-public interface SwithToFrame {
-    default void swithToFrame(Frame frame){
+/**
+ * Created by ai on 2018-01-17.
+ */
+public interface SwitchToFrame {
+    default void switсhToFrame(Frame frame){
         getDriver().switchTo().frame(frame.slaveElement());
     }
 
-    default void swtichToParent(){
+    default void switchToParent(){
         getDriver().switchTo().defaultContent();
     }
 }
