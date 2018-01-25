@@ -11,6 +11,14 @@ public class OKRegisterPage extends AbstractPage implements SocialFrame {
     private final InputBox EMAIL_INPUT = new InputBox(By.name("fr.email"));
     private final InputBox PASS_INPUT = new InputBox(By.name("fr.password"));
     private final Button LOGIN_BUTTON = new Button(By.xpath("//input[@value='Sign in']"));
+    private String parentWindow;
+
+    public OKRegisterPage(String parentWindow) {
+        this.parentWindow = parentWindow;
+    }
+
+    public OKRegisterPage() {
+    }
 
     @Override
     public SocialFrame setEmail(String email) {
@@ -28,7 +36,7 @@ public class OKRegisterPage extends AbstractPage implements SocialFrame {
     public ConfirmEmailPopup clickRegister() {
         LOGIN_BUTTON.click();
         waitForCountOfWindows(1);
-        swithToWindow(parentWindow);
+        swithToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 

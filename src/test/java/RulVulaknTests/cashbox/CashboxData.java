@@ -13,7 +13,7 @@ public class CashboxData {
 
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] randomUserAuthProvider() {
         User user = new User().generateRandomUser(new CustomDataProvider());
         Card card = new Card.Builder()
@@ -25,7 +25,7 @@ public class CashboxData {
         return new Object[][]{{user, card}};
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] userAuthProvider() {
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmail())

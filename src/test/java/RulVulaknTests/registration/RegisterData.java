@@ -11,7 +11,7 @@ public class RegisterData {
 
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] randomUserProvider(Method method) {
         Object[][] obj;
         if (method.isAnnotationPresent(LandingPage.class)) {
@@ -31,7 +31,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] createUserForVK(Method method) {
         Object[][] obj;
         User user = null;
@@ -58,7 +58,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] createUserForFB(Method method) {
         Object[][] obj;
         User user = null;
@@ -85,7 +85,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] createUserForOK(Method method) {
         Object[][] obj;
         User user = null;
@@ -112,7 +112,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] createUserForMailRU(Method method) {
         Object[][] obj;
         User user = null;
@@ -139,7 +139,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] createUserForYA(Method method) {
         Object[][] obj;
         User user = null;

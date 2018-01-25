@@ -6,6 +6,8 @@ import com.pages.landing.social.*;
 import com.popups.FastRegisterPopup;
 import org.openqa.selenium.By;
 
+import static com.utils.DriverManager.getDriver;
+
 public class HeaderNotAutorizedUser extends AbstractPage {
     HomePage homePage;
 
@@ -24,35 +26,36 @@ public class HeaderNotAutorizedUser extends AbstractPage {
     private final InputBox EMAIL_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-login']"));
     private final InputBox PASS_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-password']"));
     private final Button LOGIN_BUTTON_IN_POPUP = new Button(By.xpath("//button[@class='btn-popup-enter']//span[(text()='Вход')]"));
+    private String parent =getDriver().getWindowHandle();
 
     public VkRegisterPage clickHeadVK() {
         HEAD_VK_BUTTON.click();
         swithToSocialFrame();
-        return new VkRegisterPage();
+        return new VkRegisterPage(parent);
     }
 
     public FBregisterPage clickHeadFB() {
         HEAD_FB_BUTTON.click();
         swithToSocialFrame();
-        return new FBregisterPage();
+        return new FBregisterPage(parent);
     }
 
     public OKRegisterPage clickHeadOK() {
         HEAD_OK_BUTTON.click();
         swithToSocialFrame();
-        return new OKRegisterPage();
+        return new OKRegisterPage(parent);
     }
 
     public MailRuRegisterPage clickHeadMailRU() {
-        HEAD_MailRU_BUTTON.click();
+         HEAD_MailRU_BUTTON.click();
         swithToSocialFrame();
-        return new MailRuRegisterPage();
+        return new MailRuRegisterPage(parent);
     }
 
     public YARegisterPage clickHeadYA() {
         HEAD_YA_BUTTON.click();
         swithToSocialFrame();
-        return new YARegisterPage();
+        return new YARegisterPage(parent);
     }
 
     public FastRegisterPopup clickRegister() {

@@ -1,24 +1,14 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="Regression Suite" parallel="tests" thread-count="3">
-    <test name="Authorizations">
-        <classes>
-            <class name="RulVulaknTests.authorization.AuthorizationTest"/>
-        </classes>
-    </test>
-
+<suite name="Regression Suite" parallel="tests" thread-count="10" verbose="10">
     <test name="Registration">
         <classes>
-            <class name="RulVulaknTests.registration.RegistrationWithBonusTest"/>
-            <class name="RulVulaknTests.registration.RegistrationWithCashBackTest"/>
             <class name="RulVulaknTests.registration.RegistrationWithoutGiftsTest"/>
         </classes>
     </test>
-
-    <test name="Cash Box">
+    <test name="RegistrationTwo">
         <classes>
-            <class name="RulVulaknTests.cashbox.CashboxTest"/>
+            <class name="RulVulaknTests.registration.RegistrationWithBonusTest"/>
         </classes>
     </test>
 </suite>

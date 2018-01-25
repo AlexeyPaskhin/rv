@@ -100,21 +100,20 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20.1</version>
                 <configuration>
-                    <forkMode>never</forkMode>
-                    <!--  <testFailureIgnore>true</testFailureIgnore> -->
-                    <!--<groups>${groups}</groups> -->
-                    <suiteXmlFiles>${fileTestNGSuite}</suiteXmlFiles>
-                    <skipTests>false</skipTests>
-                    <properties>
-                        <property>
-                            <name>suitethreadpoolsize</name>
-                            <value>${threads}</value>
-                        </property>
-                    </properties>
+                    <forkMode>perthread</forkMode>
+                    <parallel>methods</parallel>
+                    <threadCount>20</threadCount>
 
+                    <!--  <testFailureIgnore>true</testFailureIgnore> -->
+                    <groups>${groups}</groups>
+                    <!--<suiteXmlFiles>${fileTestNGSuite}</suiteXmlFiles>-->
+                    <skipTests>false</skipTests>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+
+
+                    <!--<threadCount>4</threadCount>-->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -128,10 +127,8 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ok,mailru,auth,uno</groups>
+        <groups>social,register,landing,vk,fb,ok,mailru,auth,cashbox</groups>
         <aspectj.version>1.8.10</aspectj.version>
-        <threads>2</threads>
-        <fileTestNGSuite>src/test/resources/testng.xml</fileTestNGSuite>
     </properties>
 
 </project>
