@@ -9,9 +9,6 @@ import com.popups.cashBoxFrames.CashBoxWithdrawalFrame;
 import com.popups.cashBoxFrames.SwitchToFrame;
 import org.openqa.selenium.By;
 
-/**
- * Created by ai on 2018-01-17.
- */
 public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
     private final Button TAB_DEPOSIT = new Button(By.xpath("//a[@class='profile-switch__tab tab-deposit']"));
     private final Button TAB_WITHDRAWAL = new Button(By.xpath("//a[@class='profile-switch__tab tab-withdrawal"));

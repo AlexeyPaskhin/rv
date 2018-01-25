@@ -33,7 +33,6 @@ public class FilesUtility {
         try {
             Files.copy(Paths.get(fromPath),
                     Paths.get(toPath), StandardCopyOption.REPLACE_EXISTING);
-
         } catch (IOException e) {
             System.out.println("Fuckingfuckfuckfuckfuck");
         }
@@ -68,7 +67,6 @@ public class FilesUtility {
         try {
             Files.copy(Paths.get(fromPath),
                     Paths.get(toPath), StandardCopyOption.REPLACE_EXISTING);
-
         } catch (IOException e) {
             //   e.printStackTrace();
         }

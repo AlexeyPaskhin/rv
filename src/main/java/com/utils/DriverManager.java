@@ -38,7 +38,6 @@ public class DriverManager {
         }
         URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
 
-
 //        server = new BrowserMobProxyServer();
 //        server.start();
 //        int port = server.getPort();
@@ -53,15 +52,15 @@ public class DriverManager {
         if (browser.equalsIgnoreCase(CHROME)) {
             System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
             DesiredCapabilities cap = DesiredCapabilities.chrome();
-             cap.setBrowserName("chrome");
-           // cap.setPlatform(Platform.WINDOWS);
-              cap.setVersion("63.0");
-                cap.setCapability("enableVNC",true);
+            cap.setBrowserName("chrome");
+            // cap.setPlatform(Platform.WINDOWS);
+            cap.setVersion("63.0");
+            cap.setCapability("enableVNC", true);
 
             //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
             // chromeOptions.addArguments("--headless");
 
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url,cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
+            driver = new EventFiringWebDriver(new ChromeDriver()).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
             FirefoxOptions firefoxOptions = new FirefoxOptions();
@@ -84,7 +83,7 @@ public class DriverManager {
         }
         // Hack before operadriver 2.33 will release
         if (!browser.equalsIgnoreCase(OPERA)) {
-       //     driver.manage().window().maximize();
+            //     driver.manage().window().maximize();
         }
         setImplicity(10);
         return driver;
@@ -92,7 +91,6 @@ public class DriverManager {
 
     public static void setImplicity(int seconds) {
         getDriver().manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
-
     }
 
     public static WebDriver getDriver() {
