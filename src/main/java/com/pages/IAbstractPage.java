@@ -61,7 +61,8 @@ public interface IAbstractPage {
         waitForPageToLoad();
     }
 
-    default void refreshPage() {
+    default HomePage refreshPage() {
         getDriver().navigate().refresh();
+        return new HomePage();
     }
 }

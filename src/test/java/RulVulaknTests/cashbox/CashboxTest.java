@@ -3,6 +3,8 @@ package RulVulaknTests.cashbox;
 import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
+import com.pages.HomePage;
+import com.popups.CashBoxPopup;
 import com.popups.cashBoxFrames.CashBoxDepositFrame;
 import com.utils.Card;
 import com.utils.RandomGenerate;
@@ -303,6 +305,61 @@ public class CashboxTest extends BaseTestPage {
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == balanceBefore  + Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    public void checkBasicPaymentMethodsAreAvaileble(User user, Card card) {
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .clickHeadCashBox()
+                .switchToCashBoxDepositFrame()
+                .checkPaymentsMethodInFrame();
+
+        try {
+            Assert.assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    public void checkDepositCardRandomUserIsSaved(User user, Card card) {
+        String randomDeposit = Integer.toString(new Random().nextInt(300000) + 1);
+        new HeaderNotAutorizedUser().clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .withdrawFromGift()
+                .clickHeadCashBox()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .typeCardNumber(card.getNumber())
+                .typeCardHolder(card.getHolder())
+                .typeCardCVV(card.getCvv())
+                .clickOnInputButton()
+                .cleanDepositInputField()
+                .typeCardDepositSum(randomDeposit)
+                .clickOnConfirmButton()
+                .clickOnOkayButton()
+                .switchToParent();
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
+        new HomePage()
+                .refreshPage()
+                .clickHeadCashBox()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .checkDepositCardIsSaved();
+
+        try {
+            Assert.assertTrue(new CashBoxDepositFrame().checkDepositCardIsSaved(), "FIRST PAYMENT DON'T PASS");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
