@@ -20,7 +20,7 @@ public class HeaderAutorizedUser extends AbstractPage {
     }
 
     public double getUserBalance() {
-        double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ",""));
+        double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ", ""));
         return sum;
     }
 
