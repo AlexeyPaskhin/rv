@@ -52,14 +52,6 @@ public interface IAbstractPage {
         new WebDriverWait(getDriver(), 10).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
     }
 
-    default void swithToSocialFrame() {
-        AbstractPage.parentWindow = getDriver().getWindowHandle();
-        waitForCountOfWindows(2);
-        for (String winHandle : getDriver().getWindowHandles()) {
-            swithToWindow(winHandle);
-        }
-        waitForPageToLoad();
-    }
 
     default void refreshPage() {
         getDriver().navigate().refresh();

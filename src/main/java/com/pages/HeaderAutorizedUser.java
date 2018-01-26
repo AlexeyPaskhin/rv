@@ -7,8 +7,8 @@ import org.openqa.selenium.*;
 public class HeaderAutorizedUser extends AbstractPage {
 
     private final Panel USER_PANE = new Panel(By.xpath("//div[@class='top-user-zone']"));
-    private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
     private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));
+    private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
 
     public boolean userZoneIsPresent() {
         new HomePage().homePageLoaded();
@@ -20,7 +20,7 @@ public class HeaderAutorizedUser extends AbstractPage {
     }
 
     public double getUserBalance() {
-        double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ",""));
+        double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ", ""));
         return sum;
     }
 

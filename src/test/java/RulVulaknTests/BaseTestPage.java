@@ -9,6 +9,7 @@ import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.SessionNotCreatedException;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class BaseTestPage {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
                 String oldName = us.getLogin();
-                String newName = "autotest+" + RandomGenerate.randomString(3, 10) + "@playtini.ua";
+                String newName = "autotest+" + RandomGenerate.randomString(20) + "@playtini.ua";
                 manager.updateUserForSocial(oldName, newName);
             }
         }
@@ -50,7 +51,8 @@ public class BaseTestPage {
             logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
         try {
-            setupDriver(customDataProvider.getBrowser());
+           WebDriver driver = setupDriver(customDataProvider.getBrowser());
+            attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

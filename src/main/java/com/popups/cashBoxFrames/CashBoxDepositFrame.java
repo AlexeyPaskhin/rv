@@ -13,9 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by ai on 2018-01-17.
- */
 public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     private Button CARD_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='1']"));
@@ -62,7 +59,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     public CashBoxDepositFrame typeCardStoredCVV(String cvv) {
         CARD_CVV_STORED_INPUT_FIELD.fillIn(cvv);
-        return  this;
+        return this;
     }
 
     public CashBoxDepositFrame typeCardDepositSum(String depositSum) {

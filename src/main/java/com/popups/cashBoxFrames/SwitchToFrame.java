@@ -14,5 +14,4 @@ public interface SwitchToFrame {
     default void switchToParent(){
         getDriver().switchTo().defaultContent();
     }
-
 }
