@@ -27,6 +27,7 @@ public class FastRegister extends AbstractPage {
     private final Button MAILRU_BUTTON = new Button(By.xpath("//div[@class='social-mr']"));
     private final Button OK_BUTTON = new Button(By.xpath("//div[@class='social-ok']"));
     private final Button YA_BUTTON = new Button(By.xpath("//div[@class='social-ya']"));
+    private String parent =getDriver().getWindowHandle();
 
     public FastRegister(RegistrationFormType registrationType) {
         this.EMAIL_INPUT = registrationType.getEmailInput();
@@ -78,30 +79,30 @@ public class FastRegister extends AbstractPage {
     public SocialFrame clickVK() {
         VK_BUTTON.click();
         swithToSocialFrame();
-        return new VkRegisterPage();
+        return new VkRegisterPage(parent);
     }
     @Step
     public SocialFrame clickFB() {
         FB_BUTTON.click();
         swithToSocialFrame();
-        return new FBregisterPage();
+        return new FBregisterPage(parent);
     }
     @Step
     public SocialFrame clickOK() {
         OK_BUTTON.click();
         swithToSocialFrame();
-        return new OKRegisterPage();
+        return new OKRegisterPage(parent);
     }
     @Step
     public SocialFrame clickYA() {
         YA_BUTTON.click();
         swithToSocialFrame();
-        return new YARegisterPage();
+        return new YARegisterPage(parent);
     }
     @Step
     public SocialFrame clickMailRu() {
         MAILRU_BUTTON.click();
         swithToSocialFrame();
-        return new MailRuRegisterPage();
+        return new MailRuRegisterPage(parent);
     }
 }
