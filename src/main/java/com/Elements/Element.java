@@ -18,7 +18,7 @@ import static com.utils.DriverManager.setImplicity;
 
 public class Element {
 
-    private final static Logger logger = LogManager.getLogger(Element.class);
+   private final static Logger logger = LogManager.getLogger(Element.class);
     By by;
 
     public Element(By by) {
