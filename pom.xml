@@ -102,7 +102,7 @@
                 <configuration>
                     <forkMode>perthread</forkMode>
                     <parallel>methods</parallel>
-                    <threadCount>20</threadCount>
+                    <threadCount>${threads}</threadCount>
 
                     <!--  <testFailureIgnore>true</testFailureIgnore> -->
                     <groups>${groups}</groups>
@@ -129,6 +129,7 @@
     <properties>
         <groups>social,register,landing,vk,fb,ok,mailru,auth,cashbox</groups>
         <aspectj.version>1.8.10</aspectj.version>
+        <threads>8</threads>
     </properties>
 
 </project>

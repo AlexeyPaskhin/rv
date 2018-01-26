@@ -42,7 +42,7 @@ public class BaseTestPage {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
                 String oldName = us.getLogin();
-                String newName = "autotest+" + RandomGenerate.randomString(3, 10) + "@playtini.ua";
+                String newName = "autotest+" + RandomGenerate.randomString(20) + "@playtini.ua";
                 manager.updateUserForSocial(oldName, newName);
             }
         }
