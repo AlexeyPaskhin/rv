@@ -127,7 +127,7 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ok,mailru,auth,cashbox</groups>
+        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox</groups>
         <aspectj.version>1.8.10</aspectj.version>
         <threads>8</threads>
     </properties>
