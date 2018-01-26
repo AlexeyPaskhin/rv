@@ -100,8 +100,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20.1</version>
                 <configuration>
-                    <forkMode>perthread</forkMode>
                     <parallel>methods</parallel>
+                    <forkCount>${threads}</forkCount>
                     <threadCount>${threads}</threadCount>
 
                     <!--  <testFailureIgnore>true</testFailureIgnore> -->

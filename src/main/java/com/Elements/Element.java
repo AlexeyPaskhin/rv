@@ -69,7 +69,7 @@ public class Element {
     private void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
-                .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class,StaleElementReferenceException.class))
+                .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class))
                 .pollingEvery(200, TimeUnit.MILLISECONDS).until((Function<WebDriver, Boolean>) driver -> {
             element.click();
             return true;
