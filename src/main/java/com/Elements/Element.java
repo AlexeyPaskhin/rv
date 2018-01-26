@@ -66,7 +66,7 @@ public class Element {
                 .until(driver -> slaveElement().getText());
     }
 
-    private void click(WebElement element) {
+    private synchronized void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
                 .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class,StaleElementReferenceException.class))
@@ -122,7 +122,7 @@ public class Element {
     }
 
     public void waitForElementToBeInvisible(int seconds) {
-        new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
+        new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOf(slaveElement()));
 
     }
 
