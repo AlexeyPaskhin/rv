@@ -11,7 +11,7 @@ public class RegisterData {
 
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] randomUserProvider(Method method) {
         Object[][] obj;
         if (method.isAnnotationPresent(LandingPage.class)) {
@@ -31,7 +31,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] createUserForVK(Method method) {
         Object[][] obj;
         User user = null;
@@ -58,7 +58,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] createUserForFB(Method method) {
         Object[][] obj;
         User user = null;
@@ -85,7 +85,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] createUserForOK(Method method) {
         Object[][] obj;
         User user = null;
@@ -112,7 +112,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] createUserForMailRU(Method method) {
         Object[][] obj;
         User user = null;
@@ -139,7 +139,7 @@ public class RegisterData {
         return obj;
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] createUserForYA(Method method) {
         Object[][] obj;
         User user = null;
@@ -166,15 +166,4 @@ public class RegisterData {
         return obj;
     }
 
-//    private Object[][] userForLanding(String[] pageNumber){
-//
-//        Object [][] obj = new Object[pageNumber.length][2];
-//
-//        for (int i = 0; i < pageNumber.length; i++) {
-//            User user = new User.Builder().withLogin("dtplaytini@yandex.ru").withPass("h8ppXBQS").build();
-//
-//            obj[i][0] = user;
-//            obj[i][1] = pageNumber[i];
-//
-//    }
 }

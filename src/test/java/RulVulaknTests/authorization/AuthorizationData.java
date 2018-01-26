@@ -8,7 +8,7 @@ public class AuthorizationData {
 
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] authorizationUserEmail(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmail())
@@ -17,7 +17,7 @@ public class AuthorizationData {
         return new Object[][]{{user}};
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] authorizationUserForVK(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmailVK())
@@ -26,7 +26,7 @@ public class AuthorizationData {
         return new Object[][]{{user}};
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] authorizationUserForFB(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmailFB())
@@ -35,7 +35,7 @@ public class AuthorizationData {
         return new Object[][]{{user}};
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] authorizationUserForOK(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmailOK())
@@ -44,7 +44,7 @@ public class AuthorizationData {
         return new Object[][]{{user}};
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] authorizationUserForMailRU(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmailMailRU())
@@ -53,7 +53,7 @@ public class AuthorizationData {
         return new Object[][]{{user}};
     }
 
-    @DataProvider(parallel = true)
+    @DataProvider
     public Object[][] authorizationUserForYA(){
         User user = new User.Builder()
                 .withLogin(customDataProvider.getAuthEmailYA())
