@@ -2,6 +2,7 @@ package RulVulaknTests.cashbox;
 
 import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
+import com.pages.AbstractPage;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.popups.CashBoxPopup;
@@ -352,7 +353,6 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         new HomePage()
-                .refreshPage()
                 .clickHeadCashBox()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
