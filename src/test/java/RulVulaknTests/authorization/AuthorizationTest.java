@@ -4,6 +4,7 @@ import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
+import com.popups.RedHelperFrame;
 import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
@@ -22,7 +23,7 @@ public class AuthorizationTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
 
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth"})
-    @Description("Authorization from Header.")
+    @Description("Simple authorization from Header.")
     public void authorizationUserFromMail(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
@@ -125,4 +126,23 @@ public class AuthorizationTest extends BaseTestPage {
         }
     }
 
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth"})
+    @Description("Test for checking is RedHelper pop-up is opened on Home Page")
+    public void checkRedHelperPopUpIsOpened(User user) {
+        new HomePage()
+                .getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openRedHelperFrame()
+                .switchToRedHElperFrame();
+        try {
+            RedHelperFrame redHelperFrame = new RedHelperFrame();
+            Assert.assertTrue(redHelperFrame.isRedHelperFrameOpened(), "RED HELPER FRAME NOT VISIBLE");
+        } catch (Exception e) {
+            logger.error("ERROR WITH RED HELPER");
+            logger.error(e);
+            Assert.fail();
+        }
+    }
 }

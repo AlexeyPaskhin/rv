@@ -17,7 +17,7 @@ import static com.utils.DriverManager.setImplicity;
 
 public class Element {
 
-   private final static Logger logger = LogManager.getLogger(Element.class);
+    private final static Logger logger = LogManager.getLogger(Element.class);
     By by;
 
     public Element(By by) {
@@ -41,7 +41,8 @@ public class Element {
     }
 
     private void sendKeys(WebElement element, CharSequence sequence) {
-        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class,ElementNotInteractableException.class)
+        new FluentWait<>(getDriver())
+                .ignoring(NoSuchElementException.class, ElementNotInteractableException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .withTimeout(3, TimeUnit.SECONDS)
                 .until(new Function<WebDriver, Boolean>() {
@@ -54,7 +55,7 @@ public class Element {
     }
 
     public void click() {
-            click(slaveElement());
+        click(slaveElement());
     }
 
     public String getText() {
@@ -68,12 +69,11 @@ public class Element {
     private void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
-                .ignoring(NoSuchElementException.class,ElementNotVisibleException.class)
+                .ignoring(NoSuchElementException.class, ElementNotVisibleException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS).until((Function<WebDriver, Boolean>) driver -> {
             element.click();
             return true;
         });
-
     }
 
     public boolean isPresent() {
@@ -113,7 +113,6 @@ public class Element {
 
     public void waitForElementToBeClickable(int seconds) {
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(by));
-
     }
 
     public void waitForElementToBeVisible(int seconds) {
@@ -122,7 +121,6 @@ public class Element {
 
     public void waitForElementToBeInvisible(int seconds) {
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
-
     }
 
     public void doubleClick() {
@@ -131,9 +129,9 @@ public class Element {
     }
 
 
-    public void clickUntilDisappeared(){
+    public void clickUntilDisappeared() {
         click();
-        for (int i=0;i<2;i++) {
+        for (int i = 0; i < 2; i++) {
             try {
                 waitForElementToBeInvisible(2);
             } catch (Exception e) {
@@ -146,6 +144,8 @@ public class Element {
         executeJS("arguments[0].click();");
     }
 
-    public boolean isEnabled() { return slaveElement().isEnabled(); }
+    public boolean isEnabled() {
+        return slaveElement().isEnabled();
+    }
 
 }
