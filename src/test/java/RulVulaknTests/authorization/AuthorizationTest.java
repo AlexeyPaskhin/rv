@@ -126,23 +126,4 @@ public class AuthorizationTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth"})
-    @Description("Test for checking is RedHelper pop-up is opened on Home Page")
-    public void checkRedHelperPopUpIsOpened(User user) {
-        new HomePage()
-                .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getPass())
-                .clickLogin()
-                .openRedHelperFrame()
-                .switchToRedHElperFrame();
-        try {
-            RedHelperFrame redHelperFrame = new RedHelperFrame();
-            Assert.assertTrue(redHelperFrame.isRedHelperFrameOpened(), "RED HELPER FRAME NOT VISIBLE");
-        } catch (Exception e) {
-            logger.error("ERROR WITH RED HELPER");
-            logger.error(e);
-            Assert.fail();
-        }
-    }
 }

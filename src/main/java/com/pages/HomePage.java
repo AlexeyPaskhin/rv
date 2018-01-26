@@ -46,7 +46,8 @@ public class HomePage extends AbstractPage {
         if (RED_HELPER_BUTTON.isVisible()) {
             RED_HELPER_BUTTON.click();
         } else {
-            RED_HELPER_BUTTON.waitForElementToBeClickable(1);
+            RED_HELPER_BUTTON.waitForElementToBeClickable(3);
+            RED_HELPER_BUTTON.click();
         }
         return new RedHelperFrame();
     }
