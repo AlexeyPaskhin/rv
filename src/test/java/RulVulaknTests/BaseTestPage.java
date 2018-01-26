@@ -51,7 +51,7 @@ public class BaseTestPage {
             logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
         try {
-           WebDriver driver = setupDriver(customDataProvider.getBrowser());
+            WebDriver driver = setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -84,9 +84,7 @@ public class BaseTestPage {
             }
         }
 
-
         if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-
             getDriver().quit();
         }
     }

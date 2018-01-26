@@ -27,6 +27,7 @@ public class HomePage extends AbstractPage {
     public HeaderAutorizedUser getAuthorizedHeader(){
         return new HeaderAutorizedUser();
     }
+
     public GiftPopup getGiftPopup() {
         return GIFT_POPUP;
     }
