@@ -22,6 +22,7 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
     private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
     private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
+    private String parent =getDriver().getWindowHandle();
 
     public FastRegisterPopup typeLogin(String login) {
         ENTER_EMAIL_INPUT.fillIn(login);
@@ -56,30 +57,30 @@ public class FastRegisterPopup extends AbstractPage {
     public SocialFrame clickVK() {
         VK_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
-        return new VkRegisterPage();
+        return new VkRegisterPage(parent);
     }
 
     public SocialFrame clickMailRu() {
         MAILRU_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
-        return new MailRuRegisterPage();
+        return new MailRuRegisterPage(parent);
     }
 
     public SocialFrame clickFB() {
         FB_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
-        return new FBregisterPage();
+        return new FBregisterPage(parent);
     }
 
     public SocialFrame clickOK() {
         OK_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
-        return new OKRegisterPage();
+        return new OKRegisterPage(parent);
     }
 
     public SocialFrame clickYA() {
         YA_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
-        return new YARegisterPage();
+        return new YARegisterPage(parent);
     }
 }
