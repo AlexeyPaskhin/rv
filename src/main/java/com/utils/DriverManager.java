@@ -37,8 +37,8 @@ public class DriverManager {
         if (BROWSER == null) {
             BROWSER = browser;
         }
-        URL url = new URL("http://172.17.0.2:4444/wd/hub");
-       // URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
+      //  URL url = new URL("http://172.17.0.2:4444/wd/hub");
+        URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
 
         if (browser.equalsIgnoreCase(CHROME)) {
             System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);

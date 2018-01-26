@@ -122,7 +122,7 @@ public class Element {
     }
 
     public void waitForElementToBeInvisible(int seconds) {
-        new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOf(slaveElement()));
+        new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
 
     }
 
@@ -132,7 +132,7 @@ public class Element {
     }
 
 
-    public void clickUntilDisappeared(){
+    public synchronized void clickUntilDisappeared(){
         click();
         for (int i=0;i<2;i++) {
             try {
