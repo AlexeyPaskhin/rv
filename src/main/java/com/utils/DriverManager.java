@@ -75,6 +75,7 @@ public class DriverManager {
             if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
             //     driver.manage().window().maximize();
         }
+        System.out.println("THREAD IS"+ Thread.currentThread().getId());
         return driver;
     }
 

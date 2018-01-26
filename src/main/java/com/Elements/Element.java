@@ -1,5 +1,6 @@
 package com.Elements;
 
+import com.google.common.collect.Lists;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
@@ -53,7 +54,7 @@ public class Element {
                 });
     }
 
-    public void click() {
+    public synchronized void click() {
             click(slaveElement());
     }
 
@@ -68,7 +69,7 @@ public class Element {
     private void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
-                .ignoring(NoSuchElementException.class,ElementNotVisibleException.class)
+                .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class,StaleElementReferenceException.class))
                 .pollingEvery(200, TimeUnit.MILLISECONDS).until((Function<WebDriver, Boolean>) driver -> {
             element.click();
             return true;
