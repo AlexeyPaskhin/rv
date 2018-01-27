@@ -29,12 +29,11 @@ public class DriverManager {
     private static final String OPERA = "opera";
 
     public static String BROWSER = System.getProperty("browser");
-  //  private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-    static WebDriverEventListener events = new WebDriverEventHandler();
-    static    WebDriver driver ;
-    public static WebDriver setupDriver(String browser) throws MalformedURLException {
+    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
-       // WebDriver driver = null;
+    public static WebDriver setupDriver(String browser) throws MalformedURLException {
+        WebDriverEventListener events = new WebDriverEventHandler();
+        WebDriver driver = null;
         if (BROWSER == null) {
             BROWSER = browser;
         }
@@ -80,16 +79,16 @@ public class DriverManager {
         return driver;
     }
 
-//    public static void attachDriver(WebDriver driver) {
-//        webDriver.set(driver);
-//        setImplicity(10);
-//    }
+    public static void attachDriver(WebDriver driver) {
+        webDriver.set(driver);
+        setImplicity(10);
+    }
 
     public static void setImplicity(int seconds) {
         getDriver().manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
     public static WebDriver getDriver() {
-        return driver;
+        return webDriver.get();
     }
 }
