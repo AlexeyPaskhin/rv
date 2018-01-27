@@ -28,7 +28,7 @@ public class BaseTestPage {
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        customDataProvider = new CustomDataProvider();
+
         try {
             manager = new SSHManager();
         } catch (IOException e) {
@@ -38,6 +38,7 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
+        customDataProvider = new CustomDataProvider();
         if (method.isAnnotationPresent(RemoveUser.class)) {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
@@ -51,7 +52,8 @@ public class BaseTestPage {
             logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
         }
         try {
-            WebDriver driver = setupDriver(customDataProvider.getBrowser());
+        //    setupDriver(customDataProvider.getBrowser());
+           WebDriver driver = setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();

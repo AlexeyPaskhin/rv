@@ -100,7 +100,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     }
 
     public CashBoxDepositFrame clickOnOkayButton() {
-        OKAY_BUTTON.waitForElementToBeClickable(5);
+        OKAY_BUTTON.waitForElementToBeClickable(8);
         OKAY_BUTTON.click();
         return this;
     }
