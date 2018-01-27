@@ -1,15 +1,33 @@
 package com.pages;
 
+import com.Elements.Element;
 import com.Elements.Panel;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 
 public class HeaderAutorizedUser extends AbstractPage {
 
-
     private final Panel USER_PANE = new Panel(By.xpath("//div[@class='top-user-zone']"));
+    private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));
+    private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
 
     public boolean userZoneIsPresent() {
         new HomePage().homePageLoaded();
         return USER_PANE.isPresent();
+    }
+
+    public boolean giftIconIsPresent() {
+        return GIFT_ICON.isPresent();
+    }
+
+    public double getUserBalance() {
+        double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ", ""));
+        return sum;
+    }
+
+    public void waitForBalanceChange(double oldBalance) {
+        for (int i = 0; oldBalance == getUserBalance() && i < 10; i++) {
+            refreshPage();
+            REAL_BALANCE_PANEL.waitForElementToBeVisible(5);
+        }
     }
 }

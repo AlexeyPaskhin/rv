@@ -1,10 +1,9 @@
 package com.utils;
 
 import com.loggers.WebDriverEventHandler;
-import org.openqa.selenium.Platform;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -28,56 +27,43 @@ public class DriverManager {
     private static final String FIREFOX = "firefox";
     private static final String EDGE = "EDGE";
     private static final String OPERA = "opera";
-    private static WebDriver driver;
-    public static String BROWSER=System.getProperty("browser");
-    private static WebDriverEventListener events = new WebDriverEventHandler();
+
+    public static String BROWSER = System.getProperty("browser");
+    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
-        if(BROWSER==null) {
-            BROWSER=browser;
+        WebDriverEventListener events = new WebDriverEventHandler();
+        WebDriver driver = null;
+        if (BROWSER == null) {
+            BROWSER = browser;
         }
-        URL url  = new URL("http://localhost:4444/wd/hub");
+      //  URL url = new URL("http://172.17.0.2:4444/wd/hub");
+        URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
 
-
-//        server = new BrowserMobProxyServer();
-//        server.start();
-//        int port = server.getPort();
-//        Proxy proxy = ClientUtil.createSeleniumProxy(server);
-//        String PROXY = "193.124.182.229:3348";
-//
-//        Proxy proxy = new Proxy();
-//        proxy.setHttpProxy(PROXY);
-//        DesiredCapabilities cap = new DesiredCapabilities();
-//        cap.setCapability(CapabilityType.PROXY, proxy);
-
-        if(browser.equalsIgnoreCase(CHROME)){
-        System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+        if (browser.equalsIgnoreCase(CHROME)) {
+            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
             DesiredCapabilities cap = DesiredCapabilities.chrome();
-           // cap.setBrowserName("chrome");
-            cap.setPlatform(Platform.WINDOWS);
-          //  cap.setVersion("63.0");
+            cap.setBrowserName("chrome");
+            cap.setVersion("63.0");
+            cap.setCapability("enableVNC", true);
+            cap.setCapability("enableVideo", true);
 
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
 
-            //cap.setCapability(ChromeOptions.CAPABILITY,chromeOptions);
-           // chromeOptions.addArguments("--headless");
-
-        driver = new EventFiringWebDriver(new RemoteWebDriver(url,cap)).register(events);}
-
-        else if(browser.equalsIgnoreCase(FIREFOX)){
-            System.setProperty("webdriver.gecko.driver",FIREFOX_DRIVER_PATH);
+        } else if (browser.equalsIgnoreCase(FIREFOX)) {
+            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
             FirefoxOptions firefoxOptions = new FirefoxOptions();
-           // firefoxOptions.addArguments("--headless");
-             firefoxOptions.addArguments("--screenshot");
+            // firefoxOptions.addArguments("--headless");
+            firefoxOptions.addArguments("--screenshot");
 
             driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
 
-        }
-        else if (browser.equalsIgnoreCase(EDGE)){
-            System.setProperty("webdriver.edge.driver",EDGE_DRIVER_PATH);
+        } else if (browser.equalsIgnoreCase(EDGE)) {
+            System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
             driver = new EventFiringWebDriver(new EdgeDriver()).register(events);
 
             //TODO implement EDGE
-        }
-        else if(browser.equalsIgnoreCase(OPERA)){
+        } else if (browser.equalsIgnoreCase(OPERA)) {
             System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
             OperaOptions oo = new OperaOptions();
             oo.addArguments("no-sandbox");
@@ -85,18 +71,24 @@ public class DriverManager {
             driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
         }
         // Hack before operadriver 2.33 will release
-        if(!browser.equalsIgnoreCase(OPERA)) {
-            driver.manage().window().maximize();
+        if (!browser.equalsIgnoreCase(OPERA)) {
+            if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
+            //     driver.manage().window().maximize();
         }
+        System.out.println("THREAD IS"+ Thread.currentThread().getId());
+        return driver;
+    }
+
+    public static void attachDriver(WebDriver driver) {
+        webDriver.set(driver);
         setImplicity(10);
-        return driver;
     }
 
-    public static void setImplicity(int seconds){
+    public static void setImplicity(int seconds) {
         getDriver().manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
-
     }
-    public static WebDriver getDriver(){
-        return driver;
+
+    public static WebDriver getDriver() {
+        return webDriver.get();
     }
 }

@@ -1,5 +1,6 @@
 package com.Elements;
 
+import com.google.common.collect.Lists;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
@@ -41,7 +42,8 @@ public class Element {
     }
 
     private void sendKeys(WebElement element, CharSequence sequence) {
-        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class,ElementNotInteractableException.class)
+        new FluentWait<>(getDriver())
+                .ignoring(NoSuchElementException.class, ElementNotInteractableException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .withTimeout(3, TimeUnit.SECONDS)
                 .until(new Function<WebDriver, Boolean>() {
@@ -54,7 +56,7 @@ public class Element {
     }
 
     public void click() {
-            click(slaveElement());
+        click(slaveElement());
     }
 
     public String getText() {
@@ -68,12 +70,11 @@ public class Element {
     private void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
-                .ignoring(NoSuchElementException.class,ElementNotVisibleException.class)
+                .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class))
                 .pollingEvery(200, TimeUnit.MILLISECONDS).until((Function<WebDriver, Boolean>) driver -> {
             element.click();
             return true;
         });
-
     }
 
     public boolean isPresent() {
@@ -112,17 +113,21 @@ public class Element {
     }
 
     public void waitForElementToBeClickable(int seconds) {
+        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(by));
-
+        setImplicity(10);
     }
 
     public void waitForElementToBeVisible(int seconds) {
+        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.visibilityOfElementLocated(by));
+        setImplicity(10);
     }
 
     public void waitForElementToBeInvisible(int seconds) {
+        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
-
+        setImplicity(10);
     }
 
     public void doubleClick() {
@@ -130,19 +135,25 @@ public class Element {
         doubleClick.doubleClick(slaveElement()).build().perform();
     }
 
-    public void clickUntilDisappeared(){
+
+    public void clickUntilDisappeared() {
         click();
-        for (int i=0;i<2;i++) {
+        for (int i = 0; i < 2; i++) {
             try {
-                waitForElementToBeInvisible(2);
-            } catch (Exception e) {
-                click();
+                waitForElementToBeInvisible(6);
+            } catch (TimeoutException e) {
+                try {click();}
+                catch (StaleElementReferenceException e1){}
             }
         }
     }
 
     public void clickWithJS() {
         executeJS("arguments[0].click();");
+    }
+
+    public boolean isEnabled() {
+        return slaveElement().isEnabled();
     }
 
 }
