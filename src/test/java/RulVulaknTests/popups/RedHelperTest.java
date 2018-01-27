@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 public class RedHelperTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"redhelper"})
     @Description("Test for checking is RedHelper pop-up is opened on Home Page")
     public void checkRedHelperPopUpIsOpened(User user) {
         new HomePage()
