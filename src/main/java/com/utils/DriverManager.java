@@ -29,11 +29,12 @@ public class DriverManager {
     private static final String OPERA = "opera";
 
     public static String BROWSER = System.getProperty("browser");
-    private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-
+  //  private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+    static WebDriverEventListener events = new WebDriverEventHandler();
+    static    WebDriver driver ;
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
-        WebDriverEventListener events = new WebDriverEventHandler();
-        WebDriver driver = null;
+
+       // WebDriver driver = null;
         if (BROWSER == null) {
             BROWSER = browser;
         }
@@ -45,7 +46,7 @@ public class DriverManager {
             DesiredCapabilities cap = DesiredCapabilities.chrome();
             cap.setBrowserName("chrome");
             cap.setVersion("63.0");
-        //    cap.setCapability("enableVNC", true);
+            cap.setCapability("enableVNC", true);
             cap.setCapability("enableVideo", true);
 
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
@@ -79,16 +80,16 @@ public class DriverManager {
         return driver;
     }
 
-    public static void attachDriver(WebDriver driver) {
-        webDriver.set(driver);
-        setImplicity(10);
-    }
+//    public static void attachDriver(WebDriver driver) {
+//        webDriver.set(driver);
+//        setImplicity(10);
+//    }
 
     public static void setImplicity(int seconds) {
         getDriver().manage().timeouts().implicitlyWait(seconds, TimeUnit.SECONDS);
     }
 
     public static WebDriver getDriver() {
-        return webDriver.get();
+        return driver;
     }
 }
