@@ -140,9 +140,10 @@ public class Element {
         click();
         for (int i=0;i<2;i++) {
             try {
-                waitForElementToBeInvisible(3);
+                waitForElementToBeInvisible(6);
             } catch (TimeoutException e) {
-                click();
+                try {click();}
+                catch (StaleElementReferenceException e1){}
             }
         }
     }
