@@ -100,11 +100,11 @@ public class FastRegisterPopup extends AbstractPage {
         return new FastRegisterPopup();
     }
 
-    public boolean isEnterValidEmailMessagePresenr() {
+    public boolean isValidEmailMessagePresent() {
         return ENTER_VALID_EMAIL_ERROR.isVisible();
     }
 
-    public boolean isAgreeWithRulesValidationMessagePresenr() {
+    public boolean isAgreeWithRulesValidationMessagePresent() {
         return AGREE_WITH_RULES_ERROR.isVisible();
     }
 

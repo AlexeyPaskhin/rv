@@ -34,7 +34,7 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertTrue(fastRegisterPopup.isEnterValidEmailMessagePresenr(), "NO ERROR MESSAGES WHEN USER ENTER INVALID EMAIL");
+            Assert.assertTrue(fastRegisterPopup.isValidEmailMessagePresent(), "NO ERROR MESSAGES WHEN USER ENTER INVALID EMAIL");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -51,7 +51,7 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertTrue(fastRegisterPopup.isAgreeWithRulesValidationMessagePresenr(), "NO ERROR MESSAGES WHEN USER DO NOT AGREE WITH RULES");
+            Assert.assertTrue(fastRegisterPopup.isAgreeWithRulesValidationMessagePresent(), "NO ERROR MESSAGES WHEN USER DO NOT AGREE WITH RULES");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
