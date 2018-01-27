@@ -86,9 +86,7 @@ public class BaseTestPage {
             }
         }
 
-
         if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-
             getDriver().quit();
         }
     }

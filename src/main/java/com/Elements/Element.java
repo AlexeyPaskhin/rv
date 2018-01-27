@@ -42,7 +42,8 @@ public class Element {
     }
 
     private void sendKeys(WebElement element, CharSequence sequence) {
-        new FluentWait<>(getDriver()).ignoring(NoSuchElementException.class,ElementNotInteractableException.class)
+        new FluentWait<>(getDriver())
+                .ignoring(NoSuchElementException.class, ElementNotInteractableException.class)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .withTimeout(3, TimeUnit.SECONDS)
                 .until(new Function<WebDriver, Boolean>() {
@@ -55,7 +56,7 @@ public class Element {
     }
 
     public void click() {
-            click(slaveElement());
+        click(slaveElement());
     }
 
     public String getText() {
@@ -74,7 +75,6 @@ public class Element {
             element.click();
             return true;
         });
-
     }
 
     public boolean isPresent() {
@@ -136,9 +136,9 @@ public class Element {
     }
 
 
-    public void clickUntilDisappeared(){
+    public void clickUntilDisappeared() {
         click();
-        for (int i=0;i<2;i++) {
+        for (int i = 0; i < 2; i++) {
             try {
                 waitForElementToBeInvisible(6);
             } catch (TimeoutException e) {
@@ -152,6 +152,8 @@ public class Element {
         executeJS("arguments[0].click();");
     }
 
-    public boolean isEnabled() { return slaveElement().isEnabled(); }
+    public boolean isEnabled() {
+        return slaveElement().isEnabled();
+    }
 
 }
