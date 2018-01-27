@@ -136,11 +136,11 @@ public class Element {
     }
 
 
-    public synchronized void clickUntilDisappeared(){
+    public void clickUntilDisappeared(){
         click();
         for (int i=0;i<2;i++) {
             try {
-                waitForElementToBeInvisible(2);
+                waitForElementToBeInvisible(3);
             } catch (Exception e) {
                 click();
             }
