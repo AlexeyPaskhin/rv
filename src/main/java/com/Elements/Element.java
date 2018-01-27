@@ -54,7 +54,7 @@ public class Element {
                 });
     }
 
-    public synchronized void click() {
+    public void click() {
             click(slaveElement());
     }
 
@@ -66,10 +66,10 @@ public class Element {
                 .until(driver -> slaveElement().getText());
     }
 
-    private synchronized void click(WebElement element) {
+    private void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
-                .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class,StaleElementReferenceException.class))
+                .ignoreAll(Lists.newArrayList(NoSuchElementException.class,ElementNotVisibleException.class))
                 .pollingEvery(200, TimeUnit.MILLISECONDS).until((Function<WebDriver, Boolean>) driver -> {
             element.click();
             return true;
@@ -113,17 +113,21 @@ public class Element {
     }
 
     public void waitForElementToBeClickable(int seconds) {
+        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(by));
-
+        setImplicity(10);
     }
 
     public void waitForElementToBeVisible(int seconds) {
+        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.visibilityOfElementLocated(by));
+        setImplicity(10);
     }
 
     public void waitForElementToBeInvisible(int seconds) {
+        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
-
+        setImplicity(10);
     }
 
     public void doubleClick() {
