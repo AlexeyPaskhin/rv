@@ -141,7 +141,7 @@ public class Element {
         for (int i=0;i<2;i++) {
             try {
                 waitForElementToBeInvisible(3);
-            } catch (Exception e) {
+            } catch (TimeoutException e) {
                 click();
             }
         }
