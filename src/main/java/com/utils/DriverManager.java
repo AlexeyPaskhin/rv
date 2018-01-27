@@ -46,7 +46,7 @@ public class DriverManager {
             cap.setBrowserName("chrome");
             cap.setVersion("63.0");
         //    cap.setCapability("enableVNC", true);
-          //  cap.setCapability("enableVideo", true);
+            cap.setCapability("enableVideo", true);
 
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
 
