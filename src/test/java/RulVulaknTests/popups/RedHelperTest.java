@@ -26,10 +26,6 @@ public class RedHelperTest extends BaseTestPage {
     @Description("Test for checking is RedHelper pop-up is opened on Home Page")
     public void checkRedHelperPopUpIsOpened(User user) {
         new HomePage()
-                .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getPass())
-                .clickLogin()
                 .openRedHelperFrame()
                 .switchToRedHElperFrame();
         try {
