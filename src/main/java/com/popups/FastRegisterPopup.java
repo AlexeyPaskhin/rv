@@ -108,22 +108,22 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getAgreeWithRulesValidationMessageText() {
-        AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(3);
+        AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(9);
         return AGREE_WITH_RULES_ERROR.getText();
     }
 
     public String getEmailFieldEmptyErrorMessaheText() {
-        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
+        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(9);
         return EMPTY_EMAIL_FIELD_ERROR.getText();
     }
 
     public String getPasswordFilledErrorMessageText() {
-        EMPTY_PASSWORD_FIELD_ERROR.waitForElementToBeInvisible(3);
+        EMPTY_PASSWORD_FIELD_ERROR.waitForElementToBeInvisible(7);
         return EMPTY_PASSWORD_FIELD_ERROR.getText();
     }
 
     public String getRealEmailText() {
-        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(3);
+        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
         return ENTER_REAL_EMAIL_ERROR.getText();
     }
 }
