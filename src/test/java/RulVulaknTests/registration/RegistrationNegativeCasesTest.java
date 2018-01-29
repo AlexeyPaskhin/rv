@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 public class RegistrationNegativeCasesTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(RegistrationWithoutGiftsTest.class);
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative"}, priority = 1)
     @Description("Registration negative case - enter invalid email.")
     public void tryRegisterWithInvalidEmail(User user) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -34,14 +34,14 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertTrue(fastRegisterPopup.isValidEmailMessagePresent(), "NO ERROR MESSAGES WHEN USER ENTER INVALID EMAIL");
+            Assert.assertEquals(fastRegisterPopup.getValidEmailMessageText(), "Введите валидный e-mail");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative"}, priority = 2)
     @Description("Registration negative case - do not agree with rules.")
     public void tryRegisterWithoutRulesAgree(User user) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -51,16 +51,16 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertTrue(fastRegisterPopup.isAgreeWithRulesValidationMessagePresent(), "NO ERROR MESSAGES WHEN USER DO NOT AGREE WITH RULES");
+            Assert.assertEquals(fastRegisterPopup.getAgreeWithRulesValidationMessageText(), "Вы должны согласиться с правилами и условиями");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative"}, priority = 3)
     @Description("Registration negative case - do not fill email and password fields.")
-    public void registration(User user) {
+    public void tryRegisterWithoutFilledEmailPasswordFields(User user) {
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin("")
                 .typePass("")
@@ -69,8 +69,8 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertTrue(fastRegisterPopup.isEmailFilled(), "NO ERROR MESSAGE WHEN USER DO NOT ENTER LOGIN");
-            Assert.assertTrue(fastRegisterPopup.isPasswordFilled(), "NO ERROR MESSAGE WHEN USER DO NOT ENTER PASSWORD");
+            Assert.assertEquals(fastRegisterPopup.getEmailFieldEmptyErrorMessaheText(), "Поле не должно быть пустым");
+//            Assert.assertEquals(fastRegisterPopup.getPasswordFilledErrorMessageText(), "Поле не должно быть пустым");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
