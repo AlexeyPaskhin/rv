@@ -4,6 +4,7 @@ import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
+import com.popups.RedHelperFrame;
 import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
@@ -22,7 +23,7 @@ public class AuthorizationTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
 
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth"})
-    @Description("Authorization from Header.")
+    @Description("Simple authorization from Header.")
     public void authorizationUserFromMail(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()

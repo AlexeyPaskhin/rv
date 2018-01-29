@@ -28,7 +28,7 @@ public class BaseTestPage {
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        customDataProvider = new CustomDataProvider();
+
         try {
             manager = new SSHManager();
         } catch (IOException e) {
@@ -38,6 +38,7 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
+        customDataProvider = new CustomDataProvider();
         if (method.isAnnotationPresent(RemoveUser.class)) {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
@@ -46,11 +47,14 @@ public class BaseTestPage {
                 manager.updateUserForSocial(oldName, newName);
             }
         }
-        if (o[0] instanceof User) {
-            User us = (User) o[0];
-            logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
+        if(o.length>0) {
+            if (o[0] instanceof User) {
+                User us = (User) o[0];
+                logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
+            }
         }
         try {
+        //    setupDriver(customDataProvider.getBrowser());
            WebDriver driver = setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
         } catch (MalformedURLException e) {
@@ -70,10 +74,12 @@ public class BaseTestPage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(Method method, Object[] o) {
-        if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
-            User us = (User) o[0];
-            manager.getUserID(us.getLogin());
-        }
+       if(o.length>0) {
+           if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+               User us = (User) o[0];
+               manager.getUserID(us.getLogin());
+           }
+       }
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 
@@ -84,9 +90,7 @@ public class BaseTestPage {
             }
         }
 
-
         if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-
             getDriver().quit();
         }
     }

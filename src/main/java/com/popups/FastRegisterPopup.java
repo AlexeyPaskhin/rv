@@ -22,7 +22,8 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
     private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
     private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
-    private String parent =getDriver().getWindowHandle();
+
+    private String parent = getDriver().getWindowHandle();
 
     public FastRegisterPopup typeLogin(String login) {
         ENTER_EMAIL_INPUT.fillIn(login);

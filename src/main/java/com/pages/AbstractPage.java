@@ -11,7 +11,6 @@ public abstract class AbstractPage implements IAbstractPage {
     public String SOCIAL_LOGIN_WINDOW = "uLogin_window";
 
     public void swithToSocialFrame() {
-
         waitForCountOfWindows(2);
         for (String winHandle : getDriver().getWindowHandles()) {
             swithToWindow(winHandle);
