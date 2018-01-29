@@ -37,6 +37,4 @@ public class RedHelperTest extends BaseTestPage {
             Assert.fail();
         }
     }
-
-    // TODO: 2018-01-29 Makes test stable
 }
