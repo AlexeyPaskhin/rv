@@ -33,6 +33,7 @@ public class FastRegisterPopup extends AbstractPage {
     public static final Element AGREE_WITH_RULES_ERROR = new Element(By.xpath("//span[contains(text(), 'Вы должны согласиться с правилами и условиями')]"));
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//p[1]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element EMPTY_PASSWORD_FIELD_ERROR = new Element(By.xpath("//p[2]//span[contains(text(), 'Поле не должно быть пустым')]"));
+    public static final Element ENTER_REAL_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите настоящий e-mail')]"));
 
     private String parent = getDriver().getWindowHandle();
 
@@ -119,5 +120,10 @@ public class FastRegisterPopup extends AbstractPage {
     public String getPasswordFilledErrorMessageText() {
         EMPTY_PASSWORD_FIELD_ERROR.waitForElementToBeInvisible(3);
         return EMPTY_PASSWORD_FIELD_ERROR.getText();
+    }
+
+    public String getRealEmailText() {
+        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(3);
+        return ENTER_REAL_EMAIL_ERROR.getText();
     }
 }

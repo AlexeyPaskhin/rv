@@ -46,4 +46,11 @@ public class User {
         }
 
     }
+
+    // for negative test cases
+    public User generateRandomUserWithEmailWithoutAt(CustomDataProvider dp) {
+        this.login = dp.generateRandomEmailWithoutAt();
+        this.pass = dp.generateRandomPass();
+        return this;
+    }
 }

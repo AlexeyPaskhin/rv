@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
  * + Enter invalid e-mail
  * + Do not agree with rules
  * + Do not enter email and password
+ * + Enter e-mail without '@'
  */
 
 @Listeners({RussianVulcanListener.class})
@@ -72,15 +73,33 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
             Assert.assertEquals(fastRegisterPopup.getEmailFieldEmptyErrorMessaheText(), "Поле не должно быть пустым");
 //            Assert.assertEquals(fastRegisterPopup.getPasswordFilledErrorMessageText(), "Поле не должно быть пустым");
         } catch (Exception e) {
+
             logger.error(e);
             Assert.fail();
         }
     }
 
-    // TODO: 2018-01-27 Add case of registration 'Enter email without @' - Error message 'Введите валидный e-mail'
-    // Cant create user with email without '@'
+    @Test(dataProvider = "randomUserProviderWithoutAtInEmail", dataProviderClass = RegisterData.class, groups = {"register", "negative"}, priority = 4)
+    @Description("Registration negative case - enter email without '@'.")
+    public void tryRegisterWithEmailWithoutAt(User user) {
+        new HeaderNotAutorizedUser().clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .selectCurrencyRUB()
+                .agreeWithRules()
+                .clickRegisterButtonAndDoNothing();
+        try {
+            FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
+            Assert.assertEquals(fastRegisterPopup.getRealEmailText(), "Введите настоящий e-mail");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
 
     // TODO: 2018-01-27 Add negative registration test cases on landings
+    // Registration algorithm the same on Main domain and on landings
+    // We should not create the same negative test cases for Landings pages
 
 }
 
