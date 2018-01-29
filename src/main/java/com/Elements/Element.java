@@ -60,7 +60,6 @@ public class Element {
     }
 
     public String getText() {
-
         return new FluentWait<>(getDriver()).withTimeout(10, TimeUnit.SECONDS)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .ignoring(StaleElementReferenceException.class)

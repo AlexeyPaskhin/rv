@@ -1,9 +1,9 @@
 package com.popups;
 
-import com.Elements.Button;
-import com.Elements.Checkbox;
-import com.Elements.InputBox;
+import com.Elements.*;
 import com.pages.AbstractPage;
+import com.pages.HomePage;
+import com.pages.RulesPage;
 import com.pages.landing.social.*;
 import org.openqa.selenium.By;
 
@@ -22,6 +22,10 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
     private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
     private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
+
+    private static final Element RULES_AND_CONDITIONS_LINK = new Element(By.xpath("//div[@id='popup_register']//a[text()='правилами и условиями']"));
+    private static final Button CLOSE_FAST_REGISTER_POP_UP_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
+    private static final Element CLICK_AUTH_LINK = new Element(By.xpath("//*[@id=\"popup_register\"]//a[@data-popup-open='auth']"));
 
     private String parent = getDriver().getWindowHandle();
 
@@ -83,5 +87,21 @@ public class FastRegisterPopup extends AbstractPage {
         YA_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
         return new YARegisterPage(parent);
+    }
+
+    public RulesPage checkRulesAndConditionsLink(){
+        RULES_AND_CONDITIONS_LINK.waitForElementToBeClickable(3);
+        RULES_AND_CONDITIONS_LINK.click();
+        return new RulesPage();
+    }
+
+    public HomePage closeFastRegisterPopUp() {
+        CLOSE_FAST_REGISTER_POP_UP_BUTTON.click();
+        return new HomePage();
+    }
+
+    public AuthPopup clickAuthLink() {
+        CLICK_AUTH_LINK.click();
+        return new AuthPopup();
     }
 }
