@@ -47,6 +47,11 @@ public class PropertyLoader {
         return prop.getProperty("domain");
     }
 
+    // for negative test case
+    protected String getDomainWithoutAt() {
+        return prop.getProperty("domainWithoutAt");
+    }
+
     protected String getPass() {
         return prop.getProperty("password");
     }

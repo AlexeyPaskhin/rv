@@ -10,6 +10,7 @@ public class CustomDataProvider {
     private String domain;
     private String browser;
     private String pass;
+    private String domainWithoutAt;
 
     /*
       * email's and pass's for social authorization
@@ -59,6 +60,7 @@ public class CustomDataProvider {
         this.domain = propertyLoader.getDomain();
         this.browser = propertyLoader.getBrowser();
         this.pass = propertyLoader.getPass();
+        this.domainWithoutAt = propertyLoader.getDomainWithoutAt();
 
         /*
          * get email's and pass's for social authorization from PropertyLoader
@@ -172,4 +174,11 @@ public class CustomDataProvider {
     public String getCardNumberMaster() { return this.cardNumberMaster; }
     public String getCardHolderMaster() { return this.cardHolderMaster; }
     public String getCardCvvMaster() { return this.cardCvvMaster; }
+
+    // for negative test cases
+    String generateRandomEmailWithoutAt() {
+        int userLoginLength = emailForAutogen.length();
+        int domainLength = domainWithoutAt.length();
+        return emailForAutogen + RandomGenerate.randomString(34 - userLoginLength - domainLength) + domainWithoutAt;
+    }
 }
