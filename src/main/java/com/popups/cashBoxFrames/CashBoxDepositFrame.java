@@ -5,12 +5,19 @@ import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import javax.swing.text.StyledEditorKit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     private Button CARD_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='1']"));
+    private Button QIWI_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='6']"));
+    private Button YANDEX_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='3']"));
+    List<WebElement> PAYMENT_METHODS = new Button(By.xpath("//div[@class='widget deposit_widget']")).getAllElements();
 
     private InputBox CARD_NUMBER_INPUT_FIELD = new InputBox(By.xpath("//input[@name='card_number']"));
     private InputBox CARD_HOLDER_INPUT_FIELD = new InputBox(By.xpath("//input[@id='card_holder']"));
@@ -25,6 +32,24 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     private RadioButton INPUT_SUM_RADIOBUTTON = new RadioButton(By.xpath("//label[@id='label_custom_amount']"));
     private Button CONFIRM_BUTTON = new Button(By.xpath("//button[@id='submit_button']"));
     private Button OKAY_BUTTON = new Button(By.xpath("//div[@class='payment_message success']//button[@class='pretty_button']"));
+    private  Button QUICK_PAYMENT = new Button(By.xpath("//li[@class='zf-option zf-selected']"));
+
+    public List<WebElement> checkPaymentsMethodInFrame() {
+        List<WebElement> BASIC_PAYMENT_METHODS = Arrays
+                .asList(CARD_PAYMENT_BUTTON.slaveElement(), QIWI_PAYMENT_BUTTON.slaveElement(), YANDEX_PAYMENT_BUTTON.slaveElement());
+        List<WebElement> response = new ArrayList<>();
+        for (int i = 0; i < BASIC_PAYMENT_METHODS.size(); i++) {
+            if (PAYMENT_METHODS.contains(BASIC_PAYMENT_METHODS.get(i))) {
+                response.add(BASIC_PAYMENT_METHODS.get(i));
+            }
+        }
+        return response;
+    }
+
+    public boolean checkDepositCardIsSaved() {
+        QUICK_PAYMENT.waitForElementToBePresent(5);
+        return QUICK_PAYMENT.isPresent();
+    }
 
     public CashBoxDepositFrame clickCardPaymentMethod() {
         CARD_PAYMENT_BUTTON.click();
