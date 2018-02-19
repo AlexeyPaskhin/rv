@@ -17,6 +17,7 @@ public class HomePage extends AbstractPage {
     private final Button HEAD_CASHBOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']//span"));
 
     private final Button RED_HELPER_BUTTON = new Button(By.xpath("//*[@id=\"rh-badge\"]//img"));
+    private final String HOME_PAGE_TITLE = "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн";
 
     public CashBoxPopup clickHeadCashBox() {
         HEAD_CASHBOX_BUTTON.waitForElementToBeVisible(5);
@@ -50,5 +51,13 @@ public class HomePage extends AbstractPage {
             RED_HELPER_BUTTON.click();
         }
         return new RedHelperFrame();
+    }
+
+    public boolean isHomePageOpened() {
+        if(this.getTitle().equals(HOME_PAGE_TITLE)){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

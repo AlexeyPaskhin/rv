@@ -1,13 +1,18 @@
 package com.pages;
 
 import com.Elements.Button;
+import com.Elements.Element;
 import com.Elements.InputBox;
 import com.pages.landing.social.*;
 import com.popups.FastRegisterPopup;
+import com.popups.ResetPasswordPopUp;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
 
+/**
+ * Header for usera who do not autorized on web-site
+ */
 public class HeaderNotAutorizedUser extends AbstractPage {
     HomePage homePage;
 
@@ -27,6 +32,9 @@ public class HeaderNotAutorizedUser extends AbstractPage {
     private final InputBox PASS_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-password']"));
     private final Button LOGIN_BUTTON_IN_POPUP = new Button(By.xpath("//button[@class='btn-popup-enter']//span[(text()='Вход')]"));
     private String parent =getDriver().getWindowHandle();
+
+    private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo']"));
+    private final Element RESET_PASSWORD_LINK = new Element(By.xpath("//*[@id=\"top-user-form\"]//a"));
 
     public VkRegisterPage clickHeadVK() {
         HEAD_VK_BUTTON.click();
@@ -99,4 +107,17 @@ public class HeaderNotAutorizedUser extends AbstractPage {
         return this;
     }
 
+    public HomePage clickLogoIcon() {
+        LOGO_ICON.click();
+        return new HomePage();
+    }
+
+    public boolean isLogoIconVisible(){
+        return LOGO_ICON.isVisible();
+    }
+
+    public ResetPasswordPopUp clickResetPasswordLink() {
+        RESET_PASSWORD_LINK.click();
+        return new ResetPasswordPopUp();
+    }
 }
