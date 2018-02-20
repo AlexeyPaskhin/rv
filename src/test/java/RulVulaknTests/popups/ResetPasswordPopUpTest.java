@@ -4,6 +4,7 @@ import RulVulaknTests.BaseTestPage;
 import RulVulaknTests.cashbox.CashboxTest;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
+import com.pages.HomePage;
 import com.popups.ResetPasswordPopUp;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
@@ -23,7 +24,7 @@ import org.testng.annotations.Test;
 public class ResetPasswordPopUpTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
 
-    @Test
+    @Test(groups = {"resetpass"})
     @Description("Send reset password request from link in Header for un-authorized user")
     public void resetPasswordFromHeaderForUnAuthorizedUser() {
         new HeaderNotAutorizedUser()
@@ -39,7 +40,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         }
     }
 
-    @Test
+    @Test(groups = {"resetpass"})
     @Description("Close reset password pop-up by button 'Close'")
     public void closeResetPasswordPopUp() {
         new HeaderNotAutorizedUser()
@@ -53,7 +54,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         }
     }
 
-    @Test
+    @Test(groups = {"resetpass", "negative"})
     @Description("Check validation Error message 'Enter real e-mail' in field 'Enter e-mail' - Reset password pop-up")
     public void checkValidationErrorMessageInFieldEmail() {
         new HeaderNotAutorizedUser()
@@ -62,14 +63,14 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
                 .pressButtonVosstanovit();
         try {
             ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
-            Assert.assertEquals(resetPasswordPopUp.enterValidEmailErrorMessage(), "Введите настоящий e-mail");
+            Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Введите настоящий e-mail");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test
+    @Test(groups = {"resetpass", "negative"})
     @Description("Check validation Error message 'Field should not be empty' in field 'Enter e-mail' - Reset password pop-up")
     public void checkEmptyEmailFieldErrorMessage() {
         new HeaderNotAutorizedUser()
@@ -78,11 +79,29 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
                 .pressButtonVosstanovit();
         try {
             ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
-            Assert.assertEquals(resetPasswordPopUp.enterValidEmailErrorMessage(), "Поле не должно быть пустым");
+            Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Поле не должно быть пустым");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
         }
     }
 
+    // TODO: 2018-02-20 Can't find solution how to check step when user try to recover password more than 3 times one-by-one
+//    @Test(groups = {"resetpass", "negative"})
+//    @Description("Try to send recovery password request more then 3 times")
+    public void sendRecoveryPassRequestFourTimes() {
+        new HomePage().getNotAuthorizedHeader()
+                .clickResetPasswordLink()
+                .fillEmailField("yr+aass35543535dd@playtini.net")
+                .pressButtonVosstanovit()
+                .closePopUpZayavkaPriniata()
+                .waitForPageToLoad();
+        try {
+            ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
+            Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Превышен лимит запросов. Попробуйте, пожалуйста, позже.");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
 }

@@ -32,17 +32,12 @@ public class ResetPasswordPopUp extends AbstractPage {
         return new ZayavkaPrinyataPopUp();
     }
 
-    public HomePage pressButtonClosepopUp(){
+    public HomePage pressButtonClosepopUp() {
         CLOSE_BUTTON.click();
         return new HomePage();
     }
 
-    public String enterValidEmailErrorMessage(){
-        EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
-        return EMAIL_FIELD_ERROR.getText();
-    }
-
-    public String fieldShouldNotBeEmpty() {
+    public String emailFieldErrorMessage() {
         EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
         return EMAIL_FIELD_ERROR.getText();
     }

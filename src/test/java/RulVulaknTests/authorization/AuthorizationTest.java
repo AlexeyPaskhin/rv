@@ -23,7 +23,7 @@ public class AuthorizationTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
 
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth"})
-    @Description("Simple authorization from HeaderTest.")
+    @Description("Simple authorization from HeaderNotAutorizedUserTest.")
     public void authorizationUserFromMail(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
@@ -42,7 +42,7 @@ public class AuthorizationTest extends BaseTestPage {
 
 
     @Test(dataProvider = "authorizationUserForVK", dataProviderClass = AuthorizationData.class, groups = {"auth", "vk"})
-    @Description("Social authorization from HeaderTest - via VK.com")
+    @Description("Social authorization from HeaderNotAutorizedUserTest - via VK.com")
     public void authorizationUserFromVK(User user) {
         new HeaderNotAutorizedUser().clickHeadVK()
                 .setEmail(user.getLogin())
@@ -59,7 +59,7 @@ public class AuthorizationTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "authorizationUserForFB", dataProviderClass = AuthorizationData.class, groups = {"auth", "fb"})
-    @Description("Social authorization from HeaderTest - via FaceBook.com")
+    @Description("Social authorization from HeaderNotAutorizedUserTest - via FaceBook.com")
     public void authorizationUserFromFB(User user) {
         new HeaderNotAutorizedUser().clickHeadFB()
                 .setEmail(user.getLogin())
@@ -76,7 +76,7 @@ public class AuthorizationTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "authorizationUserForOK", dataProviderClass = AuthorizationData.class, groups = {"auth", "ok"})
-    @Description("Social authorization from HeaderTest - via OK.ru")
+    @Description("Social authorization from HeaderNotAutorizedUserTest - via OK.ru")
     public void authorizationUserFromOK(User user) {
         new HeaderNotAutorizedUser().clickHeadOK()
                 .setEmail(user.getLogin())
@@ -93,7 +93,7 @@ public class AuthorizationTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "authorizationUserForMailRU", dataProviderClass = AuthorizationData.class, groups = {"auth", "mailru"})
-    @Description("Social authorization from HeaderTest - via Mail.ru")
+    @Description("Social authorization from HeaderNotAutorizedUserTest - via Mail.ru")
     public void authorizationUserFromMailRU(User user) {
         new HeaderNotAutorizedUser().clickHeadMailRU()
                 .setEmail(user.getLogin())
@@ -110,7 +110,7 @@ public class AuthorizationTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "authorizationUserForYA", dataProviderClass = AuthorizationData.class, groups = {"auth", "ya"})
-    @Description("Social authorization from HeaderTest - via Yandex.ru")
+    @Description("Social authorization from HeaderNotAutorizedUserTest - via Yandex.ru")
     public void authorizationUserFromYA(User user) {
         new HeaderNotAutorizedUser().clickHeadYA()
                 .setEmail(user.getLogin())
