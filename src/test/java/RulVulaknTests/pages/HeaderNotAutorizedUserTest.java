@@ -14,7 +14,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 /**
- * Un-authorized user
+ * Un-authorized user - HEADER
  * + logo icon is visible
  * + after click on Logo page - opening Home Page
  * + try to log-in from header - with empty fields e-mail/password
@@ -33,7 +33,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
                 .clickLogoIcon()
                 .homePageLoaded();
         try {
-            Assert.assertTrue(home.isHomePageOpened());
+            Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
             Assert.assertTrue(headerNotAutorizedUser.isLogoIconVisible(), "Logo icon is NOT VISIBLE for un-authorized user");
         } catch (Exception e) {
             logger.error(e);

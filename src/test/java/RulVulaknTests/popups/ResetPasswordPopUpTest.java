@@ -33,7 +33,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
                 .pressButtonVosstanovit()
                 .closePopUpZayavkaPriniata();
         try {
-            Assert.assertTrue(home.isHomePageOpened());
+            Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -47,7 +47,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
                 .clickResetPasswordLink()
                 .pressButtonClosepopUp();
         try {
-            Assert.assertTrue(home.isHomePageOpened());
+            Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
