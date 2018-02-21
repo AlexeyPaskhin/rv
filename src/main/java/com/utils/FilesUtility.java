@@ -45,7 +45,7 @@ public class FilesUtility {
         writer.print("start");
         writer.close();
         return toPath;
-    };
+    }
 
     public static String captureScreenshot(ITestResult iTestResult){
         File src= ((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.FILE);
@@ -79,5 +79,5 @@ public class FilesUtility {
         writer.print("start");
         writer.close();
         return toPath;
-    };
+    }
 }
