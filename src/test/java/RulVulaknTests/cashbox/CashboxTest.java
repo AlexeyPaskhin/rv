@@ -26,7 +26,7 @@ import java.util.Random;
 public class CashboxTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on random sum, card payment method.")
     public void makeCustomDepositRandomUser(User user, Card card) {
         String randomDeposit = Integer.toString(new Random().nextInt(300000) + 1);
@@ -60,7 +60,7 @@ public class CashboxTest extends BaseTestPage {
     }
 
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on 500 rub, card payment method.")
     public void make500DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -90,7 +90,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on 1000 rub, card payment method.")
     public void make1000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -120,7 +120,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on 3000 rub, card payment method.")
     public void make3000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -150,7 +150,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on 10000 rub, card payment method.")
     public void make10000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -180,7 +180,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on 30000 rub, card payment method.")
     public void make30000DepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -210,7 +210,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Negative case. Random user deposit on 0 rub, card payment method.")
     public void makeZeroDepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -238,7 +238,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Negative case. Random user deposit on 300001 rub(more than allow), card payment method.")
     public void makeBigDepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -266,7 +266,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Negative case. Random user deposit - type random string in cashbox, card payment method.")
     public void makeBlaBlaDepositRandomUser(User user, Card card) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -294,7 +294,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Auth User make deposit from remembered card.")
     public void makeRememberedCardDepositUser(User user, Card card) {
         String randomDeposit = Integer.toString(new Random().nextInt(300000) + 1);
@@ -315,14 +315,14 @@ public class CashboxTest extends BaseTestPage {
         double balanceBefore = headerAutorizedUser.getUserBalance();
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAutorizedUser.getUserBalance() == balanceBefore  + Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
+            Assert.assertTrue(headerAutorizedUser.getUserBalance() == balanceBefore + Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
         }
     }
 
-    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Check QIWI, YANDEX, VISA/MasterCard payment methods is available in cashbox")
     public void checkBasicPaymentMethodsAreAvaileble(User user, Card card) {
         new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
@@ -340,7 +340,7 @@ public class CashboxTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"} )
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Check if payment card is remembered in Cashbox, when Random user make random deposit.")
     public void checkDepositCardRandomUserIsSaved(User user, Card card) {
         String randomDeposit = Integer.toString(new Random().nextInt(300000) + 1);

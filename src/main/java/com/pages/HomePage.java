@@ -17,6 +17,8 @@ public class HomePage extends AbstractPage {
     private final Button HEAD_CASHBOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']//span"));
 
     private final Button RED_HELPER_BUTTON = new Button(By.xpath("//*[@id=\"rh-badge\"]//img"));
+    private final String HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER = "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн";
+    private final String HOME_PAGE_TITLE_FOR_AUTHORIZED_USER = "Игровые автоматы Вулкан бесплатно и на деньги";
 
     public CashBoxPopup clickHeadCashBox() {
         HEAD_CASHBOX_BUTTON.waitForElementToBeVisible(5);
@@ -50,5 +52,13 @@ public class HomePage extends AbstractPage {
             RED_HELPER_BUTTON.click();
         }
         return new RedHelperFrame();
+    }
+
+    public boolean isHomePageOpenedForNotAuthorized() {
+        return this.getTitle().equals(HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER);
+    }
+
+    public boolean isHomePageOpenedForAuthorizedUser() {
+        return this.getTitle().equals(HOME_PAGE_TITLE_FOR_AUTHORIZED_USER);
     }
 }
