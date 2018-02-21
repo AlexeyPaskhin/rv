@@ -5,7 +5,7 @@ import RulVulaknTests.cashbox.CashboxTest;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
-import com.popups.EnterPopUp;
+import com.popups.LogInPopUp;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 @Listeners({RussianVulcanListener.class})
 public class HeaderNotAutorizedUserTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
-    EnterPopUp enterPopUp;
+    LogInPopUp enterPopUp;
 
     @Test(groups = {"regression"})
     @Description("After click on logo icon on HeaderNotAutorizedUserTest for un-authorized user opened Home Page and Logo icon is visible")
@@ -48,7 +48,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
                 .getNotAuthorizedHeader()
                 .pressButtonVoyti();
         try {
-            enterPopUp = new EnterPopUp();
+            enterPopUp = new LogInPopUp();
             Assert.assertEquals(enterPopUp.fieldEmailShouldNotBeEmpty(), "Поле не должно быть пустым");
             Assert.assertEquals(enterPopUp.fieldPasswordShouldNotBeEmpty(), "Поле не должно быть пустым");
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
                 .typePassInHeadField("123456")
                 .pressButtonVoyti();
         try {
-            enterPopUp = new EnterPopUp();
+            enterPopUp = new LogInPopUp();
             Assert.assertEquals(enterPopUp.incorrectPassOrEmailError(), "Неправильные имя пользователя и/или пароль");
         } catch (Exception e) {
             logger.error(e);
@@ -83,7 +83,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
                 .typePassInHeadField("invalidPass")
                 .pressButtonVoyti();
         try {
-            enterPopUp = new EnterPopUp();
+            enterPopUp = new LogInPopUp();
             Assert.assertEquals(enterPopUp.incorrectPassOrEmailError(), "Неправильные имя пользователя и/или пароль");
         } catch (Exception e) {
             logger.error(e);

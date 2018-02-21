@@ -24,8 +24,6 @@ import org.testng.annotations.Test;
  * + Gift icon
  * + Exit button
  * + 'Popolnit schet' button
- * + RUB / USD switcher
- * + Current balance
  */
 
 @Listeners({RussianVulcanListener.class})

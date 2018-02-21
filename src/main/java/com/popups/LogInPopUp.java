@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 /**
  * Log-In pop-up ('Vhod')
  */
-public class EnterPopUp extends AbstractPage {
+public class LogInPopUp extends AbstractPage {
     // Validation error messages
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element INCORRECT_PASS_OR_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Неправильные имя пользователя и/или пароль')]"));

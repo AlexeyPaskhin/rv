@@ -6,7 +6,7 @@ import com.Elements.InputBox;
 import com.pages.landing.social.*;
 import com.popups.FastRegisterPopup;
 import com.popups.ResetPasswordPopUp;
-import com.popups.EnterPopUp;
+import com.popups.LogInPopUp;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
@@ -128,9 +128,9 @@ public class HeaderNotAutorizedUser extends AbstractPage {
         return new ResetPasswordPopUp();
     }
 
-    public EnterPopUp pressButtonVoyti() {
+    public LogInPopUp pressButtonVoyti() {
         VOITI_BUTTON_IN_HEADER.click();
-        return new EnterPopUp();
+        return new LogInPopUp();
     }
 
     public HomePage clickButtonExit() {
