@@ -3,9 +3,11 @@ package RulVulaknTests.cashbox;
 import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
 import com.pages.AbstractPage;
+import com.pages.HeaderAutorizedUser;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.popups.cashBoxFrames.CashBoxDepositFrame;
+import com.popups.cashBoxFrames.CashBoxWithdrawalFrame;
 import com.utils.Card;
 import com.utils.RandomGenerate;
 import com.utils.User;
@@ -37,7 +39,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -70,7 +73,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -100,7 +104,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -130,7 +135,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -160,7 +166,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -190,7 +197,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -220,7 +228,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -248,7 +257,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -276,7 +286,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -301,7 +312,8 @@ public class CashboxTest extends BaseTestPage {
         new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardStoredCVV(card.getCvv())
@@ -323,17 +335,18 @@ public class CashboxTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
-    @Description("Check QIWI, YANDEX, VISA/MasterCard payment methods is available in cashbox")
-    public void checkBasicPaymentMethodsAreAvaileble(User user, Card card) {
+    @Description("Check QIWI, YANDEX, VISA/MasterCard payment methods is available for deposit in cashbox")
+    public void checkBasicPaymentMethodsAreAvailebleForDeposit(User user, Card card) {
         new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
-                .checkPaymentsMethodInFrame();
+                .checkPaymentsMethodInDepositFrame();
 
         try {
-            Assert.assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
+            Assert.assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInDepositFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -351,7 +364,8 @@ public class CashboxTest extends BaseTestPage {
                 .selectCurrencyRUB()
                 .clickRegisterButton()
                 .withdrawFromGift()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .typeCardNumber(card.getNumber())
@@ -366,13 +380,207 @@ public class CashboxTest extends BaseTestPage {
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         headerAutorizedUser.refreshPage();
         new HomePage()
-                .clickHeadCashBox()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .checkDepositCardIsSaved();
 
         try {
             Assert.assertTrue(new CashBoxDepositFrame().checkDepositCardIsSaved(), "FIRST PAYMENT DON'T PASS");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Check QIWI, YANDEX, VISA/MasterCard payment methods is available for withdrawal in cashbox")
+    public void checkBasicPaymentMethodsAreAvailebleForWithdrawal(User user, Card card) {
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .checkPaymentsMethodInWithdrawalFrame();
+
+        try {
+            Assert.assertTrue(new CashBoxWithdrawalFrame().checkPaymentsMethodInWithdrawalFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Random user deposit on random sum, card payment method. Then withdrawal this sum.")
+    public void makeCustomWithdrawalRandomUser(User user, Card card) {
+        String randomDeposit = Integer.toString(new Random().nextInt(15000) + 1500);
+        new HeaderNotAutorizedUser().clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .withdrawFromGift()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .typeCardNumber(card.getNumber())
+                .typeCardHolder(card.getHolder())
+                .typeCardCVV(card.getCvv())
+                .clickOnInputButton()
+                .cleanDepositInputField()
+                .typeCardDepositSum(randomDeposit)
+                .clickOnConfirmButton()
+                .clickOnOkayButton()
+                .switchToParent();
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
+        headerAutorizedUser.refreshPage();
+
+        new HeaderAutorizedUser().pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(randomDeposit)
+                .typePhoneNumberInCardDepositFrame("9101234567")
+                .clickGetButton();
+
+        try {
+            Assert.assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Auth make withdrawal on random sum.")
+    public void makeCustomWithdrawalAuthUser(User user, Card card) {
+        String randomWithdrawal = Integer.toString(new Random().nextInt(15000) + 1500);
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(randomWithdrawal)
+                .clickGetButton();
+
+        try {
+            Assert.assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Random user make withdrawal on sum, more then he have.")
+    public void makeMoreThenDepositWithdrawalRandomUser(User user, Card card) {
+        String randomDeposit = Integer.toString(new Random().nextInt(14999) + 1500);
+        String biggerWithdrawal = Integer.toString(Integer.parseInt(randomDeposit) + 1);
+        new HeaderNotAutorizedUser().clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .withdrawFromGift()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .typeCardNumber(card.getNumber())
+                .typeCardHolder(card.getHolder())
+                .typeCardCVV(card.getCvv())
+                .clickOnInputButton()
+                .cleanDepositInputField()
+                .typeCardDepositSum(randomDeposit)
+                .clickOnConfirmButton()
+                .clickOnOkayButton()
+                .switchToParent();
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
+        headerAutorizedUser.refreshPage();
+
+        new HeaderAutorizedUser().pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(biggerWithdrawal)
+                .typePhoneNumberInCardDepositFrame("9101234567")
+                .clickGetButton();
+
+        try {
+            Assert.assertTrue(new CashBoxWithdrawalFrame().notEnoughMessageIsPresent(), "WITHDRAWAL FAILED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Auth make withdrawal on more then allow sum.")
+    public void makeMoreThenAllowWithdrawalAuthUser(User user, Card card) {
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum("15001");
+
+        try {
+            Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Auth make withdrawal on less then allow sum.")
+    public void makeLessThenAllowWithdrawalAuthUser(User user, Card card) {
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum("1499");
+
+        try {
+            Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Auth make withdrawal on more then allow sum.")
+    public void makeBlablaWithdrawalAuthUser(User user, Card card) {
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(RandomGenerate.randomString(5));
+
+        try {
+            Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();

@@ -32,9 +32,9 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     private RadioButton INPUT_SUM_RADIOBUTTON = new RadioButton(By.xpath("//label[@id='label_custom_amount']"));
     private Button CONFIRM_BUTTON = new Button(By.xpath("//button[@id='submit_button']"));
     private Button OKAY_BUTTON = new Button(By.xpath("//div[@class='payment_message success']//button[@class='pretty_button']"));
-    private  Button QUICK_PAYMENT = new Button(By.xpath("//li[@class='zf-option zf-selected']"));
+    private Button QUICK_PAYMENT = new Button(By.xpath("//li[@class='zf-option zf-selected']"));
 
-    public List<WebElement> checkPaymentsMethodInFrame() {
+    public List<WebElement> checkPaymentsMethodInDepositFrame() {
         List<WebElement> BASIC_PAYMENT_METHODS = Arrays
                 .asList(CARD_PAYMENT_BUTTON.slaveElement(), QIWI_PAYMENT_BUTTON.slaveElement(), YANDEX_PAYMENT_BUTTON.slaveElement());
         List<WebElement> response = new ArrayList<>();
