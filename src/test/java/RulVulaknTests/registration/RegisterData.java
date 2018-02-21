@@ -166,4 +166,24 @@ public class RegisterData {
         return obj;
     }
 
+    // for negative test cases
+    @DataProvider
+    public Object[][] randomUserProviderWithoutAtInEmail(Method method) {
+        Object[][] obj;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][2];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                User user = new User().generateRandomUserWithEmailWithoutAt(new CustomDataProvider());
+                obj[i][0] = user;
+                obj[i][1] = pageNumber[i];
+            }
+        } else {
+            obj = new Object[1][1];
+            User user = new User().generateRandomUserWithEmailWithoutAt(new CustomDataProvider());
+            obj[0][0] = user;
+        }
+        return obj;
+    }
 }
