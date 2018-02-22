@@ -8,6 +8,7 @@ import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.popups.cashBoxFrames.CashBoxDepositFrame;
 import com.popups.cashBoxFrames.CashBoxWithdrawalFrame;
+import com.popups.CashBoxPopup;
 import com.utils.Card;
 import com.utils.RandomGenerate;
 import com.utils.User;
@@ -417,7 +418,7 @@ public class CashboxTest extends BaseTestPage {
     @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user deposit on random sum, card payment method. Then withdrawal this sum.")
     public void makeCustomWithdrawalRandomUser(User user, Card card) {
-        String randomDeposit = Integer.toString(new Random().nextInt(15000) + 1500);
+        String randomDeposit = Integer.toString(new Random().nextInt(13500) + 1500);
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -460,7 +461,7 @@ public class CashboxTest extends BaseTestPage {
     @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Auth make withdrawal on random sum.")
     public void makeCustomWithdrawalAuthUser(User user, Card card) {
-        String randomWithdrawal = Integer.toString(new Random().nextInt(15000) + 1500);
+        String randomWithdrawal = Integer.toString(new Random().nextInt(13500) + 1500);
         new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
@@ -483,7 +484,7 @@ public class CashboxTest extends BaseTestPage {
     @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Random user make withdrawal on sum, more then he have.")
     public void makeMoreThenDepositWithdrawalRandomUser(User user, Card card) {
-        String randomDeposit = Integer.toString(new Random().nextInt(14999) + 1500);
+        String randomDeposit = Integer.toString(new Random().nextInt(13499) + 1500);
         String biggerWithdrawal = Integer.toString(Integer.parseInt(randomDeposit) + 1);
         new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
@@ -581,6 +582,96 @@ public class CashboxTest extends BaseTestPage {
 
         try {
             Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Random open deposit frame from empty history payment tab")
+    public void openDepositFrameFromHistoryPaymentTabRandomUser(User user, Card card) {
+        new HeaderNotAutorizedUser().clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .withdrawFromGift()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickTabPaymentHistory()
+                .clickOnMakeDepositFromHistoryTab();
+
+        try {
+            Assert.assertTrue(new CashBoxPopup().depositTabIsActive(), "HISTORY TAB NOT EMPTY");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Random user deposit on random sum, card payment method. Then withdrawal this sum.")
+    public void cancelCustomWithdrawalRandomUser(User user, Card card) {
+        String randomDeposit = Integer.toString(new Random().nextInt(13500) + 1500);
+        new HeaderNotAutorizedUser().clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .withdrawFromGift()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .typeCardNumber(card.getNumber())
+                .typeCardHolder(card.getHolder())
+                .typeCardCVV(card.getCvv())
+                .clickOnInputButton()
+                .cleanDepositInputField()
+                .typeCardDepositSum(randomDeposit)
+                .clickOnConfirmButton()
+                .clickOnOkayButton()
+                .switchToParent();
+        headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
+        headerAutorizedUser.refreshPage();
+
+        new HeaderAutorizedUser().pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(randomDeposit)
+                .typePhoneNumberInCardDepositFrame("9101234567")
+                .clickGetButton()
+                .switchToParent();
+
+        headerAutorizedUser.refreshPage();
+        new HeaderAutorizedUser().pressCashBoxButton()
+                .clickTabPaymentHistory()
+                .clickOnCancelWithdrawalFromHistoryTab();
+
+        try {
+            Assert.assertTrue(new CashBoxPopup().canceledWithdrawalStringPresent(), "WITHDRAWAL NOT CANCELED");
+        } catch (Exception e) {
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
+    @Description("Close Popup Test.")
+    public void closeCashBoxPopUpAutUser(User user, Card card) {
+        new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader()
+                .pressCashBoxButton()
+                .clickCloseCashboxPopup();
+
+        try {
+            Assert.assertTrue(new HeaderAutorizedUser().userZoneIsPresent(), "POPUP NOT CLOSED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
