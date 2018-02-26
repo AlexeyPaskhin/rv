@@ -1,7 +1,5 @@
 package com.utils;
 
-import java.security.PublicKey;
-
 public class CustomDataProvider {
     private static PropertyLoader propertyLoader;
     private String email;
@@ -12,9 +10,7 @@ public class CustomDataProvider {
     private String pass;
     private String domainWithoutAt;
 
-    /*
-      * email's and pass's for social authorization
-      * */
+    /* email's and pass's for social authorization */
     private String emailAuthVK;
     private String passAuthVK;
     private String emailAuthFB;
@@ -25,15 +21,11 @@ public class CustomDataProvider {
     private String passAuthYA;
     private String emailAuthMailRU;
     private String passAuthMailRU;
-    /*
-      * email's and pass's for authorization via email
-      * */
+    /* email's and pass's for authorization via email */
     private String emailAuth;
     private String passAuth;
 
-    /*
-      * email's and pass's for social registeration
-      * */
+    /* email's and pass's for social registeration */
     private String emailRegisterVK;
     private String passRegisterVK;
     private String emailRegisterFB;
@@ -45,12 +37,13 @@ public class CustomDataProvider {
     private String emailRegisterMailRU;
     private String passRegisterMailRU;
 
-    /*
-      * credential for MasterCard
-      * */
+    /* credential for MasterCard */
     private String cardNumberMaster;
     private String cardHolderMaster;
     private String cardCvvMaster;
+
+    // password recovery
+    private String passRecoveryEmail;
 
     public CustomDataProvider() {
         propertyLoader = new PropertyLoader();
@@ -62,9 +55,7 @@ public class CustomDataProvider {
         this.pass = propertyLoader.getPass();
         this.domainWithoutAt = propertyLoader.getDomainWithoutAt();
 
-        /*
-         * get email's and pass's for social authorization from PropertyLoader
-         * */
+        /* get email's and pass's for social authorization from PropertyLoader */
         this.emailAuthVK = propertyLoader.getAuthEmailVK();
         this.passAuthVK = propertyLoader.getAuthPassVK();
         this.emailAuthFB = propertyLoader.getAuthEmailFB();
@@ -76,15 +67,11 @@ public class CustomDataProvider {
         this.emailAuthMailRU = propertyLoader.getAuthEmailMailRU();
         this.passAuthMailRU = propertyLoader.getAuthPassMailRU();
 
-        /*
-         * email's and pass's for authorization via email
-         * */
+        /* email's and pass's for authorization via email */
         this.emailAuth = propertyLoader.getAuthEmail();
         this.passAuth = propertyLoader.getAuthPass();
 
-        /*
-         * email's and pass's for social registeration from PropertyLoader
-         * */
+        /* email's and pass's for social registeration from PropertyLoader */
         this.emailRegisterVK = propertyLoader.getRegisterEmailVK();
         this.passRegisterVK = propertyLoader.getRegisterPassVK();
         this.emailRegisterFB = propertyLoader.getRegisterEmailFB();
@@ -96,12 +83,14 @@ public class CustomDataProvider {
         this.emailRegisterMailRU = propertyLoader.getRegisterEmailMailRU();
         this.passRegisterMailRU = propertyLoader.getRegisterPassMailRU();
 
-        /*
-         * email and pass for authorization from PropertyLoader
-         * */
+        /* email and pass for authorization from PropertyLoader */
         this.cardNumberMaster = propertyLoader.getCardNumberMaster();
         this.cardHolderMaster = propertyLoader.getCardHolderMaster();
         this.cardCvvMaster = propertyLoader.getCardCvvMaster();
+
+        /* password recovery e-mail */
+        this.passRecoveryEmail = propertyLoader.getPassRecovetyEmail();
+
     }
 
     String generateRandomEmail() {
@@ -137,48 +126,123 @@ public class CustomDataProvider {
     /*
      * getters for social auth users email's and pass's
      * */
-    public String getAuthEmailVK() { return this.emailAuthVK; }
-    public String getAuthPassVK() { return this.passAuthVK; }
-    public String getAuthEmailFB() { return this.emailAuthFB; }
-    public String getAuthPassFB() { return this.passAuthFB; }
-    public String getAuthEmailOK() { return this.emailAuthOK; }
-    public String getAuthPassOK() { return this.passAuthOK; }
-    public String getAuthEmailYA() { return this.emailAuthYA; }
-    public String getAuthPassYA() { return this.passAuthYA; }
-    public String getAuthEmailMailRU() { return this.emailAuthMailRU; }
-    public String getAuthPassMailRU() { return this.passAuthMailRU; }
+    public String getAuthEmailVK() {
+        return this.emailAuthVK;
+    }
+
+    public String getAuthPassVK() {
+        return this.passAuthVK;
+    }
+
+    public String getAuthEmailFB() {
+        return this.emailAuthFB;
+    }
+
+    public String getAuthPassFB() {
+        return this.passAuthFB;
+    }
+
+    public String getAuthEmailOK() {
+        return this.emailAuthOK;
+    }
+
+    public String getAuthPassOK() {
+        return this.passAuthOK;
+    }
+
+    public String getAuthEmailYA() {
+        return this.emailAuthYA;
+    }
+
+    public String getAuthPassYA() {
+        return this.passAuthYA;
+    }
+
+    public String getAuthEmailMailRU() {
+        return this.emailAuthMailRU;
+    }
+
+    public String getAuthPassMailRU() {
+        return this.passAuthMailRU;
+    }
 
     /*
      * getters for auth via email
      * */
-    public String getAuthEmail() { return this.emailAuth; }
-    public String getAuthPass() { return this.passAuth; }
+    public String getAuthEmail() {
+        return this.emailAuth;
+    }
+
+    public String getAuthPass() {
+        return this.passAuth;
+    }
 
     /*
      * getters for social register users email's and pass's
      * */
-    public String getRegisterEmailVK() { return this.emailRegisterVK; }
-    public String getRegisterPassVK() { return this.passRegisterVK; }
-    public String getRegisterEmailFB() { return this.emailRegisterFB; }
-    public String getRegisterPassFB() { return this.passRegisterFB; }
-    public String getRegisterEmailOK() { return this.emailRegisterOK; }
-    public String getRegisterPassOK() { return this.passRegisterOK; }
-    public String getRegisterEmailYA() { return this.emailRegisterYA; }
-    public String getRegisterPassYA() { return this.passRegisterYA; }
-    public String getRegisterEmailMailRU() { return this.emailRegisterMailRU; }
-    public String getRegisterPassMailRU() { return this.passRegisterMailRU; }
+    public String getRegisterEmailVK() {
+        return this.emailRegisterVK;
+    }
+
+    public String getRegisterPassVK() {
+        return this.passRegisterVK;
+    }
+
+    public String getRegisterEmailFB() {
+        return this.emailRegisterFB;
+    }
+
+    public String getRegisterPassFB() {
+        return this.passRegisterFB;
+    }
+
+    public String getRegisterEmailOK() {
+        return this.emailRegisterOK;
+    }
+
+    public String getRegisterPassOK() {
+        return this.passRegisterOK;
+    }
+
+    public String getRegisterEmailYA() {
+        return this.emailRegisterYA;
+    }
+
+    public String getRegisterPassYA() {
+        return this.passRegisterYA;
+    }
+
+    public String getRegisterEmailMailRU() {
+        return this.emailRegisterMailRU;
+    }
+
+    public String getRegisterPassMailRU() {
+        return this.passRegisterMailRU;
+    }
 
     /*
      * getters for card credential
      * */
-    public String getCardNumberMaster() { return this.cardNumberMaster; }
-    public String getCardHolderMaster() { return this.cardHolderMaster; }
-    public String getCardCvvMaster() { return this.cardCvvMaster; }
+    public String getCardNumberMaster() {
+        return this.cardNumberMaster;
+    }
+
+    public String getCardHolderMaster() {
+        return this.cardHolderMaster;
+    }
+
+    public String getCardCvvMaster() {
+        return this.cardCvvMaster;
+    }
 
     // for negative test cases
     String generateRandomEmailWithoutAt() {
         int userLoginLength = emailForAutogen.length();
         int domainLength = domainWithoutAt.length();
         return emailForAutogen + RandomGenerate.randomString(34 - userLoginLength - domainLength) + domainWithoutAt;
+    }
+
+    public String getPassRecoveryEmail() {
+        return this.passRecoveryEmail;
     }
 }

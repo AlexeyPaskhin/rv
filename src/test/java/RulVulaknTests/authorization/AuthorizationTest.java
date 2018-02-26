@@ -125,5 +125,4 @@ public class AuthorizationTest extends BaseTestPage {
             Assert.fail();
         }
     }
-
 }

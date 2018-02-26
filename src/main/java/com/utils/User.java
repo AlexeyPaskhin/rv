@@ -53,4 +53,10 @@ public class User {
         this.pass = dp.generateRandomPass();
         return this;
     }
+
+    public String getInvalidPass() {
+        return pass + "InvalidPasswordText";
+    }
+
+    public String getInvalidLogin() { return "invalidLogin"; }
 }

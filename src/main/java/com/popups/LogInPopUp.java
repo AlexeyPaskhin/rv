@@ -1,16 +1,31 @@
 package com.popups;
 
+import com.Elements.Button;
 import com.Elements.Element;
+import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.HeaderAutorizedUser;
+import com.pages.HeaderNotAutorizedUser;
+import com.pages.HomePage;
 import org.openqa.selenium.By;
+
+import static com.utils.DriverManager.getDriver;
 
 /**
  * Log-In pop-up ('Vhod')
  */
 public class LogInPopUp extends AbstractPage {
+
+    private final InputBox EMAIL_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-login']"));
+    private final InputBox PASS_INPUT_BOX_IN_POPUP = new InputBox(By.xpath("//input[@id='auth-form-password']"));
+    private final Button LOGIN_BUTTON_IN_POPUP = new Button(By.xpath("//button[@class='btn-popup-enter']//span[(text()='Вход')]"));
     // Validation error messages
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element INCORRECT_PASS_OR_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Неправильные имя пользователя и/или пароль')]"));
+    public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id=\"popup_auth\"]/a"));
+
+    private final Element RESET_PASSWORD_LINK = new Element(By.xpath("//*[@id=\"popup_auth\"]//a[@href='/users/restorePassword']"));
+    private final Element REGISTRATION_LINK = new Element(By.xpath("//*[@id=\"popup_auth\"]//a[2]"));
 
     public String fieldEmailShouldNotBeEmpty() {
         EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
@@ -27,4 +42,35 @@ public class LogInPopUp extends AbstractPage {
         return INCORRECT_PASS_OR_EMAIL_ERROR.getText();
     }
 
+    public HomePage pressButtonClose() {
+        CLOSE_BUTTON.click();
+        return new HomePage();
+    }
+
+    public LogInPopUp typeEmailInPopupField(String email) {
+        EMAIL_INPUT_BOX_IN_POPUP.cleaIn();
+        EMAIL_INPUT_BOX_IN_POPUP.fillIn(email);
+        return this;
+    }
+
+    public LogInPopUp typePassInPopupField(String pass) {
+        PASS_INPUT_BOX_IN_POPUP.cleaIn();
+        PASS_INPUT_BOX_IN_POPUP.fillIn(pass);
+        return this;
+    }
+
+    public HomePage pressLoginIn() {
+        LOGIN_BUTTON_IN_POPUP.click();
+        return new HomePage();
+    }
+
+    public ResetPasswordPopUp clickForgotPasswordLink() {
+        RESET_PASSWORD_LINK.click();
+        return new ResetPasswordPopUp();
+    }
+
+    public FastRegisterPopup clickRegistrationLink(){
+        REGISTRATION_LINK.click();
+        return new FastRegisterPopup();
+    }
 }

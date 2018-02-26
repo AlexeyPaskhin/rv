@@ -6,6 +6,7 @@ import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.popups.ResetPasswordPopUp;
+import com.utils.CustomDataProvider;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -23,29 +24,16 @@ import org.testng.annotations.Test;
 @Listeners({RussianVulcanListener.class})
 public class ResetPasswordPopUpTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
+    CustomDataProvider dataProvider = new CustomDataProvider();
 
     @Test(groups = {"resetpass"})
     @Description("Send reset password request from link in Header for un-authorized user")
     public void resetPasswordFromHeaderForUnAuthorizedUser() {
         new HeaderNotAutorizedUser()
                 .clickResetPasswordLink()
-                .fillEmailField("yr+resetpass@playrini.ua")
+                .fillEmailField(dataProvider.getPassRecoveryEmail())
                 .pressButtonVosstanovit()
                 .closePopUpZayavkaPriniata();
-        try {
-            Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
-        } catch (Exception e) {
-            logger.error(e);
-            Assert.fail();
-        }
-    }
-
-    @Test(groups = {"resetpass"})
-    @Description("Close reset password pop-up by button 'Close'")
-    public void closeResetPasswordPopUp() {
-        new HeaderNotAutorizedUser()
-                .clickResetPasswordLink()
-                .pressButtonClosepopUp();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
@@ -92,7 +80,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
     public void sendRecoveryPassRequestFourTimes() {
         new HomePage().getNotAuthorizedHeader()
                 .clickResetPasswordLink()
-                .fillEmailField("yr+aass35543535dd@playtini.net")
+                .fillEmailField(dataProvider.getPassRecoveryEmail())
                 .pressButtonVosstanovit()
                 .closePopUpZayavkaPriniata()
                 .waitForPageToLoad();

@@ -5,6 +5,7 @@ import com.Elements.Checkbox;
 import com.Elements.Element;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.HomePage;
 import com.pages.landing.social.*;
 import org.openqa.selenium.By;
 
@@ -13,6 +14,7 @@ import static com.utils.DriverManager.getDriver;
 /**
  * Pop-up 'Bistraya registratsyja'
  * + from header
+ * + from LogIn pop-up
  */
 
 public class FastRegisterPopup extends AbstractPage {
@@ -35,6 +37,7 @@ public class FastRegisterPopup extends AbstractPage {
     public static final Element EMPTY_PASSWORD_FIELD_ERROR = new Element(By.xpath("//p[2]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element ENTER_REAL_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите настоящий e-mail')]"));
 
+    public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
     private String parent = getDriver().getWindowHandle();
 
     public FastRegisterPopup typeLogin(String login) {
@@ -125,5 +128,10 @@ public class FastRegisterPopup extends AbstractPage {
     public String getRealEmailText() {
         ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
         return ENTER_REAL_EMAIL_ERROR.getText();
+    }
+
+    public HomePage pressButtonClosepopUp() {
+        CLOSE_BUTTON.click();
+        return new HomePage();
     }
 }
