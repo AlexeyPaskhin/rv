@@ -75,8 +75,9 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
     }
 
     // TODO: 2018-02-20 Can't find solution how to check step when user try to recover password more than 3 times one-by-one
-//    @Test(groups = {"resetpass", "negative"})
-//    @Description("Try to send recovery password request more then 3 times")
+/*
+    @Test(groups = {"resetpass", "negative"})
+    @Description("Try to send recovery password request more then 3 times")
     public void sendRecoveryPassRequestFourTimes() {
         new HomePage().getNotAuthorizedHeader()
                 .clickResetPasswordLink()
@@ -84,6 +85,18 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
                 .pressButtonVosstanovit()
                 .closePopUpZayavkaPriniata()
                 .waitForPageToLoad();
+        new HomePage().getNotAuthorizedHeader()
+                .clickResetPasswordLink()
+                .fillEmailField(dataProvider.getPassRecoveryEmail())
+                .pressButtonVosstanovit();
+        new HomePage().getNotAuthorizedHeader()
+                .clickResetPasswordLink()
+                .fillEmailField(dataProvider.getPassRecoveryEmail())
+                .pressButtonVosstanovit();
+        new HomePage().getNotAuthorizedHeader()
+                .clickResetPasswordLink()
+                .fillEmailField(dataProvider.getPassRecoveryEmail())
+                .pressButtonVosstanovit();
         try {
             ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
             Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Превышен лимит запросов. Попробуйте, пожалуйста, позже.");
@@ -92,4 +105,5 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
             Assert.fail();
         }
     }
+*/
 }

@@ -168,10 +168,8 @@ public class PropertyLoader {
         return prop.getProperty("cardCvvMaster");
     }
 
-    /*
-     * Email for recovery password
-     */
-    protected String getPassRecovetyEmail() {
+    // Email for recovery password
+    protected String getPassRecoveryEmail() {
         return prop.getProperty("userResetPasswordEmail");
     }
 }

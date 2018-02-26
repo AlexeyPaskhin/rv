@@ -89,7 +89,7 @@ public class CustomDataProvider {
         this.cardCvvMaster = propertyLoader.getCardCvvMaster();
 
         /* password recovery e-mail */
-        this.passRecoveryEmail = propertyLoader.getPassRecovetyEmail();
+        this.passRecoveryEmail = propertyLoader.getPassRecoveryEmail();
 
     }
 

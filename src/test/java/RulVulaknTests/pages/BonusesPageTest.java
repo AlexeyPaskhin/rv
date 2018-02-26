@@ -19,7 +19,6 @@ public class BonusesPageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
     BonusesPage bonusesPage;
 
-    // TODO: 2018-02-20 Check Bonuses page here
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"regression"})
     @Description("Is Gift icon clickable for authorized user and linked to Bonuses page")
     public void isGiftIconClickable(User user) {

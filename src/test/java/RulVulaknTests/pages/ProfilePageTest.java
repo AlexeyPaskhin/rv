@@ -19,7 +19,6 @@ public class ProfilePageTest extends BaseTestPage{
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
     ProfilePage profilePage;
 
-    // TODO: 2018-02-20 Check Profile page here
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression"})
     @Description("Is User's name clickable for authorized user and linked to Profile page")
     public void isUserNameIconPresentAndClickableForAuthorizedUser(User user) {
