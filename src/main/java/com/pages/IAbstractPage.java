@@ -55,7 +55,6 @@ public interface IAbstractPage {
         setImplicity(10);
     }
 
-
     default void refreshPage() {
         getDriver().navigate().refresh();
     }

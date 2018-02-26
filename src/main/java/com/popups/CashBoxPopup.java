@@ -13,7 +13,7 @@ public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
     private final Button TAB_DEPOSIT = new Button(By.xpath("//a[@class='profile-switch__tab tab-deposit']"));
     private final Button TAB_WITHDRAWAL = new Button(By.xpath("//a[@class='profile-switch__tab tab-withdrawal"));
     private final Button TAB_PAYMENT_HISTORY = new Button(By.xpath("//a[@class='profile-switch__tab tab-history']"));
-    private final Button CLOSE_CASHBOX_POPUP = new Button(By.xpath("//div[@id='popup_cashbox']//a[@class='popup-close']"));
+    private final Button CLOSE_CASHBOX_POPUP = new Button(By.xpath("//*[@id=\"popup_cashbox-deposit\"]/a"));
 
     private Frame CASH_BOX_DEPOSIT_FRAME = new Frame(By.xpath("//div[@id='deposit-iframe-wrap']//iframe"));
     private Frame CASH_BOX_WITHDRAWAL_FRAME = new Frame(By.xpath("//div[@id='withdrawal-iframe-wrap']//iframe"));
@@ -34,6 +34,7 @@ public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
     }
 
     public HomePage clickCloseCashboxPopup() {
+        CLOSE_CASHBOX_POPUP.waitForElementToBeClickable(2);
         CLOSE_CASHBOX_POPUP.click();
         return new HomePage();
     }
@@ -49,4 +50,5 @@ public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
         wait(1000);
         return new CashBoxWithdrawalFrame();
     }
+
 }
