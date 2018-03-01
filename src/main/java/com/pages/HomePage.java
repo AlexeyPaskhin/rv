@@ -33,6 +33,11 @@ public class HomePage extends AbstractPage {
         return new HeaderAutorizedUser();
     }
 
+    public Header getHeader(){
+        if (1==1) return getAuthorizedHeader();
+        else return getNotAuthorizedHeader();
+    }
+
     public GiftPopup getGiftPopup() {
         return GIFT_POPUP;
     }
