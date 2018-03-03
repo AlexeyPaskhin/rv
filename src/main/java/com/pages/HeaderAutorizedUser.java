@@ -1,7 +1,9 @@
 package com.pages;
 
+import com.Elements.Button;
 import com.Elements.Element;
 import com.Elements.Panel;
+import com.popups.CashBoxPopup;
 import org.openqa.selenium.*;
 
 public class HeaderAutorizedUser extends AbstractPage {
@@ -9,6 +11,12 @@ public class HeaderAutorizedUser extends AbstractPage {
     private final Panel USER_PANE = new Panel(By.xpath("//div[@class='top-user-zone']"));
     private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));
     private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
+    private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo']"));
+    private final Element VIP_ICON = new Element(By.xpath("//a[@href='/vip' and @class='vip_user_zone_vip']"));
+    private final Element USER_NAME_LINK = new Element(By.xpath("//a[@class='profile']"));
+    private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
+    private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
+    private final Element LOG_OUT = new Element(By.xpath("//a[@class='logout']"));
 
     public boolean userZoneIsPresent() {
         new HomePage().homePageLoaded();
@@ -29,5 +37,40 @@ public class HeaderAutorizedUser extends AbstractPage {
             refreshPage();
             REAL_BALANCE_PANEL.waitForElementToBeVisible(5);
         }
+    }
+
+    public HomePage clickLogoIcon() {
+        LOGO_ICON.click();
+        return new HomePage();
+    }
+
+    public VipPage clickVipStatusIcon() {
+        VIP_ICON.click();
+        return new VipPage();
+    }
+
+    public ProfilePage clickUserName() {
+        USER_NAME_LINK.click();
+        return new ProfilePage();
+    }
+
+    public NotificationsPage clickNotificationsIcon() {
+        NOTIFICATIONS_ICON.click();
+        return new NotificationsPage();
+    }
+
+    public BonusesPage clickGiftIcon() {
+        GIFT_ICON.click();
+        return new BonusesPage();
+    }
+
+    public CashBoxPopup pressCashBoxButton() {
+        CASH_BOX_BUTTON.click();
+        return new CashBoxPopup();
+    }
+
+    public HomePage clickExit() {
+        LOG_OUT.click();
+        return new HomePage();
     }
 }
