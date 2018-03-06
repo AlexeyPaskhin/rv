@@ -6,6 +6,7 @@ import com.Elements.Element;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
 import com.pages.HomePage;
+import com.pages.RulesPage;
 import com.pages.landing.social.*;
 import org.openqa.selenium.By;
 
@@ -36,6 +37,10 @@ public class FastRegisterPopup extends AbstractPage {
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//p[1]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element EMPTY_PASSWORD_FIELD_ERROR = new Element(By.xpath("//p[2]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element ENTER_REAL_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите настоящий e-mail')]"));
+
+    private static final Element RULES_AND_CONDITIONS_LINK = new Element(By.xpath("//div[@id='popup_register']//a[text()='правилами и условиями']"));
+    private static final Button CLOSE_FAST_REGISTER_POP_UP_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
+    private static final Element CLICK_AUTH_LINK = new Element(By.xpath("//*[@id=\"popup_register\"]//a[@data-popup-open='auth']"));
 
     public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
     private String parent = getDriver().getWindowHandle();
@@ -98,6 +103,22 @@ public class FastRegisterPopup extends AbstractPage {
         YA_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
         return new YARegisterPage(parent);
+    }
+
+    public RulesPage checkRulesAndConditionsLink(){
+        RULES_AND_CONDITIONS_LINK.waitForElementToBeClickable(3);
+        RULES_AND_CONDITIONS_LINK.click();
+        return new RulesPage();
+    }
+
+    public HomePage closeFastRegisterPopUp() {
+        CLOSE_FAST_REGISTER_POP_UP_BUTTON.click();
+        return new HomePage();
+    }
+
+    public AuthPopup clickAuthLink() {
+        CLICK_AUTH_LINK.click();
+        return new AuthPopup();
     }
 
     public FastRegisterPopup clickRegisterButtonAndDoNothing() {
