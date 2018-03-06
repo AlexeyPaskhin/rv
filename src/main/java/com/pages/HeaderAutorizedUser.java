@@ -2,6 +2,7 @@ package com.pages;
 
 import com.Elements.Button;
 import com.Elements.Element;
+import com.Elements.Frame;
 import com.Elements.Panel;
 import com.popups.CashBoxPopup;
 import org.openqa.selenium.*;
@@ -17,6 +18,8 @@ public class HeaderAutorizedUser extends AbstractPage {
     private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
     private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
     private final Element LOG_OUT = new Element(By.xpath("//a[@class='logout']"));
+
+    private final Frame BLANK_IFRAME = new Frame(By.xpath("//iframe [@src=\"/blank-iframe\"]"));
 
     public boolean userZoneIsPresent() {
         new HomePage().homePageLoaded();
@@ -65,6 +68,8 @@ public class HeaderAutorizedUser extends AbstractPage {
     }
 
     public CashBoxPopup pressCashBoxButton() {
+        CASH_BOX_BUTTON.waitForElementToBeVisible(5);
+        BLANK_IFRAME.waitForElementToBeInvisible(5);
         CASH_BOX_BUTTON.click();
         return new CashBoxPopup();
     }
