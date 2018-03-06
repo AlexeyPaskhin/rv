@@ -1,4 +1,4 @@
-package RulVulaknTests.homepage.topmenu;
+package RulVulaknTests.pages.homepage.topmenu;
 
 import RulVulaknTests.BaseTestPage;
 import com.pages.*;
@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.is;
 public class TopMenuTest extends BaseTestPage {
 
 
-    @Test
+    @Test(groups = {"regression"})
     public void checkGamesLink(){
         GamesPage gamesPage = new HomePage().getHeader().clickGamesLink();
 
@@ -23,7 +23,7 @@ public class TopMenuTest extends BaseTestPage {
         assertThat(gamesPage.SlotGamesExists(),is(true));
 
     }
-    @Test
+    @Test(groups = {"regression"})
     public void checkLotteriesLink(){
         LotteriesPage lotteriesPage = new HomePage().getHeader().clickLotteriesLink();
         assertThat(lotteriesPage.bannerExists(), is(true));
@@ -32,7 +32,7 @@ public class TopMenuTest extends BaseTestPage {
         assertThat(lotteriesPage.lotteryResultsButtonExists(),is(true));
         assertThat(lotteriesPage.participateInLoterriesExists(),is(true));
     }
-    @Test
+    @Test(groups = {"regression"})
     public void checkTournamentsLink(){
         TournamentsPage tournamentsPage = new HomePage().getHeader().clickTournametsLink();
         assertThat(tournamentsPage.BannerExists(), is(true));
@@ -41,7 +41,7 @@ public class TopMenuTest extends BaseTestPage {
 
     }
 
-    @Test
+    @Test(groups = {"regression"})
     public void checkNewsLink(){
         NewsPage newsPage = new HomePage().getHeader().clickNewsLink();
         assertThat(newsPage.BannerExists(), is(true));
@@ -49,7 +49,7 @@ public class TopMenuTest extends BaseTestPage {
         assertThat(newsPage.PaginationExists(), is(true));
     }
 
-    @Test
+    @Test(groups = {"regression"})
     public void checkVipLink(){
         VipPage vipPage = new HomePage().getHeader().clickVIPLink();
         assertThat(vipPage.getURL(), equalTo(customDataProvider.getBasicURL()+"vip"));

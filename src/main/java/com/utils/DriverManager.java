@@ -31,13 +31,14 @@ public class DriverManager {
     public static String BROWSER = System.getProperty("browser");
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
+
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
         WebDriverEventListener events = new WebDriverEventHandler();
         WebDriver driver = null;
         if (BROWSER == null) {
             BROWSER = browser;
         }
-      //  URL url = new URL("http://172.17.0.2:4444/wd/hub");
+        //  URL url = new URL("http://172.17.0.2:4444/wd/hub");
         URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
 
         if (browser.equalsIgnoreCase(CHROME)) {
@@ -75,7 +76,7 @@ public class DriverManager {
             if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
             //     driver.manage().window().maximize();
         }
-        System.out.println("THREAD IS"+ Thread.currentThread().getId());
+        System.out.println("THREAD IS" + Thread.currentThread().getId());
         return driver;
     }
 

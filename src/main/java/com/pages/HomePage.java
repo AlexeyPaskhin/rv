@@ -13,17 +13,9 @@ public class HomePage extends AbstractPage {
     private final Panel CONTENT_PANE = new Panel(By.xpath("//div[@class='wrap cf']"));
     private final GiftPopup GIFT_POPUP = new GiftPopup();
 
-    private final Frame BLANK_IFRAME = new Frame(By.xpath("//iframe [@src=\"/blank-iframe\"]"));
-    private final Button HEAD_CASHBOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']//span"));
-
     private final Button RED_HELPER_BUTTON = new Button(By.xpath("//*[@id=\"rh-badge\"]//img"));
-
-    public CashBoxPopup clickHeadCashBox() {
-        HEAD_CASHBOX_BUTTON.waitForElementToBeVisible(5);
-        BLANK_IFRAME.waitForElementToBeInvisible(5);
-        HEAD_CASHBOX_BUTTON.click();
-        return new CashBoxPopup();
-    }
+    private final String HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER = "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн";
+    private final String HOME_PAGE_TITLE_FOR_AUTHORIZED_USER = "Игровые автоматы Вулкан бесплатно и на деньги";
 
     public HeaderNotAutorizedUser getNotAuthorizedHeader() {
         return new HeaderNotAutorizedUser();
@@ -34,7 +26,7 @@ public class HomePage extends AbstractPage {
     }
 
     public Header getHeader(){
-        if (HEAD_CASHBOX_BUTTON.isPresent()) return getAuthorizedHeader();
+        if (getAuthorizedHeader().getCASH_BOX_BUTTON().isPresent()) return getAuthorizedHeader();
         else return getNotAuthorizedHeader();
     }
 
@@ -55,5 +47,13 @@ public class HomePage extends AbstractPage {
             RED_HELPER_BUTTON.click();
         }
         return new RedHelperFrame();
+    }
+
+    public boolean isHomePageOpenedForNotAuthorized() {
+        return this.getTitle().equals(HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER);
+    }
+
+    public boolean isHomePageOpenedForAuthorizedUser() {
+        return this.getTitle().equals(HOME_PAGE_TITLE_FOR_AUTHORIZED_USER);
     }
 }

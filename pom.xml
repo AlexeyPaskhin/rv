@@ -93,6 +93,11 @@
             <version>1.16.16</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -124,7 +129,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
 
-
                     <!--<threadCount>4</threadCount>-->
                 </configuration>
                 <dependencies>
@@ -139,7 +143,7 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper</groups>
+        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression</groups>
         <aspectj.version>1.8.10</aspectj.version>
         <threads>1</threads>
     </properties>

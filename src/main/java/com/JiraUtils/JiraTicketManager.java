@@ -44,10 +44,14 @@ public class JiraTicketManager {
     }
 
     public void addScreenshotToTicket(String pathToScreenshot) {
-        httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/PROD-4325/attachments", pathToScreenshot));
+        httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/PROD-5787/attachments", "C:\\Users\\ai\\Documents\\autotest-rv\\Screenshot_5.png"));
     }
 
-    public void createTicketWithScreenshot(String projectKey, String summary, String description, String issueType, String pathToScreenshot){
+    public void addVideoToTicket(String pathToVideo) {
+        httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/PROD-5787/attachments", "C:\\Users\\ai\\Documents\\autotest-rv\\2157eb815aba5c193f5d1df8e2793fdc.mp4"));
+    }
+
+    public void createTicketWithAttachment(String projectKey, String summary, String description, String issueType, String pathToAttachment){
 
         HttpResponse response;
         String issueKey;
@@ -66,12 +70,14 @@ public class JiraTicketManager {
         fieldsNode.put("issuetype", issueNode);
         rootNode.put("fields", fieldsNode);
 
+        System.out.println(pathToAttachment);
+
     try{
      response  = httpProvider.executePost(httpProvider.createPostRequestJSON("https://playtini.atlassian.net/rest/api/2/issue", rootNode.toString()));
      issueKey =getIssueKey(response);
         EntityUtils.consume(response.getEntity());
         if(issueKey!=null) {
-            response = httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/" + issueKey + "/attachments", pathToScreenshot));
+            response = httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/" + issueKey + "/attachments", pathToAttachment));
             EntityUtils.consume(response.getEntity());
         }
         else{ logger.error("Ticket was not created");

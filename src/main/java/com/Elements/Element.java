@@ -56,7 +56,6 @@ public class Element{
     }
 
     public String getText() {
-
         return new FluentWait<>(getDriver()).withTimeout(10, TimeUnit.SECONDS)
                 .pollingEvery(200, TimeUnit.MILLISECONDS)
                 .ignoring(StaleElementReferenceException.class)
@@ -117,6 +116,10 @@ public class Element{
             customElements.add(element);
         }
         return customElements;
+    }
+
+    public List<WebElement> getAllWebElements(){
+        return getDriver().findElements(by);
     }
 
 /*

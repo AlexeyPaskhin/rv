@@ -1,4 +1,4 @@
-package RulVulaknTests.lotteries;
+package RulVulaknTests.pages.lotteries;
 
 import RulVulaknTests.BaseTestPage;
 import com.pages.HomePage;
@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class LotteriesTest extends BaseTestPage {
 
-    @Test
+    @Test(groups = {"regression"})
     public void CurrentLotteryButton(){
      LotteriesPage lotteries = new HomePage().getHeader().clickLotteriesLink();
      String firstlotteryURL= lotteries.getLotteryByIdendex(0).getLotteryLink();

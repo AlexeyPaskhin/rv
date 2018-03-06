@@ -19,11 +19,11 @@ public class GamesPage extends AbstractPage {
     private final Button POPULAR_GAME = POPULAR_GAMES.getButtonByXpath("//a[contains(@class,'item item-popular')]");
 
     private final Button FIRST_GAME = POPULAR_GAMES.getButtonByXpath("//a[@href='/games/15-golden-eggs']");
-    private final Button POPULAR_FILTER_BUTTON;
-    private final Button NEW_FILTER_BUTTON;
-    private final Button GAMINATOR_FILTER_BUTTON;
-    private final Button IGROSOFT_FILTER_BUTTON;
-    private final Button TABLES_FILTER_BUTTON;
+//    private final Button POPULAR_FILTER_BUTTON;
+//    private final Button NEW_FILTER_BUTTON;
+//    private final Button GAMINATOR_FILTER_BUTTON;
+//    private final Button IGROSOFT_FILTER_BUTTON;
+//    private final Button TABLES_FILTER_BUTTON;
 
 
     private Panel MY_GAMES;

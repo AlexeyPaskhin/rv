@@ -28,7 +28,6 @@ public class BaseTestPage {
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-
         try {
             manager = new SSHManager();
         } catch (IOException e) {
@@ -49,15 +48,15 @@ public class BaseTestPage {
                 manager.updateUserForSocial(oldName, newName);
             }
         }
-        if(o.length>0) {
+        if (o.length > 0) {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
                 logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
             }
         }
         try {
-        //    setupDriver(customDataProvider.getBrowser());
-           WebDriver driver = setupDriver(customDataProvider.getBrowser());
+            //    setupDriver(customDataProvider.getBrowser());
+            WebDriver driver = setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -76,12 +75,12 @@ public class BaseTestPage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(Method method, Object[] o) {
-       if(o.length>0) {
-           if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
-               User us = (User) o[0];
-               manager.getUserID(us.getLogin());
-           }
-       }
+        if (o.length > 0) {
+            if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+                User us = (User) o[0];
+                manager.getUserID(us.getLogin());
+            }
+        }
         getDriver().manage().deleteAllCookies();
         getDriver().close();
 
