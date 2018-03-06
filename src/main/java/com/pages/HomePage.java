@@ -34,7 +34,7 @@ public class HomePage extends AbstractPage {
     }
 
     public Header getHeader(){
-        if (1==1) return getAuthorizedHeader();
+        if (HEAD_CASHBOX_BUTTON.isPresent()) return getAuthorizedHeader();
         else return getNotAuthorizedHeader();
     }
 

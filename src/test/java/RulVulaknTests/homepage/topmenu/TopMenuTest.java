@@ -26,11 +26,11 @@ public class TopMenuTest extends BaseTestPage {
     @Test
     public void checkLotteriesLink(){
         LotteriesPage lotteriesPage = new HomePage().getHeader().clickLotteriesLink();
-        assertThat(lotteriesPage.BannerExists(), is(true));
-        assertThat(lotteriesPage.LotteriesExists(), is(true));
-        assertThat(lotteriesPage.PaginationExists(),is(true));
-        assertThat(lotteriesPage.LotteryResultsButtonExists(),is(true));
-        assertThat(lotteriesPage.ParticipateInLoterriesExists(),is(true));
+        assertThat(lotteriesPage.bannerExists(), is(true));
+        assertThat(lotteriesPage.lotteriesExists(), is(true));
+        assertThat(lotteriesPage.paginationExists(),is(true));
+        assertThat(lotteriesPage.lotteryResultsButtonExists(),is(true));
+        assertThat(lotteriesPage.participateInLoterriesExists(),is(true));
     }
     @Test
     public void checkTournamentsLink(){
@@ -55,11 +55,5 @@ public class TopMenuTest extends BaseTestPage {
         assertThat(vipPage.getURL(), equalTo(customDataProvider.getBasicURL()+"vip"));
     }
 
-    @Test
-    public void checkContactslink(){
-        LotteriesPage lotteriesPage = new HomePage().getHeader().clickLotteriesLink();
-        lotteriesPage.getAllLoteries().stream().forEach(el -> System.out.println(el.toString()));
-
-    }
 
 }

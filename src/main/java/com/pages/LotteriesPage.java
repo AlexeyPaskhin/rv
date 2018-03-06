@@ -5,6 +5,9 @@ import com.Elements.Panel;
 
 import lombok.Getter;
 import org.openqa.selenium.By;
+
+
+import javax.annotation.Nullable;
 import java.util.List;
 
 @Getter
@@ -18,57 +21,57 @@ public class LotteriesPage extends AbstractPage {
     private final Panel ENDING_LOTTERY_BANNER_BLOCK = BANNER.getPanelByXpath("//p[@class='ending_lottery']");
     private final Panel PAGINATION_PANEL = new Panel(By.xpath("//ul[@class='pagination-buttons']"));
 
+    @Nullable
+    private Panel CURRENT_LOTTERY = new Panel(By.xpath("//div[@class='lottery_item cf']"));
+    @Nullable
+    private Button LotteryImage = CURRENT_LOTTERY.getButtonByXpath("//a");
 
 
-
-
-
-        public List<Panel> getAllLoteries(){
+    public List<Panel> getAllLotteries() {
         return LOTTERIES.getAllElements();
     }
 
 
+    public LotteriesPage getLotteryByIdendex(int index) {
+        List<Panel> lotteries = getAllLotteries();
+        if (lotteries.size() > index) {
+            CURRENT_LOTTERY = getAllLotteries().get(index);
+        }
+        return this;
+    }
 
 
+    public String getLotteryLink() {
+        if (getCURRENT_LOTTERY() != null) {
+            return getLotteryImage().getAttribute("href");
+        } else
+            return null;
+    }
 
+    public String getLotteryLink(int index) {
 
+        return null;
+    }
 
-
-
-
-
-
-
-
-
-
-//    public void getLotteryByIndex(){
-//        List<Panel> lotteriesList  = new ArrayList<>();
-//        lotteriesList.add(LOTTERIES);
-//        System.out.println(lotteriesList);
-//    }
-
-
-    public boolean BannerExists() {
+    public boolean bannerExists() {
         return BANNER.isPresent();
     }
 
-    public boolean ParticipateInLoterriesExists() {
+    public boolean participateInLoterriesExists() {
         return PARTICIPATE_IN_LOTTERIES.isPresent();
     }
 
-    public boolean LotteriesExists() {
+    public boolean lotteriesExists() {
         return LOTTERIES.isPresent();
     }
 
-    public boolean LotteryResultsButtonExists() {
+    public boolean lotteryResultsButtonExists() {
         return LOTTERY_RESULT.isPresent();
     }
 
-    public boolean PaginationExists() {
+    public boolean paginationExists() {
         return PAGINATION_PANEL.isPresent();
     }
-
 
 
 }

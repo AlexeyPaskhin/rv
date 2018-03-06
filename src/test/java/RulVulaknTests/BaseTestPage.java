@@ -38,6 +38,8 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
+        boolean isLotteryEnabled=false;
+
         customDataProvider = new CustomDataProvider();
         if (method.isAnnotationPresent(RemoveUser.class)) {
             if (o[0] instanceof User) {

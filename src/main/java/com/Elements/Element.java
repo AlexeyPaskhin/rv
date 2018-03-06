@@ -1,24 +1,16 @@
 package com.Elements;
 
 import com.google.common.collect.Lists;
-import com.sun.org.apache.xml.internal.security.utils.ElementProxy;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sun.security.smartcardio.SunPCSC;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Function;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static com.utils.DriverManager.getDriver;
 import static com.utils.DriverManager.setImplicity;
 
