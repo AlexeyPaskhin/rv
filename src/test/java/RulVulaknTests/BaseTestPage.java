@@ -8,6 +8,7 @@ import com.pages.HomePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
@@ -68,6 +69,9 @@ public class BaseTestPage {
         } else {
             getDriver().get(customDataProvider.getBasicURL());
         }
+
+        Cookie ck = new Cookie("lottery_reminder_shown","true");
+        getDriver().manage().addCookie(ck);
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
         headerAutorizedUser = new HeaderAutorizedUser();

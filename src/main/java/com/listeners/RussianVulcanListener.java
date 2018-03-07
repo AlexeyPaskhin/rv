@@ -95,10 +95,10 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
         StringAppender.resetAppender();
 
 //        if (statusCode != 200) {
-            jiraManager.createTicketWithAttachment("PROD", " Test Case : " +
-                            iTestResult.getMethod().getMethodName() +
-                            " failed " + " Browser: " + dp.getBrowser(),
-                    issueLog, "Automation Fail", pathToScreenshot);
+//            jiraManager.createTicketWithAttachment("PROD", " Test Case : " +
+//                            iTestResult.getMethod().getMethodName() +
+//                            " failed " + " Browser: " + dp.getBrowser(),
+//                    issueLog, "Automation Fail", pathToScreenshot);
 //        } else {
 //            jiraManager.createTicketWithAttachment("PROD"," Test Case : " +
 //                            iTestResult.getMethod().getMethodName() +
