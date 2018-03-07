@@ -43,6 +43,7 @@ public class HeaderAutorizedUser extends AbstractPage {
     }
 
     public HomePage clickLogoIcon() {
+        LOGO_ICON.waitForElementToBeClickable(3);
         LOGO_ICON.click();
         return new HomePage();
     }
