@@ -12,10 +12,7 @@ import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
 
-/**
- * Header for usera who do not autorized on web-site
- */
-public class HeaderNotAutorizedUser extends AbstractPage {
+public class HeaderNotAutorizedUser extends AbstractPage implements Header {
     HomePage homePage;
 
     private final Button REGISTER_BUTTON = new Button(By.cssSelector(".btn-registration-top"));

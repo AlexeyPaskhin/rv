@@ -18,7 +18,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     private Button CARD_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='1']"));
     private Button QIWI_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='6']"));
     private Button YANDEX_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='3']"));
-    List<WebElement> PAYMENT_METHODS = new Button(By.xpath("//div[@class='widget deposit_widget']")).getAllElements();
+    List<WebElement> PAYMENT_METHODS = new Button(By.xpath("//div[@class='widget deposit_widget']")).getAllWebElements();
 
     private InputBox CARD_NUMBER_INPUT_FIELD = new InputBox(By.xpath("//input[@name='card_number']"));
     private InputBox CARD_HOLDER_INPUT_FIELD = new InputBox(By.xpath("//input[@id='card_holder']"));

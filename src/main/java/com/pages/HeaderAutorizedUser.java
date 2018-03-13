@@ -6,9 +6,11 @@ import com.Elements.Frame;
 import com.Elements.Panel;
 import com.popups.CashBoxPopup;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.*;
 
-public class HeaderAutorizedUser extends AbstractPage {
+@Getter
+public class HeaderAutorizedUser extends AbstractPage implements Header {
 
     private final Panel USER_PANE = new Panel(By.xpath("//div[@class='top-user-zone']"));
     private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));

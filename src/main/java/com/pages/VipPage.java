@@ -1,17 +1,20 @@
 package com.pages;
 
-/**
- * VIP page - /vip
- */
+
+import com.utils.CustomDataProvider;
+
 public class VipPage extends AbstractPage {
+    String link = provider.getBasicURL() + "vip";
+
+    /**
+     * VIP page - /vip
+     */
+
     private final String VIP_PAGE_TITLE = "VIP-клуб в «Русском Вулкане»";
 
     public boolean isVipPageOpened() {
-        if(this.getTitle().equals(VIP_PAGE_TITLE)){
-            return true;
-        } else {
-            return false;
-        }
-    }
+        return this.getTitle().equals(VIP_PAGE_TITLE);
 
+
+    }
 }

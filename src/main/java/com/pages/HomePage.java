@@ -26,6 +26,11 @@ public class HomePage extends AbstractPage {
         return new HeaderAutorizedUser();
     }
 
+    public Header getHeader(){
+        if (getAuthorizedHeader().getCASH_BOX_BUTTON().isPresent()) return getAuthorizedHeader();
+        else return getNotAuthorizedHeader();
+    }
+
     public GiftPopup getGiftPopup() {
         return GIFT_POPUP;
     }

@@ -17,7 +17,7 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
     private Button CARD_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='1']"));
     private Button QIWI_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='6']"));
     private Button YANDEX_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='3']"));
-    List<WebElement> PAYMENT_METHODS = new Button(By.xpath("//div[@class='widget payout_widget ']")).getAllElements();
+    List<WebElement> PAYMENT_METHODS = new Button(By.xpath("//div[@class='widget payout_widget ']")).getAllWebElements();
 
     private InputBox CARD_WITHDRAWAL_SUM_INPUT_FIELD = new InputBox(By.xpath("//input[@class='zf custom_amount']"));
     private InputBox PHONE_NUMBER_INPUT_FIELD = new InputBox(By.xpath("//input[@id='billing_phone']"));
