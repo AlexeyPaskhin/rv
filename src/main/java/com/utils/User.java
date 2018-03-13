@@ -58,5 +58,7 @@ public class User {
         return pass + "InvalidPasswordText";
     }
 
-    public String getInvalidLogin() { return "invalidLogin"; }
+    public String getInvalidLogin() {
+        return "invalidLogin";
+    }
 }

@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -34,6 +35,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     private Button OKAY_BUTTON = new Button(By.xpath("//div[@class='payment_message success']//button[@class='pretty_button']"));
     private Button QUICK_PAYMENT = new Button(By.xpath("//li[@class='zf-option zf-selected']"));
 
+    @Step
     public List<WebElement> checkPaymentsMethodInDepositFrame() {
         List<WebElement> BASIC_PAYMENT_METHODS = Arrays
                 .asList(CARD_PAYMENT_BUTTON.slaveElement(), QIWI_PAYMENT_BUTTON.slaveElement(), YANDEX_PAYMENT_BUTTON.slaveElement());
@@ -46,16 +48,19 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
         return response;
     }
 
+    @Step
     public boolean checkDepositCardIsSaved() {
         QUICK_PAYMENT.waitForElementToBePresent(5);
         return QUICK_PAYMENT.isPresent();
     }
 
+    @Step
     public CashBoxDepositFrame clickCardPaymentMethod() {
         CARD_PAYMENT_BUTTON.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame typeCardNumber(String cardNumber) {
         for (int i = 0; i < cardNumber.length(); i++) {
             char symbol = cardNumber.charAt(i);
@@ -64,72 +69,86 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame typeCardHolder(String cardHolder) {
         CARD_HOLDER_INPUT_FIELD.fillIn(cardHolder);
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame typeCardCVV(String cvv) {
         CARD_CVV_INPUT_FIELD.fillIn(cvv);
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame typeCardStoredCVV(String cvv) {
         CARD_CVV_STORED_INPUT_FIELD.fillIn(cvv);
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame typeCardDepositSum(String depositSum) {
         CARD_DEPOSIT_SUM_INPUT_FIELD.fillIn(depositSum);
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOn500RubButton() {
         CARD_DEPOSIT_500_RUB.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOn1000RubButton() {
         CARD_DEPOSIT_1000_RUB.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOn3000RubButton() {
         CARD_DEPOSIT_3000_RUB.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOn10000RubButton() {
         CARD_DEPOSIT_10000_RUB.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOn30000RubButton() {
         CARD_DEPOSIT_30000_RUB.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOnInputButton() {
         INPUT_SUM_RADIOBUTTON.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame cleanDepositInputField() {
         CARD_DEPOSIT_SUM_INPUT_FIELD.cleaIn();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOnConfirmButton() {
         CONFIRM_BUTTON.click();
         return this;
     }
 
+    @Step
     public CashBoxDepositFrame clickOnOkayButton() {
         OKAY_BUTTON.waitForElementToBeClickable(8);
         OKAY_BUTTON.click();
         return this;
     }
 
+    @Step
     public boolean checkAvailableConfirmButton() {
         return CONFIRM_BUTTON.isEnabled();
     }

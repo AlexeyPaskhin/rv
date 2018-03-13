@@ -5,6 +5,7 @@ import com.Elements.Element;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
 import com.pages.HomePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 /**
@@ -20,18 +21,21 @@ public class ResetPasswordPopUp extends AbstractPage {
     // Validation error messages
     public static final Element EMAIL_FIELD_ERROR = new Element(By.xpath("//*[@id=\"popup_restore-password\"]//span[@class='errors']"));
 
+    @Step
     public ResetPasswordPopUp fillEmailField(String email) {
         ENTER_EMAIL.cleaIn();
         ENTER_EMAIL.fillIn(email);
         return this;
     }
 
+    @Step
     public ZayavkaPrinyataPopUp pressButtonVosstanovit() {
         RESET_BUTTON.click();
         waitForPageToLoad();
         return new ZayavkaPrinyataPopUp();
     }
 
+    @Step
     public HomePage pressButtonClosepopUp() {
         CLOSE_BUTTON.click();
         return new HomePage();

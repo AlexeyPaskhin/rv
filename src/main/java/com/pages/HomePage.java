@@ -7,6 +7,7 @@ import com.Elements.Panel;
 import com.popups.CashBoxPopup;
 import com.popups.GiftPopup;
 import com.popups.RedHelperFrame;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class HomePage extends AbstractPage {
@@ -34,6 +35,7 @@ public class HomePage extends AbstractPage {
         PRELOADER.waitForElementToBeInvisible(5);
     }
 
+    @Step
     public RedHelperFrame openRedHelperFrame() {
         if (RED_HELPER_BUTTON.isVisible()) {
             RED_HELPER_BUTTON.click();
@@ -44,10 +46,12 @@ public class HomePage extends AbstractPage {
         return new RedHelperFrame();
     }
 
+    @Step
     public boolean isHomePageOpenedForNotAuthorized() {
         return this.getTitle().equals(HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER);
     }
 
+    @Step
     public boolean isHomePageOpenedForAuthorizedUser() {
         return this.getTitle().equals(HOME_PAGE_TITLE_FOR_AUTHORIZED_USER);
     }

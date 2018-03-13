@@ -1,8 +1,5 @@
 package com.utils;
 
-/**
- * Created by ai on 2018-01-19.
- */
 public class Card {
     private String number;
     private String holder;
