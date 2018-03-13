@@ -98,9 +98,6 @@ public class Element{
         executeJS("arguments[0].scrollIntoView(true);");
     }
 
-
-
-
     public synchronized   <T extends Element>  List<T> getAllElements() {
         List<WebElement> elements = getDriver().findElements(by);
         List<T> customElements = new ArrayList<>();
@@ -189,7 +186,6 @@ This method we have in case that method above will produce errors
         Actions doubleClick = new Actions(getDriver());
         doubleClick.doubleClick(slaveElement()).build().perform();
     }
-
 
     public void clickUntilDisappeared() {
         click();

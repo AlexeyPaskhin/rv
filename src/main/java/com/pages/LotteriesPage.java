@@ -22,6 +22,7 @@ public class LotteriesPage extends AbstractPage {
 
     @Nullable
     private Panel CURRENT_LOTTERY = new Panel(By.xpath("//div[@class='lottery_item cf']"));
+
     @Nullable
     private Button LotteryImage = CURRENT_LOTTERY.getButtonByXpath("//a");
 

@@ -48,7 +48,6 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
         return response;
     }
 
-    @Step
     public boolean checkDepositCardIsSaved() {
         QUICK_PAYMENT.waitForElementToBePresent(5);
         return QUICK_PAYMENT.isPresent();
@@ -148,7 +147,6 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
         return this;
     }
 
-    @Step
     public boolean checkAvailableConfirmButton() {
         return CONFIRM_BUTTON.isEnabled();
     }

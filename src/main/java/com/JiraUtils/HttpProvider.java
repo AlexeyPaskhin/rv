@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 
 public class HttpProvider {
-
     private final static Logger logger = LogManager.getLogger(HttpProvider.class);
     private String authHeader;
     private HttpClient httpclient;
@@ -62,7 +61,6 @@ public class HttpProvider {
     public HttpResponse executePost(HttpPost request) {
 
         try {
-
             HttpResponse response = httpclient.execute(request);
             // System.out.println("EXECUTION METHOD"+EntityUtils.toString(response.getEntity(), "UTF-8"));
             //
