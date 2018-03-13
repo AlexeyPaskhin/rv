@@ -8,6 +8,5 @@ public class ProfilePage extends AbstractPage {
 
     public boolean isProfilePageOpened() {
        return this.getTitle().equals(PROFILE_PAGE_TITLE);
-
     }
 }

@@ -9,7 +9,6 @@ public class NewsPage extends AbstractPage {
     private final Panel NEWS_PANEL = new Panel(By.xpath("//li[@class='promo-list__item-row']"));
     private final Panel PAGINATION = new Panel(By.xpath("//ul[@class='pagination-buttons']"));
 
-
     public boolean BannerExists() {
         return BANNER.isPresent();
     }
@@ -21,5 +20,4 @@ public class NewsPage extends AbstractPage {
     public boolean PaginationExists() {
         return PAGINATION.isPresent();
     }
-
 }

@@ -7,10 +7,15 @@ import com.Elements.RadioButton;
 
 public interface RegistrationFormType {
     InputBox getEmailInput();
+
     InputBox getPasswordInput();
+
     RadioButton getCurrencyRubRadio();
+
     RadioButton getCurrencyUsdRadio();
+
     Checkbox getAgreeCheckbox();
+
     Button getRegisterButton();
 
 }

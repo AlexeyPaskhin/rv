@@ -35,7 +35,6 @@ public class Element{
         return element;
     }
 
-
     public void sendKeys(CharSequence sequence) {
         sendKeys(slaveElement(), sequence);
     }

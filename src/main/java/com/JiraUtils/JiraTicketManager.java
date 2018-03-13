@@ -35,9 +35,9 @@ public class JiraTicketManager {
         fieldsNode.put("issuetype", issueNode);
         rootNode.put("fields", fieldsNode);
 
-        HttpResponse response=  httpProvider.executePost(httpProvider.createPostRequestJSON("https://playtini.atlassian.net/rest/api/2/issue", rootNode.toString()));
+        HttpResponse response = httpProvider.executePost(httpProvider.createPostRequestJSON("https://playtini.atlassian.net/rest/api/2/issue", rootNode.toString()));
         try {
-            System.out.println("create ticket method" +EntityUtils.toString(response.getEntity(), "UTF-8"));
+            System.out.println("create ticket method" + EntityUtils.toString(response.getEntity(), "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class JiraTicketManager {
         httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/PROD-5787/attachments", "C:\\Users\\ai\\Documents\\autotest-rv\\2157eb815aba5c193f5d1df8e2793fdc.mp4"));
     }
 
-    public void createTicketWithAttachment(String projectKey, String summary, String description, String issueType, String pathToAttachment){
+    public void createTicketWithAttachment(String projectKey, String summary, String description, String issueType, String pathToAttachment) {
 
         HttpResponse response;
         String issueKey;
@@ -72,27 +72,27 @@ public class JiraTicketManager {
 
         System.out.println(pathToAttachment);
 
-    try{
-     response  = httpProvider.executePost(httpProvider.createPostRequestJSON("https://playtini.atlassian.net/rest/api/2/issue", rootNode.toString()));
-     issueKey =getIssueKey(response);
-        EntityUtils.consume(response.getEntity());
-        if(issueKey!=null) {
-            response = httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/" + issueKey + "/attachments", pathToAttachment));
+        try {
+            response = httpProvider.executePost(httpProvider.createPostRequestJSON("https://playtini.atlassian.net/rest/api/2/issue", rootNode.toString()));
+            issueKey = getIssueKey(response);
             EntityUtils.consume(response.getEntity());
-        }
-        else{ logger.error("Ticket was not created");
+            if (issueKey != null) {
+                response = httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/" + issueKey + "/attachments", pathToAttachment));
+                EntityUtils.consume(response.getEntity());
+            } else {
+                logger.error("Ticket was not created");
 
-        }
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private String getIssueKey(HttpResponse httpResponse){
+    private String getIssueKey(HttpResponse httpResponse) {
         try {
             JsonNode rootNode = new ObjectMapper().readTree(new StringReader(EntityUtils.toString(httpResponse.getEntity())));
-           return rootNode.get("key").asText();
+            return rootNode.get("key").asText();
         } catch (IOException e) {
             return null;
         }

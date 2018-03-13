@@ -19,6 +19,7 @@ public class FBregisterPage extends AbstractPage implements SocialFrame {
 
     public FBregisterPage() {
     }
+
     @Override
     public SocialFrame setEmail(String email) {
         EMAIL_INPUT.fillIn(email);
@@ -40,7 +41,7 @@ public class FBregisterPage extends AbstractPage implements SocialFrame {
 
     }
 
-    public ConfirmEmailPopup switchToConfirmEmail(){
+    public ConfirmEmailPopup switchToConfirmEmail() {
         swithToWindow(parentWindow);
         return new ConfirmEmailPopup();
     }

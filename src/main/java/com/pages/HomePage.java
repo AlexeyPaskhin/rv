@@ -8,8 +8,10 @@ import com.popups.CashBoxPopup;
 import com.popups.GiftPopup;
 import com.popups.RedHelperFrame;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
+@Getter
 public class HomePage extends AbstractPage {
     private final Panel CONTENT_PANE = new Panel(By.xpath("//div[@class='wrap cf']"));
     private final GiftPopup GIFT_POPUP = new GiftPopup();
@@ -26,7 +28,7 @@ public class HomePage extends AbstractPage {
         return new HeaderAutorizedUser();
     }
 
-    public Header getHeader(){
+    public Header getHeader() {
         if (getAuthorizedHeader().getCASH_BOX_BUTTON().isPresent()) return getAuthorizedHeader();
         else return getNotAuthorizedHeader();
     }

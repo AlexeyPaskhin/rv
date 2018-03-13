@@ -5,7 +5,7 @@ public class Card {
     private String holder;
     private String cvv;
 
-    public Card(){
+    public Card() {
     }
 
     public Card(Builder builder) {
@@ -14,11 +14,17 @@ public class Card {
         this.cvv = builder.cvv;
     }
 
-    public String getNumber() { return number; }
+    public String getNumber() {
+        return number;
+    }
 
-    public String getHolder() { return holder; }
+    public String getHolder() {
+        return holder;
+    }
 
-    public String getCvv() { return cvv; }
+    public String getCvv() {
+        return cvv;
+    }
 
     public static class Builder {
         private String number;

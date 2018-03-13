@@ -6,7 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
 public class WebDriverEventHandler implements WebDriverEventListener {
-   private final static Logger logger = LogManager.getLogger(WebDriverEventHandler.class);
+    private final static Logger logger = LogManager.getLogger(WebDriverEventHandler.class);
 
     // Element initilazes in beforeFind by method, and we can use it  ;
     private By lastBy;
@@ -30,7 +30,7 @@ public class WebDriverEventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
-        logger.info("open page: "+s);
+        logger.info("open page: " + s);
     }
 
     @Override

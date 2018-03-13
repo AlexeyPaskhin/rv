@@ -10,7 +10,6 @@ public interface Header {
     Button NEWS = new Button(By.xpath("//a[@href='/news']"));
     Button VIP_CLUB = new Button(By.xpath("//a[@href='/vip']"));
 
-
     default GamesPage clickGamesLink() {
         GAMES.click();
         return new GamesPage();
