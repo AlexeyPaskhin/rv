@@ -6,7 +6,6 @@ import com.Elements.Panel;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-
 import javax.annotation.Nullable;
 import java.util.List;
 

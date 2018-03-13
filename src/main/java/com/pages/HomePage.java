@@ -1,10 +1,7 @@
 package com.pages;
 
 import com.Elements.Button;
-import com.Elements.Element;
-import com.Elements.Frame;
 import com.Elements.Panel;
-import com.popups.CashBoxPopup;
 import com.popups.GiftPopup;
 import com.popups.RedHelperFrame;
 import io.qameta.allure.Step;
