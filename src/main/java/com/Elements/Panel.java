@@ -9,8 +9,11 @@ public class Panel extends Element {
     }
 
 
-
-
+    /**
+     *
+     * @param xpath xpath string
+     * @return new SubElement from parent element
+     */
 
     public Button getButtonByXpath(String xpath) {
         String fullXpath = getXpath(super.by) + xpath;
@@ -23,16 +26,12 @@ public class Panel extends Element {
     }
 
 
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Do not use this
+     * @param xpath
+     * @param <T>
+     * @return
+     */
 
     private  <T extends Element> T getElement(String xpath) {
         //TODO: Imeplement generic type of object

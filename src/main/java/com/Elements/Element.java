@@ -14,6 +14,12 @@ import java.util.concurrent.TimeUnit;
 import static com.utils.DriverManager.getDriver;
 import static com.utils.DriverManager.setImplicity;
 
+/**
+ * Main Element with all main  methods which are available for all elements
+ * If u create any custom element please extend it from this
+
+
+ */
 public class Element{
 
    private final static Logger logger = LogManager.getLogger(Element.class);
@@ -27,6 +33,12 @@ public class Element{
         return by;
     }
 
+
+    /**
+     * This method allows you to wotk with any WebDriver native methods
+     * Used for creating custom Methods and waiters
+     * @return WebElement from By object
+     */
     public WebElement slaveElement() {
         WebElement element;
         logger.info("Trying to find element " + by);
@@ -39,6 +51,13 @@ public class Element{
     public void sendKeys(CharSequence sequence) {
         sendKeys(slaveElement(), sequence);
     }
+
+    /**
+     * private method for sendkeys with waiters and ignorig exception
+     * DO NOT USE IT GLOBALLY, USE {@link  #sendKeys(CharSequence)} method
+     * @param element
+     * @param sequence
+     */
 
     private void sendKeys(WebElement element, CharSequence sequence) {
         new FluentWait<>(getDriver())
@@ -62,6 +81,11 @@ public class Element{
                 .until(driver -> slaveElement().getText());
     }
 
+    /**
+     * private method for global click with waiters and ignoring exceptions
+     * DON'T USE THIS GLOBALLY, PLEASE USE {@link #click()} method
+     * @param element
+     */
     private void click(WebElement element) {
         new FluentWait<>(getDriver())
                 .withTimeout(20, TimeUnit.SECONDS)
@@ -99,7 +123,13 @@ public class Element{
         executeJS("arguments[0].scrollIntoView(true);");
     }
 
-
+    /**
+     * Method gets all elements from the page with current element locator
+     * Each element created via reflection getClass from current object,
+     * get constructor and then creates new instance of current object
+     * Can throw reflection exceptions. If it will be then you should use same method which commented after current
+     * @return returns List of Elements with current locator
+     */
 
 
     public synchronized   <T extends Element>  List<T> getAllElements() {
@@ -144,6 +174,16 @@ This method we have in case that method above will produce errors
 //        return customElements;
 //    }
 
+    /**
+     * Use this if u want to create sub element from element
+     * Example : Button button = anotherButton.getElementByXpath(xpath);
+     * ONLY USE IF U WANT TO GET ELEMENT OF THE SAME TYPE
+     * Otherwise see next method as example :
+     * @see Panel#getPanelByXpath(String)
+     * @param xpath
+     * @param <T>
+     * @return sub element from current element
+     */
 
 
     public <T extends Element> T getElementByXpath(String xpath) {
@@ -157,6 +197,12 @@ This method we have in case that method above will produce errors
         }
         return element;
     }
+
+    /**
+     * Get's Xpath from By object
+     * @param by Object of By type which xpath you want to get
+     * @return string with xpath from By param
+     */
 
     String getXpath(By by) {
         String stringOfBy = by.toString();
@@ -191,6 +237,11 @@ This method we have in case that method above will produce errors
         doubleClick.doubleClick(slaveElement()).build().perform();
     }
 
+    /**
+     * MEthod created for "Register" button which not clickable after first click
+     * It click on element, waits until it will be invisible, if element not invisible click one more time
+     * Catching StaleElementReferenceException because we can try to click in moment when page loads
+     */
 
     public void clickUntilDisappeared() {
         click();
@@ -203,6 +254,10 @@ This method we have in case that method above will produce errors
             }
         }
     }
+
+    /**
+     * Same as {@link #click()} but via browser Javascript
+     */
 
     public void clickWithJS() {
         executeJS("arguments[0].click();");

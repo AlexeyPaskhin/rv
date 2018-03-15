@@ -35,6 +35,13 @@ public class HttpProvider {
 
     protected HttpClient setHeader;
 
+    /**
+     * Creates post request with content type JSON
+     * @param uri URL for POST endpoint
+     * @param body JSON body
+     * @return HttpPOST method
+     */
+
     public HttpPost createPostRequestJSON(String uri, String body) {
         HttpPost postMethod = new HttpPost(uri);
         postMethod.setHeader(HttpHeaders.AUTHORIZATION, authHeader);
@@ -45,6 +52,14 @@ public class HttpProvider {
 
         return postMethod;
     }
+
+    /**
+     * post Request with file content type
+     * ATTENTION: THIS METHOD CREATED FOR JIRA API YOU NEED TO REMOVE HEADER IF YOU WANT USE IT IN ANOTHE PLACE
+     * @param uri URL for POST endpoint
+     * @param PathToFile Path to file you want to upload
+     * @return
+     */
 
     public HttpPost createPostRequestFile(String uri, String PathToFile) {
         HttpPost postMethod = new HttpPost(uri);
@@ -59,6 +74,11 @@ public class HttpProvider {
         return postMethod;
     }
 
+    /**
+     * Send prepared post request
+     * @param request
+     * @return
+     */
     public HttpResponse executePost(HttpPost request) {
 
         try {
@@ -75,6 +95,11 @@ public class HttpProvider {
         return null;
     }
 
+    /**
+     * Setup credentials to each request in Base64
+     * @param login
+     * @param pass
+     */
     private void setCredentials(String login, String pass) {
         String auth = login + ":" + pass;
         byte[] encodedAuth = Base64.encodeBase64(

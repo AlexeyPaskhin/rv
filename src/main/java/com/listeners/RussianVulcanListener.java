@@ -30,6 +30,10 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
         logger.info("Test method " + iTestResult.getMethod().getMethodName() + " started");
     }
 
+    /**
+     * After test success copies success logs and clears log buffer
+     * @param iTestResult
+     */
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         logger.info("OK! Test " + iTestResult.getMethod().getMethodName() + " finished successfully");
