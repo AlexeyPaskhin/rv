@@ -28,13 +28,15 @@ public class DriverManager {
     private static final String EDGE = "EDGE";
     private static final String OPERA = "opera";
 
-    public static String BROWSER = System.getProperty("browser");
+    public static String BROWSER = System.getProperty("browser");  //maven config like -Dbrowser=chrome
+    // thread safe webdriver to avoid problems with multithreading and parallel running
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
 
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
         WebDriverEventListener events = new WebDriverEventHandler();
         WebDriver driver = null;
+        // if we can't read browser from console we use browser from config
         if (BROWSER == null) {
             BROWSER = browser;
         }
@@ -48,7 +50,7 @@ public class DriverManager {
             cap.setVersion("63.0");
             cap.setCapability("enableVNC", true);
             cap.setCapability("enableVideo", true);
-
+            //event firing driver is an implementation of WebDriverEventHandler from logger package
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
@@ -76,7 +78,6 @@ public class DriverManager {
             if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
             //     driver.manage().window().maximize();
         }
-        System.out.println("THREAD IS" + Thread.currentThread().getId());
         return driver;
     }
 

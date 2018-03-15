@@ -6,7 +6,11 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.testng.Reporter;
 
 public class TestNGReportAppender extends AppenderSkeleton {
-
+    /**
+     *  Standart report appender
+     *
+     * @param event
+     */
     @Override
     protected void append(LoggingEvent event) {
         Reporter.log(eventToString(event));

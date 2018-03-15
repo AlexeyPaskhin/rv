@@ -6,6 +6,9 @@ import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import org.openqa.selenium.By;
 
+/**
+ * Class with locators for registration form with choose bonus button( like landing 12 )
+ */
 public class LandingWithChooseBonusType implements RegistrationFormType {
 
     private InputBox EMAIL_INPUT = new InputBox(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@name='email']"));

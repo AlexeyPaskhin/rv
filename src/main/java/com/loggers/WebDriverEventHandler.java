@@ -5,6 +5,11 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
+/**
+ * Implementation of WebDriverEventListener allows us to execute any code before or after any webdriver method
+ *
+ */
+
 public class WebDriverEventHandler implements WebDriverEventListener {
     private final static Logger logger = LogManager.getLogger(WebDriverEventHandler.class);
 

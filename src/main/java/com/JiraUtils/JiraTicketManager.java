@@ -51,7 +51,15 @@ public class JiraTicketManager {
         httpProvider.executePost(httpProvider.createPostRequestFile("https://playtini.atlassian.net/rest/api/2/issue/PROD-5787/attachments", "C:\\Users\\ai\\Documents\\autotest-rv\\2157eb815aba5c193f5d1df8e2793fdc.mp4"));
     }
 
-    public void createTicketWithAttachment(String projectKey, String summary, String description, String issueType, String pathToAttachment) {
+    /**
+     * Creates ticket in JIRA in jira
+     * @param projectKey Key to project E.G PROD
+     * @param summary  Issue title
+     * @param description Issue description
+     * @param issueType issue type ( e.g Bug, SubBug, Story)
+     * @param pathToAttachment path to attachment
+     */
+    public void createTicketWithAttachment(String projectKey, String summary, String description, String issueType, String pathToAttachment){
 
         HttpResponse response;
         String issueKey;
