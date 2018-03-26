@@ -70,6 +70,7 @@ public class DriverManager {
             System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
             OperaOptions oo = new OperaOptions();
             oo.addArguments("no-sandbox");
+            // TODO: 2018-03-23  Add correct path here
             oo.setBinary("C:\\Users\\a.kvasko\\AppData\\Local\\Programs\\Opera\\49.0.2725.64\\opera.exe");
             driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
         }
