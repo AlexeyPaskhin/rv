@@ -5,8 +5,10 @@ import com.Elements.Element;
 import com.Elements.Frame;
 import com.Elements.Panel;
 import com.popups.CashBoxPopup;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.*;
+
 @Getter
 public class HeaderAutorizedUser extends AbstractPage implements Header {
 
@@ -36,6 +38,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
         return sum;
     }
 
+    @Step
     public void waitForBalanceChange(double oldBalance) {
         for (int i = 0; oldBalance == getUserBalance() && i < 10; i++) {
             refreshPage();
@@ -43,31 +46,38 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
         }
     }
 
+    @Step
     public HomePage clickLogoIcon() {
+        LOGO_ICON.waitForElementToBeClickable(3);
         LOGO_ICON.click();
         return new HomePage();
     }
 
+    @Step
     public VipPage clickVipStatusIcon() {
         VIP_ICON.click();
         return new VipPage();
     }
 
+    @Step
     public ProfilePage clickUserName() {
         USER_NAME_LINK.click();
         return new ProfilePage();
     }
 
+    @Step
     public NotificationsPage clickNotificationsIcon() {
         NOTIFICATIONS_ICON.click();
         return new NotificationsPage();
     }
 
+    @Step
     public BonusesPage clickGiftIcon() {
         GIFT_ICON.click();
         return new BonusesPage();
     }
 
+    @Step
     public CashBoxPopup pressCashBoxButton() {
         CASH_BOX_BUTTON.waitForElementToBeVisible(5);
         BLANK_IFRAME.waitForElementToBeInvisible(5);
@@ -75,6 +85,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
         return new CashBoxPopup();
     }
 
+    @Step
     public HomePage clickExit() {
         LOG_OUT.click();
         return new HomePage();

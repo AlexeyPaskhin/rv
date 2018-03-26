@@ -39,7 +39,7 @@ public class YARegisterPage extends AbstractPage implements SocialFrame {
         return new ConfirmEmailPopup();
     }
 
-    public ConfirmEmailPopup switchToConfirmEmail(){
+    public ConfirmEmailPopup switchToConfirmEmail() {
         swithToWindow(parentWindow);
         return new ConfirmEmailPopup();
     }

@@ -20,7 +20,7 @@ public class LandingWithChooseBonusType implements RegistrationFormType {
 
     @Override
     public InputBox getEmailInput() {
-        return  this.EMAIL_INPUT;
+        return this.EMAIL_INPUT;
     }
 
     @Override

@@ -23,6 +23,4 @@ public class RulesPage extends AbstractPage {
         H1_TEXT.waitForElementToBeVisible(5);
         return H1_TEXT.isVisible();
     }
-
-
 }

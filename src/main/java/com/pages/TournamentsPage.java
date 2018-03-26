@@ -8,7 +8,6 @@ public class TournamentsPage extends AbstractPage {
     private final Panel TOURNAMENTS_PANE = new Panel(By.xpath("//div[@class='tournaments-list__item cf']"));
     private final Panel PAGINATION = new Panel(By.xpath("//ul[@class='pagination-buttons']"));
 
-
     public boolean BannerExists() {
         return BANNER.isPresent();
     }

@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.InputBox;
 import com.Elements.Panel;
 import com.pages.AbstractPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -31,6 +32,7 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
         return this;
     }
 
+    @Step
     public List<WebElement> checkPaymentsMethodInWithdrawalFrame() {
         List<WebElement> BASIC_PAYMENT_METHODS = Arrays
                 .asList(CARD_PAYMENT_BUTTON.slaveElement(), QIWI_PAYMENT_BUTTON.slaveElement(), YANDEX_PAYMENT_BUTTON.slaveElement());
@@ -43,16 +45,19 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
         return response;
     }
 
+    @Step
     public CashBoxWithdrawalFrame typeCardWithdrawalSum(String withdrawalSum) {
         CARD_WITHDRAWAL_SUM_INPUT_FIELD.fillIn(withdrawalSum);
         return this;
     }
 
+    @Step
     public CashBoxWithdrawalFrame typePhoneNumberInCardDepositFrame(String phoneNumber) {
         PHONE_NUMBER_INPUT_FIELD.fillIn(phoneNumber);
         return this;
     }
 
+    @Step
     public CashBoxWithdrawalFrame clickGetButton() {
         GET_BUTTON.click();
         return this;
@@ -62,6 +67,7 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
         return INACTIVE_GET_BUTTON.isEnabled();
     }
 
+    @Step
     public CashBoxWithdrawalFrame clickOnOkayButton() {
         OKAY_BUTTON.waitForElementToBeClickable(8);
         OKAY_BUTTON.click();

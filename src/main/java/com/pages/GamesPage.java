@@ -25,11 +25,8 @@ public class GamesPage extends AbstractPage {
 //    private final Button IGROSOFT_FILTER_BUTTON;
 //    private final Button TABLES_FILTER_BUTTON;
 
-
     private Panel MY_GAMES;
     // private final Panel TEXT_BLOCK= new Panel(By.xpath("//div[@data-tab-id='popular']/div[@class='games-block']"));
-
-
 
     public List<Button> getAllPopularGames(){
         return POPULAR_GAME.getAllElements();

@@ -20,6 +20,4 @@ public abstract class AbstractPage implements IAbstractPage {
         }
         waitForPageToLoad();
     }
-
-
 }

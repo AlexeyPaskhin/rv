@@ -2,6 +2,7 @@ package com.loggers;
 
 import org.apache.log4j.Layout;
 import org.apache.log4j.WriterAppender;
+
 import java.io.StringWriter;
 
 /**

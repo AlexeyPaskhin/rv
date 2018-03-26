@@ -6,7 +6,6 @@ import com.Elements.Panel;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -23,14 +22,13 @@ public class LotteriesPage extends AbstractPage {
 
     @Nullable
     private Panel CURRENT_LOTTERY = new Panel(By.xpath("//div[@class='lottery_item cf']"));
+
     @Nullable
     private Button LotteryImage = CURRENT_LOTTERY.getButtonByXpath("//a");
-
 
     public List<Panel> getAllLotteries() {
         return LOTTERIES.getAllElements();
     }
-
 
     public LotteriesPage getLotteryByIdendex(int index) {
         List<Panel> lotteries = getAllLotteries();
@@ -40,7 +38,6 @@ public class LotteriesPage extends AbstractPage {
         return this;
     }
 
-
     public String getLotteryLink() {
         if (getCURRENT_LOTTERY() != null) {
             return getLotteryImage().getAttribute("href");
@@ -49,7 +46,6 @@ public class LotteriesPage extends AbstractPage {
     }
 
     public String getLotteryLink(int index) {
-
         return null;
     }
 
@@ -72,6 +68,4 @@ public class LotteriesPage extends AbstractPage {
     public boolean paginationExists() {
         return PAGINATION_PANEL.isPresent();
     }
-
-
 }
