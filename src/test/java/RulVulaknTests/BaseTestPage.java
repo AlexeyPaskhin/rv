@@ -8,7 +8,9 @@ import com.pages.HomePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.SessionNotCreatedException;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -27,7 +29,6 @@ public class BaseTestPage {
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
-        customDataProvider = new CustomDataProvider();
         try {
             manager = new SSHManager();
         } catch (IOException e) {
@@ -37,30 +38,42 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
+        boolean isLotteryEnabled=false;
+
+        customDataProvider = new CustomDataProvider();
+
+        // if "RemoveUser" annotation is present we rename current user with random string
         if (method.isAnnotationPresent(RemoveUser.class)) {
             if (o[0] instanceof User) {
                 User us = (User) o[0];
                 String oldName = us.getLogin();
-                String newName = "autotest+" + RandomGenerate.randomString(3, 10) + "@playtini.ua";
+                String newName = "autotest+" + RandomGenerate.randomString(20) + "@playtini.ua";
                 manager.updateUserForSocial(oldName, newName);
             }
         }
-        if (o[0] instanceof User) {
-            User us = (User) o[0];
-            logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
+        // if test get user from data provider we log user login and pass
+        if (o.length > 0) {
+            if (o[0] instanceof User) {
+                User us = (User) o[0];
+                logger.info("User LogIn :" + us.getLogin() + " With length: " + us.getLogin().length() + " Password is : " + us.getPass());
+            }
         }
         try {
-            setupDriver(customDataProvider.getBrowser());
+            WebDriver driver = setupDriver(customDataProvider.getBrowser());
+            attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
+        // if landing page annotation is present then open landing page (default 1) else open homepage
         if (method.isAnnotationPresent(LandingPage.class)) {
             String pageNumber = o[1].toString();
             getDriver().get(customDataProvider.getBasicURL() + "lp/" + pageNumber);
         } else {
             getDriver().get(customDataProvider.getBasicURL());
         }
+        //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
+        Cookie ck = new Cookie("lottery_reminder_shown","true");
+        getDriver().manage().addCookie(ck);
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
         headerAutorizedUser = new HeaderAutorizedUser();
@@ -68,9 +81,12 @@ public class BaseTestPage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(Method method, Object[] o) {
-        if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
-            User us = (User) o[0];
-            manager.getUserID(us.getLogin());
+        //Getting current user ID in database
+        if (o.length > 0) {
+            if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+                User us = (User) o[0];
+                manager.getUserID(us.getLogin());
+            }
         }
         getDriver().manage().deleteAllCookies();
         getDriver().close();
@@ -81,12 +97,8 @@ public class BaseTestPage {
             } catch (SessionNotCreatedException e) {
             }
         }
+        else {getDriver().quit();}
 
-
-        if (!DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-
-            getDriver().quit();
-        }
     }
 
     @AfterClass()

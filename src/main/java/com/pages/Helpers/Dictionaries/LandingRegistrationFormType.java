@@ -6,6 +6,9 @@ import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import org.openqa.selenium.By;
 
+/**
+ * Class with locators for registration form with button register ( like landing 1 , 2 )
+ */
 public class LandingRegistrationFormType implements RegistrationFormType {
 
     private InputBox EMAIL_INPUT = new InputBox(By.id("register-landing-form-login"));

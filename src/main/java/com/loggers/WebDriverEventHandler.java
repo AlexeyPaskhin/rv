@@ -5,8 +5,13 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.events.WebDriverEventListener;
 
+/**
+ * Implementation of WebDriverEventListener allows us to execute any code before or after any webdriver method
+ *
+ */
+
 public class WebDriverEventHandler implements WebDriverEventListener {
-   private final static Logger logger = LogManager.getLogger(WebDriverEventHandler.class);
+    private final static Logger logger = LogManager.getLogger(WebDriverEventHandler.class);
 
     // Element initilazes in beforeFind by method, and we can use it  ;
     private By lastBy;
@@ -30,7 +35,7 @@ public class WebDriverEventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
-        logger.info("open page: "+s);
+        logger.info("open page: " + s);
     }
 
     @Override

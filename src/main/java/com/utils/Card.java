@@ -1,14 +1,11 @@
 package com.utils;
 
-/**
- * Created by ai on 2018-01-19.
- */
 public class Card {
     private String number;
     private String holder;
     private String cvv;
 
-    public Card(){
+    public Card() {
     }
 
     public Card(Builder builder) {
@@ -17,11 +14,17 @@ public class Card {
         this.cvv = builder.cvv;
     }
 
-    public String getNumber() { return number; }
+    public String getNumber() {
+        return number;
+    }
 
-    public String getHolder() { return holder; }
+    public String getHolder() {
+        return holder;
+    }
 
-    public String getCvv() { return cvv; }
+    public String getCvv() {
+        return cvv;
+    }
 
     public static class Builder {
         private String number;

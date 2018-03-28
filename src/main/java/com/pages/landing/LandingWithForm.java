@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 
 public class LandingWithForm extends AbstractPage {
 
-@Step
+    @Step
     public FastRegister switchToRegistration() {
         return new FastRegister(new LandingWithFormType());
     }

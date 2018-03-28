@@ -5,6 +5,7 @@ import com.Elements.Element;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import com.pages.HomePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 /**
@@ -18,29 +19,33 @@ public class GiftPopup extends AbstractPage {
     private static final RadioButton ONE_HUNDRED_PERCENT_BONUS_GIFT = new RadioButton(By.xpath("//label[@for='gift_two_container']"));
     private static final RadioButton TEN_PERCENT_BONUS_GIFT = new RadioButton(By.xpath("//label[@for='gift_one_container']"));
 
+    @Step
     public HomePage clickWithdrawFromGift() {
         WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
 
+    @Step
     public GiftPopup check100PercentGift() {
         ONE_HUNDRED_PERCENT_BONUS_GIFT.check();
         return this;
     }
 
+    @Step
     public GiftPopup checkCashBackGift() {
         TEN_PERCENT_BONUS_GIFT.check();
         return this;
     }
 
+    @Step
     public HomePage clickButtonSaveGift() {
         SAVE_GIFT_BUTTON.click();
         return new HomePage();
     }
 
-    public HomePage withdrawFromGift(){
+    @Step
+    public HomePage withdrawFromGift() {
         WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
-
 }

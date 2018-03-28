@@ -21,6 +21,7 @@ public class SSHManager {
 
     public SSHManager() throws IOException {
         try {
+            // create connection to our console
             JSch jsch = new JSch();
             jsch.addIdentity(pathToKey);
             session = jsch.getSession("root", "144.76.43.170", 22);
@@ -37,14 +38,14 @@ public class SSHManager {
     private void executeQuery(String query) {
         if (session.isConnected()) {
             try {
-                channel = (ChannelExec) session.openChannel("exec");
-                channel.setCommand(query);
-                channel.connect();
-                BufferedReader in = new BufferedReader(new InputStreamReader(channel.getInputStream()));
+                channel = (ChannelExec) session.openChannel("exec"); //open c onsole
+                channel.setCommand(query); // set coomand in console whic we want to execute
+                channel.connect(); // in this moment command executing
+                BufferedReader in = new BufferedReader(new InputStreamReader(channel.getInputStream())); // reading responce from console
                 String msg = null;
 
                 while ((msg = in.readLine()) != null) {
-                    responce.add(msg);
+                    responce.add(msg); //concatinate response
                 }
                 channel.disconnect();
             } catch (JSchException e) {
@@ -58,7 +59,7 @@ public class SSHManager {
     }
 
     public void getUserID(String user) {
-
+//TODO: make this more clear and pretty
         executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"select id from players where email='" + user + "'\\G;\"");
         for (int i = 0; i < responce.size(); i++) {
             if (responce.get(i).matches("id: [0-9]{1,11}")) {
@@ -69,11 +70,13 @@ public class SSHManager {
     }
 
     public void updateUserForSocial(String oldName, String newName) {
+        //TODO: make this more clear and pretty
         executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"UPDATE players SET email='" + newName + "', login='" + newName + "', social_id = NULL, social_data = NULL," +
                 " 1gp_login = NULL, full_name = NULL, real_name = NULL WHERE email = '" + oldName + "';\" -e \"select id from players where email='" + newName + "'\\G;\"");
         logger.info("User name and email changed from: " + oldName + "  to: " + newName);
         // executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"select id from players where email='"+newName+"'\\G;\"");
 
+//getting only ID from response
         for (int i = 0; i < responce.size(); i++) {
             if (responce.get(i).matches("id: [0-9]{1,11}")) {
                 logger.info(" Old user ID is :" + responce.get(i));

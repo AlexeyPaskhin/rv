@@ -2,14 +2,23 @@ package com.pages.landing.social;
 
 import com.Elements.Button;
 import com.Elements.InputBox;
+import com.loggers.StringAppender;
 import com.pages.AbstractPage;
 import com.popups.ConfirmEmailPopup;
 import org.openqa.selenium.By;
 
-public class MailRuRegisterPage extends AbstractPage implements SocialFrame{
+public class MailRuRegisterPage extends AbstractPage implements SocialFrame {
     private final InputBox EMAIL_INPUT = new InputBox(By.name("Login"));
     private final InputBox PASS_INPUT = new InputBox(By.name("Password"));
     private final Button LOGIN_BUTTON = new Button(By.xpath("//div[@class='login-form__footer']/button"));
+    private String parentWindow;
+
+    public MailRuRegisterPage() {
+    }
+
+    public MailRuRegisterPage(String parentWindow) {
+        this.parentWindow = parentWindow;
+    }
 
     @Override
     public SocialFrame setEmail(String email) {
@@ -27,12 +36,12 @@ public class MailRuRegisterPage extends AbstractPage implements SocialFrame{
     public ConfirmEmailPopup clickRegister() {
         LOGIN_BUTTON.click();
         waitForCountOfWindows(1);
-        swithToWindow(parentWindow);
+        swithToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 
-    public ConfirmEmailPopup switchToConfirmEmail(){
-        swithToWindow(parentWindow);
+    public ConfirmEmailPopup switchToConfirmEmail() {
+        swithToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 }

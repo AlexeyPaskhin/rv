@@ -10,6 +10,14 @@ public class YARegisterPage extends AbstractPage implements SocialFrame {
     private final InputBox EMAIL_INPUT = new InputBox(By.name("login"));
     private final InputBox PASS_INPUT = new InputBox(By.name("passwd"));
     private final Button LOGIN_BUTTON = new Button(By.xpath("//button[@class='passport-Button']"));
+    private String parentWindow;
+
+    public YARegisterPage(String parentWindow) {
+        this.parentWindow = parentWindow;
+    }
+
+    public YARegisterPage() {
+    }
 
     @Override
     public SocialFrame setEmail(String email) {
@@ -27,11 +35,11 @@ public class YARegisterPage extends AbstractPage implements SocialFrame {
     public ConfirmEmailPopup clickRegister() {
         LOGIN_BUTTON.click();
         waitForCountOfWindows(1);
-        swithToWindow(parentWindow);
+        swithToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 
-    public ConfirmEmailPopup switchToConfirmEmail(){
+    public ConfirmEmailPopup switchToConfirmEmail() {
         swithToWindow(parentWindow);
         return new ConfirmEmailPopup();
     }
