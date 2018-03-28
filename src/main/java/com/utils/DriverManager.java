@@ -51,7 +51,7 @@ public class DriverManager {
             cap.setCapability("enableVNC", true);
             cap.setCapability("enableVideo", true);
             //event firing driver is an implementation of WebDriverEventHandler from logger package
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
+            driver = new EventFiringWebDriver(new ChromeDriver()).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);

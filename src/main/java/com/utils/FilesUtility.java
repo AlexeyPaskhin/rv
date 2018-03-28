@@ -21,15 +21,15 @@ import static com.utils.DriverManager.getDriver;
 public class FilesUtility {
     private final static Logger logger = LogManager.getLogger(FilesUtility.class);
 
-    private static String getFormattedDate(){
+    private static String getFormattedDate() {
         SimpleDateFormat smd = new SimpleDateFormat("dd.MMM hh.mm");
         return smd.format(new Date());
     }
 
-    public static String copyFailLogs(ITestResult iTestResult){
-        String fromPath = System.getProperty("user.dir")+ File.separator+"selenium-log.log";
-        String toPath=System.getProperty("user.dir")+File.separator+"fails"+File.separator+
-                iTestResult.getMethod().getMethodName()+"  "+getFormattedDate()+".log";
+    public static String copyFailLogs(ITestResult iTestResult) {
+        String fromPath = System.getProperty("user.dir") + File.separator + "selenium-log.log";
+        String toPath = System.getProperty("user.dir") + File.separator + "fails" + File.separator +
+                iTestResult.getMethod().getMethodName() + "  " + getFormattedDate() + ".log";
         try {
             Files.copy(Paths.get(fromPath),
                     Paths.get(toPath), StandardCopyOption.REPLACE_EXISTING);
@@ -47,12 +47,12 @@ public class FilesUtility {
         return toPath;
     }
 
-    public static String captureScreenshot(ITestResult iTestResult){
-        File src= ((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.FILE);
-        String fromPath=src.getPath();
-        String toPath=System.getProperty("user.dir")+File.separator+"fails"+File.separator+ iTestResult.getMethod().getMethodName()+"  "+getFormattedDate()+".png";
+    public static String captureScreenshot(ITestResult iTestResult) {
+        File src = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.FILE);
+        String fromPath = src.getPath();
+        String toPath = System.getProperty("user.dir") + File.separator + "fails" + File.separator + iTestResult.getMethod().getMethodName() + "  " + getFormattedDate() + ".png";
         try {
-            Files.copy(Paths.get(fromPath),Paths.get(toPath),StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Paths.get(fromPath), Paths.get(toPath), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             logger.error("Something wrong with screenshots");
             e.printStackTrace();
@@ -60,10 +60,10 @@ public class FilesUtility {
         return toPath;
     }
 
-    public static String copySuccessLogs(ITestResult iTestResult){
-        String fromPath = System.getProperty("user.dir")+ File.separator+"selenium-log.log";
-        String toPath=System.getProperty("user.dir")+File.separator+"success"+File.separator+
-                iTestResult.getMethod().getMethodName()+"  "+getFormattedDate()+".log";
+    public static String copySuccessLogs(ITestResult iTestResult) {
+        String fromPath = System.getProperty("user.dir") + File.separator + "selenium-log.log";
+        String toPath = System.getProperty("user.dir") + File.separator + "success" + File.separator +
+                iTestResult.getMethod().getMethodName() + "  " + getFormattedDate() + ".log";
         try {
             Files.copy(Paths.get(fromPath),
                     Paths.get(toPath), StandardCopyOption.REPLACE_EXISTING);
