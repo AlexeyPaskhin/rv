@@ -33,7 +33,7 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
     private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
     // Validation error messages
-    public static final Element ENTER_VALID_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите валидный e-mail')]"));
+    public static final Element ENTER_VALID_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите корректный e-mail')]"));
     public static final Element AGREE_WITH_RULES_ERROR = new Element(By.xpath("//span[contains(text(), 'Вы должны согласиться с правилами и условиями')]"));
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//p[1]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element EMPTY_PASSWORD_FIELD_ERROR = new Element(By.xpath("//p[2]//span[contains(text(), 'Поле не должно быть пустым')]"));

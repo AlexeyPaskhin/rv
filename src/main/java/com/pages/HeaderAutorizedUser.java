@@ -48,7 +48,8 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public HomePage clickLogoIcon() {
-        LOGO_ICON.clickUntilDisappeared();;
+        LOGO_ICON.waitForElementToBeVisible(6);
+        LOGO_ICON.clickUntilDisappeared();
         return new HomePage();
     }
 
