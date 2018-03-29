@@ -51,6 +51,7 @@ public class DriverManager {
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
             //event firing driver is an implementation of WebDriverEventHandler from logger package
+            // for local -> new ChromeDriver()
             driver = new EventFiringWebDriver(new ChromeDriver()).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
