@@ -14,7 +14,7 @@ public class GamesPage extends AbstractPage {
     private final Panel NEW_GAMES = new Panel(By.xpath("//div[@data-tab-id='new']/div[@class='games-block']"));
     private final Panel GAMINATOR_GAMES = new Panel(By.xpath("//div[@data-tab-id='Gaminator']/div[@class='games-block']"));
     private final Panel IGROSOFT_GAMES = new Panel(By.xpath("//div[@data-tab-id='Igrosoft']/div[@class='games-block']"));
-    private final Panel TABLES_GAMES = new Panel(By.xpath("//div[@data-tab-id='Столы']/div[@class='games-block']"));
+    private final Panel TABLES_GAMES = new Panel(By.xpath("//div[@data-tab-id='stoly']/div[@class='games-block']"));
     private final Panel SLOTS_GAMES = new Panel(By.xpath("//div[@data-tab-id='other']/div[@class='games-block']"));
     private final Button POPULAR_GAME = POPULAR_GAMES.getButtonByXpath("//a[contains(@class,'item item-popular')]");
 
