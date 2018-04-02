@@ -3,6 +3,7 @@ target/
 *.log
 .idea
 *.iml
+# if tests cruched - check file fails in project directory - it should be present
 fails/
 success/
 allure-results/

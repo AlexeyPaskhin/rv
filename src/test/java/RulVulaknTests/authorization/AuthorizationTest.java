@@ -40,7 +40,6 @@ public class AuthorizationTest extends BaseTestPage {
         }
     }
 
-
     @Test(dataProvider = "authorizationUserForVK", dataProviderClass = AuthorizationData.class, groups = {"auth", "vk"})
     @Description("Social authorization from HeaderNotAutorizedUserTest - via VK.com")
     public void authorizationUserFromVK(User user) {

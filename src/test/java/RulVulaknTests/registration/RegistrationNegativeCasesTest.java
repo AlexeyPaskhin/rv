@@ -35,7 +35,7 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertEquals(fastRegisterPopup.getValidEmailMessageText(), "Введите валидный e-mail");
+            Assert.assertEquals(fastRegisterPopup.getValidEmailMessageText(), "Введите корректный e-mail");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
