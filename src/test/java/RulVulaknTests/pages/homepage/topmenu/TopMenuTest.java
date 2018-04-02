@@ -26,7 +26,7 @@ public class TopMenuTest extends BaseTestPage {
     public void checkLotteriesLink() {
         LotteriesPage lotteriesPage = new HomePage().getHeader().clickLotteriesLink();
 
-        assertThat(lotteriesPage.bannerExists(), is(true));
+//        assertThat(lotteriesPage.bannerExists(), is(true)); // only if DO NOT DEFAULT banner present
         assertThat(lotteriesPage.lotteriesExists(), is(true));
         assertThat(lotteriesPage.paginationExists(), is(true));
         assertThat(lotteriesPage.lotteryResultsButtonExists(), is(true));
@@ -37,9 +37,9 @@ public class TopMenuTest extends BaseTestPage {
     public void checkTournamentsLink() {
         TournamentsPage tournamentsPage = new HomePage().getHeader().clickTournametsLink();
 
-        assertThat(tournamentsPage.BannerExists(), is(true));
-        assertThat(tournamentsPage.TournamentsExists(), is(true));
-        assertThat(tournamentsPage.PaginationExists(), is(true));
+//        assertThat(tournamentsPage.BannerExists(), is(true)); // only if banner present
+        assertThat(tournamentsPage.tournamentsExists(), is(true));
+        assertThat(tournamentsPage.paginationExists(), is(true));
     }
 
     @Test(groups = {"regression"})
