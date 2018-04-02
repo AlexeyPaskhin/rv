@@ -97,7 +97,7 @@ public class FastRegister extends AbstractPage {
         return new FBregisterPage(parent);
     }
 
-    @Step
+    @Step("Click OK button")
     public SocialFrame clickOK() {
         OK_BUTTON.click();
         swithToSocialFrame();

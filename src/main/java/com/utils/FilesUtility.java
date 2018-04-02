@@ -34,7 +34,8 @@ public class FilesUtility {
             Files.copy(Paths.get(fromPath),
                     Paths.get(toPath), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
-            System.out.println("Fuckingfuckfuckfuckfuck");
+            System.out.println("Fuckingfuckfuckfuckfuck!!!!!!!!!!"); // =))))
+            System.out.println(e);
         }
         PrintWriter writer = null;
         try {

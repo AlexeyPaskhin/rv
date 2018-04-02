@@ -7,6 +7,7 @@ import com.pages.AbstractPage;
 import com.pages.HeaderAutorizedUser;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
@@ -42,33 +43,39 @@ public class LogInPopUp extends AbstractPage {
         return INCORRECT_PASS_OR_EMAIL_ERROR.getText();
     }
 
+    @Step
     public HomePage pressButtonClose() {
         CLOSE_BUTTON.click();
         return new HomePage();
     }
 
+    @Step
     public LogInPopUp typeEmailInPopupField(String email) {
         EMAIL_INPUT_BOX_IN_POPUP.cleaIn();
         EMAIL_INPUT_BOX_IN_POPUP.fillIn(email);
         return this;
     }
 
+    @Step
     public LogInPopUp typePassInPopupField(String pass) {
         PASS_INPUT_BOX_IN_POPUP.cleaIn();
         PASS_INPUT_BOX_IN_POPUP.fillIn(pass);
         return this;
     }
 
+    @Step
     public HomePage pressLoginIn() {
         LOGIN_BUTTON_IN_POPUP.click();
         return new HomePage();
     }
 
+    @Step
     public ResetPasswordPopUp clickForgotPasswordLink() {
         RESET_PASSWORD_LINK.click();
         return new ResetPasswordPopUp();
     }
 
+    @Step
     public FastRegisterPopup clickRegistrationLink(){
         REGISTRATION_LINK.click();
         return new FastRegisterPopup();

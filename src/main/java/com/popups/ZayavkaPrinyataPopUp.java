@@ -3,6 +3,7 @@ package com.popups;
 import com.Elements.Button;
 import com.pages.AbstractPage;
 import com.pages.HomePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 /**
@@ -13,6 +14,7 @@ import org.openqa.selenium.By;
 public class ZayavkaPrinyataPopUp extends AbstractPage {
     private final Button CLOSE_POP_UP_BUTTON = new Button(By.xpath("//*[@id=\"popup_alert\"]/a"));
 
+    @Step
     public HomePage closePopUpZayavkaPriniata() {
         CLOSE_POP_UP_BUTTON.click();
         return new HomePage();

@@ -2,7 +2,6 @@ package com.Elements;
 
 import org.openqa.selenium.By;
 
-
 public class Panel extends Element {
     public Panel(By by) {
         super(by);
@@ -36,6 +35,6 @@ public class Panel extends Element {
     private  <T extends Element> T getElement(String xpath) {
         //TODO: Imeplement generic type of object
         String fullXpath = getXpath(super.by) + xpath;
-        return (T)new Button(By.xpath(fullXpath));
+        return (T) new Button(By.xpath(fullXpath));
     }
 }

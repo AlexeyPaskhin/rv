@@ -44,7 +44,7 @@ public class HeaderAutorizedUserTest extends BaseTestPage {
                 .clickLogoIcon()
                 .homePageLoaded();
         try {
-            Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
+            Assert.assertTrue(home.isHomePageOpenedForAuthorizedUser());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
