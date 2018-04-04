@@ -64,56 +64,54 @@ public class FastRegister extends AbstractPage {
 
     @Step
     public FastRegister agreeWithRules() {
-        AGREE_CHECKBOX.click();
+        AGREE_CHECKBOX.clickUntilDisappeared();
         return this;
     }
 
     @Step
     public GiftPopup clickRegisterButtonToGift() {
-        // wait(1500);
         REGISTER_BUTTON.clickUntilDisappeared();
         waitForPageToLoad();
         return new GiftPopup();
     }
 
-    @Step
+    @Step("Click Register button to Home")
     public HomePage clickRegisterButtonToHome() {
-        // wait(1500);
         REGISTER_BUTTON.clickUntilDisappeared();
         return new HomePage();
     }
 
-    @Step
+    @Step("Click VK button")
     public SocialFrame clickVK() {
-        VK_BUTTON.click();
+        VK_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
-    @Step
+    @Step("Click FB button")
     public SocialFrame clickFB() {
-        FB_BUTTON.click();
+        FB_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new FBregisterPage(parent);
     }
 
     @Step("Click OK button")
     public SocialFrame clickOK() {
-        OK_BUTTON.click();
+        OK_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
-    @Step
+    @Step("Click YA button")
     public SocialFrame clickYA() {
-        YA_BUTTON.click();
+        YA_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new YARegisterPage(parent);
     }
 
-    @Step
+    @Step("Click MR button")
     public SocialFrame clickMailRu() {
-        MAILRU_BUTTON.click();
+        MAILRU_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
