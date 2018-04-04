@@ -17,7 +17,7 @@ public class ConfirmEmailPopup extends AbstractPage {
 
     @Step
     public ConfirmEmailPopup agreeWithRules() {
-        AGREE_CHECKBOX.waitForElementToBeVisible(3);
+        AGREE_CHECKBOX.waitForElementToBePresent(4);
         AGREE_CHECKBOX.click();
         return this;
     }
