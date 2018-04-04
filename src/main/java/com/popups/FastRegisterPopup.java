@@ -98,6 +98,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public SocialFrame clickFB() {
+        FB_BUTTON_HOME_PAGE.waitForElementToBeClickable(3);
         FB_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
         return new FBregisterPage(parent);
