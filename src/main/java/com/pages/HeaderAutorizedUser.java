@@ -56,24 +56,28 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public VipPage clickVipStatusIcon() {
+        VIP_ICON.waitForElementToBeClickable(4);
         VIP_ICON.click();
         return new VipPage();
     }
 
     @Step
     public ProfilePage clickUserName() {
+        USER_NAME_LINK.waitForElementToBeClickable(4);
         USER_NAME_LINK.click();
         return new ProfilePage();
     }
 
     @Step
     public NotificationsPage clickNotificationsIcon() {
+        NOTIFICATIONS_ICON.waitForElementToBeClickable(4);
         NOTIFICATIONS_ICON.click();
         return new NotificationsPage();
     }
 
     @Step
     public BonusesPage clickGiftIcon() {
+        GIFT_ICON.waitForElementToBeClickable(4);
         GIFT_ICON.click();
         return new BonusesPage();
     }

@@ -144,7 +144,7 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getValidEmailMessageText() {
-        ENTER_VALID_EMAIL_ERROR.waitForElementToBeVisible(6);
+        ENTER_VALID_EMAIL_ERROR.waitForElementToBePresent(6);
         return ENTER_VALID_EMAIL_ERROR.getText();
     }
 

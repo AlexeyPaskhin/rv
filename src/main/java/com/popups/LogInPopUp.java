@@ -45,6 +45,7 @@ public class LogInPopUp extends AbstractPage {
 
     @Step
     public HomePage pressButtonClose() {
+        CLOSE_BUTTON.waitForElementToBeClickable(4);
         CLOSE_BUTTON.click();
         return new HomePage();
     }
