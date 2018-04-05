@@ -25,7 +25,8 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Button REGISTER_BUTTON = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
     private static final Checkbox CURRENCY_RUB_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='RUB']"));
     private static final Checkbox CURRENCY_USD_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='USD']"));
-    private static final Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='agree' and @type='checkbox']"));
+    private static final Checkbox AGREE_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='agree' and @type='checkbox']"));
+    private static final Checkbox AGREE_CHECKBOX_PAGE = new Checkbox(By.xpath("//form[@class='popup-form page-form']//input[@name='agree' and @type='checkbox']"));
     // Social networks buttons
     private static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
     private static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-fb']"));
@@ -72,7 +73,8 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup agreeWithRules() {
-        AGREE_CHECKBOX.click();
+        if (AGREE_CHECKBOX_POP_UP.isPresent()) { AGREE_CHECKBOX_POP_UP.click(); }
+        else { AGREE_CHECKBOX_PAGE.click(); }
         return this;
     }
 
