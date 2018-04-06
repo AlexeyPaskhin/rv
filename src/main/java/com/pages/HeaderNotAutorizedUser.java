@@ -123,6 +123,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public LogInPopUp pressButtonLoginForInvalidCredentials() {
+        VOITI_BUTTON_IN_HEADER.waitForElementToBeClickable(3);
         VOITI_BUTTON_IN_HEADER.click();
         return new LogInPopUp();
     }
