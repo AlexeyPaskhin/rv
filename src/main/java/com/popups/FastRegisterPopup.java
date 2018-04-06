@@ -66,6 +66,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup selectCurrencyUSD() {
+        CURRENCY_USD_CHECKBOX.waitForElementToBePresent(3);
         CURRENCY_USD_CHECKBOX.click();
         return this;
     }

@@ -56,7 +56,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public VipPage clickVipStatusIcon() {
-        VIP_ICON.waitForElementToBeClickable(4);
+        VIP_ICON.waitForElementToBePresent(5);
         VIP_ICON.click();
         return new VipPage();
     }
