@@ -67,6 +67,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup selectCurrencyUSD() {
+        CURRENCY_USD_CHECKBOX.waitForElementToBePresent(3);
         CURRENCY_USD_CHECKBOX.click();
         return this;
     }
@@ -146,7 +147,7 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getValidEmailMessageText() {
-        ENTER_VALID_EMAIL_ERROR.waitForElementToBeVisible(6);
+        ENTER_VALID_EMAIL_ERROR.waitForElementToBePresent(6);
         return ENTER_VALID_EMAIL_ERROR.getText();
     }
 

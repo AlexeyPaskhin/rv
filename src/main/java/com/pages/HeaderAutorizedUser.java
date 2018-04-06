@@ -15,7 +15,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     private final Panel USER_PANE = new Panel(By.xpath("//div[@class='top-user-zone']"));
     private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));
     private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
-    private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo']"));
+    private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo' and @href='/']"));
     private final Element VIP_ICON = new Element(By.xpath("//a[@href='/vip' and @class='vip_user_zone_vip']"));
     private final Element USER_NAME_LINK = new Element(By.xpath("//a[@class='profile']"));
     private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
@@ -49,31 +49,35 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public HomePage clickLogoIcon() {
-        LOGO_ICON.waitForElementToBeVisible(6);
+        LOGO_ICON.waitForElementToBePresent(6);
         LOGO_ICON.clickUntilDisappeared();
         return new HomePage();
     }
 
     @Step
     public VipPage clickVipStatusIcon() {
+        VIP_ICON.waitForElementToBePresent(5);
         VIP_ICON.click();
         return new VipPage();
     }
 
     @Step
     public ProfilePage clickUserName() {
+        USER_NAME_LINK.waitForElementToBeClickable(4);
         USER_NAME_LINK.click();
         return new ProfilePage();
     }
 
     @Step
     public NotificationsPage clickNotificationsIcon() {
+        NOTIFICATIONS_ICON.waitForElementToBeClickable(4);
         NOTIFICATIONS_ICON.click();
         return new NotificationsPage();
     }
 
     @Step
     public BonusesPage clickGiftIcon() {
+        GIFT_ICON.waitForElementToBeClickable(4);
         GIFT_ICON.click();
         return new BonusesPage();
     }

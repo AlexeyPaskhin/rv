@@ -36,31 +36,37 @@ public class GamesPage extends AbstractPage {
 
     @Step
     public boolean PopularGamesExsits() {
+        POPULAR_GAMES.waitForElementToBePresent(3);
         return POPULAR_GAMES.isPresent();
     }
 
     @Step
     public boolean NewGamesExists() {
+        NEW_GAMES.waitForElementToBePresent(3);
         return NEW_GAMES.isPresent();
     }
 
     @Step
     public boolean GaminatorGamesExists() {
+        GAMINATOR_GAMES.waitForElementToBePresent(3);
         return GAMINATOR_GAMES.isPresent();
     }
 
     @Step
     public boolean IgrosoftGamesExists() {
+        IGROSOFT_GAMES.waitForElementToBePresent(3);
         return IGROSOFT_GAMES.isPresent();
     }
 
     @Step
     public boolean TablesGamesExists() {
+        TABLES_GAMES.waitForElementToBePresent(3);
         return TABLES_GAMES.isPresent();
     }
 
     @Step
     public boolean SlotGamesExists() {
+        SLOTS_GAMES.waitForElementToBePresent(3);
         return SLOTS_GAMES.isPresent();
     }
 }

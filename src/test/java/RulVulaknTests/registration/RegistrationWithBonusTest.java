@@ -69,7 +69,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"fb"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"register","fb"})
     @RemoveUser
     @Description("Social registration with '100% deposit bonus' gifts from 'Register' pop-up - via Facebook")
     public void mainPageRegisterFBBonus(User user) {

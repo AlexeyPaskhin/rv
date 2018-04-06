@@ -13,7 +13,7 @@ public class TournamentsPage extends AbstractPage {
     }
 
     public boolean tournamentsExists() {
-        TOURNAMENTS_PANE.waitForElementToBeVisible(2);
+        TOURNAMENTS_PANE.waitForElementToBePresent(4);
         return TOURNAMENTS_PANE.isPresent();
     }
 
