@@ -80,9 +80,9 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     @Step
-    public GiftPopup clickRegisterButton() {
+    public WelcomeBonusGiftPopup clickRegisterButton() {
         REGISTER_BUTTON.clickUntilDisappeared();
-        return new GiftPopup();
+        return new WelcomeBonusGiftPopup();
     }
 
     @Step

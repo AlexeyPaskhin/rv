@@ -1,7 +1,6 @@
 package RulVulaknTests.registration;
 
 import RulVulaknTests.BaseTestPage;
-import com.Elements.Button;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
 import com.listeners.RussianVulcanListener;
@@ -12,18 +11,9 @@ import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import org.openqa.selenium.By;
-
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Pattern;
-import org.sikuli.script.Screen;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import java.io.File;
-
-import static com.utils.DriverManager.getDriver;
 
 /**
  * Registration without gifts
@@ -86,7 +76,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -135,7 +125,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -162,7 +152,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -189,7 +179,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .setEmail(user.getLogin())
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -216,7 +206,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -243,7 +233,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -291,7 +281,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -317,7 +307,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -344,7 +334,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .setEmail(user.getLogin())
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -370,7 +360,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -396,7 +386,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -716,7 +706,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -740,7 +730,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -765,7 +755,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .setEmail(user.getLogin())
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
@@ -789,7 +779,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister()
-                .getGiftPopup()
+                .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");

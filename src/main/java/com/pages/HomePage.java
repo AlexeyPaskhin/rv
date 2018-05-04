@@ -2,7 +2,7 @@ package com.pages;
 
 import com.Elements.Button;
 import com.Elements.Panel;
-import com.popups.GiftPopup;
+import com.popups.WelcomeBonusGiftPopup;
 import com.popups.RedHelperFrame;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import org.openqa.selenium.By;
 @Getter
 public class HomePage extends AbstractPage {
     private final Panel CONTENT_PANE = new Panel(By.xpath("//div[@class='wrap cf']"));
-    private final GiftPopup GIFT_POPUP = new GiftPopup();
+    private final WelcomeBonusGiftPopup WELCOME_BONUS_GIFT_POPUP = new WelcomeBonusGiftPopup();
 
     private final Button RED_HELPER_BUTTON = new Button(By.xpath("//*[@id=\"rh-badge\"]//img"));
     private final String HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER = "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн";
@@ -30,8 +30,8 @@ public class HomePage extends AbstractPage {
         else return getNotAuthorizedHeader();
     }
 
-    public GiftPopup getGiftPopup() {
-        return GIFT_POPUP;
+    public WelcomeBonusGiftPopup getWelcomeBonusGiftPopup() {
+        return WELCOME_BONUS_GIFT_POPUP;
     }
 
     public void homePageLoaded() {

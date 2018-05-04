@@ -8,7 +8,7 @@ import com.pages.AbstractPage;
 import com.pages.Helpers.Dictionaries.RegistrationFormType;
 import com.pages.HomePage;
 import com.pages.landing.social.*;
-import com.popups.GiftPopup;
+import com.popups.WelcomeBonusGiftPopup;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -69,10 +69,10 @@ public class FastRegister extends AbstractPage {
     }
 
     @Step
-    public GiftPopup clickRegisterButtonToGift() {
+    public WelcomeBonusGiftPopup clickRegisterButtonToGift() {
         REGISTER_BUTTON.clickUntilDisappeared();
         waitForPageToLoad();
-        return new GiftPopup();
+        return new WelcomeBonusGiftPopup();
     }
 
     @Step("Click Register button to Home")
