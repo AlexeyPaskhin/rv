@@ -249,10 +249,11 @@ public class RegistrationWithBonusTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
-    @Description("Registration with 'Welcome Bonus' gifts from Landing pages 3, 6, 9, 10, 11, 13")
+    @LandingPage(pageNo = {"11"})
+    @Description("Registration with 'Bonus' gifts from Landing page 11")
     public void landingFormRegisterBonus(User user, String page) {
         new LandingWithForm()
+                .clickBonusLP11()
                 .switchToRegistration()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -271,11 +272,12 @@ public class RegistrationWithBonusTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @LandingPage(pageNo = {"11"})
     @RemoveUser
-    @Description("Social registration with 'Welcome Bonus' gifts from Landing pages 3, 6, 9, 10, 11, 13 - via VK.com")
+    @Description("Social registration with 'Welcome Bonus' gifts from Landing page 11 - via VK.com")
     public void landingFormRegisterVKBonus(User user, String page) {
         new LandingWithForm()
+                .clickBonusLP11()
                 .switchToRegistration()
                 .clickVK()
                 .setEmail(user.getLogin())
@@ -297,11 +299,12 @@ public class RegistrationWithBonusTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @LandingPage(pageNo = {"11"})
     @RemoveUser
-    @Description("Social registration with 'Welcome Bonus' gifts from Landing pages 3, 6, 9, 10, 11, 13 - via Facebook.com")
+    @Description("Social registration with 'Welcome Bonus' gifts from Landing page 11 - via Facebook.com")
     public void landingFormRegisterFBBonus(User user, String page) {
         new LandingWithForm()
+                .clickBonusLP11()
                 .switchToRegistration()
                 .clickFB()
                 .setEmail(user.getLogin())
@@ -323,11 +326,12 @@ public class RegistrationWithBonusTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @LandingPage(pageNo = {"11"})
     @RemoveUser
-    @Description("Social registration with 'Welcome Bonus' gifts from Landing pages 3, 6, 9, 10, 11, 13 - via OK.ru")
+    @Description("Social registration with 'Welcome Bonus' gifts from Landing page 11 - via OK.ru")
     public void landingFormRegisterOKBonus(User user, String page) {
         new LandingWithForm()
+                .clickBonusLP11()
                 .switchToRegistration()
                 .clickOK()
                 .setEmail(user.getLogin())
@@ -351,11 +355,12 @@ public class RegistrationWithBonusTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @LandingPage(pageNo = {"11"})
     @RemoveUser
-    @Description("Social registration with 'Welcome Bonus' gifts from Landing pages 3, 6, 9, 10, 11, 13 - via Mail.ru")
+    @Description("Social registration with 'Welcome Bonus' gifts from Landing page 11 - via Mail.ru")
     public void landingFormRegisterMailRUBonus(User user, String page) {
         new LandingWithForm()
+                .clickBonusLP11()
                 .switchToRegistration()
                 .clickMailRu()
                 .setEmail(user.getLogin())
@@ -378,11 +383,12 @@ public class RegistrationWithBonusTest extends BaseTestPage {
     }
 
     @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
-    @LandingPage(pageNo = {"3", "13", "6", "11", "10", "9"})
+    @LandingPage(pageNo = {"11"})
     @RemoveUser
-    @Description("Social registration with 'Welcome Bonus' gifts from Landing pages 3, 6, 9, 10, 11, 13 - via Yandex.ru")
+    @Description("Social registration with 'Welcome Bonus' gifts from Landing page 11 - via Yandex.ru")
     public void landingFormRegisterYABonus(User user, String page) {
         new LandingWithForm()
+                .clickBonusLP11()
                 .switchToRegistration()
                 .clickYA()
                 .setEmail(user.getLogin())
@@ -823,6 +829,159 @@ public class RegistrationWithBonusTest extends BaseTestPage {
             Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
+    @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
+    @Description("Registration without gifts from Landing pages 3, 6, 9, 10, 13")
+    public void landingFormRegister(User user, String page) {
+        new LandingWithForm()
+                .switchToRegistration()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .clickRegisterButtonToGift()
+                .pressPlayWithBonus();
+        try {
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
+    @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
+    @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 13 - via VK.com")
+    public void landingFormRegisterVK(User user, String page) {
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .pressPlayWithBonus();
+        try {
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "fb"})
+    @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
+    @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 13 - via Facebook.com")
+    public void landingFormRegisterFB(User user, String page) {
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .pressPlayWithBonus();
+        try {
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForOK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ok"})
+    @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
+    @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 13 - via OK.ru")
+    public void landingFormRegisterOK(User user, String page) {
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .setEmail(user.getLogin())
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .pressPlayWithBonus();
+        try {
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForMailRU", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "mailru"})
+    @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
+    @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 13 - via Mail.ru")
+    public void landingFormRegisterMailRU(User user, String page) {
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickMailRu()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .pressPlayWithBonus();
+        try {
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
+            logger.error(e);
+            Assert.fail();
+        }
+    }
+
+    @Test(dataProvider = "createUserForYA", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "ya"})
+    @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
+    @RemoveUser
+    @Description("Social registration without gifts from Landing pages 3, 6, 9, 10, 13 - via Yandex.ru")
+    public void landingFormRegisterYA(User user, String page) {
+        new LandingWithForm()
+                .switchToRegistration()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister()
+                .agreeWithRules()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .pressPlayWithBonus();
+        try {
+            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
+            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON NOT PRESENT");
+        } catch (Exception e) {
+            logger.error("ERROR ON PAGE " + page);
             logger.error(e);
             Assert.fail();
         }
