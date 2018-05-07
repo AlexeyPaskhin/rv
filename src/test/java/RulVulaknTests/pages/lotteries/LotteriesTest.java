@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 public class LotteriesTest extends BaseTestPage {
 
     @Test(groups = {"regression"})
-    public void CurrentLotteryButton(){
-     LotteriesPage lotteries = new HomePage().getHeader().clickLotteriesLink();
-     String firstlotteryURL= lotteries.getLotteryByIdendex(0).getLotteryLink();
+    public void CurrentLotteryButton() {
+        LotteriesPage lotteries = new HomePage().getHeader().clickLotteriesLink();
+        String firstlotteryURL = lotteries.getLotteryByIdendex(0).getLotteryLink();
         System.out.println(firstlotteryURL);
     }
 }

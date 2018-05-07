@@ -61,13 +61,14 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup selectCurrencyRUB() {
+        CURRENCY_RUB_CHECKBOX.waitForElementToBeVisible(6);
         CURRENCY_RUB_CHECKBOX.click();
         return this;
     }
 
     @Step
     public FastRegisterPopup selectCurrencyUSD() {
-        CURRENCY_USD_CHECKBOX.waitForElementToBePresent(3);
+        CURRENCY_USD_CHECKBOX.waitForElementToBeVisible(6);
         CURRENCY_USD_CHECKBOX.click();
         return this;
     }
@@ -101,7 +102,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public SocialFrame clickFB() {
-        FB_BUTTON_HOME_PAGE.waitForElementToBeClickable(3);
+        FB_BUTTON_HOME_PAGE.waitForElementToBeClickable(4);
         FB_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
         return new FBregisterPage(parent);
@@ -109,6 +110,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public SocialFrame clickOK() {
+        OK_BUTTON_HOME_PAGE.waitForElementToBeClickable(4);
         OK_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
         return new OKRegisterPage(parent);
@@ -116,6 +118,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public SocialFrame clickYA() {
+        YA_BUTTON_HOME_PAGE.waitForElementToBeClickable(4);
         YA_BUTTON_HOME_PAGE.click();
         swithToSocialFrame();
         return new YARegisterPage(parent);

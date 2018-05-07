@@ -20,7 +20,6 @@ public class HomePage extends AbstractPage {
     public HeaderNotAutorizedUser getNotAuthorizedHeader() {
         return new HeaderNotAutorizedUser();
     }
-
     public HeaderAutorizedUser getAuthorizedHeader() {
         return new HeaderAutorizedUser();
     }

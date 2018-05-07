@@ -46,7 +46,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
     public void pressButtonLogInWithEmptyFields() {
         new HomePage()
                 .getNotAuthorizedHeader()
-                .pressButtonLoginForInvalidCredentials();
+                .pressButtonLogIn();
         try {
             enterPopUp = new LogInPopUp();
             Assert.assertEquals(enterPopUp.fieldEmailShouldNotBeEmpty(), "Поле не должно быть пустым");
@@ -64,7 +64,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
                 .getNotAuthorizedHeader()
                 .typeEmailInHeadField("invalidEmail")
                 .typePassInHeadField("123456")
-                .pressButtonLoginForInvalidCredentials();
+                .pressButtonLogIn();
         try {
             enterPopUp = new LogInPopUp();
             Assert.assertEquals(enterPopUp.incorrectPassOrEmailError(), "Неправильные имя пользователя и/или пароль");
@@ -81,7 +81,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
                 .getNotAuthorizedHeader()
                 .typeEmailInHeadField("yr+2@playtini.ua")
                 .typePassInHeadField("invalidPass")
-                .pressButtonLoginForInvalidCredentials();
+                .pressButtonLogIn();
         try {
             enterPopUp = new LogInPopUp();
             Assert.assertEquals(enterPopUp.incorrectPassOrEmailError(), "Неправильные имя пользователя и/или пароль");

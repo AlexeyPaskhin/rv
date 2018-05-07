@@ -29,17 +29,17 @@ public class LogInPopUp extends AbstractPage {
     private final Element REGISTRATION_LINK = new Element(By.xpath("//*[@id=\"popup_auth\"]//a[2]"));
 
     public String fieldEmailShouldNotBeEmpty() {
-        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
+        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBePresent(4);
         return EMPTY_EMAIL_FIELD_ERROR.getText();
     }
 
     public String fieldPasswordShouldNotBeEmpty() {
-        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
+        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBePresent(4);
         return EMPTY_EMAIL_FIELD_ERROR.getText();
     }
 
     public String incorrectPassOrEmailError() {
-        INCORRECT_PASS_OR_EMAIL_ERROR.waitForElementToBeVisible(3);
+        INCORRECT_PASS_OR_EMAIL_ERROR.waitForElementToBePresent(5);
         return INCORRECT_PASS_OR_EMAIL_ERROR.getText();
     }
 
@@ -52,6 +52,7 @@ public class LogInPopUp extends AbstractPage {
 
     @Step
     public LogInPopUp typeEmailInPopupField(String email) {
+        EMAIL_INPUT_BOX_IN_POPUP.waitForElementToBePresent(3);
         EMAIL_INPUT_BOX_IN_POPUP.cleaIn();
         EMAIL_INPUT_BOX_IN_POPUP.fillIn(email);
         return this;
@@ -66,18 +67,21 @@ public class LogInPopUp extends AbstractPage {
 
     @Step
     public HomePage pressLoginIn() {
+        LOGIN_BUTTON_IN_POPUP.waitForElementToBePresent(3);
         LOGIN_BUTTON_IN_POPUP.click();
         return new HomePage();
     }
 
     @Step
     public ResetPasswordPopUp clickForgotPasswordLink() {
+        RESET_PASSWORD_LINK.waitForElementToBePresent(3);
         RESET_PASSWORD_LINK.click();
         return new ResetPasswordPopUp();
     }
 
     @Step
     public FastRegisterPopup clickRegistrationLink(){
+        REGISTRATION_LINK.waitForElementToBePresent(3);
         REGISTRATION_LINK.click();
         return new FastRegisterPopup();
     }

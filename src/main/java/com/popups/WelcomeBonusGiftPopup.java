@@ -13,7 +13,7 @@ import org.openqa.selenium.By;
  */
 
 public class WelcomeBonusGiftPopup extends AbstractPage {
-    private static final Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//label[@for='gift_none']"));
+    private static final Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//button[@class='welcome-btn-reject']"));
     private static final Button PLAY_WITH_BONUS = new Button(By.xpath("//button[@class='btn-save-gift']"));
 
     @Step

@@ -75,12 +75,12 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
     }
 
     public boolean successMessageIsPresent() {
-        SUCCESS_MESSAGE.waitForElementToBeVisible(2);
+        SUCCESS_MESSAGE.waitForElementToBeVisible(8);
         return SUCCESS_MESSAGE.isPresent();
     }
 
     public boolean notEnoughMessageIsPresent() {
-        NOT_ENOUGH_MONEY_MESSAGE.waitForElementToBeVisible(2);
+        NOT_ENOUGH_MONEY_MESSAGE.waitForElementToBeVisible(4);
         return NOT_ENOUGH_MONEY_MESSAGE.isPresent();
     }
 }

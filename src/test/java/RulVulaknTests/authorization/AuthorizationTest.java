@@ -27,7 +27,7 @@ public class AuthorizationTest extends BaseTestPage {
     public void authorizationUserFromMail(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin()+"fkmjfklmjfkmjfgmjfgmj")
+                .typeEmailInHeadField(user.getLogin()/*+"fkmjfklmjfkmjfgmjfgmj"*/)
                 .typePassInHeadField(user.getPass())
                 .clickLogin();
         try {

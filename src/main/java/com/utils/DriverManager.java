@@ -54,7 +54,8 @@ public class DriverManager {
 
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap)) */
-            driver = new EventFiringWebDriver(new ChromeDriver()).register(events);
+            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap))
+                    .register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
