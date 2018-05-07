@@ -61,14 +61,14 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup selectCurrencyRUB() {
-        CURRENCY_RUB_CHECKBOX.waitForElementToBeVisible(6);
+        CURRENCY_RUB_CHECKBOX.waitForElementToBePresent(8);
         CURRENCY_RUB_CHECKBOX.click();
         return this;
     }
 
     @Step
     public FastRegisterPopup selectCurrencyUSD() {
-        CURRENCY_USD_CHECKBOX.waitForElementToBeVisible(6);
+        CURRENCY_USD_CHECKBOX.waitForElementToBePresent(8);
         CURRENCY_USD_CHECKBOX.click();
         return this;
     }
