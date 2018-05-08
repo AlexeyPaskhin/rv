@@ -27,12 +27,10 @@ public class LogInPopUpTest extends BaseTestPage {
 
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "negative", "auth"})
     @Description("Press button 'Close' in Log-In pop-up")
-    public void checkRedHelperPopUpIsOpened(User user) {
+    public void pressButtonCloseInLogInPopUp(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getInvalidPass())
-                .pressButtonLoginForInvalidCredentials()
+                .pressButtonLogIn()
                 .pressButtonClose()
                 .homePageLoaded();
         try {
@@ -48,9 +46,7 @@ public class LogInPopUpTest extends BaseTestPage {
     public void logInFromPopUp(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getInvalidPass())
-                .pressButtonLoginForInvalidCredentials()
+                .pressButtonLogIn()
                 .typeEmailInPopupField(user.getLogin())
                 .typePassInPopupField(user.getPass())
                 .pressLoginIn()
@@ -68,9 +64,7 @@ public class LogInPopUpTest extends BaseTestPage {
     public void checkLinkForgotPasswordInLogInPopUp(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getInvalidPass())
-                .pressButtonLoginForInvalidCredentials()
+                .pressButtonLogIn()
                 .clickForgotPasswordLink()
                 .pressButtonClosepopUp()
                 .homePageLoaded();
@@ -87,11 +81,9 @@ public class LogInPopUpTest extends BaseTestPage {
     public void registrationFromLogInPopUp(User user) {
         new HomePage()
                 .getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getInvalidPass())
-                .pressButtonLoginForInvalidCredentials()
+                .pressButtonLogIn()
                 .clickRegistrationLink()
-                .pressButtonClosepopUp()
+                .closeFastRegisterPopUp()
                 .homePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
@@ -100,5 +92,4 @@ public class LogInPopUpTest extends BaseTestPage {
             Assert.fail();
         }
     }
-
 }

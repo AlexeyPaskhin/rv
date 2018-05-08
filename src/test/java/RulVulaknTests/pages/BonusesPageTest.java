@@ -29,8 +29,7 @@ public class BonusesPageTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyUSD()
                 .clickRegisterButton()
-                .check100PercentGift()
-                .clickButtonSaveGift()
+                .pressPlayWithBonus()
                 .getAuthorizedHeader()
                 .clickGiftIcon()
                 .waitForPageToLoad();

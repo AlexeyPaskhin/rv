@@ -8,7 +8,7 @@ import com.pages.AbstractPage;
 import com.pages.Helpers.Dictionaries.RegistrationFormType;
 import com.pages.HomePage;
 import com.pages.landing.social.*;
-import com.popups.GiftPopup;
+import com.popups.WelcomeBonusGiftPopup;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -40,6 +40,7 @@ public class FastRegister extends AbstractPage {
 
     @Step
     public FastRegister typeLogin(String login) {
+        EMAIL_INPUT.waitForElementToBePresent(4);
         EMAIL_INPUT.fillIn(login);
         return this;
     }
@@ -52,12 +53,14 @@ public class FastRegister extends AbstractPage {
 
     @Step
     public FastRegister selectCurrencyRUB() {
+        CURRENCY_RUB_RADIO.waitForElementToBePresent(3);
         CURRENCY_RUB_RADIO.click();
         return this;
     }
 
     @Step
     public FastRegister selectCurrencyUSD() {
+        CURRENCY_USD_RADIO.waitForElementToBePresent(3);
         CURRENCY_USD_RADIO.click();
         return this;
     }
@@ -69,20 +72,22 @@ public class FastRegister extends AbstractPage {
     }
 
     @Step
-    public GiftPopup clickRegisterButtonToGift() {
+    public WelcomeBonusGiftPopup clickRegisterButtonToGift() {
         REGISTER_BUTTON.clickUntilDisappeared();
         waitForPageToLoad();
-        return new GiftPopup();
+        return new WelcomeBonusGiftPopup();
     }
 
     @Step("Click Register button to Home")
     public HomePage clickRegisterButtonToHome() {
+        REGISTER_BUTTON.waitForElementToBePresent(2);
         REGISTER_BUTTON.clickUntilDisappeared();
         return new HomePage();
     }
 
     @Step("Click VK button")
     public SocialFrame clickVK() {
+        VK_BUTTON.waitForElementToBePresent(2);
         VK_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new VkRegisterPage(parent);
@@ -90,6 +95,7 @@ public class FastRegister extends AbstractPage {
 
     @Step("Click FB button")
     public SocialFrame clickFB() {
+        FB_BUTTON.waitForElementToBePresent(2);
         FB_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new FBregisterPage(parent);
@@ -97,6 +103,7 @@ public class FastRegister extends AbstractPage {
 
     @Step("Click OK button")
     public SocialFrame clickOK() {
+        OK_BUTTON.waitForElementToBePresent(2);
         OK_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new OKRegisterPage(parent);
@@ -104,6 +111,7 @@ public class FastRegister extends AbstractPage {
 
     @Step("Click YA button")
     public SocialFrame clickYA() {
+        YA_BUTTON.waitForElementToBePresent(2);
         YA_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new YARegisterPage(parent);
@@ -111,6 +119,7 @@ public class FastRegister extends AbstractPage {
 
     @Step("Click MR button")
     public SocialFrame clickMailRu() {
+        MAILRU_BUTTON.waitForElementToBePresent(2);
         MAILRU_BUTTON.clickUntilDisappeared();
         swithToSocialFrame();
         return new MailRuRegisterPage(parent);

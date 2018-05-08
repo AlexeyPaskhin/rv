@@ -21,10 +21,6 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
-/**
- * Created by ai on 2018-01-18.
- */
-
 @Listeners({RussianVulcanListener.class})
 public class CashboxTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
@@ -39,7 +35,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -53,7 +49,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
@@ -73,7 +68,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -85,7 +80,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == 500D, "USER BALANCE NOT CHANGED");
@@ -104,7 +98,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -116,7 +110,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == 1000, "USER BALANCE NOT CHANGED");
@@ -135,7 +128,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -147,7 +140,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == 3000, "USER BALANCE NOT CHANGED");
@@ -166,7 +158,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -178,7 +170,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == 10000, "USER BALANCE NOT CHANGED");
@@ -197,7 +188,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -209,7 +200,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
             Assert.assertTrue(headerAutorizedUser.getUserBalance() == 30000, "USER BALANCE NOT CHANGED");
@@ -228,7 +218,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -239,7 +229,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnInputButton()
                 .cleanDepositInputField()
                 .typeCardDepositSum("0");
-
         try {
             Assert.assertFalse(new CashBoxDepositFrame().checkAvailableConfirmButton(), "INCORRECT DEPOSIT VALUE");
         } catch (Exception e) {
@@ -257,7 +246,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -268,7 +257,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnInputButton()
                 .cleanDepositInputField()
                 .typeCardDepositSum("300001");
-
         try {
             Assert.assertFalse(new CashBoxDepositFrame().checkAvailableConfirmButton(), "INCORRECT DEPOSIT VALUE");
         } catch (Exception e) {
@@ -286,7 +274,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -297,7 +285,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnInputButton()
                 .cleanDepositInputField()
                 .typeCardDepositSum(RandomGenerate.randomString(6));
-
         try {
             Assert.assertFalse(new CashBoxDepositFrame().checkAvailableConfirmButton(), "INCORRECT DEPOSIT VALUE");
         } catch (Exception e) {
@@ -324,7 +311,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .clickOnOkayButton()
                 .switchToParent();
-
         double balanceBefore = headerAutorizedUser.getUserBalance();
         headerAutorizedUser.waitForBalanceChange(headerAutorizedUser.getUserBalance());
         try {
@@ -345,7 +331,6 @@ public class CashboxTest extends BaseTestPage {
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .checkPaymentsMethodInDepositFrame();
-
         try {
             Assert.assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInDepositFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
         } catch (Exception e) {
@@ -364,7 +349,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -386,7 +371,6 @@ public class CashboxTest extends BaseTestPage {
                 .switchToCashBoxDepositFrame()
                 .clickCardPaymentMethod()
                 .checkDepositCardIsSaved();
-
         try {
             Assert.assertTrue(new CashBoxDepositFrame().checkDepositCardIsSaved(), "FIRST PAYMENT DON'T PASS");
         } catch (Exception e) {
@@ -406,7 +390,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickTabWithdrawal()
                 .switchToCashBoxWithdrawalFrame()
                 .checkPaymentsMethodInWithdrawalFrame();
-
         try {
             Assert.assertTrue(new CashBoxWithdrawalFrame().checkPaymentsMethodInWithdrawalFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
         } catch (Exception e) {
@@ -425,7 +408,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -449,7 +432,6 @@ public class CashboxTest extends BaseTestPage {
                 .typeCardWithdrawalSum(randomDeposit)
                 .typePhoneNumberInCardDepositFrame("9101234567")
                 .clickGetButton();
-
         try {
             Assert.assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
         } catch (Exception e) {
@@ -472,7 +454,6 @@ public class CashboxTest extends BaseTestPage {
                 .clickCardPaymentMethod()
                 .typeCardWithdrawalSum(randomWithdrawal)
                 .clickGetButton();
-
         try {
             Assert.assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
         } catch (Exception e) {
@@ -492,7 +473,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -537,7 +518,6 @@ public class CashboxTest extends BaseTestPage {
                 .switchToCashBoxWithdrawalFrame()
                 .clickCardPaymentMethod()
                 .typeCardWithdrawalSum("15001");
-
         try {
             Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
         } catch (Exception e) {
@@ -558,7 +538,6 @@ public class CashboxTest extends BaseTestPage {
                 .switchToCashBoxWithdrawalFrame()
                 .clickCardPaymentMethod()
                 .typeCardWithdrawalSum("1499");
-
         try {
             Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
         } catch (Exception e) {
@@ -579,7 +558,6 @@ public class CashboxTest extends BaseTestPage {
                 .switchToCashBoxWithdrawalFrame()
                 .clickCardPaymentMethod()
                 .typeCardWithdrawalSum(RandomGenerate.randomString(5));
-
         try {
             Assert.assertFalse(new CashBoxWithdrawalFrame().getButtonIsActive(), "WITHDRAWAL PASS");
         } catch (Exception e) {
@@ -597,12 +575,11 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .clickTabPaymentHistory()
                 .clickOnMakeDepositFromHistoryTab();
-
         try {
             Assert.assertTrue(new CashBoxPopup().depositTabIsActive(), "HISTORY TAB NOT EMPTY");
         } catch (Exception e) {
@@ -621,7 +598,7 @@ public class CashboxTest extends BaseTestPage {
                 .agreeWithRules()
                 .selectCurrencyRUB()
                 .clickRegisterButton()
-                .withdrawFromGift()
+                .clickWithdrawFromGift()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
@@ -651,7 +628,6 @@ public class CashboxTest extends BaseTestPage {
         new HeaderAutorizedUser().pressCashBoxButton()
                 .clickTabPaymentHistory()
                 .clickOnCancelWithdrawalFromHistoryTab();
-
         try {
             Assert.assertTrue(new CashBoxPopup().canceledWithdrawalStringPresent(), "WITHDRAWAL NOT CANCELED");
         } catch (Exception e) {
@@ -669,7 +645,6 @@ public class CashboxTest extends BaseTestPage {
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .clickCloseCashboxPopup();
-
         try {
             Assert.assertTrue(new HeaderAutorizedUser().userZoneIsPresent(), "POPUP NOT CLOSED");
         } catch (Exception e) {

@@ -98,7 +98,6 @@ public class BaseTestPage {
             }
         }
         else {getDriver().quit();}
-
     }
 
     @AfterClass()
