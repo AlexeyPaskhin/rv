@@ -14,7 +14,7 @@ import org.openqa.selenium.By;
 import static com.utils.DriverManager.getDriver;
 
 /**
- * Pop-up 'Bistraya registratsyja'
+ * Pop-up and page 'Bistraya registratsyja'
  * + from header
  * + from LogIn pop-up
  */
@@ -30,23 +30,29 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Checkbox AGREE_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='agree' and @type='checkbox']"));
     private static final Checkbox AGREE_CHECKBOX_PAGE = new Checkbox(By.xpath("//form[@class='popup-form page-form']//input[@name='agree' and @type='checkbox']"));
     // Social networks buttons
-    private static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
-    private static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-fb']"));
-    private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
-    private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
-    private static final Button MAILRU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
-    // Validation error messages
+    private static final Button VK_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
+    private static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-vk']"));
+    private static final Button FB_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[ @class='social-fb']"));
+    private static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-fb']"));
+    private static final Button OK_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
+    private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-ok']"));
+    private static final Button YA_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
+    private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-ya']"));
+    private static final Button MAIL_RU_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
+    private static final Button MAIL_RU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-mr']"));
+    // Validation error messages (page and pop-up)
     public static final Element ENTER_VALID_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите корректный e-mail')]"));
     public static final Element AGREE_WITH_RULES_ERROR = new Element(By.xpath("//span[contains(text(), 'Вы должны согласиться с правилами и условиями')]"));
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//p[1]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element EMPTY_PASSWORD_FIELD_ERROR = new Element(By.xpath("//p[2]//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element ENTER_REAL_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите настоящий e-mail')]"));
 
-    private static final Element RULES_AND_CONDITIONS_LINK = new Element(By.xpath("//div[@id='popup_register']//a[text()='правилами и условиями']"));
-    private static final Button CLOSE_FAST_REGISTER_POP_UP_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
-    private static final Element CLICK_AUTH_LINK = new Element(By.xpath("//*[@id=\"popup_register\"]//a[@data-popup-open='auth']"));
+    private static final Element RULES_AND_CONDITIONS_LINK_POP_UP = new Element(By.xpath("//div[@id='popup_register']//a[text()='правилами и условиями']"));
+    private static final Element RULES_AND_CONDITIONS_LINK_PAGE = new Element(By.xpath("//div[@class='inlineForm']//a[text()='правилами и условиями']"));
+    private static final Button CLOSE_FAST_REGISTER_POP_UP_BUTTON = new Button(By.xpath("//*[@id='popup_register']/a"));
+    private static final Element CLICK_AUTH_LINK_POP_UP = new Element(By.xpath("//*[@id='popup_register']//a[@data-popup-open='auth']"));
+    private static final Element CLICK_AUTH_LINK_PAGE = new Element(By.xpath("//div[@class='inlineForm']//a[@data-popup-open='auth']"));
 
-    public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
     private String parent = getDriver().getWindowHandle();
 
     @Step // the same locator for page and pop-up
@@ -99,50 +105,70 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public SocialFrame clickVK() {
-        VK_BUTTON_HOME_PAGE.click();
+        if (VK_BUTTON_HOME_POP_UP.isPresent()) {
+            VK_BUTTON_HOME_POP_UP.click();
+        } else {
+            VK_BUTTON_HOME_PAGE.click();
+        }
         swithToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
     @Step
     public SocialFrame clickMailRu() {
-        MAILRU_BUTTON_HOME_PAGE.click();
+        if (MAIL_RU_BUTTON_HOME_POP_UP.isPresent()) {
+            MAIL_RU_BUTTON_HOME_POP_UP.click();
+        } else {
+            MAIL_RU_BUTTON_HOME_PAGE.click();
+        }
         swithToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
 
     @Step
     public SocialFrame clickFB() {
-        FB_BUTTON_HOME_PAGE.waitForElementToBeClickable(4);
-        FB_BUTTON_HOME_PAGE.click();
+        if (FB_BUTTON_HOME_POP_UP.isPresent()) {
+            FB_BUTTON_HOME_POP_UP.click();
+        } else {
+            FB_BUTTON_HOME_PAGE.click();
+        }
         swithToSocialFrame();
         return new FBregisterPage(parent);
     }
 
     @Step
     public SocialFrame clickOK() {
-        OK_BUTTON_HOME_PAGE.waitForElementToBeClickable(4);
-        OK_BUTTON_HOME_PAGE.click();
+        if (OK_BUTTON_HOME_POP_UP.isPresent()) {
+            OK_BUTTON_HOME_POP_UP.click();
+        } else {
+            OK_BUTTON_HOME_PAGE.click();
+        }
         swithToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
     @Step
     public SocialFrame clickYA() {
-        YA_BUTTON_HOME_PAGE.waitForElementToBeClickable(4);
-        YA_BUTTON_HOME_PAGE.click();
+        if (YA_BUTTON_HOME_POP_UP.isPresent()) {
+            YA_BUTTON_HOME_POP_UP.click();
+        } else {
+            YA_BUTTON_HOME_PAGE.click();
+        }
         swithToSocialFrame();
         return new YARegisterPage(parent);
     }
 
     @Step
     public RulesPage checkRulesAndConditionsLink() {
-        RULES_AND_CONDITIONS_LINK.waitForElementToBeClickable(3);
-        RULES_AND_CONDITIONS_LINK.click();
+        if (RULES_AND_CONDITIONS_LINK_POP_UP.isPresent()) {
+            RULES_AND_CONDITIONS_LINK_POP_UP.click();
+        } else {
+            RULES_AND_CONDITIONS_LINK_PAGE.click();
+        }
         return new RulesPage();
     }
 
-    @Step
+    @Step // only pop-up
     public HomePage closeFastRegisterPopUp() {
         CLOSE_FAST_REGISTER_POP_UP_BUTTON.click();
         return new HomePage();
@@ -150,7 +176,11 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public AuthPopup clickAuthLink() {
-        CLICK_AUTH_LINK.click();
+        if (CLICK_AUTH_LINK_POP_UP.isPresent()) {
+            CLICK_AUTH_LINK_POP_UP.click();
+        } else {
+            CLICK_AUTH_LINK_PAGE.click();
+        }
         return new AuthPopup();
     }
 
@@ -184,11 +214,5 @@ public class FastRegisterPopup extends AbstractPage {
     public String getRealEmailText() {
         ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
         return ENTER_REAL_EMAIL_ERROR.getText();
-    }
-
-    @Step
-    public HomePage pressButtonClosepopUp() {
-        CLOSE_BUTTON.click();
-        return new HomePage();
     }
 }

@@ -83,7 +83,7 @@ public class LogInPopUpTest extends BaseTestPage {
                 .getNotAuthorizedHeader()
                 .pressButtonLogIn()
                 .clickRegistrationLink()
-                .pressButtonClosepopUp()
+                .closeFastRegisterPopUp()
                 .homePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
