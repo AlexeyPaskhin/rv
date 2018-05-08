@@ -23,8 +23,10 @@ public class FastRegisterPopup extends AbstractPage {
     private static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
     private static final InputBox ENTER_PASS_INPUT = new InputBox(By.id("register-form-password"));
     private static final Button REGISTER_BUTTON = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
-    private static final Checkbox CURRENCY_RUB_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='RUB']"));
-    private static final Checkbox CURRENCY_USD_CHECKBOX = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='USD']"));
+    private static final Checkbox CURRENCY_RUB_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='RUB']"));
+    private static final Checkbox CURRENCY_RUB_CHECKBOX_PAGE = new Checkbox(By.xpath("//div[@class='inlineForm']//form[@data-form-role='register' and @action='/users/register']//input[@name='currency' and @value='RUB']"));
+    private static final Checkbox CURRENCY_USD_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='USD']"));
+    private static final Checkbox CURRENCY_USD_CHECKBOX_PAGE = new Checkbox(By.xpath("//div[@class='inlineForm']//form[@data-form-role='register' and @action='/users/register']//input[@name='currency' and @value='USD']"));
     private static final Checkbox AGREE_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='agree' and @type='checkbox']"));
     private static final Checkbox AGREE_CHECKBOX_PAGE = new Checkbox(By.xpath("//form[@class='popup-form page-form']//input[@name='agree' and @type='checkbox']"));
     // Social networks buttons
@@ -47,13 +49,13 @@ public class FastRegisterPopup extends AbstractPage {
     public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id=\"popup_register\"]/a"));
     private String parent = getDriver().getWindowHandle();
 
-    @Step
+    @Step // the same locator for page and pop-up
     public FastRegisterPopup typeLogin(String login) {
         ENTER_EMAIL_INPUT.fillIn(login);
         return this;
     }
 
-    @Step
+    @Step // the same locator for page and pop-up
     public FastRegisterPopup typePass(String pass) {
         ENTER_PASS_INPUT.fillIn(pass);
         return this;
@@ -61,26 +63,35 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup selectCurrencyRUB() {
-        CURRENCY_RUB_CHECKBOX.waitForElementToBePresent(8);
-        CURRENCY_RUB_CHECKBOX.click();
+        if (CURRENCY_RUB_CHECKBOX_POP_UP.isPresent()) {
+            CURRENCY_RUB_CHECKBOX_POP_UP.click();
+        } else {
+            CURRENCY_RUB_CHECKBOX_PAGE.click();
+        }
         return this;
     }
 
     @Step
     public FastRegisterPopup selectCurrencyUSD() {
-        CURRENCY_USD_CHECKBOX.waitForElementToBePresent(8);
-        CURRENCY_USD_CHECKBOX.click();
+        if (CURRENCY_USD_CHECKBOX_POP_UP.isPresent()) {
+            CURRENCY_USD_CHECKBOX_POP_UP.click();
+        } else {
+            CURRENCY_USD_CHECKBOX_PAGE.click();
+        }
         return this;
     }
 
     @Step
     public FastRegisterPopup agreeWithRules() {
-        if (AGREE_CHECKBOX_POP_UP.isPresent()) { AGREE_CHECKBOX_POP_UP.click(); }
-        else { AGREE_CHECKBOX_PAGE.click(); }
+        if (AGREE_CHECKBOX_POP_UP.isPresent()) {
+            AGREE_CHECKBOX_POP_UP.click();
+        } else {
+            AGREE_CHECKBOX_PAGE.click();
+        }
         return this;
     }
 
-    @Step
+    @Step // the same locator for page and pop-up
     public WelcomeBonusGiftPopup clickRegisterButton() {
         REGISTER_BUTTON.clickUntilDisappeared();
         return new WelcomeBonusGiftPopup();
