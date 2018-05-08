@@ -32,15 +32,15 @@ public class FastRegisterPopup extends AbstractPage {
     private static final Checkbox AGREE_CHECKBOX_PAGE = new Checkbox(By.xpath("//form[@class='popup-form page-form']//input[@name='agree' and @type='checkbox']"));
     // Social networks buttons
     private static final Button VK_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-vk']"));
-    private static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-vk']"));
+    public static final Button VK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-vk']"));
     private static final Button FB_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[ @class='social-fb']"));
-    private static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-fb']"));
+    public static final Button FB_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-fb']"));
     private static final Button OK_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ok']"));
-    private static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-ok']"));
+    public static final Button OK_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-ok']"));
     private static final Button YA_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-ya']"));
-    private static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-ya']"));
+    public static final Button YA_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-ya']"));
     private static final Button MAIL_RU_BUTTON_HOME_POP_UP = new Button(By.xpath("//div[@id='popup_register']//div[@class='social-mr']"));
-    private static final Button MAIL_RU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-mr']"));
+    public static final Button MAIL_RU_BUTTON_HOME_PAGE = new Button(By.xpath("//div[@class='inlineForm']//div[@class='form-line centered']//div[@class='social-mr']"));
     // Validation error messages (page and pop-up)
     public static final Element ENTER_VALID_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Введите корректный e-mail')]"));
     public static final Element AGREE_WITH_RULES_ERROR = new Element(By.xpath("//span[contains(text(), 'Вы должны согласиться с правилами и условиями')]"));

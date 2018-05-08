@@ -15,8 +15,8 @@ public class LandingWithForm extends AbstractPage {
     private Button CHOOSE_BONUS = new Button(By.xpath("//a[@class='select-bonus']"));
 
     @Step
-    public FastRegister switchToRegistration() {
-        return new FastRegister(new LandingWithFormType());
+    public FastRegisterLP switchToRegistration() {
+        return new FastRegisterLP(new LandingWithFormType());
     }
 
     @Step
