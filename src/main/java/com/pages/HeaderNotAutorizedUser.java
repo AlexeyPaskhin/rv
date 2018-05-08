@@ -77,7 +77,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public HomePage clickLogin() {
-        LOGIN_BUTTON_IN_HEADER.waitForElementToBeClickable(3);
+        LOGIN_BUTTON_IN_HEADER.waitForElementToBeClickable(5);
         LOGIN_BUTTON_IN_HEADER.clickUntilDisappeared();
         return new HomePage();
     }
@@ -105,7 +105,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public HomePage clickLogoIcon() {
-        LOGO_ICON.waitForElementToBeClickable(3);
+        LOGO_ICON.waitForElementToBeClickable(5);
         LOGO_ICON.click();
         return new HomePage();
     }
@@ -123,7 +123,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public LogInPopUp pressButtonLogIn() {
-        VOITI_BUTTON_IN_HEADER.waitForElementToBeClickable(3);
+        VOITI_BUTTON_IN_HEADER.waitForElementToBeClickable(5);
         VOITI_BUTTON_IN_HEADER.click();
         return new LogInPopUp();
     }

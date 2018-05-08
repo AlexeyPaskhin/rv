@@ -23,10 +23,10 @@ public class LogInPopUp extends AbstractPage {
     // Validation error messages
     public static final Element EMPTY_EMAIL_FIELD_ERROR = new Element(By.xpath("//span[contains(text(), 'Поле не должно быть пустым')]"));
     public static final Element INCORRECT_PASS_OR_EMAIL_ERROR = new Element(By.xpath("//span[contains(text(), 'Неправильные имя пользователя и/или пароль')]"));
-    public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id=\"popup_auth\"]/a"));
+    public static final Button CLOSE_BUTTON = new Button(By.xpath("//*[@id='popup_auth']/a"));
 
-    private final Element RESET_PASSWORD_LINK = new Element(By.xpath("//*[@id=\"popup_auth\"]//a[@href='/users/restorePassword']"));
-    private final Element REGISTRATION_LINK = new Element(By.xpath("//*[@id=\"popup_auth\"]//a[2]"));
+    private final Element RESET_PASSWORD_LINK = new Element(By.xpath("//div[@id='popup_auth']//a[@data-popup-open = 'restore-password']"));
+    private final Element REGISTRATION_LINK = new Element(By.xpath("//*[@id='popup_auth']//a[2]"));
 
     public String fieldEmailShouldNotBeEmpty() {
         EMPTY_EMAIL_FIELD_ERROR.waitForElementToBePresent(4);
@@ -45,7 +45,7 @@ public class LogInPopUp extends AbstractPage {
 
     @Step
     public HomePage pressButtonClose() {
-        CLOSE_BUTTON.waitForElementToBeClickable(4);
+        CLOSE_BUTTON.waitForElementToBeClickable(5);
         CLOSE_BUTTON.click();
         return new HomePage();
     }
@@ -67,14 +67,14 @@ public class LogInPopUp extends AbstractPage {
 
     @Step
     public HomePage pressLoginIn() {
-        LOGIN_BUTTON_IN_POPUP.waitForElementToBePresent(3);
+        LOGIN_BUTTON_IN_POPUP.waitForElementToBePresent(4);
         LOGIN_BUTTON_IN_POPUP.click();
         return new HomePage();
     }
 
     @Step
     public ResetPasswordPopUp clickForgotPasswordLink() {
-        RESET_PASSWORD_LINK.waitForElementToBePresent(3);
+        RESET_PASSWORD_LINK.waitForElementToBePresent(4);
         RESET_PASSWORD_LINK.click();
         return new ResetPasswordPopUp();
     }
