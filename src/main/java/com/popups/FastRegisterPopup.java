@@ -22,7 +22,8 @@ import static com.utils.DriverManager.getDriver;
 public class FastRegisterPopup extends AbstractPage {
     private static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
     private static final InputBox ENTER_PASS_INPUT = new InputBox(By.id("register-form-password"));
-    private static final Button REGISTER_BUTTON = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
+    private static final Button REGISTER_BUTTON_POP_UP = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
+    private static final Button REGISTER_BUTTON_PAGE = new Button(By.xpath("//*[@class='form-line']//button[@class='btn-popup-register']/span"));
     private static final Checkbox CURRENCY_RUB_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='RUB']"));
     private static final Checkbox CURRENCY_RUB_CHECKBOX_PAGE = new Checkbox(By.xpath("//div[@class='inlineForm']//form[@data-form-role='register' and @action='/users/register']//input[@name='currency' and @value='RUB']"));
     private static final Checkbox CURRENCY_USD_CHECKBOX_POP_UP = new Checkbox(By.xpath("//div[@id='popup_register']//input[@name='currency' and @value='USD']"));
@@ -99,7 +100,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step // the same locator for page and pop-up
     public WelcomeBonusGiftPopup clickRegisterButton() {
-        REGISTER_BUTTON.clickUntilDisappeared();
+        REGISTER_BUTTON_POP_UP.clickUntilDisappeared();
         return new WelcomeBonusGiftPopup();
     }
 
@@ -186,7 +187,11 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup clickRegisterButtonAndDoNothing() {
-        REGISTER_BUTTON.clickUntilDisappeared();
+        if (REGISTER_BUTTON_POP_UP.isPresent()) {
+            REGISTER_BUTTON_POP_UP.clickUntilDisappeared();
+        } else {
+            REGISTER_BUTTON_PAGE.click();
+        }
         return new FastRegisterPopup();
     }
 

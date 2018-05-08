@@ -14,4 +14,6 @@ public class AuthPopup extends AbstractPage {
         AUTH_POP_UP_HEADER.waitForElementToBeVisible(1);
         return AUTH_POP_UP_HEADER.isVisible();
     }
+
+    // TODO: 2018-05-08 Add tests for Auth pop-up page version  - check FastRegisterPopup class
 }
