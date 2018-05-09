@@ -16,7 +16,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));
     private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
     private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo' and @href='/']"));
-    private final Element VIP_ICON = new Element(By.xpath("//a[@href='/vip' and @class='vip_user_zone_vip']"));
+    private final Element VIP_ICON = new Element(By.xpath("//a[@href='/vip' and @class='vip_user_zone_vip']")); // works only for status VIP
     private final Element USER_NAME_LINK = new Element(By.xpath("//a[@class='profile']"));
     private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
     private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
@@ -31,7 +31,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     }
 
     public boolean giftIconIsPresent() {
-        GIFT_ICON.waitForElementToBePresent(8);
+        GIFT_ICON.waitForElementToBePresent(10);
         return GIFT_ICON.isPresent();
     }
 

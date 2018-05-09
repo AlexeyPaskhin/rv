@@ -5,7 +5,7 @@ import RulVulaknTests.authorization.AuthorizationTest;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.RulesPage;
-import com.popups.AuthPopup;
+import com.popups.LogInPopUp;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
 public class FastRegisterPopupTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
     RulesPage rules;
-    AuthPopup authPopup;
+    LogInPopUp authPopup;
 
     // TODO: 2018-01-29  Add unic group here
 
@@ -60,8 +60,8 @@ public class FastRegisterPopupTest extends BaseTestPage {
                 .clickRegister()
                 .clickAuthLink();
         try {
-            authPopup = new AuthPopup();
-            Assert.assertTrue(authPopup.isAuthPopupOpened(), "AUTH POP-UP DOES NOT OPENED");
+            authPopup = new LogInPopUp();
+            Assert.assertTrue(authPopup.isLoginPopUpOpened(), "AUTH POP-UP DOES NOT OPENED");
         } catch (Exception e) {
             logger.error("ERROR WITH FAST REGISTER POP-UP");
             logger.error(e);
