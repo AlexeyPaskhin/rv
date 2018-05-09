@@ -16,7 +16,7 @@ public class LandingWithButton extends AbstractPage {
     }
 
     @Step
-    public FastRegister switchToRegistration() {
-        return new FastRegister(new LandingRegistrationFormType());
+    public FastRegisterLP switchToRegistration() {
+        return new FastRegisterLP(new LandingRegistrationFormType());
     }
 }
