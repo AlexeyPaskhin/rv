@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+
 import static com.utils.DriverManager.getDriver;
 import static com.utils.DriverManager.setImplicity;
 
@@ -51,12 +53,17 @@ public interface IAbstractPage {
 
     default void waitForCountOfWindows(int windowsCount) {
         setImplicity(0);
-        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
+        new WebDriverWait(getDriver(), 20).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
         setImplicity(10);
     }
 
-
     default void refreshPage() {
         getDriver().navigate().refresh();
+    }
+
+    default void switchToNewTab() {
+        for (String winHandle : getDriver().getWindowHandles()) {
+            swithToWindow(winHandle);
+        }
     }
 }

@@ -24,11 +24,23 @@
             <artifactId>selenium-java</artifactId>
             <version>3.7.1</version>
         </dependency>
+        <!-- LOGGER -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -48,6 +60,12 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
             <version>0.1.54</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
@@ -81,6 +99,18 @@
             <artifactId>allure-java-commons</artifactId>
             <version>2.0-BETA21</version>
         </dependency>
+        <!-- Install Lombok plugin to your InlelijIdea -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.16</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -112,7 +142,6 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
 
-
                     <!--<threadCount>4</threadCount>-->
                 </configuration>
                 <dependencies>
@@ -127,7 +156,7 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper</groups>
+        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression</groups>
         <aspectj.version>1.8.10</aspectj.version>
         <threads>1</threads>
     </properties>

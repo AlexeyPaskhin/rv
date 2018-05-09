@@ -16,18 +16,20 @@ public class ConfirmEmailPopup extends AbstractPage {
     private final Button COMPLETE_REGISTER_BUTTON = new Button(By.xpath("//*[text()='Завершить регистрацию']"));
 
     @Step
-    public ConfirmEmailPopup agreeWithRules(){
-        AGREE_CHECKBOX.waitForElementToBeVisible(3);
+    public ConfirmEmailPopup agreeWithRules() {
+        AGREE_CHECKBOX.waitForElementToBePresent(4);
         AGREE_CHECKBOX.click();
         return this;
     }
+
     @Step
-    public ConfirmEmailPopup setEmail(String email){
+    public ConfirmEmailPopup setEmail(String email) {
         EMAIL_INPUTBOX.fillIn(email);
         return this;
     }
+
     @Step
-    public HomePage clickCompleteRegister(){
+    public HomePage clickCompleteRegister() {
         COMPLETE_REGISTER_BUTTON.click();
         return new HomePage();
     }

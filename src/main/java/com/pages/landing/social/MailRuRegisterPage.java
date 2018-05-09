@@ -7,18 +7,18 @@ import com.pages.AbstractPage;
 import com.popups.ConfirmEmailPopup;
 import org.openqa.selenium.By;
 
-public class MailRuRegisterPage extends AbstractPage implements SocialFrame{
+public class MailRuRegisterPage extends AbstractPage implements SocialFrame {
     private final InputBox EMAIL_INPUT = new InputBox(By.name("Login"));
     private final InputBox PASS_INPUT = new InputBox(By.name("Password"));
     private final Button LOGIN_BUTTON = new Button(By.xpath("//div[@class='login-form__footer']/button"));
     private String parentWindow;
 
-public MailRuRegisterPage( ){}
-
-    public MailRuRegisterPage(String parentWindow){
-        this.parentWindow=parentWindow;
+    public MailRuRegisterPage() {
     }
 
+    public MailRuRegisterPage(String parentWindow) {
+        this.parentWindow = parentWindow;
+    }
 
     @Override
     public SocialFrame setEmail(String email) {
@@ -40,7 +40,7 @@ public MailRuRegisterPage( ){}
         return new ConfirmEmailPopup();
     }
 
-    public ConfirmEmailPopup switchToConfirmEmail(){
+    public ConfirmEmailPopup switchToConfirmEmail() {
         swithToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }

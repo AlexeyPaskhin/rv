@@ -28,27 +28,34 @@ public class DriverManager {
     private static final String EDGE = "EDGE";
     private static final String OPERA = "opera";
 
-    public static String BROWSER = System.getProperty("browser");
+    public static String BROWSER = System.getProperty("browser");  //maven config like -Dbrowser=chrome
+    // thread safe webdriver to avoid problems with multithreading and parallel running
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+
 
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
         WebDriverEventListener events = new WebDriverEventHandler();
         WebDriver driver = null;
+        // if we can't read browser from console we use browser from config
         if (BROWSER == null) {
             BROWSER = browser;
         }
-      //  URL url = new URL("http://172.17.0.2:4444/wd/hub");
-        URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub");
+        //  URL url = new URL("http://172.17.0.2:4444/wd/hub");
+        URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub"); // path to Selenoid server
 
         if (browser.equalsIgnoreCase(CHROME)) {
             System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
-            DesiredCapabilities cap = DesiredCapabilities.chrome();
+            DesiredCapabilities cap = DesiredCapabilities.chrome(); // browser capability
             cap.setBrowserName("chrome");
-            cap.setVersion("63.0");
-            cap.setCapability("enableVNC", true);
-            cap.setCapability("enableVideo", true);
+//            cap.setVersion("63.0");
+            cap.setCapability("enableVNC", true); // Is Interactive mode work?
+            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
+            //event firing driver is an implementation of WebDriverEventHandler from logger package
 
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events); // for remote Wed Driver add -> new RemoteWebDriver(url, cap))
+            /* for local -> new ChromeDriver())
+               for remote Wed Driver add -> new RemoteWebDriver(url, cap)) */
+            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap))
+                    .register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
@@ -67,6 +74,7 @@ public class DriverManager {
             System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
             OperaOptions oo = new OperaOptions();
             oo.addArguments("no-sandbox");
+            // TODO: 2018-03-23  Add correct path here
             oo.setBinary("C:\\Users\\a.kvasko\\AppData\\Local\\Programs\\Opera\\49.0.2725.64\\opera.exe");
             driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
         }
@@ -75,7 +83,6 @@ public class DriverManager {
             if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
             //     driver.manage().window().maximize();
         }
-        System.out.println("THREAD IS"+ Thread.currentThread().getId());
         return driver;
     }
 

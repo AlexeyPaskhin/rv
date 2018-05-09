@@ -23,6 +23,5 @@ public class InputBox extends Element {
 
     public void cleaIn(){
         slaveElement().sendKeys(Keys.chord(Keys.CONTROL, "a",Keys.BACK_SPACE));
-
     }
 }
