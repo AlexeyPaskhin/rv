@@ -53,8 +53,8 @@ public class DriverManager {
             //event firing driver is an implementation of WebDriverEventHandler from logger package
 
             /* for local -> new ChromeDriver())
-               for remote Wed Driver add -> new RemoteWebDriver(url, cap)) */
-            driver = new EventFiringWebDriver( new ChromeDriver())
+               for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
+            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap))
                     .register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {

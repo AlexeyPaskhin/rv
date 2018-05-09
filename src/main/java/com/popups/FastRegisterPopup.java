@@ -176,13 +176,13 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     @Step
-    public AuthPopup clickAuthLink() {
+    public LogInPopUp clickAuthLink() {
         if (CLICK_AUTH_LINK_POP_UP.isPresent()) {
             CLICK_AUTH_LINK_POP_UP.click();
         } else {
             CLICK_AUTH_LINK_PAGE.click();
         }
-        return new AuthPopup();
+        return new LogInPopUp();
     }
 
     @Step
