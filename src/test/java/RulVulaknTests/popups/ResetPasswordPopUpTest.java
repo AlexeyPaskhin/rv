@@ -21,6 +21,7 @@ import org.testng.annotations.Test;
  * + enter invalid emai - vvedite nastoyashij e-mail - pole ne dolxhno bytj pustym
  * + send reset password request from Log-In pop-up ("Vhod")
  */
+
 @Listeners({RussianVulcanListener.class})
 public class ResetPasswordPopUpTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
