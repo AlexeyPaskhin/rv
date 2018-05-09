@@ -54,7 +54,7 @@ public class DriverManager {
 
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap)) */
-            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap))
+            driver = new EventFiringWebDriver( new ChromeDriver())
                     .register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {

@@ -60,7 +60,8 @@ public class AuthorizationTest extends BaseTestPage {
     @Test(dataProvider = "authorizationUserForFB", dataProviderClass = AuthorizationData.class, groups = {"auth", "fb"})
     @Description("Social authorization from HeaderNotAutorizedUserTest - via FaceBook.com")
     public void authorizationUserFromFB(User user) {
-        new HeaderNotAutorizedUser().clickHeadFB()
+        new HeaderNotAutorizedUser()
+                .clickHeadFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
                 .clickRegister();
