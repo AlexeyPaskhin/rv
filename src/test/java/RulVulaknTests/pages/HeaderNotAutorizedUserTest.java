@@ -21,6 +21,7 @@ import org.testng.annotations.Test;
  * + try to log-in from header - with invalid field e-mail and correct password
  * + try to log-in from header - with invalid field password and correct e-mail
  */
+
 @Listeners({RussianVulcanListener.class})
 public class HeaderNotAutorizedUserTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
