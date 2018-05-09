@@ -34,8 +34,8 @@ public class HomePage extends AbstractPage {
     }
 
     public void homePageLoaded() {
-        CONTENT_PANE.waitForElementToBeVisible(10);
-        PRELOADER.waitForElementToBeInvisible(5);
+        CONTENT_PANE.waitForElementToBeVisible(15);
+        PRELOADER.waitForElementToBeInvisible(10);
     }
 
     @Step
