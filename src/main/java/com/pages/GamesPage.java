@@ -30,6 +30,11 @@ public class GamesPage extends AbstractPage {
     // private final Panel TEXT_BLOCK= new Panel(By.xpath("//div[@data-tab-id='popular']/div[@class='games-block']"));
 
     @Step
+    public Boolean gaminatorGamesTabIsSelected() {
+        return GAMINATOR_GAMES.isVisible();
+    }
+
+    @Step
     public List<Button> getAllPopularGames() {
         return POPULAR_GAME.getAllElements();
     }

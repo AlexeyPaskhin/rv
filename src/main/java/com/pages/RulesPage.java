@@ -19,7 +19,7 @@ public class RulesPage extends AbstractPage {
         return new HeaderAutorizedUser();
     }
 
-    public boolean isRulesPageOpened() {
+    public boolean isRulesPageLoaded() {
         H1_TEXT.waitForElementToBeVisible(5);
         return H1_TEXT.isVisible();
     }

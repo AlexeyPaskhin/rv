@@ -5,9 +5,10 @@ import com.pages.AbstractPage;
 import com.pages.Helpers.Dictionaries.LandingWithFormType;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
- * Class for choosing bonuses in Landing Pages 11
+ * Class for mapping Landing Pages 3, 6, 8, 9, 10, 11, 13
  */
 
 public class LandingWithForm extends AbstractPage {

@@ -36,12 +36,12 @@ public class OKRegisterPage extends AbstractPage implements SocialFrame {
     public ConfirmEmailPopup clickRegister() {
         LOGIN_BUTTON.click();
         waitForCountOfWindows(1);
-        swithToWindow(this.parentWindow);
+        switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 
     public ConfirmEmailPopup switchToConfirmEmail() {
-        swithToWindow(parentWindow);
+        switchToWindow(parentWindow);
         return new ConfirmEmailPopup();
     }
 }

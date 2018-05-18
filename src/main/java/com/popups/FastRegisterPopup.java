@@ -111,7 +111,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             VK_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
@@ -122,7 +122,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             MAIL_RU_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
 
@@ -133,7 +133,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             FB_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new FBregisterPage(parent);
     }
 
@@ -144,7 +144,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             OK_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
@@ -155,7 +155,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             YA_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new YARegisterPage(parent);
     }
 

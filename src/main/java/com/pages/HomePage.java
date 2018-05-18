@@ -39,6 +39,11 @@ public class HomePage extends AbstractPage {
     }
 
     @Step
+    public Boolean isNomePageLoaded() {
+        return CONTENT_PANE.isVisible();
+    }
+
+    @Step
     public RedHelperFrame openRedHelperFrame() {
         if (RED_HELPER_BUTTON.isVisible()) {
             RED_HELPER_BUTTON.click();

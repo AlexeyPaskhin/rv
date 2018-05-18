@@ -2,7 +2,6 @@ package com.pages.landing.social;
 
 import com.Elements.Button;
 import com.Elements.InputBox;
-import com.loggers.StringAppender;
 import com.pages.AbstractPage;
 import com.popups.ConfirmEmailPopup;
 import org.openqa.selenium.By;
@@ -36,12 +35,12 @@ public class MailRuRegisterPage extends AbstractPage implements SocialFrame {
     public ConfirmEmailPopup clickRegister() {
         LOGIN_BUTTON.click();
         waitForCountOfWindows(1);
-        swithToWindow(this.parentWindow);
+        switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 
     public ConfirmEmailPopup switchToConfirmEmail() {
-        swithToWindow(this.parentWindow);
+        switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
     }
 }

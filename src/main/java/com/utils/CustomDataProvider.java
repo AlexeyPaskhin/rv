@@ -25,7 +25,7 @@ public class CustomDataProvider {
     private String emailAuth;
     private String passAuth;
 
-    /* email's and pass's for social registeration */
+    /* email's and pass's for social registration */
     private String emailRegisterVK;
     private String passRegisterVK;
     private String emailRegisterFB;

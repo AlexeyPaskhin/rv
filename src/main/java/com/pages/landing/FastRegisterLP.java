@@ -11,6 +11,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
+/**
+ * Class for mapping the 'Fast Registration' form at Landing Pages
+ */
 
 public class FastRegisterLP extends AbstractPage {
 
@@ -100,7 +103,7 @@ public class FastRegisterLP extends AbstractPage {
             VK_BUTTON.click();
         }
 
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
@@ -116,7 +119,7 @@ public class FastRegisterLP extends AbstractPage {
             FB_BUTTON.waitForElementToBePresent(5);
             FB_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new FBregisterPage(parent);
     }
 
@@ -132,7 +135,7 @@ public class FastRegisterLP extends AbstractPage {
             OK_BUTTON.waitForElementToBePresent(5);
             OK_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
@@ -148,7 +151,7 @@ public class FastRegisterLP extends AbstractPage {
             YA_BUTTON.waitForElementToBePresent(5);
             YA_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new YARegisterPage(parent);
     }
 
@@ -164,7 +167,7 @@ public class FastRegisterLP extends AbstractPage {
             MAILRU_BUTTON.waitForElementToBePresent(5);
             MAILRU_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
 }

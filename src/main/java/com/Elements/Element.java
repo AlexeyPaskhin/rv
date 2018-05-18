@@ -35,7 +35,7 @@ public class Element{
 
 
     /**
-     * This method allows you to wotk with any WebDriver native methods
+     * This method allows you to work with any WebDriver native methods
      * Used for creating custom Methods and waiters
      * @return WebElement from By object
      */
@@ -43,7 +43,7 @@ public class Element{
         WebElement element;
         logger.info("Trying to find element " + by);
         element = getDriver().findElement(by);
-        logger.info("--OK! Element " + by + " found successfully");
+        logger.info("--OK! Element " + by + " is found successfully");
         return element;
     }
 
@@ -97,9 +97,10 @@ public class Element{
     }
 
     public boolean isPresent() {
-        setImplicity(0);
+        //todo поставил 1 сек неявное ожидание вместо 0, пока не пойму, зачем оно вообще здесь
+        setImplicity(1);
         List<WebElement> list = getDriver().findElements(by);
-        setImplicity(15);
+        setImplicity(10);
         if (list.size() == 0) {
             return false;
         } else {
@@ -151,6 +152,8 @@ public class Element{
     public List<WebElement> getAllWebElements(){
         return getDriver().findElements(by);
     }
+
+
 
 /*
 This method we have in case that method above will produce errors
