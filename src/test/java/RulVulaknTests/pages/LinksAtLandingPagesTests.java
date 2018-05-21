@@ -26,7 +26,6 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(LinksAtLandingPagesTests.class);
 
     GamesPage gamesPage;
-    LandingPageWithLinks pageWithLinks;
     LotteriesPage lotteriesPage;
     BonusPage bonusesPage;
     VipPage vipPage;
@@ -40,8 +39,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Games Link From Landing Pages")
     public void goToGamesLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        gamesPage = pageWithLinks.clickGames();
+        gamesPage = new LandingPageWithLinks()
+                .clickGames();
         assertTrue(gamesPage.PopularGamesExsits(), "One from key elements of the games page isn't loaded " +
                 "at the landing page " + landingPageNumber + ". So the page isn't loaded!");
     }
@@ -50,8 +49,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Gaminators Link From Landing Pages")
     public void goToGaminatorsLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        gamesPage = pageWithLinks.clickGaminators();
+        gamesPage = new LandingPageWithLinks()
+                .clickGaminators();
         assertTrue(gamesPage.gaminatorGamesTabIsSelected(), "The gaminators aren't opened!" +
                 "at the landing page " + landingPageNumber);
     }
@@ -60,8 +59,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go T oLotteries Link From Landing Pages")
     public void goToLotteriesLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        lotteriesPage = pageWithLinks.clickLotteries();
+        lotteriesPage = new LandingPageWithLinks()
+                .clickLotteries();
         assertTrue(lotteriesPage.lotteriesExists(), "The lotteries page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
@@ -70,8 +69,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Bonuses Link From Landing Pages")
     public void goToBonusesLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        bonusesPage = pageWithLinks.clickBonuses();
+        bonusesPage = new LandingPageWithLinks()
+                .clickBonuses();
         assertTrue(bonusesPage.isBonusesPageOpened(), "The bonuses page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
@@ -80,8 +79,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Vip Club Link From Landing Pages")
     public void goToVipClubLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        vipPage = pageWithLinks.clickVipClub();
+        vipPage = new LandingPageWithLinks()
+                .clickVipClub();
         assertTrue(vipPage.isVipPageLoaded(), "The vip-club page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
@@ -90,8 +89,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "4", "5", "6", "9"})
     @Description("go To Contacts Link From Landing Pages")
     public void goToContactsLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        contactsPage = pageWithLinks.clickContacts();
+        contactsPage = new LandingPageWithLinks()
+                .clickContacts();
         assertTrue(contactsPage.feedBackPageIsDisplayed(), "The contacts page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
@@ -101,8 +100,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "3", "4", "6", "9", "10", "11", "13", "14", "15"})
     @Description("go To Logo Link From Landing Pages")
     public void goToLogoLinkFromLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        home = pageWithLinks.clickLogo();
+        home = new LandingPageWithLinks()
+                .clickLogo();
 //        assertEquals(home.getTitle(), "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн");
         assertTrue(home.isNomePageLoaded(), "The home page isn't opened " +
                 "at the landing page " + landingPageNumber);
@@ -112,8 +111,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"7", "8", "12"})
     @Description("go To Main Page Through Closing Pop Up At Landing Pages")
     public void goToMainPageThroughClosingPopUpAtLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        home = pageWithLinks.closePopUp();
+        home = new LandingPageWithLinks()
+                .closePopUp();
 //        assertEquals(home.getTitle(), "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн");
         assertTrue(home.isNomePageLoaded(), "The home page isn't opened " +
                 "at the landing page " + landingPageNumber);
@@ -123,8 +122,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"3", "6", "8", "9", "10", "11", "13"})
     @Description("go To Rules Page Through Unhidden Link At Landing Pages")
     public void goToRulesPageThroughUnhiddenLinkAtLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        rulesPage = pageWithLinks.clickRulesLinkAndSwitchToItsNewPage();
+        rulesPage = new LandingPageWithLinks()
+                .clickRulesLinkAndSwitchToItsNewPage();
         assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
@@ -133,8 +132,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     @LandingPage(pageNo = {"1", "2", "4", "5", "14"})
     @Description("go To Rules Page Through Hidden By Registration Button Link At Landing Pages")
     public void goToRulesPageThroughHiddenByRegistrationButtonLinkAtLandingPages(User user, String landingPageNumber) {
-        pageWithLinks = new LandingPageWithLinks();
-        rulesPage = pageWithLinks.clickRegisterButton()
+        rulesPage = new LandingPageWithLinks()
+                .clickRegisterButton()
                 .clickRulesLinkAndSwitchToItsNewPage();
         assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
                 "at the landing page " + landingPageNumber);
@@ -147,7 +146,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
         new LandingWithBonus()
                 .clickBonus()
                 .switchToRegistration();
-        rulesPage = new LandingPageWithLinks().clickRulesLinkAndSwitchToItsNewPage();
+        rulesPage = new LandingPageWithLinks()
+                .clickRulesLinkAndSwitchToItsNewPage();
         assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
@@ -160,7 +160,8 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
                 .clickBonus()
                 .clickContinue()
                 .switchToRegistration();
-        rulesPage = new LandingPageWithLinks().clickRulesLinkAndSwitchToItsNewPage();
+        rulesPage = new LandingPageWithLinks()
+                .clickRulesLinkAndSwitchToItsNewPage();
         assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
