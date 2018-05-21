@@ -12,18 +12,19 @@ import static com.utils.DriverManager.getDriver;
 
 public class LandingPageWithLinks extends AbstractPage {
     public static final String rulesLinkLocator = "//a[@href='/rules']";
+    public static final String closePopUpButtonLocator = "//a[@href='#']";
 
     Button GAMES = new Button(By.xpath("//a[@href='/games']"));
-    Button gaminators = new Button(By.xpath("//a[@href='/games#Gaminator']"));
+    Button GAMINATORS = new Button(By.xpath("//a[@href='/games#Gaminator']"));
     Button LOTTERIES = new Button(By.xpath("//a[@href='/lotteries']"));
 //    Button TOURNAMENTS = new Button(By.xpath("//a[@href='/tournaments']"));
-    Button bonuses = new Button(By.xpath("//a[@href='/bonus']"));
+    Button BONUSES = new Button(By.xpath("//a[@href='/bonus']"));
 //    Button NEWS = new Button(By.xpath("//a[@href='/news']"));
     Button VIP_CLUB = new Button(By.xpath("//a[@href='/vip']"));
-    Button contacts = new Button(By.xpath("//a[@href='/contacts']"));
-    Button logo = new Button(By.xpath("//a[@href='/']"));
-    WebElement closePopUpButton;
-    WebElement rulesLink;
+    Button CONTACTS = new Button(By.xpath("//a[@href='/contacts']"));
+    Button LOGO = new Button(By.xpath("//a[@href='/']"));
+    WebElement CLOSE_POP_UP_BUTTON;
+    WebElement RULES_LINK;
     private Button REGISTER_BUTTON = new Button(By.xpath("//a[@href='/users/register']"));
 
 
@@ -37,7 +38,7 @@ public class LandingPageWithLinks extends AbstractPage {
 
     @Step
     public GamesPage clickGaminators() {
-        gaminators.click();
+        GAMINATORS.click();
         return new GamesPage();
     }
 
@@ -49,7 +50,7 @@ public class LandingPageWithLinks extends AbstractPage {
 
     @Step
     public BonusPage clickBonuses() {
-        bonuses.click();
+        BONUSES.click();
         return new BonusPage();
     }
 
@@ -61,28 +62,28 @@ public class LandingPageWithLinks extends AbstractPage {
 
     @Step
     public ContactsPage clickContacts() {
-        contacts.click();
+        CONTACTS.click();
         return new ContactsPage();
     }
 
     @Step
     public HomePage clickLogo() {
-        logo.click();
+        LOGO.click();
         return new HomePage();
     }
 
     @Step
     public HomePage closePopUp() {
-        closePopUpButton = getAllVisibleElements("//a[@href='#']").get(0);
-        closePopUpButton.click();
+        CLOSE_POP_UP_BUTTON = getAllVisibleElements(closePopUpButtonLocator).get(0);
+        CLOSE_POP_UP_BUTTON.click();
         return new HomePage();
     }
 
     @Step
     public RulesPage clickRulesLinkAndSwitchToItsNewPage() {
-        rulesLink = getAllVisibleElements(rulesLinkLocator).get(0);
+        RULES_LINK = getAllVisibleElements(rulesLinkLocator).get(0);
         Set<String> windowHandles = getDriver().getWindowHandles();
-        rulesLink.click();
+        RULES_LINK.click();
         switchToNewlyOpenedWindow(windowHandles);
         return new RulesPage();
     }
