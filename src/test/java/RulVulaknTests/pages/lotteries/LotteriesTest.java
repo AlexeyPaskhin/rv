@@ -10,7 +10,7 @@ public class LotteriesTest extends BaseTestPage {
     @Test(groups = {"regression"})
     public void CurrentLotteryButton() {
         LotteriesPage lotteries = new HomePage().getHeader().clickLotteriesLink();
-        String firstlotteryURL = lotteries.getLotteryByIdendex(0).getLotteryLink();
+        String firstlotteryURL = lotteries.getLotteryByIndex(0).getLotteryLink();
         System.out.println(firstlotteryURL);
     }
 }

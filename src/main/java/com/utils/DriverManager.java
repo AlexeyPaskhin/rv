@@ -88,7 +88,7 @@ public class DriverManager {
 
     public static void attachDriver(WebDriver driver) {
         webDriver.set(driver);
-        setImplicity(10);
+        setImplicity(3);
     }
 
     public static void setImplicity(int seconds) {

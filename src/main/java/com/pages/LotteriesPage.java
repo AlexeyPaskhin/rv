@@ -30,7 +30,7 @@ public class LotteriesPage extends AbstractPage {
         return LOTTERIES.getAllElements();
     }
 
-    public LotteriesPage getLotteryByIdendex(int index) {
+    public LotteriesPage getLotteryByIndex(int index) {
         List<Panel> lotteries = getAllLotteries();
         if (lotteries.size() > index) {
             CURRENT_LOTTERY = getAllLotteries().get(index);

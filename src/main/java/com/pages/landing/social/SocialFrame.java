@@ -13,10 +13,10 @@ public interface SocialFrame extends IAbstractPage {
 
     ConfirmEmailPopup clickRegister();
 
-//    default void swithToSocialFrame() {
+//    default void switchToSocialFrame() {
 //        AbstractPage.parentWindow = getDriver().getWindowHandle();
 //        for (String winHandle : getDriver().getWindowHandles()) {
-//            swithToWindow(winHandle);
+//            switchToWindow(winHandle);
 //        }
 //        waitForPageToLoad();
 //        String currURL = getURL();

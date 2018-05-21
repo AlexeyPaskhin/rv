@@ -13,11 +13,17 @@ public abstract class AbstractPage implements IAbstractPage {
     public String SOCIAL_LOGIN_WINDOW = "uLogin_window";
     public CustomDataProvider provider = new CustomDataProvider();
 
-    public void swithToSocialFrame() {
+    public void switchToSocialFrame() {
         waitForCountOfWindows(2);
         for (String winHandle : getDriver().getWindowHandles()) {
-            swithToWindow(winHandle);
+            switchToWindow(winHandle);
         }
         waitForPageToLoad();
     }
+
+    public AbstractPage goBack() {
+        getDriver().navigate().back();
+        return this;
+    }
+
 }
