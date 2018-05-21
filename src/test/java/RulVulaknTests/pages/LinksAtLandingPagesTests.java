@@ -28,7 +28,7 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     GamesPage gamesPage;
     LandingPageWithLinks pageWithLinks;
     LotteriesPage lotteriesPage;
-    BonusesPage bonusesPage;
+    BonusPage bonusesPage;
     VipPage vipPage;
     ContactsPage contactsPage;
     RulesPage rulesPage;

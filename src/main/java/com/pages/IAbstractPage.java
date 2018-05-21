@@ -40,7 +40,7 @@ public interface IAbstractPage {
     }
 
     /**
-     * pass to this method a list of old window handles to exclude them from switching
+     * pass to this method a set of old window handles to exclude them from switching
      */
     default void switchToNewlyOpenedWindow(Set<String> oldWindowHandles) {
         new WebDriverWait(getDriver(), 10).until(not(numberOfWindowsToBe(1)));

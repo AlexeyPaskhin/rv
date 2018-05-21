@@ -48,9 +48,9 @@ public class LandingPageWithLinks extends AbstractPage {
     }
 
     @Step
-    public BonusesPage clickBonuses() {
+    public BonusPage clickBonuses() {
         bonuses.click();
-        return new BonusesPage();
+        return new BonusPage();
     }
 
     @Step
