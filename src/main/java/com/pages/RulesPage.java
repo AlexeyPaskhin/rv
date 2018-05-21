@@ -20,7 +20,7 @@ public class RulesPage extends AbstractPage {
     }
 
     public boolean isRulesPageLoaded() {
-        H1_TEXT.waitForElementToBeVisible(5);
+//        H1_TEXT.waitForElementToBeVisible(5);
         return H1_TEXT.isVisible();
     }
 }

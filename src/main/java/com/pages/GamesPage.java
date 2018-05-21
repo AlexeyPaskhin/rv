@@ -41,7 +41,7 @@ public class GamesPage extends AbstractPage {
 
     @Step
     public boolean PopularGamesExsits() {
-        POPULAR_GAMES.waitForElementToBePresent(3);
+//        POPULAR_GAMES.waitForElementToBePresent(3);
         return POPULAR_GAMES.isPresent();
     }
 
