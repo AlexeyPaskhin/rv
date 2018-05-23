@@ -72,8 +72,8 @@ public class DriverManager {
             // firefoxOptions.addArguments("--headless");
             firefoxOptions.addArguments("--screenshot");
 
-            driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
-//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+//            driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(EDGE)) {
             System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
