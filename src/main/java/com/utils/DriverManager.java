@@ -1,6 +1,7 @@
 package com.utils;
 
 import com.loggers.WebDriverEventHandler;
+//import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,7 +36,7 @@ public class DriverManager {
 
     public static WebDriver setupDriver(String browser) throws MalformedURLException {
         WebDriverEventListener events = new WebDriverEventHandler();
-        WebDriver driver = null;
+        WebDriver driver;
         // if we can't read browser from console we use browser from config
         if (BROWSER == null) {
             BROWSER = browser;
@@ -47,23 +48,32 @@ public class DriverManager {
             System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
             DesiredCapabilities cap = DesiredCapabilities.chrome(); // browser capability
             cap.setBrowserName("chrome");
-//            cap.setVersion("63.0");
+//            cap.setVersion("66.0");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
             //event firing driver is an implementation of WebDriverEventHandler from logger package
 
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
-            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap))
-                    .register(events);
+//            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
+            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
             System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
             FirefoxOptions firefoxOptions = new FirefoxOptions();
+
+            DesiredCapabilities cap = DesiredCapabilities.firefox(); // browser capability
+            cap.setBrowserName("firefox");
+//            cap.setVersion("63.0");
+            cap.setCapability("enableVNC", true); // Is Interactive mode work?
+            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
+            //event firing driver is an implementation of WebDriverEventHandler from logger package
+
             // firefoxOptions.addArguments("--headless");
             firefoxOptions.addArguments("--screenshot");
 
-            driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
+//            driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(EDGE)) {
             System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
@@ -72,11 +82,28 @@ public class DriverManager {
             //TODO implement EDGE
         } else if (browser.equalsIgnoreCase(OPERA)) {
             System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
+//            WebDriverManager.operadriver().setup();
+
+            DesiredCapabilities cap = DesiredCapabilities.operaBlink(); // browser capability
+            cap.setBrowserName("operablink");
+//            cap.setVersion("51.0");
+            cap.setCapability("enableVNC", true); // Is Interactive mode work?
+            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
+            //event firing driver is an implementation of WebDriverEventHandler from logger package
+
             OperaOptions oo = new OperaOptions();
             oo.addArguments("no-sandbox");
             // TODO: 2018-03-23  Add correct path here
-            oo.setBinary("C:\\Users\\a.kvasko\\AppData\\Local\\Programs\\Opera\\49.0.2725.64\\opera.exe");
-            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
+//            oo.setBinary("C:\\Users\\a.kvasko\\AppData\\Local\\Programs\\Opera\\49.0.2725.64\\opera.exe");
+//            oo.setBinary("C:\\Users\\a.paskhyn\\AppData\\Local\\Programs\\Opera\\53.0.2907.57\\opera.exe");
+//            oo.setBinary("C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers\\opera.exe");
+//            oo.setBinary("/usr/bin/opera");
+//            WebDriverManager.operadriver().setup();
+
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+//            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
+        } else {
+            throw new IllegalArgumentException("Please specify correct browser name!!!");
         }
         // Hack before operadriver 2.33 will release
         if (!browser.equalsIgnoreCase(OPERA)) {

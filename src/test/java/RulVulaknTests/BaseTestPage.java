@@ -38,7 +38,7 @@ public class BaseTestPage {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeTest(Method method, Object[] o) {
-        boolean isLotteryEnabled=false;
+        boolean isLotteryEnabled = false;
 
         customDataProvider = new CustomDataProvider();
 
@@ -59,7 +59,12 @@ public class BaseTestPage {
             }
         }
         try {
-            WebDriver driver = setupDriver(customDataProvider.getBrowser());
+//            WebDriver driver = setupDriver(customDataProvider.getBrowser());
+
+//            we take a browser name from already specified maven variable OR (else) from the 'config.properties' file
+            WebDriver driver = System.getProperty("browser") !=null && !System.getProperty("browser").isEmpty()
+                    ? setupDriver(System.getProperty("browser"))
+                    : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -72,7 +77,7 @@ public class BaseTestPage {
             getDriver().get(customDataProvider.getBasicURL());
         }
         //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
-        Cookie ck = new Cookie("lottery_reminder_shown","true");
+        Cookie ck = new Cookie("lottery_reminder_shown", "true");
         getDriver().manage().addCookie(ck);
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
@@ -96,8 +101,9 @@ public class BaseTestPage {
                 getDriver().quit();
             } catch (SessionNotCreatedException e) {
             }
+        } else {
+            getDriver().quit();
         }
-        else {getDriver().quit();}
     }
 
     @AfterClass()
