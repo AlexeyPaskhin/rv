@@ -1,7 +1,7 @@
 package com.utils;
 
 import com.loggers.WebDriverEventHandler;
-//import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +17,8 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
@@ -45,7 +47,8 @@ public class DriverManager {
         URL url = new URL("http://autotest.rvkernel.com:4444/wd/hub"); // path to Selenoid server
 
         if (browser.equalsIgnoreCase(CHROME)) {
-            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+//            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
+            WebDriverManager.chromedriver().setup();
             DesiredCapabilities cap = DesiredCapabilities.chrome(); // browser capability
             cap.setBrowserName("chrome");
 //            cap.setVersion("66.0");
@@ -56,10 +59,11 @@ public class DriverManager {
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
 //            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
-            driver = new EventFiringWebDriver( new RemoteWebDriver(url, cap)).register(events);
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
-            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
+//            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
+            WebDriverManager.firefoxdriver().setup();
             FirefoxOptions firefoxOptions = new FirefoxOptions();
 
             DesiredCapabilities cap = DesiredCapabilities.firefox(); // browser capability
@@ -67,7 +71,6 @@ public class DriverManager {
 //            cap.setVersion("63.0");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
-            //event firing driver is an implementation of WebDriverEventHandler from logger package
 
             // firefoxOptions.addArguments("--headless");
             firefoxOptions.addArguments("--screenshot");
@@ -76,29 +79,36 @@ public class DriverManager {
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(EDGE)) {
-            System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
-            driver = new EventFiringWebDriver(new EdgeDriver()).register(events);
+//            System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
+            WebDriverManager.edgedriver().setup();
+            DesiredCapabilities cap = DesiredCapabilities.edge(); // browser capability
+//            cap.setBrowserName("edge");
+            cap.setCapability("enableVNC", true); // Is Interactive mode work?
+            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
 
-            //TODO implement EDGE
+            driver = new EventFiringWebDriver(new EdgeDriver()).register(events);
+//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+
+//            TODO implement EDGE
         } else if (browser.equalsIgnoreCase(OPERA)) {
-            System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
-//            WebDriverManager.operadriver().setup();
+//            System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
+            WebDriverManager.operadriver().setup();
 
             DesiredCapabilities cap = DesiredCapabilities.operaBlink(); // browser capability
-            cap.setBrowserName("operablink");
+            cap.setBrowserName("opera");
 //            cap.setVersion("51.0");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
-            //event firing driver is an implementation of WebDriverEventHandler from logger package
 
+            //use OperaOptions and set a path to opera launcher(not just driver!) at YOUR PK via it when start tests with local opera driver
+            //use the capabilities and set a path to opera launcher when start tests with remote driver
             OperaOptions oo = new OperaOptions();
+            Map<String, Object> hashmap = new HashMap<>();
+            hashmap.put("binary", "/usr/bin/opera");
             oo.addArguments("no-sandbox");
-            // TODO: 2018-03-23  Add correct path here
-//            oo.setBinary("C:\\Users\\a.kvasko\\AppData\\Local\\Programs\\Opera\\49.0.2725.64\\opera.exe");
-//            oo.setBinary("C:\\Users\\a.paskhyn\\AppData\\Local\\Programs\\Opera\\53.0.2907.57\\opera.exe");
-//            oo.setBinary("C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers\\opera.exe");
-//            oo.setBinary("/usr/bin/opera");
-//            WebDriverManager.operadriver().setup();
+
+            oo.setBinary("C:\\Program Files\\Opera\\53.0.2907.57\\opera.exe");
+            cap.setCapability("operaOptions", hashmap);
 
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 //            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
