@@ -33,19 +33,21 @@ public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
 
     @Step
     public CashBoxPopup clickTabWithdrawal() {
+        TAB_WITHDRAWAL.waitForElementToBeClickable(5);
         TAB_WITHDRAWAL.click();
         return this;
     }
 
     @Step
     public CashBoxPopup clickTabPaymentHistory() {
+        TAB_PAYMENT_HISTORY.waitForElementToBeClickable(5);
         TAB_PAYMENT_HISTORY.click();
         return this;
     }
 
     @Step
     public HomePage clickCloseCashboxPopup() {
-        CLOSE_CASHBOX_POPUP.waitForElementToBeClickable(2);
+        CLOSE_CASHBOX_POPUP.waitForElementToBeClickable(5);
         CLOSE_CASHBOX_POPUP.click();
         return new HomePage();
     }

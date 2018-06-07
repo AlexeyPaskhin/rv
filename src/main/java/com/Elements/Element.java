@@ -235,7 +235,7 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForElementToBeInvisible(int seconds) {
-        setImplicity(0);
+        setImplicity(1);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
         setImplicity(10);
     }

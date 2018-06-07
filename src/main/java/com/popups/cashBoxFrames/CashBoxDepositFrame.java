@@ -55,6 +55,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     @Step
     public CashBoxDepositFrame clickCardPaymentMethod() {
+        CARD_PAYMENT_BUTTON.waitForElementToBeClickable(5);
         CARD_PAYMENT_BUTTON.click();
         return this;
     }
