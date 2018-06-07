@@ -116,6 +116,10 @@ public class Element{
         return slaveElement().getAttribute(attr);
     }
 
+    public String getValue() {
+        return getAttribute("value");
+    }
+
     private void executeJS(String script) {
         ((JavascriptExecutor) getDriver()).executeScript(script, slaveElement());
     }

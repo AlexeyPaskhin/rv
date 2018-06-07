@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.Panel;
 import com.popups.WelcomeBonusGiftPopup;
 import com.popups.RedHelperFrame;
+import com.utils.User;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -17,9 +18,28 @@ public class HomePage extends AbstractPage {
     private final String HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER = "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн";
     private final String HOME_PAGE_TITLE_FOR_AUTHORIZED_USER = "Игровые автоматы Вулкан бесплатно и на деньги";
 
+
+    public HeaderAutorizedUser logInUser(User user) {
+        return getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader();
+    }
+
+    public HeaderAutorizedUser logInUser(String login, String pass) {
+        return getNotAuthorizedHeader()
+                .typeEmailInHeadField(login)
+                .typePassInHeadField(pass)
+                .clickLogin()
+                .getAuthorizedHeader();
+    }
+
+
     public HeaderNotAutorizedUser getNotAuthorizedHeader() {
         return new HeaderNotAutorizedUser();
     }
+
     public HeaderAutorizedUser getAuthorizedHeader() {
         return new HeaderAutorizedUser();
     }
