@@ -25,7 +25,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     private final Frame BLANK_IFRAME = new Frame(By.xpath("//iframe [@src=\"/blank-iframe\"]"));
 
     public boolean userZoneIsPresent() {
-        new HomePage().homePageLoaded();
+        new HomePage().waitForHomePageLoaded();
         USER_PANE.waitForElementToBePresent(8);
         return USER_PANE.isPresent();
     }
@@ -50,8 +50,8 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
 
     @Step
     public HomePage clickLogoIcon() {
-        LOGO_ICON.waitForElementToBePresent(6);
-        LOGO_ICON.clickUntilDisappeared();
+        BLANK_IFRAME.waitForElementToBeInvisible(5);
+        LOGO_ICON.click();
         return new HomePage();
     }
 
@@ -65,6 +65,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     @Step
     public ProfilePage clickUserName() {
         USER_NAME_LINK.waitForElementToBeClickable(5);
+        BLANK_IFRAME.waitForElementToBeInvisible(5);
         USER_NAME_LINK.click();
         return new ProfilePage();
     }

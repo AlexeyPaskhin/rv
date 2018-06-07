@@ -27,7 +27,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        logger.info("Test method " + iTestResult.getMethod().getMethodName() + " started");
+        logger.info("Test method " + iTestResult.getMethod().getMethodName() + " started" + " . Thread # " + Thread.currentThread().getId());
     }
 
     /**
@@ -36,7 +36,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
      */
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        logger.info("OK! Test " + iTestResult.getMethod().getMethodName() + " finished successfully");
+        logger.info("OK! Test " + iTestResult.getMethod().getMethodName() + " finished successfully" + " . Thread # " + Thread.currentThread().getId());
         FilesUtility.copySuccessLogs(iTestResult);
         StringAppender.resetAppender();
     }

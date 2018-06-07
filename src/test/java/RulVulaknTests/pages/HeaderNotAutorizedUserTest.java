@@ -32,7 +32,7 @@ public class HeaderNotAutorizedUserTest extends BaseTestPage {
     public void clickLogoToOpenHomePage() {
         new HeaderNotAutorizedUser()
                 .clickLogoIcon()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
             Assert.assertTrue(headerNotAutorizedUser.isLogoIconVisible(), "Logo icon is NOT VISIBLE for un-authorized user");

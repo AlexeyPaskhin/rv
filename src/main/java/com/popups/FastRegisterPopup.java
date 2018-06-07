@@ -187,7 +187,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup clickRegisterButtonAndDoNothing() {
-        if (REGISTER_BUTTON_POP_UP.isPresent()) {
+        if (REGISTER_BUTTON_POP_UP.isVisible()) {
             REGISTER_BUTTON_POP_UP.clickUntilDisappeared();
         } else {
             REGISTER_BUTTON_PAGE.click();
@@ -196,18 +196,18 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getValidEmailMessageText() {
-        ENTER_VALID_EMAIL_ERROR.waitForElementToBePresent(6);
+//        ENTER_VALID_EMAIL_ERROR.waitForElementToBePresent(6);
         return ENTER_VALID_EMAIL_ERROR.getText();
     }
 
     public String getAgreeWithRulesValidationMessageText() {
-        AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(9);
+//        AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(9);
         return AGREE_WITH_RULES_ERROR.getText();
     }
 
 
     public String getEmailFieldEmptyErrorMessaheText() {
-        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(9);
+//        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(9);
         return EMPTY_EMAIL_FIELD_ERROR.getText();
     }
 
@@ -217,7 +217,7 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getRealEmailText() {
-        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
+//        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
         return ENTER_REAL_EMAIL_ERROR.getText();
     }
 }
