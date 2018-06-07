@@ -14,6 +14,8 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.*;
+
 /**
  * Reset password pop-up
  * + send reset password request from header (un-authorized user)
@@ -33,10 +35,10 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         new HeaderNotAutorizedUser()
                 .clickResetPasswordLink()
                 .fillEmailField(dataProvider.getPassRecoveryEmail())
-                .pressButtonVosstanovit()
+                .successfulPressButtonVosstanovit()
                 .closePopUpZayavkaPriniata();
         try {
-            Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
+            assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -49,10 +51,10 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         new HeaderNotAutorizedUser()
                 .clickResetPasswordLink()
                 .fillEmailField("sdasdasdasd")
-                .pressButtonVosstanovit();
+                .forbiddenPressButtonVosstanovit();
         try {
             ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
-            Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Введите настоящий e-mail");
+            assertTrue(resetPasswordPopUp.INVALID_EMAIL_FIELD_ERROR.isVisible());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -65,10 +67,10 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         new HeaderNotAutorizedUser()
                 .clickResetPasswordLink()
                 .fillEmailField("")
-                .pressButtonVosstanovit();
+                .forbiddenPressButtonVosstanovit();
         try {
             ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
-            Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Поле не должно быть пустым");
+            assertTrue(resetPasswordPopUp.EMPTY_EMAIL_FIELD_ERROR.isVisible());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -100,7 +102,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
                 .pressButtonVosstanovit();
         try {
             ResetPasswordPopUp resetPasswordPopUp = new ResetPasswordPopUp();
-            Assert.assertEquals(resetPasswordPopUp.emailFieldErrorMessage(), "Превышен лимит запросов. Попробуйте, пожалуйста, позже.");
+            Assert.assertEquals(resetPasswordPopUp.getEmailFieldErrorMessage(), "Превышен лимит запросов. Попробуйте, пожалуйста, позже.");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();

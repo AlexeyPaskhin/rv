@@ -26,6 +26,7 @@ public class BaseTestPage {
     public SSHManager manager = null;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAutorizedUser headerAutorizedUser;
+    public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -37,7 +38,7 @@ public class BaseTestPage {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeTest(Method method, Object[] o) {
+    public void beforeMethod(Method method, Object[] o) {
         boolean isLotteryEnabled = false;
 
         customDataProvider = new CustomDataProvider();
@@ -62,7 +63,7 @@ public class BaseTestPage {
 //            WebDriver driver = setupDriver(customDataProvider.getBrowser());
 
 //            we take a browser name from already specified maven variable OR (else) from the 'config.properties' file
-            WebDriver driver = System.getProperty("browser") !=null && !System.getProperty("browser").isEmpty()
+            driver = System.getProperty("browser") !=null && !System.getProperty("browser").isEmpty()
                     ? setupDriver(System.getProperty("browser"))
                     : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
@@ -106,7 +107,7 @@ public class BaseTestPage {
         }
     }
 
-    @AfterClass()
+    @AfterClass(alwaysRun = true)
     public void releaseResources() {
         manager.disconnectFromConsole();
     }

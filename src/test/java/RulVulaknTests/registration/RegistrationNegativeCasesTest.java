@@ -8,6 +8,7 @@ import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.TimeoutException;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -18,82 +19,88 @@ import org.testng.annotations.Test;
  * + Do not agree with rules
  * + Do not enter email and password
  * + Enter e-mail without '@'
+ * <p>
+ * <p>
+ * org.testng.Assert doesn't work stable at these tests :( so we use explicit waits for checking desired elements
  */
 
 @Listeners({RussianVulcanListener.class})
 public class RegistrationNegativeCasesTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(RegistrationWithoutGiftsTest.class);
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative","regression"}, priority = 1)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 1)
     @Description("Registration negative case - enter invalid email.")
     public void tryRegisterWithInvalidEmail(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
-                .typeLogin(user.getLogin() + "&*()&^")
-                .typePass(user.getPass())
-                .selectCurrencyRUB()
-                .agreeWithRules()
-                .clickRegisterButtonAndDoNothing();
+        FastRegisterPopup fastRegisterPopup =
+                new HeaderNotAutorizedUser().clickRegister()
+                        .typeLogin(user.getLogin() + "&*()&^")
+                        .typePass(user.getPass())
+                        .selectCurrencyRUB()
+                        .agreeWithRules()
+                        .clickRegisterButtonAndDoNothing();
         try {
-            FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertEquals(fastRegisterPopup.getValidEmailMessageText(), "Введите корректный e-mail");
-        } catch (Exception e) {
+//            assertTrue(fastRegisterPopup.oneElementIsPresent(FastRegisterPopup.enterValidEmailErrorLocator));
+            fastRegisterPopup.ENTER_VALID_EMAIL_ERROR.waitForElementToBeVisible(3);
+            //            assertTrue(fastRegisterPopup.ENTER_VALID_EMAIL_ERROR.isDisplayed(),
+            //                    "The text 'Введите корректный e-mail' isn't displayed after submitting invalid email");
+        } catch (TimeoutException e) {
             logger.error(e);
-            Assert.fail();
+            Assert.fail("The text 'Введите корректный e-mail' isn't displayed after submitting invalid email");
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative","regression"}, priority = 2)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 2)
     @Description("Registration negative case - do not agree with rules.")
     public void tryRegisterWithoutRulesAgree(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
-                .typeLogin(user.getLogin())
-                .typePass(user.getPass())
-                .selectCurrencyRUB()
-                .clickRegisterButtonAndDoNothing();
+        FastRegisterPopup fastRegisterPopup =
+                new HeaderNotAutorizedUser().clickRegister()
+                        .typeLogin(user.getLogin())
+                        .typePass(user.getPass())
+                        .selectCurrencyRUB()
+                        .clickRegisterButtonAndDoNothing();
         try {
-            FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertEquals(fastRegisterPopup.getAgreeWithRulesValidationMessageText(), "Вы должны согласиться с правилами и условиями");
-        } catch (Exception e) {
+            fastRegisterPopup.AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(3);
+        } catch (TimeoutException e) {
             logger.error(e);
-            Assert.fail();
+            Assert.fail("The text 'Вы должны согласиться с правилами и условиями' isn't displayed after" +
+                    " submitting the reg form without checking the checkbox");
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative","regression"}, priority = 3)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 3)
     @Description("Registration negative case - do not fill email and password fields.")
     public void tryRegisterWithoutFilledEmailPasswordFields(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
+        FastRegisterPopup fastRegisterPopup =
+                new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin("")
                 .typePass("")
                 .selectCurrencyRUB()
                 .agreeWithRules()
                 .clickRegisterButtonAndDoNothing();
         try {
-            FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertEquals(fastRegisterPopup.getEmailFieldEmptyErrorMessaheText(), "Поле не должно быть пустым");
+            fastRegisterPopup.EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
 //            Assert.assertEquals(fastRegisterPopup.getPasswordFilledErrorMessageText(), "Поле не должно быть пустым");
-        } catch (Exception e) {
-
+        } catch (TimeoutException e) {
             logger.error(e);
-            Assert.fail();
+            Assert.fail("An appropriate error message isn't shown");
         }
     }
 
-    @Test(dataProvider = "randomUserProviderWithoutAtInEmail", dataProviderClass = RegisterData.class, groups = {"register", "negative","regression"}, priority = 4)
+    @Test(dataProvider = "randomUserProviderWithoutAtInEmail", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 4)
     @Description("Registration negative case - enter email without '@'.")
     public void tryRegisterWithEmailWithoutAt(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
+        FastRegisterPopup fastRegisterPopup =
+                new HeaderNotAutorizedUser().clickRegister()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .selectCurrencyRUB()
                 .agreeWithRules()
                 .clickRegisterButtonAndDoNothing();
         try {
-            FastRegisterPopup fastRegisterPopup = new FastRegisterPopup();
-            Assert.assertEquals(fastRegisterPopup.getRealEmailText(), "Введите настоящий e-mail");
-        } catch (Exception e) {
+            fastRegisterPopup.ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(3);
+        } catch (TimeoutException e) {
             logger.error(e);
-            Assert.fail();
+            Assert.fail("An appropriate error message isn't shown");
         }
     }
 

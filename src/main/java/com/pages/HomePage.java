@@ -33,7 +33,7 @@ public class HomePage extends AbstractPage {
         return WELCOME_BONUS_GIFT_POPUP;
     }
 
-    public void homePageLoaded() {
+    public void waitForHomePageLoaded() {
         CONTENT_PANE.waitForElementToBeVisible(15);
         PRELOADER.waitForElementToBeInvisible(10);
     }

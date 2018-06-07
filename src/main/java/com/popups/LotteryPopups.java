@@ -21,14 +21,14 @@ public class LotteryPopups extends AbstractPage {
 
     public HomePage closeLotteryReminderPopup() {
         if (REMINDER_POP_UP_HEADER.isVisible()) {
-            CLOSE_LOTTERY_REMINDER_POPUP.clickUntilDisappeared();
+            CLOSE_LOTTERY_REMINDER_POPUP.click();
         }
         return new HomePage();
     }
 
     public HomePage closeLotteryResultPopUp() {
         if (REMINDER_POP_UP_HEADER.isVisible()) {
-            CLOSE_LOTTERY_REMINDER_POPUP.clickUntilDisappeared();
+            CLOSE_LOTTERY_REMINDER_POPUP.click();
         }
         return new HomePage();
     }

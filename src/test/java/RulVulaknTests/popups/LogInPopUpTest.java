@@ -32,7 +32,7 @@ public class LogInPopUpTest extends BaseTestPage {
                 .getNotAuthorizedHeader()
                 .pressButtonLogIn()
                 .pressButtonClose()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class LogInPopUpTest extends BaseTestPage {
                 .typeEmailInPopupField(user.getLogin())
                 .typePassInPopupField(user.getPass())
                 .pressLoginIn()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForAuthorizedUser());
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class LogInPopUpTest extends BaseTestPage {
                 .pressButtonLogIn()
                 .clickForgotPasswordLink()
                 .pressButtonClosepopUp()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class LogInPopUpTest extends BaseTestPage {
                 .pressButtonLogIn()
                 .clickRegistrationLink()
                 .closeFastRegisterPopUp()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
         } catch (Exception e) {
