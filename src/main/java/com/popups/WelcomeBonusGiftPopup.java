@@ -18,6 +18,7 @@ public class WelcomeBonusGiftPopup extends AbstractPage {
 
     @Step
     public HomePage clickWithdrawFromGift() {
+        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(5);
         WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
