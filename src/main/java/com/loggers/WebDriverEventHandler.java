@@ -35,7 +35,7 @@ public class WebDriverEventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateTo(String s, WebDriver webDriver) {
-        logger.info("open page: " + s);
+        logger.info("open page: " + s + " . Thread # " + Thread.currentThread().getId());
     }
 
     @Override
@@ -77,12 +77,12 @@ public class WebDriverEventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.info("Trying to click on " + webElement);
+        logger.info("Trying to click on " + webElement + " . Thread # " + Thread.currentThread().getId());
     }
 
     @Override
     public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.info("-- OK! Element " + lastBy + " Successfully clicked");
+        logger.info("-- OK! Element " + lastBy + " Successfully clicked" + " . Thread # " + Thread.currentThread().getId());
     }
 
     @Override
@@ -103,7 +103,8 @@ public class WebDriverEventHandler implements WebDriverEventListener {
             }
         } catch (StaleElementReferenceException e) {
         }
-        logger.info(" In element " + lastBy + " value changed from '" + originalValue + "' to '" + newValue + "'");
+        logger.info(" In element " + lastBy + " value changed from '" + originalValue + "' to '" + newValue + "'"
+                + " . Thread # " + Thread.currentThread().getId());
     }
 
     @Override
@@ -117,13 +118,33 @@ public class WebDriverEventHandler implements WebDriverEventListener {
     }
 
     @Override
+    public void beforeSwitchToWindow(String windowName, WebDriver driver) {
+
+    }
+
+    @Override
+    public void afterSwitchToWindow(String windowName, WebDriver driver) {
+
+    }
+
+    @Override
     public void onException(Throwable throwable, WebDriver webDriver) {
         if (throwable.getClass().equals(NoSuchElementException.class)) {
-            logger.error("Element not found " + lastBy);
+            logger.error("Element not found " + lastBy + " . Thread # " + Thread.currentThread().getId());
         } else if (throwable.getClass().equals(ElementNotVisibleException.class)) {
-            logger.error("Element not visible " + lastBy);
+            logger.error("Element not visible " + lastBy + " . Thread # " + Thread.currentThread().getId());
         } else if (throwable.getClass().equals(StaleElementReferenceException.class)) {
-            logger.error("Element was changed in runtime " + lastBy);
+            logger.error("Element was changed in runtime " + lastBy + " . Thread # " + Thread.currentThread().getId());
         }
+    }
+
+    @Override
+    public <X> void beforeGetScreenshotAs(OutputType<X> target) {
+
+    }
+
+    @Override
+    public <X> void afterGetScreenshotAs(OutputType<X> target, X screenshot) {
+
     }
 }

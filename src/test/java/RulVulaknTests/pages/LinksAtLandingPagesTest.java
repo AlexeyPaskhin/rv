@@ -22,8 +22,8 @@ import static org.testng.Assert.assertTrue;
  */
 
 @Listeners({RussianVulcanListener.class})
-public class LinksAtLandingPagesTests extends BaseTestPage {
-    private final static Logger logger = LogManager.getLogger(LinksAtLandingPagesTests.class);
+public class LinksAtLandingPagesTest extends BaseTestPage {
+    private final static Logger logger = LogManager.getLogger(LinksAtLandingPagesTest.class);
 
     GamesPage gamesPage;
     LotteriesPage lotteriesPage;
@@ -31,8 +31,6 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     VipPage vipPage;
     ContactsPage contactsPage;
     RulesPage rulesPage;
-
-    //todo посмотреть пишутся ли норм логи если не кетчить ассерт
 
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
@@ -124,7 +122,7 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
     public void goToRulesPageThroughUnhiddenLinkAtLandingPages(User user, String landingPageNumber) {
         rulesPage = new LandingPageWithLinks()
                 .clickRulesLinkAndSwitchToItsNewPage();
-        assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
+        assertTrue(rulesPage.isRulesPageLoaded(), "The rules page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 
@@ -135,7 +133,7 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
         rulesPage = new LandingPageWithLinks()
                 .clickRegisterButton()
                 .clickRulesLinkAndSwitchToItsNewPage();
-        assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
+        assertTrue(rulesPage.isRulesPageLoaded(), "The rules page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 
@@ -148,7 +146,7 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
                 .switchToRegistration();
         rulesPage = new LandingPageWithLinks()
                 .clickRulesLinkAndSwitchToItsNewPage();
-        assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
+        assertTrue(rulesPage.isRulesPageLoaded(), "The rules page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 
@@ -162,7 +160,7 @@ public class LinksAtLandingPagesTests extends BaseTestPage {
                 .switchToRegistration();
         rulesPage = new LandingPageWithLinks()
                 .clickRulesLinkAndSwitchToItsNewPage();
-        assertTrue(rulesPage.isRulesPageLoaded(), "The home page isn't opened " +
+        assertTrue(rulesPage.isRulesPageLoaded(), "The rules page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 

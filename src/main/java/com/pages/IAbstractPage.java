@@ -90,7 +90,7 @@ public interface IAbstractPage {
 
     default void waitForCountOfWindows(int windowsCount) {
         setImplicity(0);
-        new WebDriverWait(getDriver(), 20).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
+        new WebDriverWait(getDriver(), 10).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
         setImplicity(10);
     }
 

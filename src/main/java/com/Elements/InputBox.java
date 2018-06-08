@@ -22,7 +22,9 @@ public class InputBox extends Element {
     }
 
     public void cleaIn(){
-        slaveElement().sendKeys(Keys.chord(Keys.CONTROL, "a"));
-        slaveElement().sendKeys(Keys.BACK_SPACE);
+        while (!slaveElement().getAttribute("value").equals("")) {
+            slaveElement().sendKeys(Keys.chord(Keys.CONTROL, "a"));
+            slaveElement().sendKeys(Keys.BACK_SPACE);
+        }
     }
 }

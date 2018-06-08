@@ -28,6 +28,7 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
     private Panel NOT_ENOUGH_MONEY_MESSAGE = new Panel(By.xpath("//div[@class='message_content_inner fail']"));
 
     public CashBoxWithdrawalFrame clickCardPaymentMethod() {
+        CARD_PAYMENT_BUTTON.waitForElementToBeClickable(5);
         CARD_PAYMENT_BUTTON.click();
         return this;
     }
