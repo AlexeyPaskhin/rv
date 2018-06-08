@@ -7,6 +7,7 @@ import com.listeners.RussianVulcanListener;
 import com.pages.HeaderAutorizedUser;
 import com.pages.HomePage;
 import com.pages.ProfilePage;
+import com.pages.VipPage;
 import com.popups.cashBoxFrames.CashBoxDepositFrame;
 import com.utils.RandomGenerate;
 import com.utils.User;
@@ -204,6 +205,16 @@ public class ProfilePageTest extends BaseTestPage {
                 .successfulSaveChanges();
                 profilePage.refreshPage();
         assertEquals(profilePage.FULL_NAME_INPUT.getValue(), name);
+    }
+
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Description("clicking Link Vip Club Details")
+    public void clickingLinkVipClubDetails(User user) {
+        VipPage vipPage = new HomePage()
+                .logInUser(user)
+                .clickUserName()
+                .clickVipClubDetailsLink();
+        assertTrue(vipPage.isVipPageLoaded());
     }
 
 }

@@ -110,16 +110,16 @@ public class DriverManager {
             oo.setBinary("C:\\Program Files\\Opera\\53.0.2907.57\\opera.exe");
             cap.setCapability("operaOptions", hashmap);
 
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 //            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
         } else {
             throw new IllegalArgumentException("Please specify correct browser name!!!");
         }
         // Hack before operadriver 2.33 will release
-        if (!browser.equalsIgnoreCase(OPERA)) {
-            if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
-            //     driver.manage().window().maximize();
-        }
+//        if (!browser.equalsIgnoreCase(OPERA)) {
+        if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
+        //     driver.manage().window().maximize();
+//        }
         return driver;
     }
 

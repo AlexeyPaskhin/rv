@@ -32,6 +32,10 @@ public class ProfilePage extends AbstractPage {
     public Element NOT_EQUAL_PASS_VALIDATION_MESSAGE = new Element(By.xpath("//span[text()='Значения полей не совпадают']"));
     public Element INVALID_PHONE_VALIDATION_MESSAGE = new Element(By.xpath("//span[text()='Введите корректный номер телефона']"));
 
+    public ProfilePage() {
+        CONFIRM_EMAIL_BUTTON.waitForElementToBeClickable(5);
+    }
+
     public boolean isProfilePageOpened() {
         return this.getTitle().equals(PROFILE_PAGE_TITLE);
     }
@@ -108,6 +112,7 @@ public class ProfilePage extends AbstractPage {
     }
 
     public ProfilePage clickConfirmEmail() {
+        CONFIRM_EMAIL_BUTTON.waitForElementToBeClickable(5);
         CONFIRM_EMAIL_BUTTON.click();
         return this;
     }
@@ -132,5 +137,10 @@ public class ProfilePage extends AbstractPage {
     public ProfilePage clickReceiveCode() {
         RECEIVE_SMS_CODE_BUTTON.click();
         return this;
+    }
+
+    public VipPage clickVipClubDetailsLink() {
+        VIP_CLUB_DETAILS_BUTTON.click();
+        return new VipPage();
     }
 }
