@@ -14,6 +14,10 @@ import org.openqa.selenium.By;
 public class ZayavkaPrinyataPopUp extends AbstractPage {
     private final Button CLOSE_POP_UP_BUTTON = new Button(By.xpath("//*[@id=\"popup_alert\"]/a"));
 
+    public ZayavkaPrinyataPopUp() {
+        CLOSE_POP_UP_BUTTON.waitForElementToBeVisible(10);
+    }
+
     @Step
     public HomePage closePopUpZayavkaPriniata() {
         CLOSE_POP_UP_BUTTON.click();

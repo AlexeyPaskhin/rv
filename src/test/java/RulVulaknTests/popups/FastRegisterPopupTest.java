@@ -13,6 +13,8 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.*;
+
 @Listeners({RussianVulcanListener.class})
 public class FastRegisterPopupTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationTest.class);
@@ -30,7 +32,7 @@ public class FastRegisterPopupTest extends BaseTestPage {
                 .switchToNewTab();
         try {
             rules = new RulesPage();
-            Assert.assertEquals(rules.getTitle(), "Правила и условия онлайн казино Русский Вулкан");
+            assertTrue(rules.isRulesPageLoaded(), "The rules page isn't opened");
         } catch (Exception e) {
             logger.error("ERROR WITH FAST REGISTER POP-UP");
             logger.error(e);
@@ -45,7 +47,7 @@ public class FastRegisterPopupTest extends BaseTestPage {
                 .clickRegister()
                 .closeFastRegisterPopUp();
         try {
-            Assert.assertEquals(home.getTitle(), "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн");
+            assertEquals(home.getTitle(), "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн");
         } catch (Exception e) {
             logger.error("ERROR WITH FAST REGISTER POP-UP");
             logger.error(e);

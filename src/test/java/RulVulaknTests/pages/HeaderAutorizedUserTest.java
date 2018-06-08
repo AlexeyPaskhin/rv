@@ -3,10 +3,8 @@ package RulVulaknTests.pages;
 import RulVulaknTests.BaseTestPage;
 import RulVulaknTests.authorization.AuthorizationData;
 import RulVulaknTests.cashbox.CashboxTest;
-import RulVulaknTests.registration.RegisterData;
 import com.listeners.RussianVulcanListener;
 import com.pages.*;
-import com.popups.CashBoxPopup;
 import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
@@ -42,7 +40,7 @@ public class HeaderAutorizedUserTest extends BaseTestPage {
                 .clickLogin()
                 .getAuthorizedHeader()
                 .clickLogoIcon()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForAuthorizedUser());
         } catch (Exception e) {
@@ -102,7 +100,7 @@ public class HeaderAutorizedUserTest extends BaseTestPage {
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
                 .clickCloseCashboxPopup()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForAuthorizedUser());
         } catch (Exception e) {
@@ -121,7 +119,7 @@ public class HeaderAutorizedUserTest extends BaseTestPage {
                 .clickLogin()
                 .getAuthorizedHeader()
                 .clickExit()
-                .homePageLoaded();
+                .waitForHomePageLoaded();
         try {
             Assert.assertTrue(home.isHomePageOpenedForNotAuthorized());
             Assert.assertTrue(headerNotAutorizedUser.registerButtonIsPresent());

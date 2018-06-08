@@ -4,9 +4,14 @@ import com.Elements.Button;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
 import com.popups.ConfirmEmailPopup;
+import com.utils.PropertyLoader;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 
 public class FBregisterPage extends AbstractPage implements SocialFrame {
+    private final static Logger logger = LogManager.getLogger(PropertyLoader.class);
 
     private final InputBox EMAIL_INPUT = new InputBox(By.name("email"));
     private final InputBox PASS_INPUT = new InputBox(By.name("pass"));
@@ -22,7 +27,15 @@ public class FBregisterPage extends AbstractPage implements SocialFrame {
 
     @Override
     public SocialFrame setEmail(String email) {
-        EMAIL_INPUT.fillIn(email);
+        try {
+            EMAIL_INPUT.cleaIn();
+            EMAIL_INPUT.fillIn(email);
+        } catch (StaleElementReferenceException e) {
+            logger.info("---  The FB page was reloaded unexpectedly!");
+            EMAIL_INPUT.cleaIn();
+            EMAIL_INPUT.fillIn(email);  //sometimes the facebook page reloads immediately after opening.
+        }
+
         return this;
     }
 

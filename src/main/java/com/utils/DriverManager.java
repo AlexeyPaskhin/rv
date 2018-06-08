@@ -117,8 +117,8 @@ public class DriverManager {
         }
         // Hack before operadriver 2.33 will release
 //        if (!browser.equalsIgnoreCase(OPERA)) {
-        if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
-        //     driver.manage().window().maximize();
+            if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
+            //     driver.manage().window().maximize();
 //        }
         return driver;
     }
