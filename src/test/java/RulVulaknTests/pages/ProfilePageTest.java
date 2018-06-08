@@ -8,6 +8,7 @@ import com.pages.HeaderAutorizedUser;
 import com.pages.HomePage;
 import com.pages.ProfilePage;
 import com.pages.VipPage;
+import com.popups.ChangesSavedConfirmPopUp;
 import com.popups.cashBoxFrames.CashBoxDepositFrame;
 import com.utils.RandomGenerate;
 import com.utils.User;
@@ -59,19 +60,21 @@ public class ProfilePageTest extends BaseTestPage {
     @Description("successful Changing Password")
     public void successfulChangingPassword(User user) {
         String newPass = user.getPass() + "a";
-        profilePage = new HomePage()
-                .logInUser(user)
-                .clickUserName()
-                .clickChangePass()
-                .setToOldPassField(user.getPass())
-                .setToNewPassField(newPass)
-                .setToConfirmPassField(newPass)
-                .successfulSaveChanges();
-        assertTrue(profilePage.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isPresent() &&
-                profilePage.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isVisible());
+        ChangesSavedConfirmPopUp confirmPopUp =
+                new HomePage()
+                        .logInUser(user)
+                        .clickUserName()
+                        .clickChangePass()
+                        .setToOldPassField(user.getPass())
+                        .setToNewPassField(newPass)
+                        .setToConfirmPassField(newPass)
+                        .successfulSaveChanges();
+
+        assertTrue(confirmPopUp.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isPresent() &&
+                confirmPopUp.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isVisible());
         try {
             //check that new pass is valid
-            profilePage.closeConfirmPopUp();
+            confirmPopUp.closeConfirmPopUp();
             new HeaderAutorizedUser()
                     .clickExit()
                     .logInUser(user.getLogin(), newPass);
@@ -178,8 +181,8 @@ public class ProfilePageTest extends BaseTestPage {
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
     @Description("saving Entered Phone")
     public void savingEnteredPhone(User user) {
-        String phone = "380235871912";
-        profilePage = new HomePage()
+        String phone = RandomGenerate.randomStringOfDigits(12);
+        new HomePage()
                 .logInUser(user)
                 .clickUserName()
                 .setToPhoneField("")
@@ -187,7 +190,8 @@ public class ProfilePageTest extends BaseTestPage {
                 .closeConfirmPopUp()
                 .setToPhoneField(phone)
                 .successfulSaveChanges();
-                profilePage.refreshPage();
+        profilePage = new ProfilePage();
+        profilePage.refreshPage();
         assertEquals(profilePage.PHONE_INPUT.getValue(), phone);
     }
 
@@ -195,7 +199,7 @@ public class ProfilePageTest extends BaseTestPage {
     @Description("saving Entered Name")
     public void savingEnteredName(User user) {
         String name = RandomGenerate.randomString(5, 30);
-        profilePage = new HomePage()
+        new HomePage()
                 .logInUser(user)
                 .clickUserName()
                 .setToNameField("")
@@ -203,7 +207,8 @@ public class ProfilePageTest extends BaseTestPage {
                 .closeConfirmPopUp()
                 .setToNameField(name)
                 .successfulSaveChanges();
-                profilePage.refreshPage();
+        profilePage = new ProfilePage();
+        profilePage.refreshPage();
         assertEquals(profilePage.FULL_NAME_INPUT.getValue(), name);
     }
 

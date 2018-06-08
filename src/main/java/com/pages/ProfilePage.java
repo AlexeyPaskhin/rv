@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.Element;
 import com.Elements.InputBox;
 import com.popups.CashBoxPopup;
+import com.popups.ChangesSavedConfirmPopUp;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -27,7 +28,6 @@ public class ProfilePage extends AbstractPage {
     public Button CONFIRM_SMS_CODE_BUTTON = new Button(By.xpath("//input[@id='confirm-phone-code-bnt']"));
     public Button SAVE_BUTTON = new Button(By.xpath("//form[@data-form-role='profile']//span[text()='Сохранить']/.."));
     public Button VIP_CLUB_DETAILS_BUTTON = new Button(By.xpath("//a[text()='Подробнее о VIP-клубе']"));
-    public Button CLOSE_POPUP_SUCCESS_CHANGES_BUTTON = new Button(By.xpath("//div[@id='popup_alert']/a[@class='popup-close']"));
     public Element WRONG_PASS_VALIDATION_MESSAGE = new Element(By.xpath("//span[text()='Неправильный пароль']"));
     public Element NOT_EQUAL_PASS_VALIDATION_MESSAGE = new Element(By.xpath("//span[text()='Значения полей не совпадают']"));
     public Element INVALID_PHONE_VALIDATION_MESSAGE = new Element(By.xpath("//span[text()='Введите корректный номер телефона']"));
@@ -72,10 +72,9 @@ public class ProfilePage extends AbstractPage {
     }
 
     @Step
-    public ProfilePage successfulSaveChanges() {
+    public ChangesSavedConfirmPopUp successfulSaveChanges() {
         SAVE_BUTTON.click();
-        CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.waitForElementToBeVisible(5);
-        return this;
+        return new ChangesSavedConfirmPopUp();
     }
 
     @Step
@@ -86,19 +85,12 @@ public class ProfilePage extends AbstractPage {
     }
 
     @Step
-    public ProfilePage closeConfirmPopUp() {
-        CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.click();
-        return this;
-    }
-
-    @Step
-    public ProfilePage successfulChangePass(String oldPass, String newPass) {
-        clickChangePass()
+    public ChangesSavedConfirmPopUp successfulChangePass(String oldPass, String newPass) {
+        return clickChangePass()
                 .setToOldPassField(oldPass)
                 .setToNewPassField(newPass)
                 .setToConfirmPassField(newPass)
                 .successfulSaveChanges();
-        return this;
     }
 
     @Step
