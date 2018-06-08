@@ -323,14 +323,13 @@ public class CashboxTest extends BaseTestPage {
 
     @Test(dataProvider = "userAuthProvider", dataProviderClass = CashboxData.class, groups = {"cashbox"})
     @Description("Check QIWI, YANDEX, VISA/MasterCard payment methods is available for deposit in cashbox")
-    public void checkBasicPaymentMethodsAreAvailebleForDeposit(User user, Card card) {
+    public void checkBasicPaymentMethodsAreAvailableForDeposit(User user, Card card) {
         new HeaderNotAutorizedUser().typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
                 .getAuthorizedHeader()
                 .pressCashBoxButton()
-                .switchToCashBoxDepositFrame()
-                .checkPaymentsMethodInDepositFrame();
+                .switchToCashBoxDepositFrame();
         try {
             Assert.assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInDepositFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
         } catch (Exception e) {

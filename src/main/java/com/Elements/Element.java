@@ -100,10 +100,7 @@ public class Element {
     }
 
     public boolean isPresent() {
-        //todo поставил 1 сек неявное ожидание вместо 0, пока не пойму, зачем оно вообще здесь
-        setImplicity(1);
         List<WebElement> list = getDriver().findElements(by);
-        setImplicity(10);
         if (list.size() == 0) {
             return false;
         } else {
@@ -117,6 +114,10 @@ public class Element {
 
     public String getAttribute(String attr) {
         return slaveElement().getAttribute(attr);
+    }
+
+    public String getValue() {
+        return getAttribute("value");
     }
 
     private void executeJS(String script) {
