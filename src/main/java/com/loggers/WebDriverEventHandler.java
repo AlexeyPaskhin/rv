@@ -117,12 +117,12 @@ public class WebDriverEventHandler implements WebDriverEventListener {
         logger.info("--OK! Script executed successfully");
     }
 
-    @Override
+//    @Override
     public void beforeSwitchToWindow(String windowName, WebDriver driver) {
 
     }
 
-    @Override
+//    @Override
     public void afterSwitchToWindow(String windowName, WebDriver driver) {
 
     }
@@ -138,12 +138,12 @@ public class WebDriverEventHandler implements WebDriverEventListener {
         }
     }
 
-    @Override
+//    @Override
     public <X> void beforeGetScreenshotAs(OutputType<X> target) {
 
     }
 
-    @Override
+//    @Override
     public <X> void afterGetScreenshotAs(OutputType<X> target, X screenshot) {
 
     }

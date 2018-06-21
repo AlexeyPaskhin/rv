@@ -1,10 +1,16 @@
 package com.utils;
 
 import com.loggers.WebDriverEventHandler;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileBrowserType;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -30,6 +36,8 @@ public class DriverManager {
     private static final String FIREFOX = "firefox";
     private static final String EDGE = "EDGE";
     private static final String OPERA = "opera";
+    private static final String ANDROID8_CHROME = "androidChrome";
+    private static final String SAFARI = "safari";
 
     public static String BROWSER = System.getProperty("browser");  //maven config like -Dbrowser=chrome
     // thread safe webdriver to avoid problems with multithreading and parallel running
@@ -55,11 +63,10 @@ public class DriverManager {
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
             //event firing driver is an implementation of WebDriverEventHandler from logger package
-
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
-//            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
+//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
 //            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
@@ -112,14 +119,52 @@ public class DriverManager {
 
 //            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+        } else if (browser.equalsIgnoreCase(ANDROID8_CHROME)) {
+//            WebDriverManager.chromedriver().setup();
+
+            DesiredCapabilities cap = DesiredCapabilities.android();
+            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+//            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.BROWSER);
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+            cap.setCapability("chromedriverExecutableDir", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers");
+//            cap.setCapability("chromedriverExecutable", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers\\chromedriver_2_19.exe");
+//            cap.setCapability("chromedriverExecutable", System.getProperty("webdriver.chrome.driver"));
+            cap.setCapability("platformVersion", "8.1");
+//            cap.setCapability("platformVersion", "7.0");
+//            cap.setCapability("platformVersion", "6.0");
+//            cap.setCapability("platformVersion", "5.1");
+            cap.setCapability("noReset", true);
+//            cap.setCapability("ignoreUnimportantViews", true);
+            cap.setCapability("clearSystemFiles", true);
+            cap.setCapability("enableVNC", true); // Is Interactive mode work?
+            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
+//            ChromeOptions options = new ChromeOptions();
+//            options.addArguments("--disable-notifications");
+//            cap.merge(options);
+            driver = new EventFiringWebDriver(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap)).register(events);
+
+        } else if (browser.equalsIgnoreCase(SAFARI)) {
+//            WebDriverManager.chromedriver().setup();
+
+            DesiredCapabilities caps = DesiredCapabilities.ipad();
+            caps.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.SAFARI);
+            caps.setCapability(MobileCapabilityType.DEVICE_NAME, "iPad Mini");
+            caps.setCapability("platformVersion", "11.4");
+//        caps.setCapability("noReset", true);
+            caps.setCapability("ignoreUnimportantViews", true);
+
+            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+
         } else {
             throw new IllegalArgumentException("Please specify correct browser name!!!");
         }
         // Hack before operadriver 2.33 will release
-//        if (!browser.equalsIgnoreCase(OPERA)) {
-            if (driver != null) driver.manage().window().setSize(new Dimension(1920, 1080));
+        if (!browser.equalsIgnoreCase(ANDROID8_CHROME)) {
+            if (driver != null) {
+                driver.manage().window().setSize(new Dimension(1920, 1080));
+            }
             //     driver.manage().window().maximize();
-//        }
+        }
         return driver;
     }
 
