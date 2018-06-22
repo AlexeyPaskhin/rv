@@ -230,9 +230,7 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForElementToBeVisible(int seconds) {
-        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.visibilityOfElementLocated(by));
-        setImplicity(10);
     }
 
     public void waitForElementToBeInvisible(int seconds) {

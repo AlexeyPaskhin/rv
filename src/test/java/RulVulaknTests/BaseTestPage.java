@@ -95,7 +95,7 @@ public class BaseTestPage {
             }
         }
         getDriver().manage().deleteAllCookies();
-        getDriver().close();
+//        getDriver().close();
 
         if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
             try {

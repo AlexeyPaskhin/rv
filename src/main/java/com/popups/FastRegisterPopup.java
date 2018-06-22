@@ -20,7 +20,7 @@ import static com.utils.DriverManager.getDriver;
  */
 
 public class FastRegisterPopup extends AbstractPage {
-    private static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
+    public static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
     private static final InputBox ENTER_PASS_INPUT = new InputBox(By.id("register-form-password"));
     private static final Button REGISTER_BUTTON_POP_UP = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
     private static final Button REGISTER_BUTTON_PAGE = new Button(By.xpath("//*[@class='form-line']//button[@class='btn-popup-register']/span"));
