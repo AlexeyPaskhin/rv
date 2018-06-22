@@ -20,7 +20,6 @@ public class AuthorizationMobileTest extends BaseTestPage {
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"mobile"})
     @Description("Simple authorization via email and pass")
     public void authorizationUserFromMail(User user) {
-        System.out.println(getDriver().getCurrentUrl());
         HomeMobilePage homeMobilePage =
                 new HomeMobilePage()
                         .clickLogin()
