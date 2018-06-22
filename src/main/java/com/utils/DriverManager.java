@@ -65,8 +65,8 @@ public class DriverManager {
             //event firing driver is an implementation of WebDriverEventHandler from logger package
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
-            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
-//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+//            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
 //            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
@@ -159,7 +159,7 @@ public class DriverManager {
             throw new IllegalArgumentException("Please specify correct browser name!!!");
         }
         // Hack before operadriver 2.33 will release
-        if (!browser.equalsIgnoreCase(ANDROID8_CHROME)) {
+        if (!browser.equalsIgnoreCase(ANDROID8_CHROME) && !browser.equalsIgnoreCase(SAFARI)) {
             if (driver != null) {
                 driver.manage().window().setSize(new Dimension(1920, 1080));
             }
