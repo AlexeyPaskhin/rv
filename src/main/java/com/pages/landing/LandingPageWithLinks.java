@@ -82,9 +82,9 @@ public class LandingPageWithLinks extends AbstractPage {
     @Step
     public RulesPage clickRulesLinkAndSwitchToItsNewPage() {
         RULES_LINK = getAllVisibleElements(rulesLinkLocator).get(0);
-        Set<String> windowHandles = getDriver().getWindowHandles();
+        Set<String> oldWindowHandles = getDriver().getWindowHandles();
         RULES_LINK.click();
-        switchToNewlyOpenedWindow(windowHandles);
+        switchToNewlyOpenedWindow(oldWindowHandles);
         return new RulesPage();
     }
 

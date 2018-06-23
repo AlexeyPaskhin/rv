@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.utils.DriverManager.getDriver;
 import static com.utils.DriverManager.setImplicity;
+import static org.openqa.selenium.support.ui.ExpectedConditions.*;
 
 /**
  * Main Element with all main  methods which are available for all elements
@@ -240,7 +241,12 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForCountOfWindows(int windowsCount, int seconds) {
-        new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
+        new WebDriverWait(getDriver(), seconds).until(numberOfWindowsToBe(windowsCount));
+    }
+
+    public void waitForAttributeToChange(String attribute, int seconds) {
+        String oldAttribute = this.getAttribute(attribute);
+        new WebDriverWait(getDriver(), seconds).until(not(attributeToBe(this.by, attribute, oldAttribute)));
     }
 
     public void doubleClick() {

@@ -1,4 +1,4 @@
-package RulVulaknTests.pages.homepage.topmenu;
+package RulVulaknTests.pages.homepage;
 
 import RulVulaknTests.BaseTestPage;
 import com.pages.*;
