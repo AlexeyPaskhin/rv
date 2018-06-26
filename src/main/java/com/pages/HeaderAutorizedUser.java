@@ -31,6 +31,7 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     }
 
     public boolean giftIconIsPresent() {
+        refreshPage();
         GIFT_ICON.waitForElementToBePresent(10);
         return GIFT_ICON.isPresent();
     }
