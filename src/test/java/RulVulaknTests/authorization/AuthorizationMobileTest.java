@@ -16,7 +16,6 @@ import static org.testng.Assert.*;
 public class AuthorizationMobileTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(AuthorizationMobileTest.class);
 
-
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"mobile"})
     @Description("Simple authorization via email and pass")
     public void authorizationUserFromMail(User user) {
@@ -26,10 +25,7 @@ public class AuthorizationMobileTest extends BaseTestPage {
                         .fillEmail(user.getLogin())
                         .fillPass(user.getPass())
                         .clickLogin();
-
         assertTrue(homeMobilePage.GAMES_BUTTON.isPresent(), "USER ZONE NOT PRESENT");
         assertFalse(homeMobilePage.LOGIN_BUTTON.isPresent(), "REGISTER BUTTON IS DISPLAYED");
-
     }
-
 }
