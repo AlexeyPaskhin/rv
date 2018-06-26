@@ -82,7 +82,7 @@ public class DriverManager {
             // firefoxOptions.addArguments("--headless");
             firefoxOptions.addArguments("--screenshot");
 
-//            driver = new EventFiringWebDriver(new FirefoxDriver(firefoxOptions)).register(events);
+//            driver = new EventFiringWebDriver(new FirefoxDriver()).register(events);
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(EDGE)) {
@@ -114,7 +114,7 @@ public class DriverManager {
             hashmap.put("binary", "/usr/bin/opera");
             oo.addArguments("no-sandbox");
 
-            oo.setBinary("C:\\Program Files\\Opera\\53.0.2907.57\\opera.exe");
+            oo.setBinary("C:\\Program Files\\Opera\\53.0.2907.88\\opera.exe");
             cap.setCapability("operaOptions", hashmap);
 
 //            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
