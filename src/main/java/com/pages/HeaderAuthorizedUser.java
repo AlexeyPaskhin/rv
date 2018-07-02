@@ -10,7 +10,7 @@ import lombok.Getter;
 import org.openqa.selenium.*;
 
 @Getter
-public class HeaderAutorizedUser extends AbstractPage implements Header {
+public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     private final Panel USER_PANE = new Panel(By.xpath("//div[@class='top-user-zone']"));
     private final Element GIFT_ICON = new Element((By.xpath("//span[@class='gift-icon']")));
@@ -22,7 +22,6 @@ public class HeaderAutorizedUser extends AbstractPage implements Header {
     private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
     private final Element LOG_OUT = new Element(By.xpath("//a[@class='logout']"));
 
-    private final Frame BLANK_IFRAME = new Frame(By.xpath("//iframe [@src=\"/blank-iframe\"]"));
 
     public boolean userZoneIsPresent() {
         new HomePage().waitForHomePageLoaded();

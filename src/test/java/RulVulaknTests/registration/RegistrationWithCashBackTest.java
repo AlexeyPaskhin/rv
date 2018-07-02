@@ -39,9 +39,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .clickRegisterButtonToGift()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -66,9 +66,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -93,9 +93,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -121,9 +121,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -148,9 +148,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -175,9 +175,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -200,9 +200,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -228,9 +228,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -256,9 +256,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -285,9 +285,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -313,9 +313,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -341,9 +341,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -365,9 +365,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -392,9 +392,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -419,9 +419,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -447,9 +447,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -474,9 +474,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
@@ -501,9 +501,9 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .pressPlayWithBonus();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-            Assert.assertTrue(headerAutorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.giftIconIsPresent(), "GIFT ICON IS NOT PRESENT");
         } catch (Exception e) {
             logger.error("ERROR ON PAGE " + page);
             logger.error(e);
