@@ -2,8 +2,8 @@ package RulVulaknTests.pages.gamespage;
 
 import RulVulaknTests.BaseTestPage;
 import com.Elements.Element;
+import com.google.common.collect.Multimap;
 import com.pages.GamesPage;
-import com.utils.RandomGenerate;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -11,13 +11,13 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.testng.Assert.*;
 
-public class GamesPageTest
-        extends BaseTestPage {
+public class GamesPageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(GamesPageTest.class);
 
 
@@ -31,27 +31,19 @@ public class GamesPageTest
     @Description("successful Search Of A Game")
     public void successfulSearchOfAGame() {
         GamesPage gamesPage = home.getHeader().clickGamesLink();
-        List<Element> gameItems = gamesPage.GAME_ANY_ITEM.getAllElements();
-
-        for (int i = 0; i < 3; i++) {  //we perform testing for 3 random games
-            Element victimGame = gameItems.get(RandomGenerate.generateRandomIntWithinRange(1, gameItems.size() + 1));
-            String keywords = victimGame.getAttribute("data-search-keywords");
-            String gameId = victimGame.getAttribute("data-game-id");
-            String[] splitKeywords = keywords.split("\\W+");
-            for (String word :
-                    splitKeywords) {
-                gamesPage.doSearch(word);
-                assertTrue(new Element(By.xpath("//a[@data-game-id='" + gameId + "']")).atLeastOneElementIsDisplayed(),
-                        "The search by keyword " + word + " was failed for the game " + gameId);  //some games are duplicated so we identify them by gameId
+        Multimap<String, String> failedSearchPairs = gamesPage.checkGamesSearch(3);
+        if (!failedSearchPairs.isEmpty()) {
+            for (Map.Entry<String, String> entry : failedSearchPairs.entries()) {
+                logger.error("The search by keyword " + entry.getKey() + " was failed for the game " + entry.getValue());
             }
-            logger.info("--------------------------------------------------------");
+            fail();
         }
     }
 
     @Test(groups = "regression")
     @Description("incorrect Search Of Games")
     public void incorrectSearchOfGames() {
-        GamesPage gamesPage = home.getHeader().clickGamesLink()
+        home.getHeader().clickGamesLink()
                 .doSearch("dddd");
         assertTrue(new Element(By.xpath("//p[text()='К сожалению, ничего не найдено']")).isPresent());
     }
@@ -62,7 +54,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .doSearch("dddd")
                 .clickPopularGamesAtFailedSearchBlock();
-        List<Element> popularGames = gamesPage.POPULAR_GAMES.getSubElementsByXpath("//a");
+        List<Element> popularGames = gamesPage.getPOPULAR_GAMES().getSubElementsByXpath("//a");
         assertEquals(popularGames.size(), 20);
         for (Element el : popularGames) {
             assertTrue(el.isPresent(), "Element " + el.getBy() + " isn't selected as popular");
@@ -90,7 +82,7 @@ public class GamesPageTest
     public void popularGamesFilter() {
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPopularGamesFilter();
-        List<Element> popularGames = gamesPage.POPULAR_GAMES.getSubElementsByXpath("//a");
+        List<Element> popularGames = gamesPage.getPOPULAR_GAMES().getSubElementsByXpath("//a");
         assertEquals(popularGames.size(), 20);
         for (Element el : popularGames) {
             assertTrue(el.isPresent(), "Element " + el.getBy() + " isn't selected as popular");
@@ -104,7 +96,7 @@ public class GamesPageTest
     public void newGamesFilter() {
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickNewGamesFilter();
-        List<Element> newGames = gamesPage.NEW_GAMES.getSubElementsByXpath("//a");
+        List<Element> newGames = gamesPage.getNEW_GAMES().getSubElementsByXpath("//a");
         for (Element el : newGames) {
             assertTrue(el.isPresent(), "Element " + el.getBy() + " isn't selected as new");
             assertTrue(el.getAttribute("class").contains("item-new"));
@@ -118,7 +110,7 @@ public class GamesPageTest
     public void gaminatorGamesFilter() {
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickGaminatorGamesFilter();
-        List<Element> gaminatorGames = gamesPage.GAMINATOR_GAMES.getSubElementsByXpath("//a");
+        List<Element> gaminatorGames = gamesPage.getGAMINATOR_GAMES().getSubElementsByXpath("//a");
         for (Element el : gaminatorGames) {
             assertTrue(el.isPresent(), "Element " + el.getBy() + " isn't selected as gaminator");
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("gaminator"),
@@ -133,7 +125,7 @@ public class GamesPageTest
     public void igrosoftGamesFilter() {
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickIgrosoftGamesFilter();
-        List<Element> igrosoftGames = gamesPage.IGROSOFT_GAMES.getSubElementsByXpath("//a");
+        List<Element> igrosoftGames = gamesPage.getIGROSOFT_GAMES().getSubElementsByXpath("//a");
         for (Element el : igrosoftGames) {
             assertTrue(el.isPresent(), "Element " + el.getBy() + " isn't selected as igrosoft");
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("igrosoft"),
@@ -148,7 +140,7 @@ public class GamesPageTest
     public void tableGamesFilter() {
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickTablesGamesFilter();
-        List<Element> tableGames = gamesPage.TABLES_GAMES.getSubElementsByXpath("//a");
+        List<Element> tableGames = gamesPage.getTABLES_GAMES().getSubElementsByXpath("//a");
         for (Element el : tableGames) {
             assertTrue(el.isPresent(), "Element " + el.getBy() + " isn't selected as table game.");
         }
@@ -158,9 +150,9 @@ public class GamesPageTest
     @Description("opening Of Producers Panel")
     public void openingOfProducersPanel() {
         GamesPage gamesPage = home.getHeader().clickGamesLink();
-        assertFalse(gamesPage.PRODUCERS_PANEL.isPresent());
+        assertFalse(gamesPage.getPRODUCERS_PANEL().isPresent());
         gamesPage.clickPRoducersFilter();
-        assertTrue(gamesPage.PRODUCERS_PANEL.isPresent());
+        assertTrue(gamesPage.getPRODUCERS_PANEL().isPresent());
     }
 
     @Test(groups = "regression")
@@ -169,7 +161,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickAristocratProducer();
-        List<Element> aristocratGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> aristocratGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : aristocratGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("aristocrat"),
                     "The game " + el.getBy() + " doesn't contain 'aristocrat' keyword.");
@@ -184,7 +176,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickBelatraProducer();
-        List<Element> belatraGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> belatraGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : belatraGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("belatra"),
                     "The game " + el.getBy() + " doesn't contain 'belatra' keyword.");
@@ -199,7 +191,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickBooongoProducer();
-        List<Element> booongoGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> booongoGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : booongoGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("booongo"),
                     "The game " + el.getBy() + " doesn't contain 'booongo' keyword.");
@@ -214,7 +206,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickGaminatorProducer();
-        List<Element> gaminatorGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> gaminatorGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : gaminatorGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("gaminator"),
                     "The game " + el.getBy() + " doesn't contain 'gaminator' keyword.");
@@ -229,7 +221,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickGloboTechProducer();
-        List<Element> globotechGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> globotechGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : globotechGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("globotech"),
                     "The game " + el.getBy() + " doesn't contain 'globotech' keyword.");
@@ -244,7 +236,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickIgrosoftProducer();
-        List<Element> igrosoftGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> igrosoftGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : igrosoftGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("igrosoft"),
                     "The game " + el.getBy() + " doesn't contain 'igrosoft' keyword.");
@@ -259,7 +251,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickMegajackProducer();
-        List<Element> megajackGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> megajackGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : megajackGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("megajack"),
                     "The game " + el.getBy() + " doesn't contain 'megajack' keyword.");
@@ -274,7 +266,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickNetEntProducer();
-        List<Element> netentGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> netentGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : netentGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("netent"),
                     "The game " + el.getBy() + " doesn't contain 'netent' keyword.");
@@ -289,7 +281,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickPlaysonProducer();
-        List<Element> playsonGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> playsonGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : playsonGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("playson"),
                     "The game " + el.getBy() + " doesn't contain 'playson' keyword.");
@@ -304,7 +296,7 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickPlaytechProducer();
-        List<Element> playtechGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> playtechGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : playtechGames) {
             assertTrue(el.getAttribute("data-search-keywords").toLowerCase().contains("playtech"),
                     "The game " + el.getBy() + " doesn't contain 'playtech' keyword.");
@@ -319,19 +311,19 @@ public class GamesPageTest
         GamesPage gamesPage = home.getHeader().clickGamesLink()
                 .clickPRoducersFilter()
                 .clickOthersProducer();
-        List<Element> othersGames = gamesPage.GAME_VISIBLE_ITEM.getAllElements();
+        List<Element> othersGames = gamesPage.getGAME_VISIBLE_ITEM().getAllElements();
         for (Element el : othersGames) {
             assertFalse(el.getAttribute("data-search-keywords").toLowerCase().contains("playtech")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("playson")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("netent")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("megajack")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("igrosoft")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("globotech")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("gaminator")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("booongo")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("belatra")
-                            ||  el.getAttribute("data-search-keywords").toLowerCase().contains("aristocrat")
-                    ,"The game of others producers" + el.getBy() + " contain a keyword of particular producer.");
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("playson")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("netent")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("megajack")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("igrosoft")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("globotech")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("gaminator")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("booongo")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("belatra")
+                            || el.getAttribute("data-search-keywords").toLowerCase().contains("aristocrat")
+                    , "The game of others producers" + el.getBy() + " contain a keyword of particular producer.");
         }
     }
 

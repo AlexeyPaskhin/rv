@@ -121,10 +121,6 @@ public class Element {
         return false;
     }
 
-    public List<Element> selectVisibleElements() {
-        return this.getAllElements().stream().filter(Element::isVisible).collect(Collectors.toList());
-    }
-
     public boolean isVisible() {
         return slaveElement().isDisplayed();
     }
@@ -165,6 +161,7 @@ public class Element {
                 element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath("(" + getXpath(by) + ")[" + i + "]"));
             } catch (Exception e) {
                 logger.error("Something gone wrong with reflection in ELEMENT");
+                e.printStackTrace();
             }
             customElements.add(element);
         }
@@ -211,6 +208,7 @@ This method we have in case that method above will produce errors
                 element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath("(" + fullXpath + ")[" + i + "]"));
             } catch (Exception e) {
                 logger.error("Something gone wrong with reflection in ELEMENT");
+                e.printStackTrace();
             }
             customElements.add(element);
         }
@@ -236,7 +234,7 @@ This method we have in case that method above will produce errors
         try {
             element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath(fullXpath));
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return element;
     }
@@ -250,7 +248,7 @@ This method we have in case that method above will produce errors
 
     String getXpath(By by) {
         String stringOfBy = by.toString();
-        String clearXpath = stringOfBy.substring(stringOfBy.indexOf(" ")+1, stringOfBy.length()); //our xpath may start not only from '/' char but else from '('. so we cut string after space
+        String clearXpath = stringOfBy.substring(stringOfBy.indexOf(" ") + 1, stringOfBy.length()); //our xpath may start not only from '/' char but else from '('. so we cut string after space
         return clearXpath;
     }
 
