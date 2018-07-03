@@ -77,7 +77,7 @@ public class GamesPage extends AbstractPage {
             String[] splitKeywords = keywords.split("\\W+");
             for (String word :
                     splitKeywords) {
-                doSearch(word+"ccc");
+                doSearch(word);
                 if(!new Element(By.xpath("//a[@data-game-id='" + gameId + "']")).atLeastOneElementIsDisplayed()) {//some games are duplicated so we identify them by gameId
                     failedSearchPairs.put(word, gameId);
                 }
