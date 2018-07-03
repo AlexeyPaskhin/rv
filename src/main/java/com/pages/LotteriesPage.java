@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.Panel;
 
 import com.popups.FastRegisterPopup;
+import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
@@ -71,16 +72,19 @@ public class LotteriesPage extends AbstractPage {
         return PAGINATION_PANEL.isPresent();
     }
 
+    @Step
     public LotteriesPage clickNextPage() {
         NEXT_PAGE_BUTTON.click();
         return this;
     }
 
+    @Step
     public FastRegisterPopup clickParticipateInTheLottery() {
         PARTICIPATE_IN_THE_LOTTERY.click();
         return new FastRegisterPopup();
     }
 
+    @Step
     public CurrentLotteryPage clickCurrentLottery() {
         CURRENT_LOTTERY_BUTTON.click();
         return new CurrentLotteryPage();
