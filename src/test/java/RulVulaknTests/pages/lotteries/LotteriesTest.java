@@ -85,11 +85,12 @@ public class LotteriesTest extends BaseTestPage {
         LotteriesPage lotteriesPage = new HomePage().getHeader()
                 .clickLotteriesLink();
         for (Element lotteryBlock : lotteriesPage.getLOTTERY_ITEM_DISPLAYED().getAllElements()) {
-            assertTrue(lotteryBlock.getSubElementByXpath("//p[text()='Призовой фонд:']").isPresent());
-            assertTrue(lotteryBlock.getSubElementByXpath("//p[@class='prize_mini']").isPresent());
-            assertTrue(lotteryBlock.getSubElementByXpath("//p[@class='end_mini']").isPresent());
-            assertTrue(lotteryBlock.getSubElementByXpath("//a/span[text()='Подробнее' or text()='Результаты']").isPresent());
-            assertTrue(lotteryBlock.getSubElementByXpath("//div[contains(text(), 'Завершена') or contains(text(), 'Сейчас')]").isPresent());
+            assertTrue(lotteriesPage.getPRIZE_FUND_TEXT().isPresent());
+            assertTrue(lotteriesPage.getPRIZE_FUND_VALUE().isPresent());
+            assertTrue(lotteriesPage.getSTART_DATE_TEXT().isPresent());
+            assertTrue(lotteriesPage.getEND_DATE_TEXT().isPresent());
+            assertTrue(lotteriesPage.getNOT_FINISHED_LOTTERY().isPresent() || lotteriesPage.getFINISHED_LOTTERY().isPresent());
+            assertTrue(lotteriesPage.getRIBBON_FINISHED_LOTTERY().isPresent() || lotteriesPage.getRIBBON_NOT_FINISHED_LOTTERY().isPresent());
         }
     }
 
