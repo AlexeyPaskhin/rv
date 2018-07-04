@@ -9,6 +9,7 @@ public interface Header {
     Button TOURNAMENTS = new Button(By.xpath("//a[@href='/tournaments']"));
     Button NEWS = new Button(By.xpath("//a[@href='/news']"));
     Button VIP_CLUB = new Button(By.xpath("//a[@href='/vip']"));
+    Button CONTACTS = new Button(By.xpath("//a[@href='/contacts']"));
 
     default GamesPage clickGamesLink() {
         GAMES.click();
@@ -33,5 +34,10 @@ public interface Header {
     default VipPage clickVIPLink() {
         VIP_CLUB.click();
         return new VipPage();
+    }
+
+    default ContactsPage clickContactsLink() {
+        CONTACTS.click();
+        return new ContactsPage();
     }
 }

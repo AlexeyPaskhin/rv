@@ -20,7 +20,7 @@ import java.net.MalformedURLException;
 import static com.utils.DriverManager.*;
 
 public class BaseTestPage {
-    private final static Logger logger = LogManager.getLogger(BaseTestPage.class);
+    protected final static Logger logger = LogManager.getLogger(BaseTestPage.class);
     public CustomDataProvider customDataProvider;
     public HomePage home;
     public SSHManager manager = null;
