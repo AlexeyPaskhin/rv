@@ -17,6 +17,8 @@ public class LotteriesPage extends AbstractPage {
     private Button PARTICIPATE_IN_LOTTERIES = new Button(By.xpath("//a[@class='get_a_raffle_ticket']"));
     private Panel LOTTERY_ITEM_ANY = new Panel(By.xpath("//div[@class='lottery_item cf']"));
     private Panel LOTTERY_ITEM_DISPLAYED = new Panel(By.xpath("//div[@class='lottery_item cf' and @style='display: block;']"));
+    private Panel NOT_FINISHED_LOTTERY = LOTTERY_ITEM_DISPLAYED.getSubPanelByXpath("//a/span[text()='Подробнее']");
+    private Panel FINISHED_LOTTERY = LOTTERY_ITEM_DISPLAYED.getSubPanelByXpath("//a/span[text()='Результаты']");
     private Button LOTTERY_RESULT = LOTTERY_ITEM_ANY.getSubButtonByXpath("//a[@class='results_mini_btn']");
     private Panel PRIZE_BANNER_BLOCK = BANNER_ACTIVE.getSubPanelByXpath("//p[@class='prize']");
     private Panel BEGINING_LOTTERY_BANNER_BLOCK = BANNER_ACTIVE.getSubPanelByXpath("//div[@class='beginning_lottery']");

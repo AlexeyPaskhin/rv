@@ -67,8 +67,8 @@ public class LotteriesTest extends BaseTestPage {
     public void stateOfBannerDependingOnPresenceOfActiveLottery() {
         LotteriesPage lotteriesPage = new HomePage().getHeader()
                 .clickLotteriesLink();
-        List<Element> notFinishedLotteries = lotteriesPage.getLOTTERY_ITEM_DISPLAYED().getSubElementsByXpath("//a/span[text()='Подробнее']");
-        List<Element> finishedLotteries = lotteriesPage.getLOTTERY_ITEM_DISPLAYED().getSubElementsByXpath("//a/span[text()='Результаты']");
+        List<Element> notFinishedLotteries = lotteriesPage.getNOT_FINISHED_LOTTERY().getAllElements();
+        List<Element> finishedLotteries = lotteriesPage.getFINISHED_LOTTERY().getAllElements();
         if (notFinishedLotteries.size() == 0 && finishedLotteries.size() == 10) {
             assertTrue(lotteriesPage.getDEFAULT_BANNER().isPresent());
             assertFalse(lotteriesPage.getBANNER_ACTIVE().isPresent());
