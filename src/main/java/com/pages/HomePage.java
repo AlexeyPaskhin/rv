@@ -25,7 +25,7 @@ public class HomePage extends AbstractPage {
     public Element GAME_ITEM = new Element(By.xpath("//div[@class='games-block']//div[@class='item-wrap   ']"));
 
 
-    public HeaderAutorizedUser logInUser(User user) {
+    public HeaderAuthorizedUser logInUser(User user) {
         return getNotAuthorizedHeader()
                 .typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
@@ -33,7 +33,7 @@ public class HomePage extends AbstractPage {
                 .getAuthorizedHeader();
     }
 
-    public HeaderAutorizedUser logInUser(String login, String pass) {
+    public HeaderAuthorizedUser logInUser(String login, String pass) {
         return getNotAuthorizedHeader()
                 .typeEmailInHeadField(login)
                 .typePassInHeadField(pass)
@@ -46,8 +46,8 @@ public class HomePage extends AbstractPage {
         return new HeaderNotAutorizedUser();
     }
 
-    public HeaderAutorizedUser getAuthorizedHeader() {
-        return new HeaderAutorizedUser();
+    public HeaderAuthorizedUser getAuthorizedHeader() {
+        return new HeaderAuthorizedUser();
     }
 
     public Header getHeader() {
