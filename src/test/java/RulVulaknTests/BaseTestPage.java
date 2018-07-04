@@ -2,7 +2,7 @@ package RulVulaknTests;
 
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
-import com.pages.HeaderAutorizedUser;
+import com.pages.HeaderAuthorizedUser;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.utils.*;
@@ -25,7 +25,7 @@ public class BaseTestPage {
     public HomePage home;
     public SSHManager manager = null;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
-    public HeaderAutorizedUser headerAutorizedUser;
+    public HeaderAuthorizedUser headerAuthorizedUser;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
@@ -84,7 +84,7 @@ public class BaseTestPage {
         getDriver().manage().addCookie(pushSubscribe);
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
-        headerAutorizedUser = new HeaderAutorizedUser();
+        headerAuthorizedUser = new HeaderAuthorizedUser();
     }
 
     @AfterMethod(alwaysRun = true)

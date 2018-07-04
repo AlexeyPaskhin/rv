@@ -224,7 +224,7 @@ This method we have in case that method above will produce errors
      * @param xpath
      * @param <T>
      * @return sub element from current element
-     * @see Panel#getPanelByXpath(String)
+     * @see Panel#getSubPanelByXpath(String)
      */
 
 
@@ -257,9 +257,7 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForElementToBeClickable(int seconds) {
-        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(by));
-        setImplicity(10);
     }
 
     public void waitForElementToBeVisible(int seconds) {
@@ -267,9 +265,7 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForElementToBeInvisible(int seconds) {
-        setImplicity(1);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
-        setImplicity(10);
     }
 
     public void waitForCountOfWindows(int windowsCount, int seconds) {
