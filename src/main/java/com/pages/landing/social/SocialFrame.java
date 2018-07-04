@@ -7,7 +7,6 @@ import com.popups.ConfirmEmailPopup;
 import static com.utils.DriverManager.getDriver;
 
 public interface SocialFrame extends IAbstractPage {
-    String fbGroupURL = "https://www.facebook.com/groups/628871107448868/";
 
     SocialFrame setEmail(String email);
 
