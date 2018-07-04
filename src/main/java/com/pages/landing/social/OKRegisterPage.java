@@ -40,6 +40,11 @@ public class OKRegisterPage extends AbstractPage implements SocialFrame {
         return new ConfirmEmailPopup();
     }
 
+    @Override
+    public SocialFrame clickLogIn() {
+        return null;
+    }
+
     public ConfirmEmailPopup switchToConfirmEmail() {
         switchToWindow(parentWindow);
         return new ConfirmEmailPopup();

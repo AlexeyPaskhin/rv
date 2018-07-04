@@ -15,6 +15,7 @@ public class ContactsPage extends AbstractPage {
     private Element feebackBlock = new Element(By.xpath("//div[@class='feedback-cont cf']"));
     private Button ONLINE_CONSULTANT = new Button(By.xpath("//span[text()='Онлайн консультант']/.."));
     private Button FB_GROUP_BUTTON = new Button(By.xpath("//div[@class='feedback-cont cf']//a[@title='Казино Русский Вулкан в Facebook']"));
+    private Button TWITTER_GROUP_BUTTON = new Button(By.xpath("//div[@class='feedback-cont cf']//a[@title='Казино Русский Вулкан в Twitter']"));
 
 
     public Boolean feedBackBlockIsDisplayed() {
@@ -31,7 +32,13 @@ public class ContactsPage extends AbstractPage {
     public FBregisterPage clickFbGroup() {
         FB_GROUP_BUTTON.click();
         switchToSocialFrame();
-        System.out.println(getDriver().getTitle());
+        return new FBregisterPage();
+    }
+
+    @Step
+    public FBregisterPage clickTwitterGroup() {
+        TWITTER_GROUP_BUTTON.click();
+        switchToSocialFrame();
         return new FBregisterPage();
     }
 }

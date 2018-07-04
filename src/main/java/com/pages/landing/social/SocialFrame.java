@@ -7,11 +7,19 @@ import com.popups.ConfirmEmailPopup;
 import static com.utils.DriverManager.getDriver;
 
 public interface SocialFrame extends IAbstractPage {
+    String fbGroupURL = "https://www.facebook.com/groups/628871107448868/";
+
     SocialFrame setEmail(String email);
 
     SocialFrame setPassword(String password);
 
     ConfirmEmailPopup clickRegister();
+
+    /**
+     * when we stay on a social page - for example, when go on our group in social network
+     */
+    SocialFrame clickLogIn();
+
 
 //    default void switchToSocialFrame() {
 //        AbstractPage.parentWindow = getDriver().getWindowHandle();
