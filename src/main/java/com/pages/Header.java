@@ -1,6 +1,7 @@
 package com.pages;
 
 import com.Elements.Button;
+import com.Elements.Frame;
 import org.openqa.selenium.By;
 
 public interface Header {
@@ -9,6 +10,7 @@ public interface Header {
     Button TOURNAMENTS = new Button(By.xpath("//a[@href='/tournaments']"));
     Button NEWS = new Button(By.xpath("//a[@href='/news']"));
     Button VIP_CLUB = new Button(By.xpath("//a[@href='/vip']"));
+    Frame BLANK_IFRAME = new Frame(By.xpath("//iframe [@src=\"/blank-iframe\"]"));
 
     default GamesPage clickGamesLink() {
         GAMES.click();
@@ -16,6 +18,8 @@ public interface Header {
     }
 
     default LotteriesPage clickLotteriesLink() {
+        LOTTERIES.waitForElementToBeClickable(5);
+        BLANK_IFRAME.waitForElementToBeInvisible(5);
         LOTTERIES.click();
         return new LotteriesPage();
     }

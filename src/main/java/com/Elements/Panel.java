@@ -14,12 +14,12 @@ public class Panel extends Element {
      * @return new SubElement from parent element
      */
 
-    public Button getButtonByXpath(String xpath) {
+    public Button getSubButtonByXpath(String xpath) {
         String fullXpath = getXpath(super.by) + xpath;
         return new Button(By.xpath(fullXpath));
     }
 
-    public Panel getPanelByXpath(String xpath) {
+    public Panel getSubPanelByXpath(String xpath) {
         String fullXpath = getXpath(super.by) + xpath;
         return new Panel(By.xpath(fullXpath));
     }

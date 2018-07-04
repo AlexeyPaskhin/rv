@@ -4,7 +4,7 @@ import RulVulaknTests.BaseTestPage;
 import RulVulaknTests.authorization.AuthorizationData;
 import RulVulaknTests.cashbox.CashboxTest;
 import com.listeners.RussianVulcanListener;
-import com.pages.HeaderAutorizedUser;
+import com.pages.HeaderAuthorizedUser;
 import com.pages.HomePage;
 import com.pages.ProfilePage;
 import com.pages.VipPage;
@@ -75,14 +75,14 @@ public class ProfilePageTest extends BaseTestPage {
         try {
             //check that new pass is valid
             confirmPopUp.closeConfirmPopUp();
-            new HeaderAutorizedUser()
+            new HeaderAuthorizedUser()
                     .clickExit()
                     .logInUser(user.getLogin(), newPass);
-            assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE IS NOT PRESENT");
+            assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE IS NOT PRESENT");
             assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
 
             //post-conditions - return back old pass
-            new HeaderAutorizedUser()
+            new HeaderAuthorizedUser()
                     .clickUserName()
                     .successfulChangePass(newPass, user.getPass());
         } catch (Exception e) {

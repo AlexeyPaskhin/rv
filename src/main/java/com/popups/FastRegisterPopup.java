@@ -9,6 +9,7 @@ import com.pages.HomePage;
 import com.pages.RulesPage;
 import com.pages.landing.social.*;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
@@ -17,10 +18,12 @@ import static com.utils.DriverManager.getDriver;
  * Pop-up and page 'Bistraya registratsyja'
  * + from header
  * + from LogIn pop-up
+ * + from the Lotteries page
  */
 
+@Getter
 public class FastRegisterPopup extends AbstractPage {
-    public static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
+    private InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
     private static final InputBox ENTER_PASS_INPUT = new InputBox(By.id("register-form-password"));
     private static final Button REGISTER_BUTTON_POP_UP = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
     private static final Button REGISTER_BUTTON_PAGE = new Button(By.xpath("//*[@class='form-line']//button[@class='btn-popup-register']/span"));

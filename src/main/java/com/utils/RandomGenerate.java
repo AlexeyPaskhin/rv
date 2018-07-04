@@ -4,6 +4,7 @@ import org.apache.commons.text.CharacterPredicates;
 import org.apache.commons.text.RandomStringGenerator;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomGenerate {
     private static Random rand = new Random();
@@ -29,5 +30,10 @@ public class RandomGenerate {
 
     public static String randomStringOfDigits(int length) {
         return randomStringOfDigitsGenerator.generate(length);
+    }
+
+    public static int generateRandomIntWithinRange(int min, int boundExclusive) {
+        return ThreadLocalRandom.current().nextInt(min, boundExclusive);
+
     }
 }

@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
  */
 
 @Listeners({RussianVulcanListener.class})
-public class HeaderAutorizedUserTest extends BaseTestPage {
+public class HeaderAuthorizedUserTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
     VipPage vipPage;
     NotificationsPage notificationsPage;

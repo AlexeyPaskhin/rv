@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static com.utils.DriverManager.getDriver;
 import static com.utils.DriverManager.setImplicity;
@@ -109,6 +110,17 @@ public class Element {
         }
     }
 
+    public Boolean atLeastOneElementIsDisplayed() {
+        List<WebElement> elements = getDriver().findElements(by);
+        for (WebElement el :
+                elements) {
+            if (el.isDisplayed()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean isVisible() {
         return slaveElement().isDisplayed();
     }
@@ -143,12 +155,13 @@ public class Element {
         List<WebElement> elements = getDriver().findElements(by);
         List<T> customElements = new ArrayList<>();
 
-        for (int i = 0; i < elements.size(); i++) {
+        for (int i = 1; i <= elements.size(); i++) {
             T element = null;
             try {
-                element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath("(" + getXpath(by) + ")[" + i + 1 + "]"));
+                element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath("(" + getXpath(by) + ")[" + i + "]"));
             } catch (Exception e) {
                 logger.error("Something gone wrong with reflection in ELEMENT");
+                e.printStackTrace();
             }
             customElements.add(element);
         }
@@ -183,26 +196,45 @@ This method we have in case that method above will produce errors
 //        return customElements;
 //    }
 
+    public <T extends Element> List<T> getSubElementsByXpath(String xpath) {
+        String fullXpath = getXpath(by) + xpath;
+        List<WebElement> elements = getDriver().findElements(By.xpath(fullXpath));
+
+        List<T> customElements = new ArrayList<>();
+
+        for (int i = 1; i <= elements.size(); i++) {
+            T element = null;
+            try {
+                element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath("(" + fullXpath + ")[" + i + "]"));
+            } catch (Exception e) {
+                logger.error("Something gone wrong with reflection in ELEMENT");
+                e.printStackTrace();
+            }
+            customElements.add(element);
+        }
+        return customElements;
+    }
+
     /**
      * Use this if u want to create sub element from element
-     * Example : Button button = anotherButton.getElementByXpath(xpath);
+     * Example : Button button = anotherButton.getSubElementByXpath(xpath);
      * ONLY USE IF U WANT TO GET ELEMENT OF THE SAME TYPE
      * Otherwise see next method as example :
      *
      * @param xpath
      * @param <T>
      * @return sub element from current element
-     * @see Panel#getPanelByXpath(String)
+     * @see Panel#getSubPanelByXpath(String)
      */
 
 
-    public <T extends Element> T getElementByXpath(String xpath) {
+    public <T extends Element> T getSubElementByXpath(String xpath) {
         String fullXpath = getXpath(by) + xpath;
         T element = null;
         try {
             element = (T) this.getClass().getConstructor(new Class[]{By.class}).newInstance(By.xpath(fullXpath));
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return element;
     }
@@ -216,7 +248,7 @@ This method we have in case that method above will produce errors
 
     String getXpath(By by) {
         String stringOfBy = by.toString();
-        String clearXpath = stringOfBy.substring(stringOfBy.indexOf("/"), stringOfBy.length());
+        String clearXpath = stringOfBy.substring(stringOfBy.indexOf(" ") + 1, stringOfBy.length()); //our xpath may start not only from '/' char but else from '('. so we cut string after space
         return clearXpath;
     }
 
@@ -225,9 +257,7 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForElementToBeClickable(int seconds) {
-        setImplicity(0);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.elementToBeClickable(by));
-        setImplicity(10);
     }
 
     public void waitForElementToBeVisible(int seconds) {
@@ -235,9 +265,7 @@ This method we have in case that method above will produce errors
     }
 
     public void waitForElementToBeInvisible(int seconds) {
-        setImplicity(1);
         new WebDriverWait(getDriver(), seconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
-        setImplicity(10);
     }
 
     public void waitForCountOfWindows(int windowsCount, int seconds) {
