@@ -172,4 +172,32 @@ public class PropertyLoader {
     protected String getPassRecoveryEmail() {
         return prop.getProperty("userResetPasswordEmail");
     }
+
+    protected String getFbGroupURL() {
+        return prop.getProperty("fbGroupURL");
+    }
+
+    public String getTwitterGroupURL() {
+        return prop.getProperty("twitterGroupURL");
+    }
+
+    public String getOkGroupURL() {
+        return prop.getProperty("okGroupURL");
+    }
+
+    public String getVkGroupURL() {
+        return prop.getProperty("vkGroupURL");
+    }
+
+    public String getYoutubeGroupURL() {
+        return prop.getProperty("youtubeGroupURL");
+    }
+
+    public String getGoogleGroupURL() {
+        return prop.getProperty("googleGroupURL");
+    }
+
+    public String getInstagramGroupURL() {
+        return prop.getProperty("instagramGroupURL");
+    }
 }

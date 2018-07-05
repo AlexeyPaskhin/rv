@@ -39,6 +39,11 @@ public class MailRuRegisterPage extends AbstractPage implements SocialFrame {
         return new ConfirmEmailPopup();
     }
 
+    @Override
+    public SocialFrame clickLogIn() {
+        return null;
+    }
+
     public ConfirmEmailPopup switchToConfirmEmail() {
         switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
