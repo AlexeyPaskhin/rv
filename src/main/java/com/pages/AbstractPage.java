@@ -26,4 +26,8 @@ public abstract class AbstractPage implements IAbstractPage {
         return this;
     }
 
+    public Footer getFooter() {
+        return new Footer();
+    }
+
 }
