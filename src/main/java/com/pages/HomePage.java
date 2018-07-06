@@ -1,9 +1,11 @@
 package com.pages;
 
 import com.Elements.Button;
+import com.Elements.Element;
 import com.Elements.Panel;
 import com.popups.WelcomeBonusGiftPopup;
 import com.popups.RedHelperFrame;
+import com.utils.User;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
@@ -17,11 +19,35 @@ public class HomePage extends AbstractPage {
     private final String HOME_PAGE_TITLE_NOT_AUTHORIZAD_USER = "Казино Вулкан: официальный сайт Русского Вулкана – казино онлайн";
     private final String HOME_PAGE_TITLE_FOR_AUTHORIZED_USER = "Игровые автоматы Вулкан бесплатно и на деньги";
 
+    public Element CAROUSEL_NOT_AUTH = new Element(By.xpath("//div[@class='slider']//div[@class='overview']"));
+    public Element WINNERS_OF_DAY = new Element(By.xpath("//div[@class='winners']//div[@class='overview']"));
+    public Button ALL_GAMES_BUTTON = new Button(By.xpath("//span[text()='Все игры']/.."));
+    public Element GAME_ITEM = new Element(By.xpath("//div[@class='games-block']//div[@class='item-wrap   ']"));
+
+
+    public HeaderAuthorizedUser logInUser(User user) {
+        return getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .getAuthorizedHeader();
+    }
+
+    public HeaderAuthorizedUser logInUser(String login, String pass) {
+        return getNotAuthorizedHeader()
+                .typeEmailInHeadField(login)
+                .typePassInHeadField(pass)
+                .clickLogin()
+                .getAuthorizedHeader();
+    }
+
+
     public HeaderNotAutorizedUser getNotAuthorizedHeader() {
         return new HeaderNotAutorizedUser();
     }
-    public HeaderAutorizedUser getAuthorizedHeader() {
-        return new HeaderAutorizedUser();
+
+    public HeaderAuthorizedUser getAuthorizedHeader() {
+        return new HeaderAuthorizedUser();
     }
 
     public Header getHeader() {
@@ -33,9 +59,14 @@ public class HomePage extends AbstractPage {
         return WELCOME_BONUS_GIFT_POPUP;
     }
 
-    public void homePageLoaded() {
+    public void waitForHomePageLoaded() {
         CONTENT_PANE.waitForElementToBeVisible(15);
         PRELOADER.waitForElementToBeInvisible(10);
+    }
+
+    @Step
+    public Boolean isNomePageLoaded() {
+        return CONTENT_PANE.isVisible();
     }
 
     @Step
@@ -57,5 +88,10 @@ public class HomePage extends AbstractPage {
     @Step
     public boolean isHomePageOpenedForAuthorizedUser() {
         return this.getTitle().equals(HOME_PAGE_TITLE_FOR_AUTHORIZED_USER);
+    }
+
+    public HomePage clickAllGamesButton() {
+        ALL_GAMES_BUTTON.click();
+        return this;
     }
 }

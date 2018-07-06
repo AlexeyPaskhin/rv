@@ -12,6 +12,20 @@ public class RegisterData {
     private final CustomDataProvider customDataProvider = new CustomDataProvider();
 
     @DataProvider
+    public Object[][] landingPageNumberProvider(Method method) throws IllegalAccessException {
+        Object[][] obj;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][1];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                obj[i][0] = pageNumber[i];
+            }
+        } else throw new IllegalAccessException("Test with this data provider must has the @LandingPage annotation!");
+        return obj;
+    }
+
+    @DataProvider
     public Object[][] randomUserProvider(Method method) {
         Object[][] obj;
         if (method.isAnnotationPresent(LandingPage.class)) {

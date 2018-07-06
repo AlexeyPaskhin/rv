@@ -9,6 +9,7 @@ import com.pages.HomePage;
 import com.pages.RulesPage;
 import com.pages.landing.social.*;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
@@ -17,10 +18,12 @@ import static com.utils.DriverManager.getDriver;
  * Pop-up and page 'Bistraya registratsyja'
  * + from header
  * + from LogIn pop-up
+ * + from the Lotteries page
  */
 
+@Getter
 public class FastRegisterPopup extends AbstractPage {
-    private static final InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
+    private InputBox ENTER_EMAIL_INPUT = new InputBox(By.id("register-form-login"));
     private static final InputBox ENTER_PASS_INPUT = new InputBox(By.id("register-form-password"));
     private static final Button REGISTER_BUTTON_POP_UP = new Button(By.xpath("//button[@class='btn-popup-register']/span"));
     private static final Button REGISTER_BUTTON_PAGE = new Button(By.xpath("//*[@class='form-line']//button[@class='btn-popup-register']/span"));
@@ -111,7 +114,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             VK_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
@@ -122,7 +125,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             MAIL_RU_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
 
@@ -133,7 +136,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             FB_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new FBregisterPage(parent);
     }
 
@@ -144,7 +147,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             OK_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
@@ -155,7 +158,7 @@ public class FastRegisterPopup extends AbstractPage {
         } else {
             YA_BUTTON_HOME_PAGE.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new YARegisterPage(parent);
     }
 
@@ -187,7 +190,7 @@ public class FastRegisterPopup extends AbstractPage {
 
     @Step
     public FastRegisterPopup clickRegisterButtonAndDoNothing() {
-        if (REGISTER_BUTTON_POP_UP.isPresent()) {
+        if (REGISTER_BUTTON_POP_UP.isVisible()) {
             REGISTER_BUTTON_POP_UP.clickUntilDisappeared();
         } else {
             REGISTER_BUTTON_PAGE.click();
@@ -196,18 +199,18 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getValidEmailMessageText() {
-        ENTER_VALID_EMAIL_ERROR.waitForElementToBePresent(6);
+//        ENTER_VALID_EMAIL_ERROR.waitForElementToBePresent(6);
         return ENTER_VALID_EMAIL_ERROR.getText();
     }
 
     public String getAgreeWithRulesValidationMessageText() {
-        AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(9);
+//        AGREE_WITH_RULES_ERROR.waitForElementToBeVisible(9);
         return AGREE_WITH_RULES_ERROR.getText();
     }
 
 
     public String getEmailFieldEmptyErrorMessaheText() {
-        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(9);
+//        EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(9);
         return EMPTY_EMAIL_FIELD_ERROR.getText();
     }
 
@@ -217,7 +220,7 @@ public class FastRegisterPopup extends AbstractPage {
     }
 
     public String getRealEmailText() {
-        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
+//        ENTER_REAL_EMAIL_ERROR.waitForElementToBeVisible(6);
         return ENTER_REAL_EMAIL_ERROR.getText();
     }
 }

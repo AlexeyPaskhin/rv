@@ -11,6 +11,9 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.utils.DriverManager.getDriver;
+/**
+ * Class for mapping the 'Fast Registration' form at Landing Pages
+ */
 
 public class FastRegisterLP extends AbstractPage {
 
@@ -69,7 +72,7 @@ public class FastRegisterLP extends AbstractPage {
 
     @Step
     public FastRegisterLP agreeWithRules() {
-        AGREE_CHECKBOX.clickUntilDisappeared();
+        AGREE_CHECKBOX.click();
         return this;
     }
 
@@ -82,15 +85,14 @@ public class FastRegisterLP extends AbstractPage {
 
     @Step("Click Register button to Home")
     public HomePage clickRegisterButtonToHome() {
-        REGISTER_BUTTON.waitForElementToBePresent(5);
-        REGISTER_BUTTON.click();
+        REGISTER_BUTTON.clickUntilDisappeared();
         return new HomePage();
     }
 
     @Step("Click VK button")
     public SocialFrame clickVK() {
         if (VK_BUTTON.isPresent()) {
-            VK_BUTTON.click();;
+            VK_BUTTON.clickUntilNewWindowIsOpened();
         } else if(fastRegisterPopup.VK_BUTTON_HOME_PAGE.isPresent()){
             System.out.println("CLICK VK BUTTON IN PAGE VERSION!!!");
             fastRegisterPopup.VK_BUTTON_HOME_PAGE.click();
@@ -100,14 +102,14 @@ public class FastRegisterLP extends AbstractPage {
             VK_BUTTON.click();
         }
 
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
     @Step("Click FB button")
     public SocialFrame clickFB() {
         if (FB_BUTTON.isPresent()) {
-            FB_BUTTON.click();
+            FB_BUTTON.clickUntilNewWindowIsOpened();
         }else if(fastRegisterPopup.FB_BUTTON_HOME_PAGE.isPresent()){
             System.out.println("CLICK FB BUTTON IN PAGE VERSION!!!");
             fastRegisterPopup.FB_BUTTON_HOME_PAGE.click();
@@ -116,14 +118,14 @@ public class FastRegisterLP extends AbstractPage {
             FB_BUTTON.waitForElementToBePresent(5);
             FB_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new FBregisterPage(parent);
     }
 
     @Step("Click OK button")
     public SocialFrame clickOK() {
         if (OK_BUTTON.isPresent()) {
-            OK_BUTTON.click();
+            OK_BUTTON.clickUntilNewWindowIsOpened();
         }else if(fastRegisterPopup.OK_BUTTON_HOME_PAGE.isPresent()){
             System.out.println("CLICK BUTTON IN PAGE VERSION!!!");
             fastRegisterPopup.OK_BUTTON_HOME_PAGE.click();
@@ -132,14 +134,14 @@ public class FastRegisterLP extends AbstractPage {
             OK_BUTTON.waitForElementToBePresent(5);
             OK_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
     @Step("Click YA button")
     public SocialFrame clickYA() {
         if (YA_BUTTON.isPresent()) {
-            YA_BUTTON.click();
+            YA_BUTTON.clickUntilNewWindowIsOpened();
         }else if(fastRegisterPopup.YA_BUTTON_HOME_PAGE.isPresent()){
             System.out.println("CLICK BUTTON IN PAGE VERSION!!!");
             fastRegisterPopup.YA_BUTTON_HOME_PAGE.click();
@@ -148,14 +150,14 @@ public class FastRegisterLP extends AbstractPage {
             YA_BUTTON.waitForElementToBePresent(5);
             YA_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new YARegisterPage(parent);
     }
 
     @Step("Click MR button")
     public SocialFrame clickMailRu() {
         if (MAILRU_BUTTON.isPresent()) {
-            MAILRU_BUTTON.click();
+            MAILRU_BUTTON.clickUntilNewWindowIsOpened();
         }else if(fastRegisterPopup.MAIL_RU_BUTTON_HOME_PAGE.isPresent()){
             System.out.println("CLICK BUTTON IN PAGE VERSION!!!");
             fastRegisterPopup.MAIL_RU_BUTTON_HOME_PAGE.click();
@@ -164,7 +166,7 @@ public class FastRegisterLP extends AbstractPage {
             MAILRU_BUTTON.waitForElementToBePresent(5);
             MAILRU_BUTTON.click();
         }
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
 }

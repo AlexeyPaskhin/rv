@@ -17,13 +17,14 @@ public class ConfirmEmailPopup extends AbstractPage {
 
     @Step
     public ConfirmEmailPopup agreeWithRules() {
-        AGREE_CHECKBOX.waitForElementToBePresent(4);
+        AGREE_CHECKBOX.waitForElementToBeClickable(4);
         AGREE_CHECKBOX.click();
         return this;
     }
 
     @Step
     public ConfirmEmailPopup setEmail(String email) {
+        EMAIL_INPUTBOX.waitForElementToBeClickable(5);
         EMAIL_INPUTBOX.fillIn(email);
         return this;
     }

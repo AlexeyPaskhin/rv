@@ -27,7 +27,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        logger.info("Test method " + iTestResult.getMethod().getMethodName() + " started");
+        logger.info("Test method " + iTestResult.getMethod().getMethodName() + " started" + " . Thread # " + Thread.currentThread().getId());
     }
 
     /**
@@ -36,7 +36,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
      */
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        logger.info("OK! Test " + iTestResult.getMethod().getMethodName() + " finished successfully");
+        logger.info("OK! Test " + iTestResult.getMethod().getMethodName() + " finished successfully" + " . Thread # " + Thread.currentThread().getId());
         FilesUtility.copySuccessLogs(iTestResult);
         StringAppender.resetAppender();
     }
@@ -48,11 +48,11 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
      */
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-        String pathToScreenshot = FilesUtility.captureScreenshot(iTestResult);
-        EventFiringWebDriver d = (EventFiringWebDriver) getDriver();
-
-        String pathToVideo = System.getProperty("user.dir") + File.separator + ((RemoteWebDriver) d.getWrappedDriver()).getSessionId().toString() + ".mp4";
-        String downloadPathToVideo = "http://autotest.rvkernel.com:4444/video/" + ((RemoteWebDriver) d.getWrappedDriver()).getSessionId().toString() + ".mp4";
+//        String pathToScreenshot = FilesUtility.captureScreenshot(iTestResult);
+//        EventFiringWebDriver d = (EventFiringWebDriver) getDriver();
+//
+//        String pathToVideo = System.getProperty("user.dir") + File.separator + ((RemoteWebDriver) d.getWrappedDriver()).getSessionId().toString() + ".mp4";
+//        String downloadPathToVideo = "http://autotest.rvkernel.com:4444/video/" + ((RemoteWebDriver) d.getWrappedDriver()).getSessionId().toString() + ".mp4";
 
 //        URL url = null;
 //        HttpURLConnection http;

@@ -37,35 +37,35 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
     @Step
     public VkRegisterPage clickHeadVK() {
         HEAD_VK_BUTTON.click();
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new VkRegisterPage(parent);
     }
 
     @Step
     public FBregisterPage clickHeadFB() {
         HEAD_FB_BUTTON.click();
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new FBregisterPage(parent);
     }
 
     @Step
     public OKRegisterPage clickHeadOK() {
         HEAD_OK_BUTTON.click();
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new OKRegisterPage(parent);
     }
 
     @Step
     public MailRuRegisterPage clickHeadMailRU() {
         HEAD_MailRU_BUTTON.click();
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new MailRuRegisterPage(parent);
     }
 
     @Step
     public YARegisterPage clickHeadYA() {
         HEAD_YA_BUTTON.click();
-        swithToSocialFrame();
+        switchToSocialFrame();
         return new YARegisterPage(parent);
     }
 
@@ -78,7 +78,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
     @Step
     public HomePage clickLogin() {
         LOGIN_BUTTON_IN_HEADER.waitForElementToBeClickable(5);
-        LOGIN_BUTTON_IN_HEADER.clickUntilDisappeared();
+        LOGIN_BUTTON_IN_HEADER.click();
         return new HomePage();
     }
 
@@ -99,7 +99,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
     @Step
     public boolean registerButtonIsPresent() {
         homePage = new HomePage();
-        homePage.homePageLoaded();
+        homePage.waitForHomePageLoaded();
         return REGISTER_BUTTON.isPresent();
     }
 

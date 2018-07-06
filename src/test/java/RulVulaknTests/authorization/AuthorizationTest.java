@@ -4,7 +4,6 @@ import RulVulaknTests.BaseTestPage;
 import com.listeners.RussianVulcanListener;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
-import com.popups.RedHelperFrame;
 import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
@@ -31,7 +30,7 @@ public class AuthorizationTest extends BaseTestPage {
                 .typePassInHeadField(user.getPass())
                 .clickLogin();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
@@ -48,7 +47,7 @@ public class AuthorizationTest extends BaseTestPage {
                 .setPassword(user.getPass())
                 .clickRegister();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
@@ -66,7 +65,7 @@ public class AuthorizationTest extends BaseTestPage {
                 .setPassword(user.getPass())
                 .clickRegister();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
@@ -83,7 +82,7 @@ public class AuthorizationTest extends BaseTestPage {
                 .setPassword(user.getPass())
                 .clickRegister();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
@@ -100,7 +99,7 @@ public class AuthorizationTest extends BaseTestPage {
                 .setPassword(user.getPass())
                 .clickRegister();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");
@@ -117,7 +116,7 @@ public class AuthorizationTest extends BaseTestPage {
                 .setPassword(user.getPass())
                 .clickRegister();
         try {
-            Assert.assertTrue(headerAutorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
         } catch (Exception e) {
             logger.error("ERROR ON MAIN PAGE");

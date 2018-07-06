@@ -2,7 +2,7 @@ package RulVulaknTests;
 
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
-import com.pages.HeaderAutorizedUser;
+import com.pages.HeaderAuthorizedUser;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
 import com.utils.*;
@@ -25,7 +25,8 @@ public class BaseTestPage {
     public HomePage home;
     public SSHManager manager = null;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
-    public HeaderAutorizedUser headerAutorizedUser;
+    public HeaderAuthorizedUser headerAuthorizedUser;
+    public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -37,8 +38,8 @@ public class BaseTestPage {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeTest(Method method, Object[] o) {
-        boolean isLotteryEnabled=false;
+    public void beforeMethod(Method method, Object[] o) {
+        boolean isLotteryEnabled = false;
 
         customDataProvider = new CustomDataProvider();
 
@@ -59,7 +60,12 @@ public class BaseTestPage {
             }
         }
         try {
-            WebDriver driver = setupDriver(customDataProvider.getBrowser());
+//            WebDriver driver = setupDriver(customDataProvider.getBrowser());
+
+//            we take a browser name from already specified maven variable OR (else) from the 'config.properties' file
+            driver = System.getProperty("browser") !=null && !System.getProperty("browser").isEmpty()
+                    ? setupDriver(System.getProperty("browser"))
+                    : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -72,11 +78,13 @@ public class BaseTestPage {
             getDriver().get(customDataProvider.getBasicURL());
         }
         //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
-        Cookie ck = new Cookie("lottery_reminder_shown","true");
+        Cookie ck = new Cookie("lottery_reminder_shown", "true");
         getDriver().manage().addCookie(ck);
+        Cookie pushSubscribe = new Cookie("push-subscr-cooldown","false");
+        getDriver().manage().addCookie(pushSubscribe);
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
-        headerAutorizedUser = new HeaderAutorizedUser();
+        headerAuthorizedUser = new HeaderAuthorizedUser();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -89,18 +97,19 @@ public class BaseTestPage {
             }
         }
         getDriver().manage().deleteAllCookies();
-        getDriver().close();
+//        getDriver().close();
 
         if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
             try {
                 getDriver().quit();
             } catch (SessionNotCreatedException e) {
             }
+        } else {
+            getDriver().quit();
         }
-        else {getDriver().quit();}
     }
 
-    @AfterClass()
+    @AfterClass(alwaysRun = true)
     public void releaseResources() {
         manager.disconnectFromConsole();
     }

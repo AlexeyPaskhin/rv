@@ -19,10 +19,27 @@
     </dependencyManagement>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>5.0.4</version>
+        </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.7.1</version>
+            <version>3.12.0</version>
         </dependency>
         <!-- LOGGER -->
         <dependency>
@@ -54,7 +71,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.3.6</version>
+            <version>4.5.5</version>
         </dependency>
         <dependency>
             <groupId>com.jcraft</groupId>
@@ -118,7 +135,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.7.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -128,7 +145,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>2.21.0</version>
                 <configuration>
                     <parallel>methods</parallel>
                     <forkCount>${threads}</forkCount>
@@ -156,7 +173,7 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression</groups>
+        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression,profile,mobile</groups>
         <aspectj.version>1.8.10</aspectj.version>
         <threads>1</threads>
     </properties>

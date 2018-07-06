@@ -15,12 +15,12 @@ public class RulesPage extends AbstractPage {
         return new HeaderNotAutorizedUser();
     }
 
-    public HeaderAutorizedUser getAuthorizedHeader() {
-        return new HeaderAutorizedUser();
+    public HeaderAuthorizedUser getAuthorizedHeader() {
+        return new HeaderAuthorizedUser();
     }
 
-    public boolean isRulesPageOpened() {
-        H1_TEXT.waitForElementToBeVisible(5);
+    public boolean isRulesPageLoaded() {
+//        H1_TEXT.waitForElementToBeVisible(5);
         return H1_TEXT.isVisible();
     }
 }

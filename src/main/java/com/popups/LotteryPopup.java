@@ -11,7 +11,7 @@ public class LotteryPopup extends AbstractPage {
 
     @Step
     public HomePage closePopup(){
-        CLOSE_POPUP.clickUntilDisappeared();
+        CLOSE_POPUP.click();
         return new HomePage();
     }
 }
