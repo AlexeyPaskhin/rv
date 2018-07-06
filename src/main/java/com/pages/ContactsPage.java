@@ -28,7 +28,7 @@ public class ContactsPage extends AbstractPage {
     private Element INVALID_EMAIL_ERROR_TEXT = new Element(By.xpath("//span[text()='Заполните e-mail']/../span[@class='errors']")); //we may have different errors text in case of empty and invalid email
     private Element EMPTY_MESSAGE_FIELD_ERROR_TEXT = new Element(By.xpath("//span[text()='Заполните текст сообщения']"));
     private Element FAILED_CAPTCHA_ERROR_TEXT = new Element(By.xpath("//span[text()='Неправильно введена каптча либо вы не прошли проверку']"));
-    
+
     private InputBox NAME_FIELD = new InputBox(By.xpath("//input[@id='feedback-name']"));
     private InputBox EMAIL_FIELD = new InputBox(By.xpath("//input[@id='feedback-email']"));
     private InputBox MESSAGE_FIELD = new InputBox(By.xpath("//textarea[@id='feedback-message']"));

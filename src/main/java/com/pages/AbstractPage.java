@@ -29,10 +29,13 @@ public abstract class AbstractPage implements IAbstractPage {
         return this;
     }
 
+    public Footer getFooter() {
+        return new Footer();
+    }
+
     @Step
     public WinningsPage clickWinningsBtn() {
-        WINNINGS_FOOTER_BTN.click();
-        return new WinningsPage();
+        return getFooter().clickWinnings();
     }
 
 }
