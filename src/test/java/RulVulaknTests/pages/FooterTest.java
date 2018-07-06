@@ -26,7 +26,7 @@ public class FooterTest extends BaseTestPage {
         assertEquals(socialFrame.getURL(), customDataProvider.getFbGroupURL());
     }
 
-    @Test(invocationCount = 5,groups = {"regression"})
+    @Test(groups = {"regression"})
     @Description("go To Our Twitter Group via footer")
     public void goToOurTwitterGroup() {
         TwitterGroupPage twitterGroupPage = home.getFooter()
