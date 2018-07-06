@@ -51,7 +51,12 @@ public class FBregisterPage extends AbstractPage implements SocialFrame {
         waitForCountOfWindows(1);
         switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
+    }
 
+    @Override
+    public SocialFrame clickLogIn() {
+        LOGIN_BUTTON.click();
+        return this;
     }
 
     public ConfirmEmailPopup switchToConfirmEmail() {

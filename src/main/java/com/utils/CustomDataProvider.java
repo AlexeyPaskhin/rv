@@ -45,6 +45,15 @@ public class CustomDataProvider {
     // password recovery
     private String passRecoveryEmail;
 
+    //URLs of our groups at social networks
+    private String fbGroupURL;
+    private String twitterGroupURL;
+    private String okGroupURL;
+    private String vkGroupURL;
+    private String youtubeGroupURL;
+    private String googleGroupURL;
+    private String instagramGroupURL;
+
     public CustomDataProvider() {
         propertyLoader = new PropertyLoader();
         this.email = propertyLoader.getEmail();
@@ -91,6 +100,14 @@ public class CustomDataProvider {
         /* password recovery e-mail */
         this.passRecoveryEmail = propertyLoader.getPassRecoveryEmail();
 
+        //URLs of our groups at social networks
+        this.fbGroupURL = propertyLoader.getFbGroupURL();
+        this.twitterGroupURL = propertyLoader.getTwitterGroupURL();
+        this.okGroupURL = propertyLoader.getOkGroupURL();
+        this.vkGroupURL = propertyLoader.getVkGroupURL();
+        this.youtubeGroupURL = propertyLoader.getYoutubeGroupURL();
+        this.googleGroupURL = propertyLoader.getGoogleGroupURL();
+        this.instagramGroupURL = propertyLoader.getInstagramGroupURL();
     }
 
     String generateRandomEmail() {
@@ -244,5 +261,33 @@ public class CustomDataProvider {
 
     public String getPassRecoveryEmail() {
         return this.passRecoveryEmail;
+    }
+
+    public String getFbGroupURL() {
+        return this.fbGroupURL;
+    }
+
+    public String getTwitterGroupURL() {
+        return this.twitterGroupURL;
+    }
+
+    public String getOkGroupUrl() {
+        return this.okGroupURL;
+    }
+
+    public String getVkGroupUrl() {
+        return this.vkGroupURL;
+    }
+
+    public String getYoutubeGroupUrl() {
+        return this.youtubeGroupURL;
+    }
+
+    public String getGoogleGroupUrl() {
+        return this.googleGroupURL;
+    }
+
+    public String getInstagramGroupUrl() {
+        return this.instagramGroupURL;
     }
 }
