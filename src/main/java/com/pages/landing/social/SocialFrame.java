@@ -7,11 +7,18 @@ import com.popups.ConfirmEmailPopup;
 import static com.utils.DriverManager.getDriver;
 
 public interface SocialFrame extends IAbstractPage {
+
     SocialFrame setEmail(String email);
 
     SocialFrame setPassword(String password);
 
     ConfirmEmailPopup clickRegister();
+
+    /**
+     * when we stay on a social page - for example, when go on our group in social network
+     */
+    SocialFrame clickLogIn();
+
 
 //    default void switchToSocialFrame() {
 //        AbstractPage.parentWindow = getDriver().getWindowHandle();
