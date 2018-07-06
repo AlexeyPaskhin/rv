@@ -35,8 +35,7 @@ public abstract class AbstractPage implements IAbstractPage {
 
     @Step
     public WinningsPage clickWinningsBtn() {
-        WINNINGS_FOOTER_BTN.click();
-        return new WinningsPage();
+        return getFooter().clickWinnings();
     }
 
 }

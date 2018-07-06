@@ -1,4 +1,7 @@
 package com.pages;
 
-public class MastercardPage {
+/**
+ * https://www.mastercard. + [ua]
+ */
+public class MastercardPage extends AbstractPage {
 }

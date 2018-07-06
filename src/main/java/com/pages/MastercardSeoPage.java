@@ -2,5 +2,5 @@ package com.pages;
 /**
  * /mastercard
  */
-public class MastercardPage extends AbstractPage {
+public class MastercardSeoPage extends AbstractPage {
 }

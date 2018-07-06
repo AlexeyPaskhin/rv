@@ -1,4 +1,7 @@
 package com.pages;
 
-public class YandexDengiPage {
+/**
+ * /yandex-dengi
+ */
+public class YandexDengiPage extends AbstractPage {
 }

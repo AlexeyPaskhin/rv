@@ -1,4 +1,7 @@
 package com.pages;
 
-public class Webmoneypage {
+/**
+ * /webmoney
+ */
+public class Webmoneypage extends AbstractPage {
 }

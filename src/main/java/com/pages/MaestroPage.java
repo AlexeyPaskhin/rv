@@ -1,8 +1,9 @@
 package com.pages;
 
 /**
- * 
+ * http://www.maestrocard.com
+ * accessible from footer
  */
 
-public class MestroPage extends AbstractPage {
+public class MaestroPage extends AbstractPage {
 }

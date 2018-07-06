@@ -1,4 +1,7 @@
 package com.pages;
 
-public class MonetaPage {
+/**
+ * /moneta-ru
+ */
+public class MonetaPage extends AbstractPage {
 }

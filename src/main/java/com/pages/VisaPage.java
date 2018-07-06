@@ -1,4 +1,6 @@
 package com.pages;
-
-public class VisaPage {
+/**
+ * /visa
+ */
+public class VisaPage extends AbstractPage {
 }

@@ -13,9 +13,15 @@ import static org.testng.Assert.assertTrue;
 
 @Getter
 public class WinningsPage extends AbstractPage {
+    private static String title = "Наиболее выгодное онлайн казино Русский Вулкан";
+
     private Button PLAY_GAME_BUTTON = new Button(By.xpath("//div[@class='winnings-item']//a[@class='btn-play']"));
     private Button LINK_GAME_TITLE = new Button(By.xpath("//div[@class='winnings-item']//h2/a"));
     private Button GAME_IMAGE = new Button(By.xpath("//div[@class='winnings-item']//img/.."));
+
+    public Boolean isLoaded() {
+        return getTitle().equals(title);
+    }
 
     public List<Element> goToGamesLinks() {
         List<Element> brokenElements = new ArrayList<>();

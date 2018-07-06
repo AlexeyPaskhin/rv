@@ -1,4 +1,7 @@
 package com.pages;
 
-public class QiwiPage {
+/**
+ * /qiwi
+ */
+public class QiwiPage extends AbstractPage {
 }

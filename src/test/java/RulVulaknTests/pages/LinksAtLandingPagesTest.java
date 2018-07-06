@@ -69,7 +69,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
     public void goToBonusesLinkFromLandingPages(User user, String landingPageNumber) {
         bonusesPage = new LandingPageWithLinks()
                 .clickBonuses();
-        assertTrue(bonusesPage.isBonusesPageOpened(), "The bonuses page isn't opened " +
+        assertTrue(bonusesPage.isOpened(), "The bonuses page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 
