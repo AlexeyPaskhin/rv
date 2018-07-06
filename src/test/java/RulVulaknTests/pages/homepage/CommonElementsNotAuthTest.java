@@ -55,17 +55,13 @@ public class CommonElementsNotAuthTest extends BaseTestPage {
     @Test(groups = {"regression"})
     @Description("static Text For Not AuthUser")
     public void staticTextNotAuthUser() {
-        assertTrue(new Element(By.xpath("//h1[text()='Русское казино Вулкан']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='Отличия казино Русский Вулкан']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='Честность онлайн казино']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='Выбор игр в казино']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='Попробуйте играть бесплатно!']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='Дополнительные плюсы казино Вулкан']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='1. Лотереи и акции']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='2. Достижения']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='3. Бонусная система']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='4. ВИП-статусы']")).isPresent());
-        assertTrue(new Element(By.xpath("//h2[text()='5. Новости']")).isPresent());
+        assertTrue(new Element(By.xpath("//h1[text()='Русское Казино Вулкан: больше, чем автоматы, больше чем казино!']")).isPresent());
+        assertTrue(new Element(By.xpath("//h2[text()='Игра в Вулкан на деньги - удовольствие гарантировано!']")).isPresent());
+        assertTrue(new Element(By.xpath("//h3[text()='Слоты для каждого']")).isPresent());
+        assertTrue(new Element(By.xpath("//h2[text()='Дополнительные преимущества РВ']")).isPresent());
+        assertTrue(new Element(By.xpath("//h3[text()='Выигрыш принадлежит только Вам']")).isPresent());
+        assertTrue(new Element(By.xpath("//h2[text()='Забота о посетителях']")).isPresent());
+        assertTrue(new Element(By.xpath("//h3[text()='Уровни VIP: чем дольше, тем лучше']")).isPresent());
     }
 
 }

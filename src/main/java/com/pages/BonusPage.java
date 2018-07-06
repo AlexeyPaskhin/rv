@@ -13,7 +13,7 @@ public class BonusPage extends AbstractPage {
 
 
     @Step
-    public boolean isBonusesPageOpened() {
+    public boolean isOpened() {
         return bonusesTable.isVisible();
     }
 }
