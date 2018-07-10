@@ -41,6 +41,11 @@ public class VkRegisterPage extends AbstractPage implements SocialFrame {
 
     }
 
+    @Override
+    public SocialFrame clickLogIn() {
+        return null;
+    }
+
     public ConfirmEmailPopup switchToConfirmEmail() {
         switchToWindow(parentWindow);
         return new ConfirmEmailPopup();

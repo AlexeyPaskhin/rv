@@ -24,6 +24,7 @@ public interface IAbstractPage {
     }
 
     default String getURL() {
+        waitForPageToLoad();
         return getDriver().getCurrentUrl();
     }
 
@@ -89,9 +90,7 @@ public interface IAbstractPage {
     }
 
     default void waitForCountOfWindows(int windowsCount) {
-        setImplicity(0);
         new WebDriverWait(getDriver(), 10).until(ExpectedConditions.numberOfWindowsToBe(windowsCount));
-        setImplicity(10);
     }
 
     default void refreshPage() {
