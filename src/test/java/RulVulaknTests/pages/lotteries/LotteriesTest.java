@@ -4,6 +4,7 @@ import RulVulaknTests.BaseTestPage;
 import RulVulaknTests.authorization.AuthorizationData;
 import RulVulaknTests.cashbox.CashboxTest;
 import com.Elements.Element;
+import com.listeners.RussianVulcanListener;
 import com.pages.CurrentLotteryPage;
 import com.pages.HomePage;
 import com.pages.LotteriesPage;
@@ -12,12 +13,14 @@ import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static org.testng.Assert.*;
 
+@Listeners({RussianVulcanListener.class})
 public class LotteriesTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(LotteriesTest.class);
 

@@ -35,7 +35,7 @@ public class BonusesPageTest extends BaseTestPage {
                 .waitForPageToLoad();
         try {
             bonusesPage = new BonusesPage();
-            Assert.assertTrue(bonusesPage.isBonusesPageOpened());
+            Assert.assertTrue(bonusesPage.isBonusesPageOpened(), "The title: " + bonusesPage.getTitle());
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();

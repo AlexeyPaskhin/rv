@@ -36,6 +36,7 @@ public class LandingChooseBonusWinthContinue extends AbstractPage {
 
     @Step
     public LandingChooseBonusWinthContinue clickWithDrawFromGift() {
+        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
         WITHDRAW_FROM_GIFT.click();
         return this;
     }

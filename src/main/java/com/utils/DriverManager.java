@@ -59,7 +59,7 @@ public class DriverManager {
             WebDriverManager.chromedriver().setup();
             DesiredCapabilities cap = DesiredCapabilities.chrome(); // browser capability
             cap.setBrowserName("chrome");
-//            cap.setVersion("66.0");
+            cap.setVersion("66.0");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
             //event firing driver is an implementation of WebDriverEventHandler from logger package

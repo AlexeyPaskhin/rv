@@ -1,13 +1,16 @@
 package RulVulaknTests.pages.homepage;
 
 import RulVulaknTests.BaseTestPage;
+import com.listeners.RussianVulcanListener;
 import com.pages.*;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
+@Listeners({RussianVulcanListener.class})
 public class TopMenuTest extends BaseTestPage {
 
     @Test(groups = {"regression"})

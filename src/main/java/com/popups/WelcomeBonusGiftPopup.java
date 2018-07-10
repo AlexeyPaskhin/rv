@@ -18,13 +18,14 @@ public class WelcomeBonusGiftPopup extends AbstractPage {
 
     @Step
     public HomePage clickWithdrawFromGift() {
-        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(5);
+        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
         WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
 
     @Step
     public HomePage pressPlayWithBonus() {
+        PLAY_WITH_BONUS.waitForElementToBeClickable(10);
         PLAY_WITH_BONUS.click();
         return new HomePage();
     }

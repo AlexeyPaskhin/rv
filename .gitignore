@@ -8,3 +8,4 @@ fails/
 success/
 allure-results/
 SampleTest.java
+node_modules/
