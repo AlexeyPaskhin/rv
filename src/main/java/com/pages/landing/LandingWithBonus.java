@@ -32,6 +32,7 @@ public class LandingWithBonus extends AbstractPage {
 
     @Step
     public LandingWithBonus clickWithDrawFromGift() {
+        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
         WITHDRAW_FROM_GIFT.click();
         return this;
     }
