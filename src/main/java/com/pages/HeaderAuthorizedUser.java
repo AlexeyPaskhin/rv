@@ -79,7 +79,8 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     @Step
     public BonusesPage clickGiftIcon() {
-        GIFT_ICON.waitForElementToBeClickable(5);
+        refreshPage();
+        GIFT_ICON.waitForElementToBeClickable(10);
         GIFT_ICON.click();
         return new BonusesPage();
     }

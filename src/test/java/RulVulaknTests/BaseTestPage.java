@@ -63,7 +63,7 @@ public class BaseTestPage {
 //            WebDriver driver = setupDriver(customDataProvider.getBrowser());
 
 //            we take a browser name from already specified maven variable OR (else) from the 'config.properties' file
-            driver = System.getProperty("browser") !=null && !System.getProperty("browser").isEmpty()
+            driver = System.getProperty("browser") != null && !System.getProperty("browser").isEmpty()
                     ? setupDriver(System.getProperty("browser"))
                     : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
@@ -80,7 +80,7 @@ public class BaseTestPage {
         //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
         Cookie ck = new Cookie("lottery_reminder_shown", "true");
         getDriver().manage().addCookie(ck);
-        Cookie pushSubscribe = new Cookie("push-subscr-cooldown","false");
+        Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
@@ -89,23 +89,25 @@ public class BaseTestPage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(Method method, Object[] o) {
-        //Getting current user ID in database
-        if (o.length > 0) {
-            if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
-                User us = (User) o[0];
-                manager.getUserID(us.getLogin());
+        if (getDriver() != null) {
+            //Getting current user ID in database
+            if (o.length > 0) {
+                if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+                    User us = (User) o[0];
+                    manager.getUserID(us.getLogin());
+                }
             }
-        }
-        getDriver().manage().deleteAllCookies();
+            getDriver().manage().deleteAllCookies();
 //        getDriver().close();
 
-        if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-            try {
+            if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+                try {
+                    getDriver().quit();
+                } catch (SessionNotCreatedException e) {
+                }
+            } else {
                 getDriver().quit();
-            } catch (SessionNotCreatedException e) {
             }
-        } else {
-            getDriver().quit();
         }
     }
 

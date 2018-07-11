@@ -3,11 +3,13 @@ package RulVulaknTests.pages.gamespage;
 import RulVulaknTests.BaseTestPage;
 import com.Elements.Element;
 import com.google.common.collect.Multimap;
+import com.listeners.RussianVulcanListener;
 import com.pages.GamesPage;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.testng.Assert.*;
 
+@Listeners({RussianVulcanListener.class})
 public class GamesPageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(GamesPageTest.class);
 

@@ -3,16 +3,19 @@ package RulVulaknTests.pages;
 import RulVulaknTests.BaseTestPage;
 import RulVulaknTests.authorization.AuthorizationData;
 import com.Elements.Element;
+import com.listeners.RussianVulcanListener;
 import com.pages.*;
 import com.pages.landing.social.*;
 import com.utils.User;
 import io.qameta.allure.Description;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static org.testng.Assert.*;
 
+@Listeners({RussianVulcanListener.class})
 public class FooterTest extends BaseTestPage {
 
     @Test(dataProvider = "authorizationUserForFB", dataProviderClass = AuthorizationData.class, groups = {"regression"})
