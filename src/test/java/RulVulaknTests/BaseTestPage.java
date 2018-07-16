@@ -8,6 +8,7 @@ import com.pages.HomePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
@@ -82,6 +83,9 @@ public class BaseTestPage {
         getDriver().manage().addCookie(ck);
         Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
+        if (getDriver().findElement(By.id("popup_push-notifications-invite")).isDisplayed()) {
+            getDriver().findElement(By.xpath("//a[contains(text(), 'Отказаться')]")).click(); //temp decision for android 4.4 - the page loads more than 15 sec
+        }
         home = new HomePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
         headerAuthorizedUser = new HeaderAuthorizedUser();
@@ -104,6 +108,7 @@ public class BaseTestPage {
                 try {
                     getDriver().quit();
                 } catch (SessionNotCreatedException e) {
+                    logger.error(e);
                 }
             } else {
                 getDriver().quit();
