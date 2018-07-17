@@ -93,7 +93,6 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-
         logger.error(iTestResult.getThrowable().getMessage());
         String issueLog = StringAppender.getLoggedMessages();
         StringAppender.resetAppender();

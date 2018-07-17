@@ -69,8 +69,8 @@ public class DriverManager {
             //event firing driver is an implementation of WebDriverEventHandler from logger package
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
-//            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
+//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
 //            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
@@ -156,16 +156,15 @@ public class DriverManager {
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(ANDROID8_CHROME)) {
-//            final DesiredCapabilities cap = DesiredCapabilities.android();
             DesiredCapabilities cap = new DesiredCapabilities();
-            cap.setCapability("browserName", "chrome");
+//            cap.setCapability("browserName", "chrome");
 //            cap.setCapability("version", "8.1");
-            cap.setCapability("version", "8.0");
+//            cap.setCapability("version", "8.0");
 
-//            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
 //            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.BROWSER);
-//            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
-//            cap.setCapability("chromedriverExecutableDir", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers");
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+            cap.setCapability("chromedriverExecutableDir", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers");
 //            cap.setCapability("chromedriverExecutable", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers\\chromedriver_2_19.exe");
 //            cap.setCapability("platformVersion", "8.1");
 //            cap.setCapability("platformVersion", "7.0");
@@ -177,8 +176,8 @@ public class DriverManager {
 //            ChromeOptions options = new ChromeOptions();
 //            options.addArguments("--disable-notifications");
 //            cap.merge(options);
-//            driver = new EventFiringWebDriver(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap)).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            driver = new EventFiringWebDriver(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap)).register(events);
+//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(SAFARI)) {
             DesiredCapabilities caps = DesiredCapabilities.ipad();

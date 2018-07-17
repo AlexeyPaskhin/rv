@@ -173,7 +173,7 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression,profile,mobile</groups>
+        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression,profile,android,androidAuth</groups>
         <aspectj.version>1.8.10</aspectj.version>
         <threads>1</threads>
     </properties>

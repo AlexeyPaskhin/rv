@@ -3,6 +3,7 @@ package com.pages.landing.social;
 import com.Elements.Button;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.mobile.HomeMobilePage;
 import com.popups.ConfirmEmailPopup;
 import org.openqa.selenium.By;
 
@@ -40,7 +41,13 @@ public class YARegisterPage extends AbstractPage implements SocialFrame {
     }
 
     @Override
-    public SocialFrame clickLogIn() {
+    public HomeMobilePage clickLogInMobile() {
+        LOGIN_BUTTON.click();
+        return new HomeMobilePage();
+    }
+
+    @Override
+    public SocialFrame clickLogInNotForVulkanAuth() {
         return null;
     }
 
