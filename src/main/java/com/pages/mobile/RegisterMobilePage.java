@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.Checkbox;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.landing.social.*;
 import com.popups.WelcomeBonusGiftPopup;
 import io.qameta.allure.Step;
 import lombok.Getter;
@@ -20,10 +21,10 @@ public class RegisterMobilePage extends AbstractPage {
     private Checkbox AGREE_WITH_RULES = new Checkbox(By.xpath("//label[@for='terms_confirm']"));
     private Button REGISTER_BUTTON = new Button(By.xpath("//div[@id='popup_registration']//button[@class='btn-fastreg-profile']"));
     private Button VK_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-vk']"));
-    private Button OK_REGISTER = new Button(By.xpath("//div[@id='popup_authorization']//div[@class='social-ok']"));
-    private Button MR_REGISTER = new Button(By.xpath("//div[@id='popup_authorization']//div[@class='social-mr']"));
-    private Button FB_REGISTER = new Button(By.xpath("//div[@id='popup_authorization']//div[@class='social-fb']"));
-    private Button YA_REGISTER = new Button(By.xpath("//div[@id='popup_authorization']//div[@class='social-ya']"));
+    private Button OK_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-ok']"));
+    private Button MR_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-mr']"));
+    private Button FB_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-fb']"));
+    private Button YA_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-ya']"));
 
     @Step
     public RegisterMobilePage fillEmail(String email) {
@@ -54,9 +55,43 @@ public class RegisterMobilePage extends AbstractPage {
         return new WelcomeBonusGiftPopup();
     }
 
-//    @Step
-//    public RegisterMobilePage clickFB() {
-//        FB_REGISTER.click();
-//        return new WelcomeBonusGiftPopup();
-//    }
+    @Step
+    public FBregisterPage clickFB() {
+        FB_REGISTER.waitForElementToBeClickable(5);
+        FB_REGISTER.click();
+        switchToSocialFrame();
+        return new FBregisterPage();
+    }
+
+    @Step
+    public VkRegisterPage clickVK() {
+        VK_REGISTER.waitForElementToBeClickable(5);
+        VK_REGISTER.click();
+        switchToSocialFrame();
+        return new VkRegisterPage();
+    }
+
+    @Step
+    public OKRegisterPage clickOK() {
+        OK_REGISTER.waitForElementToBeClickable(5);
+        OK_REGISTER.click();
+        switchToSocialFrame();
+        return new OKRegisterPage();
+    }
+
+    @Step
+    public MailRuRegisterPage clickMR() {
+        MR_REGISTER.waitForElementToBeClickable(5);
+        MR_REGISTER.click();
+        switchToSocialFrame();
+        return new MailRuRegisterPage();
+    }
+
+    @Step
+    public YARegisterPage clickYA() {
+        YA_REGISTER.waitForElementToBeClickable(5);
+        YA_REGISTER.click();
+        switchToSocialFrame();
+        return new YARegisterPage();
+    }
 }

@@ -14,7 +14,7 @@ import org.openqa.selenium.By;
 public class LandingChooseBonusWinthContinue extends AbstractPage {
 
     private Button CHOOSE_CASHBACK = new Button(By.xpath("//label[@class='gift-option option-one']"));
-    private Button CHOOSE_BONUS = new Button(By.xpath("//label[@class='gift-option option-two']"));
+    private Button CHOOSE_BONUS = new Button(By.xpath("//label[@class='gift-option option-two' or @class='gift_two_container first_gift']"));
     private Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//label[@class='link-like']"));
     private Button CONTINUE_BUTTON = new Button(By.xpath("//button[@id='choose-gift-landing-12-submit']"));
 

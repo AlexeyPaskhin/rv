@@ -87,9 +87,6 @@ public class BaseTestPage {
         getDriver().manage().addCookie(ck);
         Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
-        if (getDriver().findElement(By.id("popup_push-notifications-invite")).isDisplayed()) {
-            getDriver().findElement(By.xpath("//a[contains(text(), 'Отказаться')]")).click(); //temp decision for android 4.4 - the page loads more than 15 sec
-        }
         home = new HomePage();
         homeMobilePage = new HomeMobilePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();

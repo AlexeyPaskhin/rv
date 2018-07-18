@@ -55,6 +55,12 @@ public class FBregisterPage extends AbstractPage implements SocialFrame {
     }
 
     @Override
+    public ConfirmEmailPopup clickRegisterMobile() {
+        LOGIN_BUTTON.click();
+        return new ConfirmEmailPopup();
+    }
+
+    @Override
     public HomeMobilePage clickLogInMobile() {
         LOGIN_BUTTON.click();
         return new HomeMobilePage();

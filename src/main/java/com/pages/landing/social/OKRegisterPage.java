@@ -50,6 +50,12 @@ public class OKRegisterPage extends AbstractPage implements SocialFrame {
     }
 
     @Override
+    public ConfirmEmailPopup clickRegisterMobile() {
+        LOGIN_BUTTON.click();
+        return new ConfirmEmailPopup();
+    }
+
+    @Override
     public SocialFrame clickLogInNotForVulkanAuth() {
         return null;
     }

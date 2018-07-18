@@ -9,6 +9,8 @@ import com.popups.FastRegisterPopup;
 import com.popups.WelcomeBonusGiftPopup;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import static com.utils.DriverManager.getDriver;
 /**
@@ -72,7 +74,10 @@ public class FastRegisterLP extends AbstractPage {
 
     @Step
     public FastRegisterLP agreeWithRules() {
-        AGREE_CHECKBOX.click();
+        Actions builder = new Actions(getDriver());
+        Action action = builder.moveToElement(AGREE_CHECKBOX.slaveElement(), 5, 1).click().build();
+        action.perform(); //in mobile version our checkbox -- pseudo element ::before. and we have a href inside the label. so we are forced to click specific coordinates of the element
+//        AGREE_CHECKBOX.click();
         return this;
     }
 

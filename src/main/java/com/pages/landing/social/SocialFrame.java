@@ -14,6 +14,8 @@ public interface SocialFrame extends IAbstractPage {
     
     HomeMobilePage clickLogInMobile();
 
+    ConfirmEmailPopup clickRegisterMobile();
+
     /**
      * when we stay on a social page - for example, when go on our group in social network
      */
