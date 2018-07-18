@@ -1,6 +1,7 @@
 package com.pages;
 
 import com.Elements.Button;
+import com.Elements.Element;
 import com.Elements.Panel;
 import com.utils.CustomDataProvider;
 import io.qameta.allure.Step;
@@ -14,7 +15,14 @@ public abstract class AbstractPage implements IAbstractPage {
     public String SOCIAL_LOGIN_WINDOW = "uLogin_window";
     public CustomDataProvider provider = new CustomDataProvider();
     private Button WINNINGS_FOOTER_BTN = new Button(By.xpath("//div[@class='bottom-content']//span[text()='Выигрыши']/.."));
+    private Element POPUP_PUSH_NOTIFICATIONS = new Element(By.id("popup_push-notifications-invite"));
+    private Button REJECT_NOTIFICATIONS = new Button(By.xpath("//a[contains(text(), 'Отказаться')]"));
 
+    public AbstractPage() {
+        if (POPUP_PUSH_NOTIFICATIONS.isPresent()) {
+            REJECT_NOTIFICATIONS.click();    //temp decision for android 4.4 - the page loads more than 15 sec
+        }
+    }
     public void switchToSocialFrame() {
         waitForCountOfWindows(2);
         for (String winHandle : getDriver().getWindowHandles()) {
