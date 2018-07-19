@@ -1,5 +1,6 @@
 package RulVulaknTests;
 
+import com.Elements.Element;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
 import com.pages.HeaderAuthorizedUser;
@@ -8,6 +9,7 @@ import com.pages.HomePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
@@ -104,6 +106,7 @@ public class BaseTestPage {
                 try {
                     getDriver().quit();
                 } catch (SessionNotCreatedException e) {
+                    logger.error(e);
                 }
             } else {
                 getDriver().quit();

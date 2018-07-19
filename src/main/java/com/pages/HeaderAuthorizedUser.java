@@ -25,13 +25,13 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     public boolean userZoneIsPresent() {
         new HomePage().waitForHomePageLoaded();
-        USER_PANE.waitForElementToBePresent(8);
+        USER_PANE.waitForElementToBeVisible(8);
         return USER_PANE.isPresent();
     }
 
     public boolean giftIconIsPresent() {
         refreshPage();
-        GIFT_ICON.waitForElementToBePresent(10);
+        GIFT_ICON.waitForElementToBeVisible(10);
         return GIFT_ICON.isPresent();
     }
 
