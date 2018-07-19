@@ -9,6 +9,8 @@ import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.*;
 
+import static com.utils.DriverManager.setImplicity;
+
 @Getter
 public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
@@ -31,8 +33,10 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     public boolean giftIconIsPresent() {
         refreshPage();
-        GIFT_ICON.waitForElementToBeVisible(10);
-        return GIFT_ICON.isPresent();
+        setImplicity(10); //we use this method for positive and negative checks so we need not hardcode this method through waiting for visibility of gift icon
+        boolean b =  GIFT_ICON.isPresent();
+        setImplicity(3);
+        return b;
     }
 
     public double getUserBalance() {
