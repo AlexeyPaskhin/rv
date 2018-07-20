@@ -79,10 +79,11 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
                 .clickRegisterButtonAndDoNothing();
         try {
             fastRegisterPopup.EMPTY_EMAIL_FIELD_ERROR.waitForElementToBeVisible(3);
+            fastRegisterPopup.EMPTY_PASSWORD_FIELD_ERROR.waitForElementToBeVisible(3);
 //            Assert.assertEquals(fastRegisterPopup.getPasswordFilledErrorMessageText(), "Поле не должно быть пустым");
         } catch (TimeoutException e) {
             logger.error(e);
-            Assert.fail("An appropriate error message isn't shown");
+            Assert.fail("Appropriate error messages aren't shown");
         }
     }
 

@@ -2,6 +2,7 @@ package com.pages.mobile;
 
 import com.Elements.Button;
 import com.Elements.Checkbox;
+import com.Elements.Element;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
 import com.pages.landing.social.*;
@@ -16,9 +17,12 @@ import static com.utils.DriverManager.getDriver;
 
 @Getter
 public class RegisterMobilePage extends AbstractPage {
-    private InputBox EMAIL_INPUT_BOX = new InputBox(By.id("register-form-login"));
-    private InputBox PASS_INPUT_BOX = new InputBox(By.id("register-form-password"));
+    private InputBox EMAIL_INPUT_BOX = new InputBox(By.xpath("//input[@id='register-form-login']"));
+    private Element INVALID_EMAIL_MESSAGE = EMAIL_INPUT_BOX.getSubElementByXpath("/../span[@class='errors']");
+    private InputBox PASS_INPUT_BOX = new InputBox(By.xpath("//input[@id='register-form-password']"));
+    private Element INVALID_PASS_MESSAGE = PASS_INPUT_BOX.getSubElementByXpath("/../span[@class='errors']");
     private Checkbox AGREE_WITH_RULES = new Checkbox(By.xpath("//label[@for='terms_confirm']"));
+    private Element NOT_MARKED_AGREE_WITH_RULES = AGREE_WITH_RULES.getSubElementByXpath("/../span[contains(@class, 'errors')]");
     private Button REGISTER_BUTTON = new Button(By.xpath("//div[@id='popup_registration']//button[@class='btn-fastreg-profile']"));
     private Button VK_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-vk']"));
     private Button OK_REGISTER = new Button(By.xpath("//div[@id='popup_registration']//div[@class='social-ok']"));
@@ -53,6 +57,12 @@ public class RegisterMobilePage extends AbstractPage {
     public WelcomeBonusGiftPopup clickRegisterButton() {
         REGISTER_BUTTON.click();
         return new WelcomeBonusGiftPopup();
+    }
+
+    @Step
+    public RegisterMobilePage clickRegisterInInvalidForm() {
+        REGISTER_BUTTON.click();
+        return new RegisterMobilePage();
     }
 
     @Step

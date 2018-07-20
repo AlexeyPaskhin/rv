@@ -37,10 +37,8 @@ public class HomeMobilePage extends AbstractPage {
     @Step
     public boolean firstBonusPanelIsPresent() {
         refreshPage();
-        setImplicity(10); //we use this method for positive and negative checks so we need not hardcode this method through waiting for visibility of gift icon
-        boolean b =  FIRST_BONUS_PANEL.isPresent();
-        setImplicity(3);
-        return b;
+        waitForPageToLoad();
+        return FIRST_BONUS_PANEL.isPresent();
     }
 
 }

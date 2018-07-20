@@ -15,7 +15,7 @@ public class LandingWithFormType implements RegistrationFormType {
     private InputBox PASSWORD_INPUT = new InputBox(By.xpath("//div[@class='landing-form']//input[@name='password']"));
     private RadioButton CURRENCY_RUB_RADIO = new RadioButton(By.xpath("//div[@class='landing-form']//input[@name='currency' and @value='RUB']"));
     private RadioButton CURRENCY_USD_RADIO = new RadioButton(By.xpath("//div[@class='landing-form']//input[@name='currency' and @value='USD']"));
-    private Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//form[@data-form-role='register']//label[@class='fullwidth agree']"));
+    private Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//form[@data-form-role='register']//label[contains(@class, 'fullwidth agree')]"));
     private Button REGISTER_BUTTON = new Button(By.xpath("//div[@class='landing-form']//button"));
 
     @Override

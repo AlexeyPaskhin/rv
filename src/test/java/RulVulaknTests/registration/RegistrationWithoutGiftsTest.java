@@ -404,7 +404,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Registration without gifts from Landing page 12")
     public void landingChooseContRegister(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -427,7 +427,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via VK.com")
     public void landingChooseContRegisterVK(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickVK()
                 .setEmail(user.getLogin())
@@ -452,7 +452,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via Facebook.com")
     public void landingChooseContRegisterFB(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickFB()
                 .setEmail(user.getLogin())
@@ -477,7 +477,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via OK.ru")
     public void landingChooseContRegisterOK(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickOK()
                 .setEmail(user.getLogin())
@@ -503,7 +503,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via Mail.ru")
     public void landingChooseContRegisterMailRU(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickMailRu()
                 .setEmail(user.getLogin())
@@ -528,7 +528,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via Yandex.com")
     public void landingChooseContRegisterYA(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickYA()
                 .setEmail(user.getLogin())
@@ -552,7 +552,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Registration without gifts from Landing page 7")
     public void landingChooseRegister(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
@@ -575,7 +575,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via VK.com")
     public void landingChooseRegisterVK(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickVK()
                 .setEmail(user.getLogin())
@@ -600,7 +600,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via FaceBook.com")
     public void landingChooseRegisterFB(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickFB()
                 .setEmail(user.getLogin())
@@ -625,7 +625,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via OK.ru")
     public void landingChooseRegisterOK(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickOK()
                 .setEmail(user.getLogin())
@@ -651,7 +651,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via Mail.ru")
     public void landingChooseRegisterMailRU(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickMailRu()
                 .setEmail(user.getLogin())
@@ -676,7 +676,7 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via Yandex.ru")
     public void landingChooseRegisterYA(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickYA()
                 .setEmail(user.getLogin())

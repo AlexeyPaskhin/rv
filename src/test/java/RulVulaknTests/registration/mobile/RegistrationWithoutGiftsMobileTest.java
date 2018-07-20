@@ -4,7 +4,6 @@ import RulVulaknTests.BaseTestPage;
 import RulVulaknTests.registration.RegisterData;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
-import com.pages.HeaderNotAutorizedUser;
 import com.pages.landing.LandingChooseBonusWinthContinue;
 import com.pages.landing.LandingWithBonus;
 import com.pages.landing.LandingWithButton;
@@ -24,13 +23,13 @@ import static org.testng.Assert.*;
 
 public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
 
-    private void checkHomeMobilePageInNewlyRegisteredState() {
+    private void checkHomeMobilePageInNewlyRegisteredStateWithoutGifts() {
         assertTrue(homeMobilePage.getPROFILE_BUTTON().isPresent(), "USER ZONE NOT PRESENT");
         assertFalse(homeMobilePage.getLOGIN_BUTTON().isPresent(), "REGISTER BUTTON IS DISPLAYED");
         assertFalse(homeMobilePage.firstBonusPanelIsPresent(), "Bonus panel is displayed after refusal from bonuses");
     }
 
-    private void checkHomeMobilePageInNewlyRegisteredStateFromLP(String pageNumber) {
+    private void checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(String pageNumber) {
         assertTrue(homeMobilePage.getPROFILE_BUTTON().isPresent(), "USER ZONE NOT PRESENT ON PAGE " + pageNumber);
         assertFalse(homeMobilePage.getLOGIN_BUTTON().isPresent(), "REGISTER BUTTON IS DISPLAYED ON PAGE " + pageNumber);
         assertFalse(homeMobilePage.firstBonusPanelIsPresent(), "Bonus panel is displayed after refusal from bonuses on page " + pageNumber);
@@ -45,23 +44,88 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickRegisterButton()
                 .clickWithdrawFromGift();
-      checkHomeMobilePageInNewlyRegisteredState();
+      checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
     }
 
     @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidFB"})
     @RemoveUser
     @Description("Social registration without gifts from 'Register' pop-up - via Facebook")
-    public void mainPageRegisterFB(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
+    public void mainPageRegisterFBWithoutBonus(User user) {
+        new HomeMobilePage()
+                .clickRegister()
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredState();
+        checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
+    }
+
+    @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
+    @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via VK.com")
+    public void mainPageRegisterVKWithoutBonus(User user) {
+        new HomeMobilePage()
+                .clickRegister()
+                .clickVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegisterMobile()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
+        checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
+    }
+
+    @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
+    @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via Mail.ru")
+    public void mainPageRegisterMailRuWithoutBonus(User user) {
+        new HomeMobilePage()
+                .clickRegister()
+                .clickMR()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegisterMobile()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
+        checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
+    }
+
+    @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
+    @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via OK.ru")
+    public void mainPageRegisterOkWithoutBonus(User user) {
+        new HomeMobilePage()
+                .clickRegister()
+                .clickOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegisterMobile()
+                .setEmail(user.getLogin())
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
+        checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
+    }
+
+    @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
+    @RemoveUser
+    @Description("Social registration without gifts from 'Registration' pop-up - via Yandex.com")
+    public void mainPageRegisterYaWithoutBonus(User user) {
+        new HomeMobilePage()
+                .clickRegister()
+                .clickYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegisterMobile()
+                .clickCompleteRegister()
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
+        checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
     }
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
@@ -76,7 +140,7 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickRegisterButtonToGift()
                 .clickWithdrawFromGift();
-      checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+      checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
@@ -90,12 +154,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickVK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidFB"})
@@ -109,12 +172,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
@@ -127,13 +189,12 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 clickOK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .setEmail(user.getLogin())
-                .agreeWithRules()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
@@ -147,12 +208,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickMailRu()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
@@ -166,12 +226,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickYA()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
@@ -185,7 +244,7 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickRegisterButtonToGift()
                 .clickWithdrawFromGift();
-            checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+            checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
@@ -198,12 +257,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickVK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidFB"})
@@ -216,12 +274,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
@@ -234,13 +291,12 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickOK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .setEmail(user.getLogin())
-                .agreeWithRules()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
@@ -253,12 +309,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickMailRu()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
@@ -271,12 +326,11 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .clickYA()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
+                .clickRegisterMobile()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
@@ -284,13 +338,13 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Registration without gifts from Landing page 12")
     public void landingChooseContRegister(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
                 .clickRegisterButtonToHome();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
@@ -299,15 +353,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via VK.com")
     public void landingChooseContRegisterVK(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickVK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidFB"})
@@ -316,15 +370,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via Facebook.com")
     public void landingChooseContRegisterFB(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
@@ -333,16 +387,16 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via OK.ru")
     public void landingChooseContRegisterOK(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickOK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .setEmail(user.getLogin())
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
@@ -351,15 +405,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via Mail.ru")
     public void landingChooseContRegisterMailRU(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickMailRu()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
@@ -368,15 +422,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 12 - via Yandex.com")
     public void landingChooseContRegisterYA(User user, String page) {
         new LandingChooseBonusWinthContinue()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickYA()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
@@ -384,13 +438,13 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Registration without gifts from Landing page 7")
     public void landingChooseRegister(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .typeLogin(user.getLogin())
                 .typePass(user.getPass())
                 .agreeWithRules()
                 .clickRegisterButtonToHome();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
@@ -399,15 +453,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via VK.com")
     public void landingChooseRegisterVK(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickVK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidFB"})
@@ -416,15 +470,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via FaceBook.com")
     public void landingChooseRegisterFB(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickFB()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
@@ -433,16 +487,16 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via OK.ru")
     public void landingChooseRegisterOK(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickOK()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .setEmail(user.getLogin())
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
@@ -451,15 +505,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via Mail.ru")
     public void landingChooseRegisterMailRU(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickMailRu()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
     @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
@@ -468,79 +522,15 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
     @Description("Social registration without gifts from Landing page 7 - via Yandex.ru")
     public void landingChooseRegisterYA(User user, String page) {
         new LandingWithBonus()
-                .clickWithDrawFromGift()
+                .clickGiveUpAGift()
                 .switchToRegistration()
                 .clickYA()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickRegister()
+                .clickRegisterMobile()
                 .agreeWithRules()
                 .clickCompleteRegister();
-        checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
+        checkHomeMobilePageInNewlyRegisteredStateFromLPWithoutGifts(page);
     }
 
-    @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
-    @RemoveUser
-    @Description("Social registration without gifts from 'Registration' pop-up - via VK.com")
-    public void mainPageRegisterVK(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
-                .clickVK()
-                .setEmail(user.getLogin())
-                .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
-                .clickCompleteRegister()
-                .getWelcomeBonusGiftPopup()
-                .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredState();
-    }
-
-    @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
-    @RemoveUser
-    @Description("Social registration without gifts from 'Registration' pop-up - via Mail.ru")
-    public void mainPageRegisterMailRu(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
-                .clickMailRu()
-                .setEmail(user.getLogin())
-                .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
-                .clickCompleteRegister()
-                .getWelcomeBonusGiftPopup()
-                .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredState();
-    }
-
-    @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
-    @RemoveUser
-    @Description("Social registration without gifts from 'Registration' pop-up - via OK.ru")
-    public void mainPageRegisterOk(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
-                .clickOK()
-                .setEmail(user.getLogin())
-                .setPassword(user.getPass())
-                .clickRegister()
-                .setEmail(user.getLogin())
-                .agreeWithRules()
-                .clickCompleteRegister()
-                .getWelcomeBonusGiftPopup()
-                .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredState();
-    }
-
-    @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
-    @RemoveUser
-    @Description("Social registration without gifts from 'Registration' pop-up - via Yandex.com")
-    public void mainPageRegisterYa(User user) {
-        new HeaderNotAutorizedUser().clickRegister()
-                .clickYA()
-                .setEmail(user.getLogin())
-                .setPassword(user.getPass())
-                .clickRegister()
-                .agreeWithRules()
-                .clickCompleteRegister()
-                .getWelcomeBonusGiftPopup()
-                .clickWithdrawFromGift();
-        checkHomeMobilePageInNewlyRegisteredState();
-    }
 }
