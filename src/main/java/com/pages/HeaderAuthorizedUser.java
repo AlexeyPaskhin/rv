@@ -9,8 +9,6 @@ import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.*;
 
-import static com.utils.DriverManager.setImplicity;
-
 @Getter
 public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
