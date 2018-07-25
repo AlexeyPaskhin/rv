@@ -120,13 +120,28 @@ public class PropertyLoader {
     protected String getRegisterPassVK() {
         return prop.getProperty("userRegisterPassVK");
     }
+    protected String getRegisterEmailVKAndroid() {
+        return prop.getProperty("userRegisterLoginVKAndroid");
+    }
+
+    protected String getRegisterPassVKAndroid() {
+        return prop.getProperty("userRegisterPassVKAndroid");
+    }
 
     protected String getRegisterEmailFB() {
         return prop.getProperty("userRegisterLoginFB");
     }
 
+    protected String getRegisterEmailFBAndroid() {
+        return prop.getProperty("userRegisterLoginFBAndroid");
+    }
+
     protected String getRegisterPassFB() {
         return prop.getProperty("userRegisterPassFB");
+    }
+
+    protected String getRegisterPassFBAndroid() {
+        return prop.getProperty("userRegisterPassFBAndroid");
     }
 
     protected String getRegisterEmailOK() {
@@ -137,6 +152,14 @@ public class PropertyLoader {
         return prop.getProperty("userRegisterPassOK");
     }
 
+    protected String getRegisterEmailOKAndroid() {
+        return prop.getProperty("userRegisterLoginOKAndroid");
+    }
+
+    protected String getRegisterPassOKAndroid() {
+        return prop.getProperty("userRegisterPassOKAndroid");
+    }
+
     protected String getRegisterEmailYA() {
         return prop.getProperty("userRegisterLoginYA");
     }
@@ -145,12 +168,27 @@ public class PropertyLoader {
         return prop.getProperty("userRegisterPassYA");
     }
 
+    protected String getRegisterEmailYAAndroid() {
+        return prop.getProperty("userRegisterLoginYAAndroid");
+    }
+
+    protected String getRegisterPassYAAndroid() {
+        return prop.getProperty("userRegisterPassYAAndroid");
+    }
+
     protected String getRegisterEmailMailRU() {
         return prop.getProperty("userRegisterLoginMailRU");
     }
 
     protected String getRegisterPassMailRU() {
         return prop.getProperty("userRegisterPassMailRU");
+    }
+   protected String getRegisterEmailMailRUAndroid() {
+        return prop.getProperty("userRegisterLoginMailRUAndroid");
+    }
+
+    protected String getRegisterPassMailRUAndroid() {
+        return prop.getProperty("userRegisterPassMailRUAndroid");
     }
 
     /*

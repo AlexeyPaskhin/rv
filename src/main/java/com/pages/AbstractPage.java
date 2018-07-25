@@ -6,6 +6,7 @@ import com.Elements.Panel;
 import com.utils.CustomDataProvider;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 
 import static com.utils.DriverManager.getDriver;
 
@@ -19,9 +20,14 @@ public abstract class AbstractPage implements IAbstractPage {
     private Button REJECT_NOTIFICATIONS = new Button(By.xpath("//a[contains(text(), 'Отказаться')]"));
 
     public AbstractPage() {
-        if (POPUP_PUSH_NOTIFICATIONS.isPresent()) {
-            REJECT_NOTIFICATIONS.click();    //temp decision for android 4.4 - the page loads more than 15 sec
+        try {
+            if (POPUP_PUSH_NOTIFICATIONS.isPresent()) {
+                REJECT_NOTIFICATIONS.click();    //temp decision for android 4.4 - the page loads more than 15 sec
+            }
+        } catch (StaleElementReferenceException e) {
+            e.printStackTrace();
         }
+
     }
     public void switchToSocialFrame() {
         waitForCountOfWindows(2);

@@ -10,9 +10,9 @@ import org.openqa.selenium.By;
  */
 
 public class LandingWithBonus extends AbstractPage {
-    private Button CHOOSE_CASHBACK = new Button(By.xpath("//label[@class='choose-gift left']"));
-    private Button CHOOSE_BONUS = new Button(By.xpath("//label[@class='choose-gift right']"));
-    private Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//label[@class='link-like']"));
+    private Button CHOOSE_CASHBACK = new Button(By.xpath("//*[@class='choose-gift left']"));
+    private Button CHOOSE_BONUS = new Button(By.xpath("//*[@class='choose-gift right']"));
+    private Button GIVE_UP_A_GIFT = new Button(By.xpath("//*[text()='Отказаться от подарка' or text()='Играть без подарка']"));
 
     public FastRegisterLP switchToRegistration() {
         return new FastRegisterLP(new LandingWithChooseBonusType());
@@ -31,9 +31,9 @@ public class LandingWithBonus extends AbstractPage {
     }
 
     @Step
-    public LandingWithBonus clickWithDrawFromGift() {
-        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
-        WITHDRAW_FROM_GIFT.click();
+    public LandingWithBonus clickGiveUpAGift() {
+        GIVE_UP_A_GIFT.waitForElementToBeClickable(10);
+        GIVE_UP_A_GIFT.click();
         return this;
     }
 }

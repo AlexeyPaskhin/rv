@@ -92,7 +92,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
-    @Description("Registration with 'Welcome Bonus' gifts from lending pages 1, 2, 4, 5, 14")
+    @Description("Registration with 'Welcome Bonus' gifts from landing pages 1, 2, 4, 5, 14")
     public void landingComplexRegisterBonus(User user, String page) {
         LandingWithButton lp = new LandingWithButton();
         lp.clickRegisterButton()
@@ -113,7 +113,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk", "D"})
+    @Test(dataProvider = "createUserForVK", dataProviderClass = RegisterData.class, groups = {"landing", "register", "social", "vk"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @RemoveUser
     @Description("Social registration with 'Welcome Bonus' gifts from Landing pages 1, 2, 4, 5, 14 - via VK.com")
@@ -822,7 +822,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
-                .pressPlayWithBonus();;
+                .pressPlayWithBonus();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");

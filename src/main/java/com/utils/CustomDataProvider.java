@@ -28,14 +28,24 @@ public class CustomDataProvider {
     /* email's and pass's for social registration */
     private String emailRegisterVK;
     private String passRegisterVK;
+    private String emailRegisterVKAndroid;
+    private String passRegisterVKAndroid;
     private String emailRegisterFB;
+    private String emailRegisterFBAndroid;
     private String passRegisterFB;
+    private String passRegisterFBAndroid;
     private String emailRegisterOK;
     private String passRegisterOK;
+    private String emailRegisterOKAndroid;
+    private String passRegisterOKAndroid;
     private String emailRegisterYA;
     private String passRegisterYA;
+    private String emailRegisterYAAndroid;
+    private String passRegisterYAAndroid;
     private String emailRegisterMailRU;
     private String passRegisterMailRU;
+    private String emailRegisterMailRUAndroid;
+    private String passRegisterMailRUAndroid;
 
     /* credential for MasterCard */
     private String cardNumberMaster;
@@ -83,14 +93,24 @@ public class CustomDataProvider {
         /* email's and pass's for social registeration from PropertyLoader */
         this.emailRegisterVK = propertyLoader.getRegisterEmailVK();
         this.passRegisterVK = propertyLoader.getRegisterPassVK();
+        this.emailRegisterVKAndroid = propertyLoader.getRegisterEmailVKAndroid();
+        this.passRegisterVKAndroid = propertyLoader.getRegisterPassVKAndroid();
         this.emailRegisterFB = propertyLoader.getRegisterEmailFB();
+        this.emailRegisterFBAndroid = propertyLoader.getRegisterEmailFBAndroid();
         this.passRegisterFB = propertyLoader.getRegisterPassFB();
+        this.passRegisterFBAndroid = propertyLoader.getRegisterPassFBAndroid();
         this.emailRegisterOK = propertyLoader.getRegisterEmailOK();
         this.passRegisterOK = propertyLoader.getRegisterPassOK();
+        this.emailRegisterOKAndroid = propertyLoader.getRegisterEmailOKAndroid();
+        this.passRegisterOKAndroid = propertyLoader.getRegisterPassOKAndroid();
         this.emailRegisterYA = propertyLoader.getRegisterEmailYA();
         this.passRegisterYA = propertyLoader.getRegisterPassYA();
+        this.emailRegisterYAAndroid = propertyLoader.getRegisterEmailYAAndroid();
+        this.passRegisterYAAndroid = propertyLoader.getRegisterPassYAAndroid();
         this.emailRegisterMailRU = propertyLoader.getRegisterEmailMailRU();
         this.passRegisterMailRU = propertyLoader.getRegisterPassMailRU();
+        this.emailRegisterMailRUAndroid = propertyLoader.getRegisterEmailMailRUAndroid();
+        this.passRegisterMailRUAndroid = propertyLoader.getRegisterPassMailRUAndroid();
 
         /* email and pass for authorization from PropertyLoader */
         this.cardNumberMaster = propertyLoader.getCardNumberMaster();
@@ -201,16 +221,32 @@ public class CustomDataProvider {
         return this.emailRegisterVK;
     }
 
+    public String getRegisterEmailVKAndroid() {
+        return this.emailRegisterVKAndroid;
+    }
+
     public String getRegisterPassVK() {
         return this.passRegisterVK;
+    }
+
+    public String getRegisterPassVKAndroid() {
+        return this.passRegisterVKAndroid;
     }
 
     public String getRegisterEmailFB() {
         return this.emailRegisterFB;
     }
 
+    public String getRegisterEmailFBAndroid() {
+        return this.emailRegisterFBAndroid;
+    }
+
     public String getRegisterPassFB() {
         return this.passRegisterFB;
+    }
+
+    public String getRegisterPassFBAndroid() {
+        return this.passRegisterFBAndroid;
     }
 
     public String getRegisterEmailOK() {
@@ -221,6 +257,14 @@ public class CustomDataProvider {
         return this.passRegisterOK;
     }
 
+    public String getRegisterEmailOKAndroid() {
+        return this.emailRegisterOKAndroid;
+    }
+
+    public String getRegisterPassOKAndroid() {
+        return this.passRegisterOKAndroid;
+    }
+
     public String getRegisterEmailYA() {
         return this.emailRegisterYA;
     }
@@ -229,12 +273,28 @@ public class CustomDataProvider {
         return this.passRegisterYA;
     }
 
+    public String getRegisterEmailYAAndroid() {
+        return this.emailRegisterYAAndroid;
+    }
+
+    public String getRegisterPassYAAndroid() {
+        return this.passRegisterYAAndroid;
+    }
+
     public String getRegisterEmailMailRU() {
         return this.emailRegisterMailRU;
     }
 
     public String getRegisterPassMailRU() {
         return this.passRegisterMailRU;
+    }
+
+    public String getRegisterEmailMailRUAndroid() {
+        return this.emailRegisterMailRUAndroid;
+    }
+
+    public String getRegisterPassMailRUAndroid() {
+        return this.passRegisterMailRUAndroid;
     }
 
     /*

@@ -3,9 +3,11 @@ package RulVulaknTests;
 import com.Elements.Element;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
+import com.listeners.RussianVulcanListener;
 import com.pages.HeaderAuthorizedUser;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
+import com.pages.mobile.HomeMobilePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -21,10 +23,12 @@ import java.net.MalformedURLException;
 
 import static com.utils.DriverManager.*;
 
+@Listeners({RussianVulcanListener.class})
 public class BaseTestPage {
     protected final static Logger logger = LogManager.getLogger(BaseTestPage.class);
     public CustomDataProvider customDataProvider;
     public HomePage home;
+    protected HomeMobilePage homeMobilePage;
     public SSHManager manager = null;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAuthorizedUser headerAuthorizedUser;
@@ -85,6 +89,7 @@ public class BaseTestPage {
         Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
         home = new HomePage();
+        homeMobilePage = new HomeMobilePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
         headerAuthorizedUser = new HeaderAuthorizedUser();
     }

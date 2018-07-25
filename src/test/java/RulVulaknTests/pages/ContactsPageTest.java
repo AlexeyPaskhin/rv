@@ -34,7 +34,7 @@ public class ContactsPageTest extends BaseTestPage {
                 .clickFbGroup()
                 .setEmail(user.getLogin())
                 .setPassword(user.getPass())
-                .clickLogIn();
+                .clickLogInNotForVulkanAuth();
         assertEquals(socialFrame.getURL(), customDataProvider.getFbGroupURL());
     }
 
