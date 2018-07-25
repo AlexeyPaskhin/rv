@@ -1,6 +1,5 @@
 package RulVulaknTests;
 
-import com.Elements.Element;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
 import com.pages.HeaderAuthorizedUser;
@@ -9,7 +8,6 @@ import com.pages.HomePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.SessionNotCreatedException;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +23,7 @@ public class BaseTestPage {
     protected final static Logger logger = LogManager.getLogger(BaseTestPage.class);
     public CustomDataProvider customDataProvider;
     public HomePage home;
-    public SSHManager manager = null;
+    public SSHManager sshManager = null;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAuthorizedUser headerAuthorizedUser;
     public WebDriver driver;
@@ -33,7 +31,7 @@ public class BaseTestPage {
     @BeforeClass(alwaysRun = true)
     public void setUp() {
         try {
-            manager = new SSHManager();
+            sshManager = new SSHManager();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +49,7 @@ public class BaseTestPage {
                 User us = (User) o[0];
                 String oldName = us.getLogin();
                 String newName = "autotest+" + RandomGenerate.randomString(20) + "@playtini.ua";
-                manager.updateUserForSocial(oldName, newName);
+                sshManager.updateUserForSocial(oldName, newName);
             }
         }
         // if test get user from data provider we log user login and pass
@@ -96,7 +94,7 @@ public class BaseTestPage {
             if (o.length > 0) {
                 if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
                     User us = (User) o[0];
-                    manager.getUserID(us.getLogin());
+                    logger.info("New user ID is: " + sshManager.getUserID(us.getLogin()));
                 }
             }
             getDriver().manage().deleteAllCookies();
@@ -116,6 +114,6 @@ public class BaseTestPage {
 
     @AfterClass(alwaysRun = true)
     public void releaseResources() {
-        manager.disconnectFromConsole();
+        sshManager.disconnectFromConsole();
     }
 }

@@ -19,11 +19,13 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
     private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo' and @href='/']"));
     private final Element VIP_ICON = new Element(By.xpath("//a[@href='/vip' and @class='vip_user_zone_vip']")); // works only for status VIP
+    private final Button ACHIEVEMENTS_BUTTON = new Button(By.xpath("//a[@href='/users/achievements']"));
     private final Element USER_NAME_LINK = new Element(By.xpath("//a[@class='profile']"));
     private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
     private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
     private final Element LOG_OUT = new Element(By.xpath("//a[@class='logout']"));
-
+    private final Element ACHIEVEMENT_NOTIFICATION = new Element(By.xpath("//section[@id='for-notification']"));
+    private Element LINK_NEW_ACHIEVEMENT = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@href]");
 
     public boolean userZoneIsPresent() {
         new HomePage().waitForHomePageLoaded();
@@ -67,6 +69,12 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     }
 
     @Step
+    public AchievementsPage clickAchievements() {
+        ACHIEVEMENTS_BUTTON.click();
+        return new AchievementsPage();
+    }
+
+    @Step
     public ProfilePage clickUserName() {
         USER_NAME_LINK.waitForElementToBeClickable(5);
         BLANK_IFRAME.waitForElementToBeInvisible(5);
@@ -101,5 +109,15 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public HomePage clickExit() {
         LOG_OUT.click();
         return new HomePage();
+    }
+
+    public HeaderAuthorizedUser waitForAchievementNotification() {
+        ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(20);
+        return this;
+    }
+
+    public AchievementsPage clickLinkInAchievementNotification() {
+        LINK_NEW_ACHIEVEMENT.click();
+        return new AchievementsPage();
     }
 }
