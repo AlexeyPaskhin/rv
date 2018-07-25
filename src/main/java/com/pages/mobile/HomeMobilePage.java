@@ -12,11 +12,11 @@ import static com.utils.DriverManager.setImplicity;
 
 @Getter
 public class HomeMobilePage extends AbstractPage {
-    public Button LOGIN_BUTTON = new Button(By.className("bottom-menu__login-btn"));
-    public Button REGISTER_BUTTON = new Button(By.className("bottom-menu__registr-btn"));
-    public Button GAMES_BUTTON = new Button(By.xpath("//a[@class='bottom-menu__icon-btn' and @href='/games']"));
-    public Button PROFILE_BUTTON = new Button(By.xpath("//a[@class='bottom-menu__icon-btn' and @href='/users/profile']"));
-    public Panel FIRST_BONUS_PANEL = new Panel(By.id("hundred-bonus-popup"));
+    private Button LOGIN_BUTTON = new Button(By.className("bottom-menu__login-btn"));
+    private Button REGISTER_BUTTON = new Button(By.className("bottom-menu__registr-btn"));
+    private Button GAMES_BUTTON = new Button(By.xpath("//a[@class='bottom-menu__icon-btn' and @href='/games']"));
+    private Button PROFILE_BUTTON = new Button(By.xpath("//a[@class='bottom-menu__icon-btn' and @href='/users/profile']"));
+    private Panel FIRST_BONUS_PANEL = new Panel(By.id("hundred-bonus-popup"));
 
     public HomeMobilePage() {
         waitForPageToLoad();

@@ -176,8 +176,8 @@ public class DriverManager {
 //            ChromeOptions options = new ChromeOptions();
 //            options.addArguments("--disable-notifications");
 //            cap.merge(options);
-            driver = new EventFiringWebDriver(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap)).register(events);
-//            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+//            driver = new EventFiringWebDriver(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap)).register(events);
+            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(SAFARI)) {
             DesiredCapabilities caps = DesiredCapabilities.ipad();
