@@ -588,7 +588,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickRegisterButtonToHome()
                 .getWelcomeBonusGiftPopup()
-                .pressPlayWithBonus();;
+                .pressPlayWithBonus();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -615,7 +615,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
-                .pressPlayWithBonus();;
+                .pressPlayWithBonus();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");

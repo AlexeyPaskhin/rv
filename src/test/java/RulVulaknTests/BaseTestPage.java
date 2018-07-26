@@ -24,6 +24,7 @@ public class BaseTestPage {
     public CustomDataProvider customDataProvider;
     public HomePage home;
     public SSHManager sshManager = null;
+    public RestManager restManager;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAuthorizedUser headerAuthorizedUser;
     public WebDriver driver;
@@ -35,6 +36,7 @@ public class BaseTestPage {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        restManager = new RestManager();
     }
 
     @BeforeMethod(alwaysRun = true)

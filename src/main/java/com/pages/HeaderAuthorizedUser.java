@@ -2,7 +2,6 @@ package com.pages;
 
 import com.Elements.Button;
 import com.Elements.Element;
-import com.Elements.Frame;
 import com.Elements.Panel;
 import com.popups.CashBoxPopup;
 import io.qameta.allure.Step;
@@ -24,8 +23,11 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
     private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
     private final Element LOG_OUT = new Element(By.xpath("//a[@class='logout']"));
+
     private final Element ACHIEVEMENT_NOTIFICATION = new Element(By.xpath("//section[@id='for-notification']"));
     private Element LINK_NEW_ACHIEVEMENT = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@href]");
+    private Element LINK_NEW_DEPS_ACHIEVEMENT = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@href='/users/achievements#deps']");
+    private Element CLOSE_ACHIEVEMENT_BUTTON = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@class='personal_close']");
 
     public boolean userZoneIsPresent() {
         new HomePage().waitForHomePageLoaded();
@@ -36,7 +38,7 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public boolean giftIconIsPresent() {
         refreshPage();
         setImplicity(10); //we use this method for positive and negative checks so we need not hardcode this method through waiting for visibility of gift icon
-        boolean b =  GIFT_ICON.isPresent();
+        boolean b = GIFT_ICON.isPresent();
         setImplicity(3);
         return b;
     }
@@ -113,6 +115,17 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     public HeaderAuthorizedUser waitForAchievementNotification() {
         ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(20);
+        return this;
+    }
+
+    public HeaderAuthorizedUser waitForDepsAchievementNotificationClosingUnnecessary() {
+        do {
+            ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(30);
+            if (!LINK_NEW_DEPS_ACHIEVEMENT.isPresent()) {
+                CLOSE_ACHIEVEMENT_BUTTON.click();
+            }
+        }
+        while (!LINK_NEW_DEPS_ACHIEVEMENT.isPresent());
         return this;
     }
 

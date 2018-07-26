@@ -41,6 +41,16 @@ public class HomePage extends AbstractPage {
                 .getAuthorizedHeader();
     }
 
+    public HomePage registerUser(User user) {
+        return getNotAuthorizedHeader()
+                .clickRegister()
+                .typeLogin(user.getLogin())
+                .typePass(user.getPass())
+                .agreeWithRules()
+                .selectCurrencyRUB()
+                .clickRegisterButton()
+                .pressPlayWithBonus();
+    }
 
     public HeaderNotAutorizedUser getNotAuthorizedHeader() {
         return new HeaderNotAutorizedUser();

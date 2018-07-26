@@ -63,9 +63,9 @@ public class SSHManager {
         executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"" + sqlQuery + ";\"");
     }
 
-    public String getUserID(String user) {
+    public String getUserID(String email) {
         StringBuilder userId = new StringBuilder();
-        executeSqlQueryAgainstPsupApp("select id from players where email='" + user + "'\\G");
+        executeSqlQueryAgainstPsupApp("select id from players where email='" + email + "'\\G");
         for (int i = 0; i < response.size(); i++) {
             if (response.get(i).matches("id: [0-9]{1,11}")) {
                 userId.append(response.get(i));
