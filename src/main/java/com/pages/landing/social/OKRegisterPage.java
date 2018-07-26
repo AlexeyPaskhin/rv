@@ -3,14 +3,17 @@ package com.pages.landing.social;
 import com.Elements.Button;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.mobile.HomeMobilePage;
 import com.popups.ConfirmEmailPopup;
 import org.openqa.selenium.By;
+
+import static com.utils.DriverManager.getDriver;
 
 public class OKRegisterPage extends AbstractPage implements SocialFrame {
 
     private final InputBox EMAIL_INPUT = new InputBox(By.name("fr.email"));
     private final InputBox PASS_INPUT = new InputBox(By.name("fr.password"));
-    private final Button LOGIN_BUTTON = new Button(By.xpath("//input[@value='Sign in']"));
+    private final Button LOGIN_BUTTON = new Button(By.xpath("//*[@value='Sign in' or text()='Log in']"));  // the locator is integrated for both desktop and mobile versions
     private String parentWindow;
 
     public OKRegisterPage(String parentWindow) {
@@ -41,7 +44,19 @@ public class OKRegisterPage extends AbstractPage implements SocialFrame {
     }
 
     @Override
-    public SocialFrame clickLogIn() {
+    public HomeMobilePage clickLogInMobile() {
+        LOGIN_BUTTON.click();
+        return new HomeMobilePage();
+    }
+
+    @Override
+    public ConfirmEmailPopup clickRegisterMobile() {
+        LOGIN_BUTTON.click();
+        return new ConfirmEmailPopup();
+    }
+
+    @Override
+    public SocialFrame clickLogInNotForVulkanAuth() {
         return null;
     }
 

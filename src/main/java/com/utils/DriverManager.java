@@ -156,16 +156,15 @@ public class DriverManager {
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(ANDROID8_CHROME)) {
-//            final DesiredCapabilities cap = DesiredCapabilities.android();
             DesiredCapabilities cap = new DesiredCapabilities();
-            cap.setCapability("browserName", "chrome");
+//            cap.setCapability("browserName", "chrome");
 //            cap.setCapability("version", "8.1");
-            cap.setCapability("version", "8.0");
+//            cap.setCapability("version", "8.0");
 
-//            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
 //            cap.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.BROWSER);
-//            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
-//            cap.setCapability("chromedriverExecutableDir", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers");
+            cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+            cap.setCapability("chromedriverExecutableDir", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers");
 //            cap.setCapability("chromedriverExecutable", "C:\\Users\\a.paskhyn\\IdeaProjects\\autotest-rv\\src\\main\\resources\\browsers\\chromedriver_2_19.exe");
 //            cap.setCapability("platformVersion", "8.1");
 //            cap.setCapability("platformVersion", "7.0");
