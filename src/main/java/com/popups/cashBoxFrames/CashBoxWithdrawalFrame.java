@@ -4,6 +4,7 @@ import com.Elements.Button;
 import com.Elements.InputBox;
 import com.Elements.Panel;
 import com.pages.AbstractPage;
+import com.pages.HeaderAuthorizedUser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,6 +28,15 @@ public class CashBoxWithdrawalFrame extends AbstractPage implements SwitchToFram
     private Panel SUCCESS_MESSAGE = new Panel(By.xpath("//div[@class='message_content_inner success']"));
     private Panel NOT_ENOUGH_MONEY_MESSAGE = new Panel(By.xpath("//div[@class='message_content_inner fail']"));
 
+    private Button CLOSE_CASHBOX_POPUP = new Button(By.xpath("//div[contains(@style, 'display: block')]//a[@data-track-click='cashbox,popup-close-button']"));
+
+    @Step
+    public HeaderAuthorizedUser closeCashbox() {
+        CLOSE_CASHBOX_POPUP.click();
+        return new HeaderAuthorizedUser();
+    }
+
+    @Step
     public CashBoxWithdrawalFrame clickCardPaymentMethod() {
         CARD_PAYMENT_BUTTON.waitForElementToBeClickable(5);
         CARD_PAYMENT_BUTTON.click();

@@ -1,9 +1,11 @@
 package RulVulaknTests.achievements.rewards;
 
 import RulVulaknTests.BaseTestPage;
+import RulVulaknTests.cashbox.CashboxData;
 import RulVulaknTests.registration.RegisterData;
 import com.Elements.Element;
 import com.pages.AchievementsPage;
+import com.utils.Card;
 import com.utils.User;
 import io.qameta.allure.Description;
 import org.json.simple.parser.ParseException;
@@ -11,11 +13,12 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Random;
 
 import static org.testng.Assert.*;
 
 public class MoneyLovesAccountTest extends BaseTestPage {
-    User user;
+    private User user;
 
     @DataProvider
     private Object[][] userProvider() {
@@ -226,7 +229,6 @@ public class MoneyLovesAccountTest extends BaseTestPage {
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
-
         for (int i = 0; i < 11; i++) {
             assertTrue(achievementsPage.achievementIsEnabled(depsAchievements.get(i)));
         }
@@ -236,5 +238,22 @@ public class MoneyLovesAccountTest extends BaseTestPage {
         assertEquals(achievementsPage.getNAME_OF_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements().get(10).getText(), "Главный казначей");
         assertTrue(achievementsPage.getLABEL_NEW_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements().get(10).isPresent());
     }
+
+    @Test(dataProvider = "randomUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"depAchievements"})
+    @Description("reward For successful Withdrawal")
+    public void rewardForWithdrawal(User user, Card card) {
+        String randomDeposit = Integer.toString(new Random().nextInt(13500) + 1500);
+        home.registerUser(user)
+                .getAuthorizedHeader()
+                .makeDeposit(card, randomDeposit);
+        headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
+        headerAuthorizedUser.refreshPage();
+        AchievementsPage achievementsPage = headerAuthorizedUser.makeWithdrawal(randomDeposit)
+                .closeCashbox()
+                .clickAchievements();
+        List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
+        assertTrue(achievementsPage.achievementIsEnabled(depsAchievements.get(11)));
+    }
+
 
 }

@@ -27,7 +27,7 @@ public class RestManager {
 //            JSONObject data = (JSONObject) parser.parse(new FileReader("src/test/resources/cpaInfo.json"));
                 JSONObject dataToRegisterDeposit = new JSONObject();
                 dataToRegisterDeposit.put("player_id", userId);
-                dataToRegisterDeposit.put("amount", 1000);
+                dataToRegisterDeposit.put("amount", 1);
                 HttpUriRequest request = buildPostRequest(dataToRegisterDeposit, "http://app.dev.rusvulcan.com/api/deposits");
                 HttpResponse response = client.execute(request);
 

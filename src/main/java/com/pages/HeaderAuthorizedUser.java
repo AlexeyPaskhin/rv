@@ -4,6 +4,8 @@ import com.Elements.Button;
 import com.Elements.Element;
 import com.Elements.Panel;
 import com.popups.CashBoxPopup;
+import com.popups.cashBoxFrames.CashBoxWithdrawalFrame;
+import com.utils.Card;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.*;
@@ -42,6 +44,33 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public double getUserBalance() {
         double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ", ""));
         return sum;
+    }
+
+    @Step
+    public void makeDeposit(Card card, String sum) {
+        pressCashBoxButton()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .typeCardNumber(card.getNumber())
+                .typeCardHolder(card.getHolder())
+                .typeCardCVV(card.getCvv())
+                .clickOnInputButton()
+                .cleanDepositInputField()
+                .typeCardDepositSum(sum)
+                .clickOnConfirmButton()
+                .clickOnOkayButton()
+                .switchToParent();
+    }
+
+    @Step
+    public CashBoxWithdrawalFrame makeWithdrawal(String sum) {
+        return pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(sum)
+                .typePhoneNumberInCardDepositFrame("9101234567")
+                .clickGetButton();
     }
 
     @Step
@@ -118,10 +147,32 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
         do {
             ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(30);
             if (!LINK_NEW_DEPS_ACHIEVEMENT.isPresent()) {
-                CLOSE_ACHIEVEMENT_BUTTON.click();
+                try {
+                    CLOSE_ACHIEVEMENT_BUTTON.click();
+                } catch (StaleElementReferenceException e) {
+                    e.printStackTrace();
+                    refreshPage();
+                }
             }
         }
         while (!LINK_NEW_DEPS_ACHIEVEMENT.isPresent());
+        return this;
+    }
+
+    public HeaderAuthorizedUser waitForNotificationWithSpecialTitleClosingUnnecessary(String title) {
+
+        do {
+            ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(30);
+            if (!ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//p").getText().equals(title)) {
+                try {
+                    CLOSE_ACHIEVEMENT_BUTTON.click();
+                } catch (StaleElementReferenceException e) {
+                    e.printStackTrace();
+                    refreshPage();
+                }
+            }
+        }
+        while (!ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//p[text()='" + title + "']").isPresent());
         return this;
     }
 

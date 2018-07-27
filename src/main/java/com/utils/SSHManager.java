@@ -4,6 +4,8 @@ import com.jcraft.jsch.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.json.simple.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -125,6 +127,36 @@ public class SSHManager {
     public void setRegistrationDate(LocalDate localDate, User user) {
         executeSqlQueryAgainstPsupApp("update players set created_at = '" + localDate + "' where email='" + user.getLogin() + "'");
         logger.info("Registration date was changed to " + localDate + " for user " + user.getLogin());
+    }
+
+
+    public void createActiveLottery() {
+        LocalDateTime now = LocalDateTime.now();
+
+        executeSqlQueryAgainstPsupApp("INSERT INTO psup_app.lotteries" +
+                "(name, created_at, start_at, end_at, results_at, winners_num, popup_lottery_start_at, popup_lottery_end_at, popup_result_start_at, popup_result_end_at, finished_at, canceled_at, \"data\", tickets_style, uuid, title, name_on_site, description, headline, short_content, main_content, content, url, prize_fund, number_of_participants, number_of_tickets)" +
+                "VALUES('xHUIx', '"+ now.minusMonths(1).toString().replace("T", " ") + "', '"+ now.minusMonths(1).toString().replace("T", " ") +
+                "', '"+ now.plusWeeks(1).toString().replace("T", " ") + "', '"+ now.plusWeeks(2).toString().replace("T", " ") + "', 107, '"
+                + now.minusMonths(1).plusHours(1).toString().replace("T", " ") + "', '"+ now.minusMonths(1).plusHours(2).toString().replace("T", " ") + "', '"
+                + now.plusWeeks(2).plusHours(1).toString().replace("T", " ") + "', '"+ now.plusWeeks(2).plusHours(2).toString().replace("T", " ")
+                + "', NULL, NULL, '{\"bronze\":{\"min_deposit_rub\":1,\"min_deposit_usd\":1000},\"silver\":{\"min_deposit_rub\":10000,\"min_deposit_usd\":1000},\"gold\":{\"min_deposit_rub\":10000,\"min_deposit_usd\":1000}}', 'default', '64c5c0c33ee84aeeb4c8e34422f871bb', 'autotest lottery', 'autotest lottery', 'autotest lottery', NULL, '', 'autotest lottery', 0xD, 'sss', 100000, 3, 3);");
+        executeSqlQueryAgainstPsupApp("UPDATE psup_app.lotteries l\n" +
+                " set l.\"data\" = (SELECT lo.\"data\" from (SELECT * from psup_app.lotteries) as lo where lo.id = 53)\n" +
+                " where l.name = 'xHUIx';");  //mind this filter
+        //so. we need to execute last update cause java doesn't transfer escaped quotes in the field aimed for updating inside the DB. DAMN!!!!!
+        for (String message : response) {
+            logger.info(message);
+            if (message != null) {
+                throw new AssertionError("Something wrong with DB queries!!!");
+            }
+        }
+        logger.info("A lottery was created!");
+        response.clear();
+    }
+
+    public void removeAutotestLottery() {
+        executeSqlQueryAgainstPsupApp("delete from lotteries where title = 'autotest lottery'");
+        logger.info("A lottery was removed!");
     }
 }
 

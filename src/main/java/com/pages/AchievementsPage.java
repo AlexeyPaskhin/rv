@@ -19,6 +19,10 @@ public class AchievementsPage extends AbstractPage {
     private Element LABEL_NEW_ACHIEVEMENT_FOR_DEPS_ITEM = IMAGE_ACHIEVEMENT_FOR_DEPS_ITEM.getSubElementByXpath("/../span[@class='achievement__new-label']");
     private Element NAME_OF_ACHIEVEMENT_FOR_DEPS_ITEM = IMAGE_ACHIEVEMENT_FOR_DEPS_ITEM.getSubElementByXpath("/../../p[@class='achievement__name']");
 
+    private Element IMAGE_ACHIEVEMENT_FOR_LOTTERIES_ITEM = new Element(By.xpath("//h5[text()='Фортуна-лотерея']/..//img"));
+    private Element LABEL_NEW_ACHIEVEMENT_FOR_LOTTERIES_ITEM = IMAGE_ACHIEVEMENT_FOR_LOTTERIES_ITEM.getSubElementByXpath("/../span[@class='achievement__new-label']");
+    private Element NAME_OF_ACHIEVEMENT_FOR_LOTTERIES_ITEM = IMAGE_ACHIEVEMENT_FOR_LOTTERIES_ITEM.getSubElementByXpath("/../../p[@class='achievement__name']");
+
 
     public Boolean achievementIsDisabled(Element achievementImage) {
         return achievementImage.getAttribute("src").contains("reward_disabled") &&
