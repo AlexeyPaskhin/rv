@@ -156,7 +156,7 @@ public class SSHManager {
 
     public void removeAutotestLottery() {
         executeSqlQueryAgainstPsupApp("delete from lotteries where title = 'autotest lottery'");
-        logger.info("A lottery was removed!");
+        logger.info("auto-test lottery was removed");
     }
 }
 

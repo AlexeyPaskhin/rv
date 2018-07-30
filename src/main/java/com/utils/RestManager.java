@@ -15,6 +15,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
+import static com.utils.DriverManager.getDriver;
 import static org.testng.Assert.fail;
 
 public class RestManager {
@@ -23,7 +24,8 @@ public class RestManager {
 
     public void makeDepositNTimes(String userId, int times) throws ParseException {
         for (int i = 0; i < times; i++) {
-            try(CloseableHttpClient client = HttpClientBuilder.create().setConnectionManagerShared(true).build()) {
+            getDriver().getCurrentUrl(); //to avoid driver time-out exception
+            try (CloseableHttpClient client = HttpClientBuilder.create().setConnectionManagerShared(true).build()) {
 //            JSONObject data = (JSONObject) parser.parse(new FileReader("src/test/resources/cpaInfo.json"));
                 JSONObject dataToRegisterDeposit = new JSONObject();
                 dataToRegisterDeposit.put("player_id", userId);
@@ -42,7 +44,7 @@ public class RestManager {
 
                     logger.info("Status of transaction commit: " + response.getStatusLine().getStatusCode());
                     if (response.getStatusLine().getStatusCode() == 200) {
-                        logger.info("Deposit " + (i+1) + " was committed");
+                        logger.info("Deposit " + (i + 1) + " was committed");
                     } else {
                         result = (JSONObject) parser.parse(IOUtils.toString(response.getEntity().getContent(), "utf-8"));
                         fail(result.get("Error").toString());
@@ -57,6 +59,7 @@ public class RestManager {
                 e.printStackTrace();
             }
         }
+
     }
 
     private HttpUriRequest buildPostRequest(JSONObject data, String requestUrl) {
