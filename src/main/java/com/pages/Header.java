@@ -25,7 +25,7 @@ public interface Header {
         return new LotteriesPage();
     }
 
-    default TournamentsPage clickTournametsLink() {
+    default TournamentsPage clickTournamentsLink() {
         TOURNAMENTS.click();
         return new TournamentsPage();
     }

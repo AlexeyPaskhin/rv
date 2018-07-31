@@ -22,14 +22,14 @@ public class RestManager {
     private final static Logger logger = LogManager.getLogger(RestManager.class);
     private JSONParser parser = new JSONParser();
 
-    public void makeDepositNTimes(String userId, int times) throws ParseException {
+    public void makeDepositNTimes(String userId, int times, int sum) throws ParseException {
         for (int i = 0; i < times; i++) {
             getDriver().getCurrentUrl(); //to avoid driver time-out exception
             try (CloseableHttpClient client = HttpClientBuilder.create().setConnectionManagerShared(true).build()) {
 //            JSONObject data = (JSONObject) parser.parse(new FileReader("src/test/resources/cpaInfo.json"));
                 JSONObject dataToRegisterDeposit = new JSONObject();
                 dataToRegisterDeposit.put("player_id", userId);
-                dataToRegisterDeposit.put("amount", 1);
+                dataToRegisterDeposit.put("amount", sum);
                 HttpUriRequest request = buildPostRequest(dataToRegisterDeposit, "http://app.dev.rusvulcan.com/api/deposits");
                 HttpResponse response = client.execute(request);
 
