@@ -110,7 +110,7 @@ public class FirstStepsTasksTest extends BaseTestPage {
             , dependsOnMethods = {"rewardForRegistration", "rewardForConfirmationOfEmail", "rewardForConfirmationOfPhone"
             , "rewardForFillingAllPersonalInfo", "rewardForRefillingAccountAndReceivingBonus"})
     @Description("get The Gift For First Steps")
-    public void getTheGiftForFirstSteps(User user) throws ParseException {
+    public void getTheGiftForFirstSteps(User user) {
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .clickAchievements()
                 .clickTasksTab()
