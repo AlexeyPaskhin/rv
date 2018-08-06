@@ -114,7 +114,7 @@ public class FirstStepsTasksTest extends BaseTestPage {
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .clickAchievements()
                 .clickTasksTab()
-                .clickGetGiftForFirstSteps();
-        assertTrue(achievementsTasksPage.getPROMO_CODE_FOR_FIRST_STEPS().isPresent());
+                .clickGetGiftForTheFirstSteps();
+        assertTrue(achievementsTasksPage.getPROMO_CODE_FOR_THE_FIRST_STEPS().isPresent());
     }
 }

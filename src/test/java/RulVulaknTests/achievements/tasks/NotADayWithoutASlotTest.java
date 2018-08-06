@@ -127,13 +127,13 @@ public class NotADayWithoutASlotTest extends BaseTestPage {
 
     @Test(dataProvider = "userProvider", groups = {"betsInConsecutiveDays"}
     ,dependsOnMethods = "fifthRewardForBetsInConsecutiveDays")
-    @Description("get The Gift For Not A Day Without A Slot")
-    public void getTheGiftForNotADayWithoutASlot(User user) {
+    @Description("get The Gift For The Not A Day Without A Slot Tasks")
+    public void getTheGiftForTheNotADayWithoutASlotTasks(User user) {
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .clickAchievements()
                 .clickTasksTab()
-                .clickGetGiftForNotADayWithoutASlot();
-        assertTrue(achievementsTasksPage.getPROMO_CODE_FOR_NOT_A_DAY_WITHOUT_A_SLOT().isPresent());
+                .clickGetGiftForTheNotADayWithoutASlotTasks();
+        assertTrue(achievementsTasksPage.getPROMO_CODE_FOR_THE_NOT_A_DAY_WITHOUT_A_SLOT().isPresent());
     }
 
 }
