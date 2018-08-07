@@ -146,8 +146,8 @@ public class DriverManager {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("browserName", "chrome");
             cap.setCapability("version", "7.0");
-            cap.setCapability("enableVNC", true); // Is Interactive mode work?
-            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
+//            cap.setCapability("enableVNC", true); // Is Interactive mode work?
+//            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
             driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
         } else if (browser.equalsIgnoreCase(ANDROID8_CHROME)) {
