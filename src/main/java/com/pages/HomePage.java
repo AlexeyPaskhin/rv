@@ -25,7 +25,17 @@ public class HomePage extends AbstractPage {
     public Element GAME_ITEM = new Element(By.xpath("//div[@class='games-block']//div[@class='item-wrap   ']"));
 
 
-    public HeaderAuthorizedUser logInUser(User user) {
+
+    @Step
+    public SlotPage openGameWithTitle(String title) {
+        eliminatePopUp();
+        GAME_ITEM.getSubElementByXpath("/a[@data-game-id='" + title + "']").click();
+        waitForPageToLoad();
+        return new SlotPage();
+    }
+
+    @Step
+  public HeaderAuthorizedUser logInUser(User user) {
         return getNotAuthorizedHeader()
                 .typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
@@ -33,6 +43,7 @@ public class HomePage extends AbstractPage {
                 .getAuthorizedHeader();
     }
 
+    @Step
     public HeaderAuthorizedUser logInUser(String login, String pass) {
         return getNotAuthorizedHeader()
                 .typeEmailInHeadField(login)
@@ -41,6 +52,7 @@ public class HomePage extends AbstractPage {
                 .getAuthorizedHeader();
     }
 
+    @Step
     public HomePage registerUser(User user) {
         return getNotAuthorizedHeader()
                 .clickRegister()
@@ -69,6 +81,7 @@ public class HomePage extends AbstractPage {
         return WELCOME_BONUS_GIFT_POPUP;
     }
 
+    @Step
     public void waitForHomePageLoaded() {
         CONTENT_PANE.waitForElementToBeVisible(15);
         PRELOADER.waitForElementToBeInvisible(10);
@@ -100,6 +113,7 @@ public class HomePage extends AbstractPage {
         return this.getTitle().equals(HOME_PAGE_TITLE_FOR_AUTHORIZED_USER);
     }
 
+    @Step
     public HomePage clickAllGamesButton() {
         ALL_GAMES_BUTTON.click();
         return this;

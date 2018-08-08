@@ -1,10 +1,13 @@
 package RulVulaknTests.pages.gamespage;
 
 import RulVulaknTests.BaseTestPage;
+import RulVulaknTests.authorization.AuthorizationData;
 import com.Elements.Element;
 import com.google.common.collect.Multimap;
 import com.listeners.RussianVulcanListener;
 import com.pages.GamesPage;
+import com.pages.SlotPage;
+import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -22,6 +25,30 @@ import static org.testng.Assert.*;
 @Listeners({RussianVulcanListener.class})
 public class GamesPageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(GamesPageTest.class);
+
+    @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"})
+    @Description("open Booongo Game - for example, 'christmas_charm'")
+    public void openBooongoGame(User user) {
+       SlotPage slotPage = home.getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openGameWithTitle("christmas_charm");
+        assertTrue(slotPage.getGameFrame().isPresent());
+        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
+    }
+
+    @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"})
+    @Description("open Ggs Game - for example, 'blade'")
+    public void openGgsGame(User user) {
+       SlotPage slotPage = home.getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openGameWithTitle("blade");
+        assertTrue(slotPage.getGameFrame().isPresent());
+        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
+    }
 
 
     @Test(groups = {"regression"})
