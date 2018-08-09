@@ -5,6 +5,7 @@ import com.JiraUtils.JiraTicketManager;
 import com.loggers.StringAppender;
 import com.utils.CustomDataProvider;
 import com.utils.FilesUtility;
+import com.utils.SlackNotificationSender;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 
 import static com.utils.DriverManager.getDriver;
+import static com.utils.DriverManager.sessionId;
 
 public class RussianVulcanListener implements ITestListener, ISuiteListener {
     private final static Logger logger = LogManager.getLogger(RussianVulcanListener.class);
@@ -44,10 +46,20 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
     /**
      * Creating ticket in Jira if tests was failed
      *
+     * sending notification to slack about a failure
      * @param iTestResult
      */
     @Override
     public void onTestFailure(ITestResult iTestResult) {
+        //sending to slack
+        for (String group : iTestResult.getMethod().getGroups()) {
+            if (group.equals("prodSmoke")) {
+                SlackNotificationSender sender = new SlackNotificationSender();
+                sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was failed on Prod! See the "
+                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Check it out my sea bro~~");
+            }
+        }
+
 //        String pathToScreenshot = FilesUtility.captureScreenshot(iTestResult);
 //        EventFiringWebDriver d = (EventFiringWebDriver) getDriver();
 //
@@ -94,8 +106,8 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 //            e.printStackTrace();
 //        }
         logger.error(iTestResult.getThrowable().getMessage());
-        String issueLog = StringAppender.getLoggedMessages();
-        StringAppender.resetAppender();
+//        String issueLog = StringAppender.getLoggedMessages();
+//        StringAppender.resetAppender();
 
 //        if (statusCode != 200) {
 //            jiraManager.createTicketWithAttachment("PROD", " Test Case : " +

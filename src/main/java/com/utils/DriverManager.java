@@ -39,6 +39,7 @@ public class DriverManager {
     private static final String SAFARI = "safari";
 
     public static String BROWSER = System.getProperty("browser");  //maven config like -Dbrowser=chrome
+    public static String sessionId;
     // thread safe webdriver to avoid problems with multithreading and parallel running
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
@@ -65,7 +66,9 @@ public class DriverManager {
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
 //            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
 //            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
@@ -82,7 +85,9 @@ public class DriverManager {
             firefoxOptions.addArguments("--screenshot");
 
 //            driver = new EventFiringWebDriver(new FirefoxDriver()).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(EDGE)) {
 //            System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
@@ -117,7 +122,9 @@ public class DriverManager {
             cap.setCapability("operaOptions", hashmap);
 
 //            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
         } else if (browser.equalsIgnoreCase(ANDROID4_CHROME)) {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("browserName", "chrome");
@@ -132,7 +139,9 @@ public class DriverManager {
             cap.setCapability("version", "5.0");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(ANDROID6_CHROME)) {
             DesiredCapabilities cap = new DesiredCapabilities();
@@ -140,7 +149,9 @@ public class DriverManager {
             cap.setCapability("version", "6.0");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(ANDROID7_CHROME)) {
             DesiredCapabilities cap = new DesiredCapabilities();
@@ -148,7 +159,9 @@ public class DriverManager {
             cap.setCapability("version", "7.0");
 //            cap.setCapability("enableVNC", true); // Is Interactive mode work?
 //            cap.setCapability("enableVideo", true); // Is VIDEO recording work?
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(ANDROID8_CHROME)) {
             DesiredCapabilities cap = new DesiredCapabilities();
@@ -172,7 +185,9 @@ public class DriverManager {
 //            options.addArguments("--disable-notifications");
 //            cap.merge(options);
 //            driver = new EventFiringWebDriver(new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), cap)).register(events);
-            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
+            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+            sessionId = remoteWebDriver.getSessionId().toString();
+            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(SAFARI)) {
             DesiredCapabilities caps = DesiredCapabilities.ipad();
