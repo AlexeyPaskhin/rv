@@ -30,7 +30,7 @@ public class GamesPageTest extends BaseTestPage {
     @Description("open Booongo Game - for example, 'christmas_charm'")
     public void openBooongoGame(User user) {
        SlotPage slotPage = home.getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
+//                .typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
                 .openGameWithTitle("christmas_charm");

@@ -55,8 +55,8 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
         for (String group : iTestResult.getMethod().getGroups()) {
             if (group.equals("prodSmoke")) {
                 SlackNotificationSender sender = new SlackNotificationSender();
-                sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was failed on Prod! See the "
-                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Check it out my sea bro~~");
+                sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was failed on the Production! See the "
+                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out!");
             }
         }
 
