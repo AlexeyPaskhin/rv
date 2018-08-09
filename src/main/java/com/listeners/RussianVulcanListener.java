@@ -124,6 +124,14 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
+        //sending to slack
+        for (String group : iTestResult.getMethod().getGroups()) {
+            if (group.equals("prodSmoke")) {
+                SlackNotificationSender sender = new SlackNotificationSender();
+                sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was skipped due to some technical problems on the Production! See the "
+                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs!");
+            }
+        }
     }
 
     @Override
