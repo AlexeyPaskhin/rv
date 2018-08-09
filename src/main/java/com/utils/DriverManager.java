@@ -39,6 +39,7 @@ public class DriverManager {
     private static final String SAFARI = "safari";
 
     public static String BROWSER = System.getProperty("browser");  //maven config like -Dbrowser=chrome
+    public static String basicUrl = System.getProperty("basicURL");
     public static String sessionId;
     // thread safe webdriver to avoid problems with multithreading and parallel running
     private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();

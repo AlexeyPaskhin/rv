@@ -9,8 +9,6 @@ import com.utils.SlackNotificationSender;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.*;
 
 import java.io.File;
@@ -19,9 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.HttpURLConnection;
 
-import static com.utils.DriverManager.BROWSER;
-import static com.utils.DriverManager.getDriver;
-import static com.utils.DriverManager.sessionId;
+import static com.utils.DriverManager.*;
 
 public class RussianVulcanListener implements ITestListener, ISuiteListener {
     private final static Logger logger = LogManager.getLogger(RussianVulcanListener.class);
@@ -53,11 +49,13 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         //sending to slack
-        for (String group : iTestResult.getMethod().getGroups()) {
-            if (group.equals("prodSmoke")) {
-                SlackNotificationSender sender = new SlackNotificationSender();
-                sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was failed on the Production! See the "
-                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out! Browser -- " + BROWSER);
+        if (basicUrl != null && basicUrl.equalsIgnoreCase("https://www.russkvulkan.ru/")) {
+            for (String group : iTestResult.getMethod().getGroups()) {
+                if (group.equals("prodSmoke")) {
+                    SlackNotificationSender sender = new SlackNotificationSender();
+                    sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was FAILED on the Production! See the "
+                            + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out! Browser -- " + BROWSER);
+                }
             }
         }
 
@@ -126,11 +124,13 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         //sending to slack
-        for (String group : iTestResult.getMethod().getGroups()) {
-            if (group.equals("prodSmoke")) {
-                SlackNotificationSender sender = new SlackNotificationSender();
-                sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was skipped due to some technical problems on the Production! See the "
-                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs! Browser -- " + BROWSER);
+        if (basicUrl != null && basicUrl.equalsIgnoreCase("https://www.russkvulkan.ru/")) {
+            for (String group : iTestResult.getMethod().getGroups()) {
+                if (group.equals("prodSmoke")) {
+                    SlackNotificationSender sender = new SlackNotificationSender();
+                    sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was SKIPPED due to some technical problems on the Production! See the "
+                            + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs! Browser -- " + BROWSER);
+                }
             }
         }
     }

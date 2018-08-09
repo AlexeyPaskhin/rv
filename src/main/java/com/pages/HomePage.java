@@ -25,7 +25,6 @@ public class HomePage extends AbstractPage {
     public Element GAME_ITEM = new Element(By.xpath("//div[@class='games-block']//div[@class='item-wrap   ']"));
 
 
-
     @Step
     public SlotPage openGameWithTitle(String title) {
         eliminatePopUp();
@@ -35,7 +34,7 @@ public class HomePage extends AbstractPage {
     }
 
     @Step
-  public HeaderAuthorizedUser logInUser(User user) {
+    public HeaderAuthorizedUser logInUser(User user) {
         return getNotAuthorizedHeader()
                 .typeEmailInHeadField(user.getLogin())
                 .typePassInHeadField(user.getPass())
