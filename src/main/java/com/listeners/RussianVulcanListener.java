@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.HttpURLConnection;
 
+import static com.utils.DriverManager.BROWSER;
 import static com.utils.DriverManager.getDriver;
 import static com.utils.DriverManager.sessionId;
 
@@ -56,7 +57,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
             if (group.equals("prodSmoke")) {
                 SlackNotificationSender sender = new SlackNotificationSender();
                 sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was failed on the Production! See the "
-                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out!");
+                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out! Browser -- " + BROWSER);
             }
         }
 
@@ -129,7 +130,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
             if (group.equals("prodSmoke")) {
                 SlackNotificationSender sender = new SlackNotificationSender();
                 sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was skipped due to some technical problems on the Production! See the "
-                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs!");
+                        + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs! Browser -- " + BROWSER);
             }
         }
     }
