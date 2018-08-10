@@ -12,6 +12,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.SessionNotCreatedException;
+import org.openqa.selenium.UnableToSetCookieException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 
@@ -88,15 +89,25 @@ public class BaseTestPage {
         } else {
             getDriver().get(basicUrl);
         }
+        try {
+          setCookies();
+        } catch (UnableToSetCookieException e) {
+            e.printStackTrace();
+            getDriver().navigate().refresh();
+            setCookies();
+        }
         home = new HomePage();
         homeMobilePage = new HomeMobilePage();
+        headerNotAutorizedUser = new HeaderNotAutorizedUser();
+        headerAuthorizedUser = new HeaderAuthorizedUser();
+    }
+
+    private void setCookies() {
         //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
         Cookie ck = new Cookie("lottery_reminder_shown", "true");
         getDriver().manage().addCookie(ck);
         Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
-        headerNotAutorizedUser = new HeaderNotAutorizedUser();
-        headerAuthorizedUser = new HeaderAuthorizedUser();
     }
 
     @AfterMethod(alwaysRun = true)
