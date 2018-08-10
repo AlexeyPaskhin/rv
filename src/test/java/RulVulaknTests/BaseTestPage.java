@@ -10,10 +10,7 @@ import com.pages.mobile.HomeMobilePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.SessionNotCreatedException;
-import org.openqa.selenium.UnableToSetCookieException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -91,7 +88,7 @@ public class BaseTestPage {
         }
         try {
           setCookies();
-        } catch (UnableToSetCookieException e) {
+        } catch (WebDriverException e) {
             e.printStackTrace();
             getDriver().navigate().refresh();
             setCookies();
