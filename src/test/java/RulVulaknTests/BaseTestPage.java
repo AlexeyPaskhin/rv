@@ -88,13 +88,13 @@ public class BaseTestPage {
         } else {
             getDriver().get(basicUrl);
         }
+        home = new HomePage();
+        homeMobilePage = new HomeMobilePage();
         //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
         Cookie ck = new Cookie("lottery_reminder_shown", "true");
         getDriver().manage().addCookie(ck);
         Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
-        home = new HomePage();
-        homeMobilePage = new HomeMobilePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
         headerAuthorizedUser = new HeaderAuthorizedUser();
     }
