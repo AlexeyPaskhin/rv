@@ -184,7 +184,7 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     @Step
     public CashBoxDepositFrame clickOnConfirmButton() {
-        CONFIRM_BUTTON.waitForElementToBeClickable(5);
+        CONFIRM_BUTTON.waitForElementToBeClickable(10);
         CONFIRM_BUTTON.click();
         return this;
     }
