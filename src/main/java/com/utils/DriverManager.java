@@ -213,6 +213,7 @@ public class DriverManager {
     }
 
     public static void attachDriver(WebDriver driver) {
+        webDriver.remove();
         webDriver.set(driver);
         setImplicity(3);
     }

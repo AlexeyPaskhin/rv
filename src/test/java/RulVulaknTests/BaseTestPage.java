@@ -30,7 +30,7 @@ public class BaseTestPage {
     protected RedisManager redisManager;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAuthorizedUser headerAuthorizedUser;
-    public WebDriver driver;
+    public WebDriver driver = null;
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
@@ -129,6 +129,7 @@ public class BaseTestPage {
             } else {
                 getDriver().quit();
             }
+            logger.info("Driver " + sessionId + " was killed");
         }
     }
 
