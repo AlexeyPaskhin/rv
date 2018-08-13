@@ -73,6 +73,7 @@ public class BaseTestPage {
                     ? setupDriver(System.getProperty("browser"))
                     : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
+            logger.info("Driver" + sessionId + " was created");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
