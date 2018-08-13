@@ -89,7 +89,6 @@ public class BaseTestPage {
         try {
           setCookies();
         } catch (WebDriverException e) {
-            new SlackNotificationSender().sendDefaultSlackNotification("@a.paskhin the exception was thrown");
             e.printStackTrace();
             getDriver().navigate().refresh();
             setCookies();
