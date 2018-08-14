@@ -66,10 +66,10 @@ public class DriverManager {
             //event firing driver is an implementation of WebDriverEventHandler from logger package
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
-//            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
-            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
-            sessionId = remoteWebDriver.getSessionId().toString();
-            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
+            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
+//            RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
+//            sessionId = remoteWebDriver.getSessionId().toString();
+//            driver = new EventFiringWebDriver(remoteWebDriver).register(events);
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
 //            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);

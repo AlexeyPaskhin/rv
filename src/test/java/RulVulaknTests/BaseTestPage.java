@@ -73,7 +73,7 @@ public class BaseTestPage {
                     ? setupDriver(System.getProperty("browser"))
                     : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
-            logger.info("Driver" + sessionId + " was created");
+            logger.info("Driver " + sessionId + " was created");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -104,6 +104,8 @@ public class BaseTestPage {
         //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
         Cookie ck = new Cookie("lottery_reminder_shown", "true");
         getDriver().manage().addCookie(ck);
+        Cookie lotteryResultsShown = new Cookie("lottery_results_shown", "true");
+        getDriver().manage().addCookie(lotteryResultsShown);
         Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
         getDriver().manage().addCookie(pushSubscribe);
     }
