@@ -53,7 +53,7 @@ public class RestManager {
                     }
                 } else {
                     JSONObject result = (JSONObject) parser.parse(IOUtils.toString(response.getEntity().getContent(), "utf-8"));
-                    fail(result.get("Error").toString());
+                    fail(result.get("error").toString());
 
                 }
             }
@@ -85,12 +85,12 @@ public class RestManager {
                         logger.info("Deposit " + (i + 1) + " was committed");
                     } else {
                         result = (JSONObject) parser.parse(IOUtils.toString(response.getEntity().getContent(), "utf-8"));
-                        fail(result.get("Error").toString());
+                        fail(result.get("error").toString());
                     }
 
                 } else {
                     JSONObject result = (JSONObject) parser.parse(IOUtils.toString(response.getEntity().getContent(), "utf-8"));
-                    fail(result.get("Error").toString());
+                    fail(result.get("error").toString());
 
                 }
             } catch (IOException e) {

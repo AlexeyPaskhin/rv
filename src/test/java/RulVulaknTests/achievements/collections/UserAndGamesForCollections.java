@@ -10,6 +10,10 @@ public class UserAndGamesForCollections {
     @DataProvider
     public Object[][] userAndGamesForCollectionsProvider() {
         if (user == null) user = new User().generateRandomUser(new CustomDataProvider());
-
+        return new Object[][] {
+//                {"88_wild_dragon", "", user},
+//                {"book-of-ra", "book_of_ra", user},
+                {"88-wild-dragon", "88_wild_dragon", user}
+        };
     }
 }

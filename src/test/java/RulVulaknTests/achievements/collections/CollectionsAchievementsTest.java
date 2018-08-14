@@ -9,6 +9,7 @@ import io.qameta.allure.Description;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -16,13 +17,12 @@ import static org.testng.Assert.assertTrue;
 
 public class CollectionsAchievementsTest extends BaseTestPage {
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"depAchievements"})
+    @Test(dataProvider = "userAndGamesForCollectionsProvider", dataProviderClass = UserAndGamesForCollections.class, groups = {"collections"})
     @Description("first Reward For Deposits - 'Неразменный рубль' - for 1 dep")
-    public void firstRewardForDep(User user) throws ParseException {
-//        this.user = user;
+    public void rewardFor200Wins(String titleForFrontEndSelector, String titleForRedis, User user) throws ParseException, IOException {
         home.registerUser(user);
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 1, 1);
-
+        redisManager.setQuantityOfTotalWinsForPlayerForExactGame(sshManager.getUserID(user.getLogin()), "199", titleForRedis);
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, "100", "200");
         AchievementsPage achievementsPage = headerAuthorizedUser
                 .waitForDepsAchievementNotificationClosingUnnecessary()
                 .clickLinkInAchievementNotification();
