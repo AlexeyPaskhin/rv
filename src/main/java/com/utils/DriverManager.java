@@ -227,6 +227,6 @@ public class DriverManager {
 
     public static void removeDriver() {
         webDriver.remove();
-        webDriver = null;
+        webDriver = new ThreadLocal<>();
     }
 }
