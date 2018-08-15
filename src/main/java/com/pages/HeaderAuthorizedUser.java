@@ -2,9 +2,10 @@ package com.pages;
 
 import com.Elements.Button;
 import com.Elements.Element;
-import com.Elements.Frame;
 import com.Elements.Panel;
 import com.popups.CashBoxPopup;
+import com.popups.cashBoxFrames.CashBoxWithdrawalFrame;
+import com.utils.Card;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.*;
@@ -17,11 +18,16 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     private final Panel REAL_BALANCE_PANEL = new Panel(By.xpath("//span[@id='user_balance_real']"));
     private final Element LOGO_ICON = new Element(By.xpath("//a[@class='logo' and @href='/']"));
     private final Element VIP_ICON = new Element(By.xpath("//a[@href='/vip' and @class='vip_user_zone_vip']")); // works only for status VIP
+    private final Button ACHIEVEMENTS_BUTTON = new Button(By.xpath("//a[@href='/users/achievements']"));
     private final Element USER_NAME_LINK = new Element(By.xpath("//a[@class='profile']"));
     private final Element NOTIFICATIONS_ICON = new Element(By.xpath("//a[@class='notification']"));
     private final Button CASH_BOX_BUTTON = new Button(By.xpath("//a[@class='btn-recharge-top']"));
     private final Element LOG_OUT = new Element(By.xpath("//a[@class='logout']"));
 
+    private final Element ACHIEVEMENT_NOTIFICATION = new Element(By.xpath("//section[@id='for-notification']"));
+    private Element LINK_NEW_ACHIEVEMENT = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@href]");
+    private Element LINK_NEW_DEPS_ACHIEVEMENT = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@href='/users/achievements#deps']");
+    private Element CLOSE_ACHIEVEMENT_BUTTON = ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//a[@class='personal_close']");
 
     public boolean userZoneIsPresent() {
         new HomePage().waitForHomePageLoaded();
@@ -38,6 +44,33 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public double getUserBalance() {
         double sum = Double.parseDouble(REAL_BALANCE_PANEL.getText().replaceAll(" ", ""));
         return sum;
+    }
+
+    @Step
+    public void makeDeposit(Card card, String sum) {
+        pressCashBoxButton()
+                .switchToCashBoxDepositFrame()
+                .clickCardPaymentMethod()
+                .typeCardNumber(card.getNumber())
+                .typeCardHolder(card.getHolder())
+                .typeCardCVV(card.getCvv())
+                .clickOnInputButton()
+                .cleanDepositInputField()
+                .typeCardDepositSum(sum)
+                .clickOnConfirmButton()
+                .clickOnOkayButton()
+                .switchToParent();
+    }
+
+    @Step
+    public CashBoxWithdrawalFrame makeWithdrawal(String sum) {
+        return pressCashBoxButton()
+                .clickTabWithdrawal()
+                .switchToCashBoxWithdrawalFrame()
+                .clickCardPaymentMethod()
+                .typeCardWithdrawalSum(sum)
+                .typePhoneNumberInCardDepositFrame("9101234567")
+                .clickGetButton();
     }
 
     @Step
@@ -60,6 +93,12 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
         VIP_ICON.waitForElementToBePresent(5);
         VIP_ICON.click();
         return new VipPage();
+    }
+
+    @Step
+    public AchievementsPage clickAchievements() {
+        ACHIEVEMENTS_BUTTON.click();
+        return new AchievementsPage();
     }
 
     @Step
@@ -97,5 +136,48 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public HomePage clickExit() {
         LOG_OUT.click();
         return new HomePage();
+    }
+
+    public HeaderAuthorizedUser waitForAchievementNotification() {
+        ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(20);
+        return this;
+    }
+
+    public HeaderAuthorizedUser waitForDepsAchievementNotificationClosingUnnecessary() {
+        do {
+            ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(30);
+            if (!LINK_NEW_DEPS_ACHIEVEMENT.isPresent()) {
+                try {
+                    CLOSE_ACHIEVEMENT_BUTTON.click();
+                } catch (StaleElementReferenceException e) {
+                    e.printStackTrace();
+                    refreshPage();
+                }
+            }
+        }
+        while (!LINK_NEW_DEPS_ACHIEVEMENT.isPresent());
+        return this;
+    }
+
+    public HeaderAuthorizedUser waitForNotificationWithSpecialTitleClosingUnnecessary(String title) {
+
+        do {
+            ACHIEVEMENT_NOTIFICATION.waitForElementToBeVisible(30);
+            if (!ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//p").getText().equals(title)) {
+                try {
+                    CLOSE_ACHIEVEMENT_BUTTON.click();
+                } catch (StaleElementReferenceException e) {
+                    e.printStackTrace();
+                    refreshPage();
+                }
+            }
+        }
+        while (!ACHIEVEMENT_NOTIFICATION.getSubElementByXpath("//p[text()='" + title + "']").isPresent());
+        return this;
+    }
+
+    public AchievementsPage clickLinkInAchievementNotification() {
+        LINK_NEW_ACHIEVEMENT.click();
+        return new AchievementsPage();
     }
 }
