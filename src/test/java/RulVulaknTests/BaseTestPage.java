@@ -27,9 +27,9 @@ public class BaseTestPage {
     public CustomDataProvider customDataProvider;
     public HomePage home;
     protected HomeMobilePage homeMobilePage;
-    public SSHManager manager = null;
     public SSHManager sshManager = null;
     public RestManager restManager;
+    protected RedisManager redisManager;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAuthorizedUser headerAuthorizedUser;
     public WebDriver driver;
@@ -42,6 +42,7 @@ public class BaseTestPage {
             e.printStackTrace();
         }
         restManager = new RestManager();
+        redisManager = new RedisManager();
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -123,5 +124,6 @@ public class BaseTestPage {
     @AfterClass(alwaysRun = true)
     public void releaseResources() {
         sshManager.disconnectFromConsole();
+        redisManager.close();
     }
 }

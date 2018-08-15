@@ -38,7 +38,7 @@ public class TopMenuTest extends BaseTestPage {
 
     @Test(groups = {"regression"})
     public void checkTournamentsLink() {
-        TournamentsPage tournamentsPage = new HomePage().getHeader().clickTournametsLink();
+        TournamentsPage tournamentsPage = new HomePage().getHeader().clickTournamentsLink();
 
 //        assertThat(tournamentsPage.BannerExists(), is(true)); // only if banner present
         assertThat(tournamentsPage.tournamentsExists(), is(true));

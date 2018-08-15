@@ -1,16 +1,28 @@
 package com.utils;
 
-import com.jcraft.jsch.*;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import org.json.simple.JSONObject;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.utils.DriverManager.getDriver;
 
 public class SSHManager {
     private final static Logger logger = LogManager.getLogger(SSHManager.class);
@@ -65,6 +77,10 @@ public class SSHManager {
         executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_app -e \"" + sqlQuery + ";\"");
     }
 
+    private void executeSqlQueryAgainstPsupMailer(String sqlQuery) {
+        executeQuery("docker exec -t psup-db-stage mysql -pmypass psup_mailer -e \"" + sqlQuery + ";\"");
+    }
+
     public String getUserID(String email) {
         StringBuilder userId = new StringBuilder();
         executeSqlQueryAgainstPsupApp("select id from players where email='" + email + "'\\G");
@@ -88,7 +104,7 @@ public class SSHManager {
 //getting only ID from response
         for (int i = 0; i < response.size(); i++) {
             if (response.get(i).matches("id: [0-9]{1,11}")) {
-                logger.info(" Old user ID is :" + response.get(i));
+                logger.info(" Old user ID is: " + response.get(i));
             }
         }
         response.clear();
@@ -145,10 +161,10 @@ public class SSHManager {
 
         executeSqlQueryAgainstPsupApp("INSERT INTO psup_app.lotteries" +
                 "(name, created_at, start_at, end_at, results_at, winners_num, popup_lottery_start_at, popup_lottery_end_at, popup_result_start_at, popup_result_end_at, finished_at, canceled_at, \"data\", tickets_style, uuid, title, name_on_site, description, headline, short_content, main_content, content, url, prize_fund, number_of_participants, number_of_tickets)" +
-                "VALUES('xHUIx', '"+ now.minusMonths(1).toString().replace("T", " ") + "', '"+ now.minusMonths(1).toString().replace("T", " ") +
-                "', '"+ now.plusWeeks(1).toString().replace("T", " ") + "', '"+ now.plusWeeks(2).toString().replace("T", " ") + "', 107, '"
-                + now.minusMonths(1).plusHours(1).toString().replace("T", " ") + "', '"+ now.minusMonths(1).plusHours(2).toString().replace("T", " ") + "', '"
-                + now.plusWeeks(2).plusHours(1).toString().replace("T", " ") + "', '"+ now.plusWeeks(2).plusHours(2).toString().replace("T", " ")
+                "VALUES('xHUIx', '" + now.minusMonths(1).toString().replace("T", " ") + "', '" + now.minusMonths(1).toString().replace("T", " ") +
+                "', '" + now.plusWeeks(1).toString().replace("T", " ") + "', '" + now.plusWeeks(2).toString().replace("T", " ") + "', 107, '"
+                + now.minusMonths(1).plusHours(1).toString().replace("T", " ") + "', '" + now.minusMonths(1).plusHours(2).toString().replace("T", " ") + "', '"
+                + now.plusWeeks(2).plusHours(1).toString().replace("T", " ") + "', '" + now.plusWeeks(2).plusHours(2).toString().replace("T", " ")
                 + "', NULL, NULL, '{\"bronze\":{\"min_deposit_rub\":1,\"min_deposit_usd\":1000},\"silver\":{\"min_deposit_rub\":10000,\"min_deposit_usd\":1000},\"gold\":{\"min_deposit_rub\":10000,\"min_deposit_usd\":1000}}', 'default', '64c5c0c33ee84aeeb4c8e34422f871bb', 'autotest lottery', 'autotest lottery', 'autotest lottery', NULL, '', 'autotest lottery', 0xD, 'sss', 100000, 3, 3);");
         executeSqlQueryAgainstPsupApp("UPDATE psup_app.lotteries l\n" +
                 " set l.\"data\" = (SELECT lo.\"data\" from (SELECT * from psup_app.lotteries) as lo where lo.id = 53)\n" +   //lo.id = 53 -- id of an entry with valid data we need
@@ -167,6 +183,82 @@ public class SSHManager {
     public void removeAutotestLottery() {
         executeSqlQueryAgainstPsupApp("delete from lotteries where title = 'autotest lottery'");
         logger.info("auto-test lottery was removed");
+    }
+
+    public String getLinkForConfirmationEmail(User user) {
+        StringBuilder content = new StringBuilder();
+        executeSqlQueryAgainstPsupMailer("set names utf8; SELECT content_text from psup_mailer.messages where player_id = " + getUserID(user.getLogin()) +
+                " and template= 'email-confirmation'");
+        for (int i = 0; i < response.size(); i++) {
+            logger.info(response.get(i));
+            content.append(response.get(i)).append("\n");
+        }
+        response.clear();
+        final Pattern urlPattern = Pattern.compile(
+                "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
+                        + "(([\\w\\-]+\\.){1,}?([\\w\\-.~]+\\/?)*"
+                        + "[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)",
+                Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
+
+        Matcher matcher = urlPattern.matcher(content);
+        int matchStart = 0;
+        int matchEnd = 0;
+        while (matcher.find()) {
+            matchStart = matcher.start(1);
+            matchEnd = matcher.end();
+        }
+        String url = String.valueOf(content);
+        return url.substring(matchStart, matchEnd);
+    }
+
+    public String getSmsCode(User user) {
+        new WebDriverWait(getDriver(), 5).until((ExpectedCondition<Boolean>) driver -> {
+            executeSqlQueryAgainstPsupApp("select code from players where email = '" + user.getLogin() + "' and and code is not null");
+            return response.size() != 0;
+        });
+        StringBuilder code = new StringBuilder();
+        executeSqlQueryAgainstPsupApp("select code from players where email = '" + user.getLogin() + "'\\G");
+        for (int i = 0; i < response.size(); i++) {
+            logger.info(response.get(i));
+            if (response.get(i).matches("code: [0-9]{1,11}")) {
+                code.append(response.get(i));
+            }
+        }
+        response.clear();
+        String id = String.valueOf(code);
+        return id.substring(id.indexOf(" ") + 1, id.length());
+    }
+
+    public HashMap<String, String> createRoundDataForUserInDB(User user, String gameSid, String betAmount, String winAmount) {
+        executeSqlQueryAgainstPsupApp("INSERT INTO psup_app.games_events\n" +
+                "(command_id, guid, player_id, game_sid, provider, balance_type, event_type, round_num, game_subtype, amount, amount_usd, created_at, created_real_at, event_data, denominator, balance_before, remaining_wager, currency_name)\n" +
+                "VALUES('0', '4c31fee872c611e7a0ba623435353165', " + getUserID(user.getLogin()) + ", '" + gameSid + "', 'booongo', 'real', 'bet', 4187834, 'spin', " + betAmount +
+                ", 1.6691704223, '" + LocalDateTime.now().toString().replace("T", " ") + "', '" + LocalDateTime.now().toString().replace("T", " ") +
+                "', '', 1, 100000, NULL, 'RUB');\n" +
+                "INSERT INTO psup_app.games_events\n" +
+                "(command_id, guid, player_id, game_sid, provider, balance_type, event_type, round_num, game_subtype, amount, amount_usd, created_at, created_real_at, event_data, denominator, balance_before, remaining_wager, currency_name)\n" +
+                "VALUES('0', '4c31fee872c611e7a0ba623435353165', " + getUserID(user.getLogin()) + ", '" + gameSid + "', 'booongo', 'real', 'win', 4187834, 'spin', " + winAmount +
+                ", 0, '" + LocalDateTime.now().toString().replace("T", " ") + "', '" + LocalDateTime.now().toString().replace("T", " ") +
+                "', '', 1, 90000, NULL, 'RUB')");
+
+        HashMap<String, String> idsOfCreatedEntries = new HashMap<>();
+        idsOfCreatedEntries.put("betId", getIdOfNewlyCreatedGameEvent(user, "bet"));
+        idsOfCreatedEntries.put("winId", getIdOfNewlyCreatedGameEvent(user, "win"));
+        return idsOfCreatedEntries;
+    }
+
+    public String getIdOfNewlyCreatedGameEvent(User user, String eventType) {
+        executeSqlQueryAgainstPsupApp("select MAX(id) from psup_app.games_events where player_id = " + getUserID(user.getLogin()) + " and event_type = '" + eventType + "'\\G");
+        StringBuilder text = new StringBuilder();
+        for (int i = 0; i < response.size(); i++) {
+            logger.info(response.get(i));
+            if (response.get(i).matches("MAX\\(id\\): [0-9]{1,11}")) {
+                text.append(response.get(i));
+            }
+        }
+        response.clear();
+        String id = String.valueOf(text);
+        return id.substring(id.indexOf(" ") + 1, id.length());
     }
 }
 

@@ -104,7 +104,7 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     @Step
     public ProfilePage clickUserName() {
         USER_NAME_LINK.waitForElementToBeClickable(5);
-        BLANK_IFRAME.waitForElementToBeInvisible(5);
+        eliminatePopUp();
         USER_NAME_LINK.click();
         return new ProfilePage();
     }
@@ -179,5 +179,10 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public AchievementsPage clickLinkInAchievementNotification() {
         LINK_NEW_ACHIEVEMENT.click();
         return new AchievementsPage();
+    }
+
+    public AchievementsTasksPage clickLinkInAchievementForTaskNotification() {
+        LINK_NEW_ACHIEVEMENT.click();
+        return new AchievementsTasksPage();
     }
 }

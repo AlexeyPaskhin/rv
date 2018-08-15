@@ -1,0 +1,6 @@
+{
+  "properties":{},
+  "routing_key":"player_games",
+  "payload":"{\"player_id\":\"48754283\",\"action\":\"games_bet_win_round\",\"data\":{\"player_id\":\"48754283\",\"bet\":10000,\"win\":10000,\"uuid\":\"9d2f4e2dc2a6410995942f8b93d3f5f5\",\"round_num\":4764627,\"bet_id\":\"513646151\",\"win_id\":\"513646150\"},\"time\":1533117732}",
+  "payload_encoding":"string"
+}

@@ -41,7 +41,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
     public void firstRewardForReceivedLotteryTickets(User user) throws ParseException {
         this.user = user;
         home.registerUser(user);
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 1);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 1, 1);
 
         AchievementsPage achievementsPage = headerAuthorizedUser
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Докатиться до призов")
@@ -60,7 +60,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "firstRewardForReceivedLotteryTickets")
     @Description("second Reward For Received Lottery Tickets - 'Семь цветов везения' - for 25 tickets")
     public void secondRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 24);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 24, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -79,7 +79,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "secondRewardForReceivedLotteryTickets")
     @Description("third Reward For Received Lottery Tickets - 'Не простые, а золотые!' - for 50 tickets")
     public void thirdRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 25);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 25, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -99,7 +99,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "thirdRewardForReceivedLotteryTickets")
     @Description("fourth Reward For Received Lottery Tickets - 'Везёт, как на Купала' - for 100 tickets")
     public void fourthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 50);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 50, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -119,7 +119,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "fourthRewardForReceivedLotteryTickets")
     @Description("fifth Reward For Received Lottery Tickets - 'Поймать удачу за хвост' - for 250 tickets")
     public void fifthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 150);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 150, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -139,7 +139,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "fifthRewardForReceivedLotteryTickets")
     @Description("sixth Reward For Received Lottery Tickets - 'Фарт из-под копыт' - for 500 tickets")
     public void sixthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -159,7 +159,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "sixthRewardForReceivedLotteryTickets")
     @Description("seventh Reward For Received Lottery Tickets - 'Ядра – чистый изумруд' - for 750 tickets")
     public void seventhRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -179,7 +179,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "seventhRewardForReceivedLotteryTickets")
     @Description("eighth Reward For Received Lottery Tickets - 'Меткий выстрел' - for 1000 tickets")
     public void eighthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -199,7 +199,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "eighthRewardForReceivedLotteryTickets")
     @Description("ninth Reward For Received Lottery Tickets - 'Скатертью билеты' - for 1250 tickets")
     public void ninthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -219,7 +219,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "ninthRewardForReceivedLotteryTickets")
     @Description("tenth Reward For Received Lottery Tickets - 'На крыльях победы' - for 1500 tickets")
     public void tenthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -239,7 +239,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "tenthRewardForReceivedLotteryTickets")
     @Description("eleventh Reward For Received Lottery Tickets - 'По Вашему хотению' - for 1750 tickets")
     public void eleventhRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
@@ -259,7 +259,7 @@ public class FortuneLotteryAchievementsTest extends BaseTestPage {
             , dependsOnMethods = "eleventhRewardForReceivedLotteryTickets")
     @Description("twelfth Reward For Received Lottery Tickets - 'Рыба моей мечты' - for 2000 tickets")
     public void twelfthRewardForReceivedLotteryTickets(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
 
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();

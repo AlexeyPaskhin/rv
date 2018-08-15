@@ -32,7 +32,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
     public void firstRewardForDep(User user) throws ParseException {
         this.user = user;
         home.registerUser(user);
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 1);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 1, 1);
 
         AchievementsPage achievementsPage = headerAuthorizedUser
                 .waitForDepsAchievementNotificationClosingUnnecessary()
@@ -51,7 +51,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "firstRewardForDep")
     @Description("second Reward For Deposits - 'Ко-ко-кая копилка!' - for 5 deps")
     public void secondRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 4);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 4, 1);
         home.logInUser(user);
         AchievementsPage achievementsPage = headerAuthorizedUser
                 .waitForDepsAchievementNotificationClosingUnnecessary()
@@ -71,7 +71,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "secondRewardForDep")
     @Description("third Reward For Deposits - 'Своя ноша не тянет' - for 10 deps")
     public void thirdRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 5);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 5, 1);
         home.logInUser(user);
         AchievementsPage achievementsPage = headerAuthorizedUser
                 .waitForDepsAchievementNotificationClosingUnnecessary()
@@ -92,7 +92,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "thirdRewardForDep")
     @Description("fourth Reward For Deposits - 'Черпать, так черпать!' - for 25 deps")
     public void fourthRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 15);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 15, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -111,7 +111,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "fourthRewardForDep")
     @Description("fifth Reward For Deposits - 'Горшочек, вари!' - for 50 deps")
     public void fifthRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 25);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 25, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -130,7 +130,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "fifthRewardForDep")
     @Description("sixth Reward For Deposits - 'Заначка' - for 100 deps")
     public void sixthRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 50);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 50, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -149,7 +149,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "sixthRewardForDep")
     @Description("seventh Reward For Deposits - 'Вклад на два ведра' - for 250 deps")
     public void seventhRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 150);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 150, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -168,7 +168,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "seventhRewardForDep")
     @Description("eighth Reward For Deposits - 'Полным-полна коробочка' - for 500 deps")
     public void eighthRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -187,7 +187,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "eighthRewardForDep")
     @Description("ninth Reward For Deposits - 'Грузите депозиты бочками' - for 750 deps")
     public void ninthRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -206,7 +206,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "ninthRewardForDep")
     @Description("tenth Reward For Deposits - 'Хозяин сокровищ' - for 1000 deps")
     public void tenthRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
@@ -225,7 +225,7 @@ public class MoneyLovesAccountTest extends BaseTestPage {
             , dependsOnMethods = "tenthRewardForDep")
     @Description("eleventh Reward For Deposits - 'Главный казначей' - for 1250 deps")
     public void eleventhRewardForDep(User user) throws ParseException {
-        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250);
+        restManager.makeDepositNTimes(sshManager.getUserID(user.getLogin()), 250, 1);
         AchievementsPage achievementsPage = home.logInUser(user)
                 .clickAchievements();
         List<Element> depsAchievements = achievementsPage.getIMAGE_ACHIEVEMENT_FOR_DEPS_ITEM().getAllElements();
