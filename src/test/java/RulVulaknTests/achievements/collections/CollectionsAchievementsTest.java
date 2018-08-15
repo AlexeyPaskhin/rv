@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
@@ -22,7 +23,10 @@ public class CollectionsAchievementsTest extends BaseTestPage {
     public void rewardFor200Wins(String titleForFrontEndSelector, String titleForRedis, User user) throws ParseException, IOException {
         home.registerUser(user);
         redisManager.setQuantityOfTotalWinsForPlayerForExactGame(sshManager.getUserID(user.getLogin()), "199", titleForRedis);
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, "100", "200");
+
+        HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, titleForRedis, "100", "100");
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+
         AchievementsPage achievementsPage = headerAuthorizedUser
                 .waitForDepsAchievementNotificationClosingUnnecessary()
                 .clickLinkInAchievementNotification();
