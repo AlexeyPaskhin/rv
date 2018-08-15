@@ -110,27 +110,32 @@ public class BaseTestPage {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(Method method, Object[] o) {
-        if (getDriver() != null) {
-            //Getting current user ID in database
-            if (o.length > 0) {
-                if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
-                    User us = (User) o[0];
-                    logger.info("New user ID is: " + sshManager.getUserID(us.getLogin()));
+        try {
+            if (getDriver() != null) {
+                //Getting current user ID in database
+                if (o.length > 0) {
+                    if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+                        User us = (User) o[0];
+                        logger.info("New user ID is: " + sshManager.getUserID(us.getLogin()));
+                    }
                 }
-            }
-            getDriver().manage().deleteAllCookies();
+                getDriver().manage().deleteAllCookies();
 //        getDriver().close();
 
-            if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-                try {
+                if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+                    try {
+                        getDriver().quit();
+                    } catch (SessionNotCreatedException e) {
+                        logger.error(e);
+                    }
+                } else {
                     getDriver().quit();
-                } catch (SessionNotCreatedException e) {
-                    logger.error(e);
                 }
-            } else {
-                getDriver().quit();
+                logger.info("Driver " + sessionId + " was killed");
             }
-            logger.info("Driver " + sessionId + " was killed");
+        } finally {
+            sessionId = null;
+            removeDriver();
         }
     }
 
