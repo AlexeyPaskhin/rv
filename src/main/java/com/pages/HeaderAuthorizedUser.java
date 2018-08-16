@@ -97,6 +97,7 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     @Step
     public AchievementsPage clickAchievements() {
+        BLANK_IFRAME.waitForElementToBeInvisible(5);
         ACHIEVEMENTS_BUTTON.click();
         return new AchievementsPage();
     }

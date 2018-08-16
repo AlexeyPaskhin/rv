@@ -35,7 +35,7 @@ public class TimeIsMoneyTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForAnHourInLast24HoursForPlayer(sshManager.getUserID(user.getLogin()), "4999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = headerAuthorizedUser.waitForNotificationWithSpecialTitleClosingUnnecessary("От рассвета до заката")
                 .clickLinkInAchievementForTaskNotification();
@@ -51,7 +51,7 @@ public class TimeIsMoneyTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForAnHourInLast24HoursForPlayer(sshManager.getUserID(user.getLogin()), "9999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Сколько Вам отсыпать?")
@@ -68,7 +68,7 @@ public class TimeIsMoneyTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForAnHourInLast48HoursForPlayer(sshManager.getUserID(user.getLogin()), "14999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Победа в кармане")
@@ -85,7 +85,7 @@ public class TimeIsMoneyTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForAnHourInLast48HoursForPlayer(sshManager.getUserID(user.getLogin()), "19999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Накукуй на джекпот")
@@ -102,7 +102,7 @@ public class TimeIsMoneyTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForAnHourInLast48HoursForPlayer(sshManager.getUserID(user.getLogin()), "24999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Часы стоят – игра идёт!")

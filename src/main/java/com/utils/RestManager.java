@@ -23,11 +23,16 @@ public class RestManager {
     private final static Logger logger = LogManager.getLogger(RestManager.class);
     private JSONParser parser = new JSONParser();
 
-    public void makeCustomGameRoundsForUser(String userId, int rounds, String betId, String winId) throws IOException, ParseException {
+    public void makeCustomGameRoundsForUser(String userId, int rounds, String betId, String winId, String gameProvider) throws IOException, ParseException {
         JSONObject userData = (JSONObject) parser.parse(new FileReader("src/main/resources/jsonFiles/rabbitMQ/dataContentForRabbitMQPayload.json"));
         userData.put("player_id", userId);
         userData.put("bet_id", betId);
         userData.put("win_id", winId);
+        if (gameProvider.equalsIgnoreCase("ggs")) {
+            userData.remove("round_num");
+            userData.put("round_num_bet", 228);
+            userData.put("round_num_win", 228);
+        }
 
         JSONObject payload = (JSONObject) parser.parse(new FileReader("src/main/resources/jsonFiles/rabbitMQ/payloadContentForRabbitMQ.json"));
         payload.put("player_id", userId);

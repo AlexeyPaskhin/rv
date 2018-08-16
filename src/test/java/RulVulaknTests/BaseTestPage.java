@@ -73,7 +73,7 @@ public class BaseTestPage {
                     ? setupDriver(System.getProperty("browser"))
                     : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
-            logger.info("Driver " + sessionId + " was created");
+            logger.info("Driver " + sessionId + " " + getDriver() + " was created");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -133,7 +133,7 @@ public class BaseTestPage {
                 } else {
                     getDriver().quit();
                 }
-                logger.info("Driver " + sessionId + " was killed");
+                logger.info("Driver " + sessionId + " " + getDriver() + " was killed");
             }
         } finally {
             sessionId = null;
