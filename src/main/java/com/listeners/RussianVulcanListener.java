@@ -49,7 +49,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         //sending to slack
-        if (basicUrl != null && basicUrl.equalsIgnoreCase("https://www.russkvulkan.ru/")) {
+        if (basicUrl != null && !basicUrl.equalsIgnoreCase("https://rc-stable.fe.rv.dev.77xy.net/")) {
             for (String group : iTestResult.getMethod().getGroups()) {
                 if (group.equals("prodSmoke")) {
                     SlackNotificationSender sender = new SlackNotificationSender();
@@ -124,7 +124,7 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         //sending to slack
-        if (basicUrl != null && basicUrl.equalsIgnoreCase("https://www.russkvulkan.ru/")) {
+        if (basicUrl != null && !basicUrl.equalsIgnoreCase("https://rc-stable.fe.rv.dev.77xy.net/")) {
             for (String group : iTestResult.getMethod().getGroups()) {
                 if (group.equals("prodSmoke")) {
                     SlackNotificationSender sender = new SlackNotificationSender();
