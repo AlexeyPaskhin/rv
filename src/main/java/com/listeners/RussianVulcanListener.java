@@ -54,7 +54,8 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
                 if (group.equals("prodSmoke")) {
                     SlackNotificationSender sender = new SlackNotificationSender();
                     sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was FAILED on the Production! See the "
-                            + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out! Browser -- " + BROWSER);
+                            + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. Please check it out! Browser -- " + BROWSER
+                    + ". URL -- " + basicUrl);
                 }
             }
         }
@@ -129,7 +130,8 @@ public class RussianVulcanListener implements ITestListener, ISuiteListener {
                 if (group.equals("prodSmoke")) {
                     SlackNotificationSender sender = new SlackNotificationSender();
                     sender.sendDefaultSlackNotification("@channel Test " + iTestResult.getName() + " was SKIPPED due to some technical problems on the Production! See the "
-                            + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs! Browser -- " + BROWSER);
+                            + "<http://autotest.rvkernel.com:4444/video/" + sessionId + ".mp4" + "|video>" + " of execution. And check out corresponding logs! Browser -- " + BROWSER
+                            + ". URL -- " + basicUrl);
                 }
             }
         }
