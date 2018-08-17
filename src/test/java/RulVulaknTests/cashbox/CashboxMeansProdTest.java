@@ -15,7 +15,7 @@ import static org.testng.Assert.fail;
 
 public class CashboxMeansProdTest extends BaseTestPage {
 
-    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"})
+    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Deposit Page Visa Or Master Card On Prod")
     public void openDepositPageVisaOrMasterCardOnProd(User user, Card card) {
         home.logInUser(user)
@@ -35,7 +35,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"})
+    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Deposit Page Qiwi On Prod")
     public void openDepositPageQiwiOnProd(User user, Card card) {
         home.logInUser(user)
@@ -53,7 +53,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"})
+    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Deposit Page Yandex On Prod")
     public void openDepositPageYandexOnProd(User user, Card card) {
         home.logInUser(user)
@@ -71,7 +71,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"})
+    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Deposit Page Webmoney On Prod")
     public void openDepositPageWebmoneyOnProd(User user, Card card) {
         home.logInUser(user)
@@ -89,7 +89,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"})
+    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Deposit Page Monetaru On Prod")
     public void openDepositPageMonetaruOnProd(User user, Card card) {
         home.logInUser(user)
@@ -107,7 +107,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"})
+    @Test(dataProvider = "prodUserAuthProvider", dataProviderClass = CashboxData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Deposit Page AlphaClick On Prod")
     public void openDepositPageAlphaClickOnProd(User user, Card card) {
         home.logInUser(user)
