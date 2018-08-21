@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class RegistrationWithBonusTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(RegistrationWithoutGiftsTest.class);
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "regression"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"plainRegAuth"})
     @Description("Registration with 'Welcome Bonus' gifts from button 'Register' in header - RUB")
     public void registrationFromHeaderRubBonus(User user) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -47,7 +47,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "regression"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"plainRegAuth"})
     @Description("Registration with 'Welcome Bonus' gifts from button 'Register' in header - USD")
     public void registrationFromHeaderUsdBonus(User user) {
         new HeaderNotAutorizedUser().clickRegister()
@@ -90,7 +90,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
     @Description("Registration with 'Welcome Bonus' gifts from landing pages 1, 2, 4, 5, 14")
     public void landingComplexRegisterBonus(User user, String page) {
@@ -248,7 +248,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "regression"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"11"})
     @Description("Registration with 'Bonus' gifts from Landing page 11")
     public void landingFormRegisterBonus(User user, String page) {
@@ -410,7 +410,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "regression"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"12"})
     @Description("Registration with 'Welcome Bonus' gifts from Landing page 12")
     public void landingChooseContRegisterBonus(User user, String page) {
@@ -576,7 +576,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "regression"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"7"})
     @Description("Registration with 'Welcome Bonus' gifts from Landing page 7")
     public void landingChooseRegisterBonus(User user, String page) {
@@ -834,7 +834,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register", "regression"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"3", "13", "6", "10", "9"})
     @Description("Registration without gifts from Landing pages 3, 6, 9, 10, 13")
     public void landingFormRegister(User user, String page) {

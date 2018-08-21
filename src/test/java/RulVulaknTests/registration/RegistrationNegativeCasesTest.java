@@ -28,7 +28,7 @@ import org.testng.annotations.Test;
 public class RegistrationNegativeCasesTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(RegistrationWithoutGiftsTest.class);
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 1)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"directRegAuth"}, priority = 1)
     @Description("Registration negative case - enter invalid email.")
     public void tryRegisterWithInvalidEmail(User user) {
         FastRegisterPopup fastRegisterPopup =
@@ -49,7 +49,7 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 2)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"directRegAuth"}, priority = 2)
     @Description("Registration negative case - do not agree with rules.")
     public void tryRegisterWithoutRulesAgree(User user) {
         FastRegisterPopup fastRegisterPopup =
@@ -67,7 +67,7 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 3)
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"directRegAuth"}, priority = 3)
     @Description("Registration negative case - do not fill email and password fields.")
     public void tryRegisterWithoutFilledEmailPasswordFields(User user) {
         FastRegisterPopup fastRegisterPopup =
@@ -87,7 +87,7 @@ public class RegistrationNegativeCasesTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProviderWithoutAtInEmail", dataProviderClass = RegisterData.class, groups = {"register", "negative", "regression"}, priority = 4)
+    @Test(dataProvider = "randomUserProviderWithoutAtInEmail", dataProviderClass = RegisterData.class, groups = {"directRegAuth"}, priority = 4)
     @Description("Registration negative case - enter email without '@'.")
     public void tryRegisterWithEmailWithoutAt(User user) {
         FastRegisterPopup fastRegisterPopup =
