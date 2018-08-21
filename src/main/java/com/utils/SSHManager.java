@@ -145,7 +145,17 @@ public class SSHManager {
         logger.info("Registration date was changed to " + localDate + " for user " + user.getLogin());
     }
 
-
+    /**
+     * we create an entry in the psup_app.lotteries table. important fields to system to recognize that there is an active lottery:
+     * 'created_at' and 'start_at' should be earlier than today;
+     * 'end_at' and 'results_at' should be in the future, what is more 'results_at' should be later than 'end_at';
+     * a period 'popup_lottery_start_at' -- 'popup_lottery_end_at' should be within a period 'created_at' --  'end_at';
+     * 'popup_result_end_at' should be after 'results_at' and before 'popup_result_end_at';
+     * 'finished_at' == NULL; 'canceled_at' == NULL.
+     *
+     * We use the 'title' field to identify our test lottery while removing it.
+     * See additional comment inside the method.
+     */
     public void createActiveLottery() {
         LocalDateTime now = LocalDateTime.now();
 
@@ -157,7 +167,7 @@ public class SSHManager {
                 + now.plusWeeks(2).plusHours(1).toString().replace("T", " ") + "', '" + now.plusWeeks(2).plusHours(2).toString().replace("T", " ")
                 + "', NULL, NULL, '{\"bronze\":{\"min_deposit_rub\":1,\"min_deposit_usd\":1000},\"silver\":{\"min_deposit_rub\":10000,\"min_deposit_usd\":1000},\"gold\":{\"min_deposit_rub\":10000,\"min_deposit_usd\":1000}}', 'default', '64c5c0c33ee84aeeb4c8e34422f871bb', 'autotest lottery', 'autotest lottery', 'autotest lottery', NULL, '', 'autotest lottery', 0xD, 'sss', 100000, 3, 3);");
         executeSqlQueryAgainstPsupApp("UPDATE psup_app.lotteries l\n" +
-                " set l.\"data\" = (SELECT lo.\"data\" from (SELECT * from psup_app.lotteries) as lo where lo.id = 53)\n" +
+                " set l.\"data\" = (SELECT lo.\"data\" from (SELECT * from psup_app.lotteries) as lo where lo.id = 53)\n" +   //lo.id = 53 -- id of an entry with valid data we need
                 " where l.name = 'xHUIx';");  //mind this filter
         //so. we need to execute last update cause java doesn't transfer escaped quotes in the field aimed for updating inside the DB. DAMN!!!!!
         for (String message : response) {
