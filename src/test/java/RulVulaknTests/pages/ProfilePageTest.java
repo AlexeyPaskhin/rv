@@ -86,7 +86,7 @@ public class ProfilePageTest extends BaseTestPage {
                     .successfulChangePass(newPass, user.getPass());
         } catch (Exception e) {
             e.printStackTrace();
-            fail("SOMETHING WRONG WITH TURNING BACK OLD PASS, DO IT MANUALLY!!!");
+             fail("SOMETHING WRONG WITH TURNING BACK OLD PASS, DO IT MANUALLY!!!");
         }
     }
 
@@ -124,6 +124,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertTrue(profilePage.getEMAIL_SENT_INSCRIPTION().isPresent());
     }
 
+    //todo failing due to cashbox changes
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
     @Description("opening Cash Box")
     public void openingCashBox(User user) {

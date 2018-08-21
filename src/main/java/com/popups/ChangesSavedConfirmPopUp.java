@@ -10,7 +10,7 @@ public class ChangesSavedConfirmPopUp extends AbstractPage {
     public Button CLOSE_POPUP_SUCCESS_CHANGES_BUTTON = new Button(By.xpath("//div[@id='popup_alert']/a[@class='popup-close']"));
 
     public ChangesSavedConfirmPopUp() {
-        CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.waitForElementToBeClickable(5);
+        CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.waitForElementToBeClickable(10);
     }
 
     @Step

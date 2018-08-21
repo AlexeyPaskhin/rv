@@ -103,7 +103,8 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     @Step
     public ProfilePage clickUserName() {
-        USER_NAME_LINK.waitForElementToBeClickable(5);
+        waitForPageToLoad();
+//        USER_NAME_LINK.waitForElementToBeClickable(5);
         eliminatePopUp();
         USER_NAME_LINK.click();
         return new ProfilePage();

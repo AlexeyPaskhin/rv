@@ -35,7 +35,9 @@ public abstract class AbstractPage implements IAbstractPage {
 
     public void eliminatePopUp() {
         try {
-            BLANK_IFRAME.waitForElementToBeInvisible(5);
+            if (BLANK_IFRAME.isPresent()) {
+                BLANK_IFRAME.waitForElementToBeInvisible(5);
+            }
         } catch (TimeoutException e) {
             CLOSE_POP_UP_BUTTON.click();
         }
