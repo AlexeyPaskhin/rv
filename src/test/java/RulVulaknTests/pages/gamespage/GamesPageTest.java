@@ -35,8 +35,9 @@ public class GamesPageTest extends BaseTestPage {
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
                 .openGameWithTitle("christmas_charm");
-        assertTrue(slotPage.getGameFrame().isPresent());
         assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
+        slotPage.switchToGameFrame();
+        assertTrue(slotPage.getBOOONGO_INNER_CONTENT().isPresent()); //checking that a game isn't broken
     }
 
     @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
@@ -47,8 +48,9 @@ public class GamesPageTest extends BaseTestPage {
                 .typePassInHeadField(user.getPass())
                 .clickLogin()
                 .openGameWithTitle("blade");
-        assertTrue(slotPage.getGameFrame().isPresent());
         assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
+        slotPage.switchToGameFrame();
+        assertTrue(slotPage.getGGS_INNER_CONTENT().isPresent()); //checking that a game isn't broken
     }
 
 
