@@ -26,98 +26,68 @@ public class AuthorizationTest extends BaseTestPage {
     @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"auth", "prodSmoke"}, alwaysRun = true)
     @Description("Simple authorization from HeaderNotAutorizedUserTest.")
     public void authorizationUserFromMail(User user) {
-        try {
-            new HomePage()
-                    .getNotAuthorizedHeader()
-                    .typeEmailInHeadField(user.getLogin()/*+"fkmjfklmjfkmjfgmjfgmj"*/)
-                    .typePassInHeadField(user.getPass())
-                    .clickLogin();
-            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        new HomePage()
+                .getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin()/*+"fkmjfklmjfkmjfgmjfgmj"*/)
+                .typePassInHeadField(user.getPass())
+                .clickLogin();
+        Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+        Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
     }
 
     @Test(dataProvider = "authorizationUserForVK", dataProviderClass = AuthorizationData.class, groups = {"auth", "vk", "prodSmoke"}, alwaysRun = true)
     @Description("Social authorization from HeaderNotAutorizedUserTest - via VK.com")
     public void authorizationUserFromVK(User user) {
-        try {
-            new HeaderNotAutorizedUser().clickHeadVK()
-                    .setEmail(user.getLogin())
-                    .setPassword(user.getPass())
-                    .clickRegister();
-            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        new HeaderNotAutorizedUser().clickHeadVK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister();
+        Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+        Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
     }
 
     @Test(dataProvider = "authorizationUserForFB", dataProviderClass = AuthorizationData.class, groups = {"auth", "fb", "prodSmoke"}, alwaysRun = true)
     @Description("Social authorization from HeaderNotAutorizedUserTest - via FaceBook.com")
     public void authorizationUserFromFB(User user) {
-        try {
-            new HeaderNotAutorizedUser()
-                    .clickHeadFB()
-                    .setEmail(user.getLogin())
-                    .setPassword(user.getPass())
-                    .clickRegister();
-            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        new HeaderNotAutorizedUser()
+                .clickHeadFB()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister();
+        Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+        Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
     }
 
     @Test(dataProvider = "authorizationUserForOK", dataProviderClass = AuthorizationData.class, groups = {"auth", "ok", "prodSmoke"}, alwaysRun = true)
     @Description("Social authorization from HeaderNotAutorizedUserTest - via OK.ru")
     public void authorizationUserFromOK(User user) {
-        try {
-            new HeaderNotAutorizedUser().clickHeadOK()
-                    .setEmail(user.getLogin())
-                    .setPassword(user.getPass())
-                    .clickRegister();
-            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        new HeaderNotAutorizedUser().clickHeadOK()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister();
+        Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+        Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
     }
 
     @Test(dataProvider = "authorizationUserForMailRU", dataProviderClass = AuthorizationData.class, groups = {"auth", "mailru", "prodSmoke"}, alwaysRun = true)
     @Description("Social authorization from HeaderNotAutorizedUserTest - via Mail.ru")
     public void authorizationUserFromMailRU(User user) {
-        try {
-            new HeaderNotAutorizedUser().clickHeadMailRU()
-                    .setEmail(user.getLogin())
-                    .setPassword(user.getPass())
-                    .clickRegister();
-            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        new HeaderNotAutorizedUser().clickHeadMailRU()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister();
+        Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+        Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
     }
 
     @Test(dataProvider = "authorizationUserForYA", dataProviderClass = AuthorizationData.class, groups = {"auth", "ya", "prodSmoke"}, alwaysRun = true)
     @Description("Social authorization from HeaderNotAutorizedUserTest - via Yandex.ru")
     public void authorizationUserFromYA(User user) {
-        try {
-            new HeaderNotAutorizedUser().clickHeadYA()
-                    .setEmail(user.getLogin())
-                    .setPassword(user.getPass())
-                    .clickRegister();
-            Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
-            Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        new HeaderNotAutorizedUser().clickHeadYA()
+                .setEmail(user.getLogin())
+                .setPassword(user.getPass())
+                .clickRegister();
+        Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
+        Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
     }
 }

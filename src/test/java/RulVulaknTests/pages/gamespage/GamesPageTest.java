@@ -30,35 +30,25 @@ public class GamesPageTest extends BaseTestPage {
     @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Booongo Game - for example, 'christmas_charm'")
     public void openBooongoGame(User user) {
-        try {
-            SlotPage slotPage = home.getNotAuthorizedHeader()
-                    .typeEmailInHeadField(user.getLogin())
-                    .typePassInHeadField(user.getPass())
-                    .clickLogin()
-                    .openGameWithTitle("christmas_charm");
-            assertTrue(slotPage.getGameFrame().isPresent());
-            assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        SlotPage slotPage = home.getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openGameWithTitle("christmas_charm");
+        assertTrue(slotPage.getGameFrame().isPresent());
+        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
     }
 
     @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Ggs Game - for example, 'blade'")
     public void openGgsGame(User user) {
-        try {
-            SlotPage slotPage = home.getNotAuthorizedHeader()
-                    .typeEmailInHeadField(user.getLogin())
-                    .typePassInHeadField(user.getPass())
-                    .clickLogin()
-                    .openGameWithTitle("blade");
-            assertTrue(slotPage.getGameFrame().isPresent());
-            assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
-        } catch (UnreachableBrowserException e) {
-            e.printStackTrace();
-            fail("The driver have died");
-        }
+        SlotPage slotPage = home.getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openGameWithTitle("blade");
+        assertTrue(slotPage.getGameFrame().isPresent());
+        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
     }
 
 
