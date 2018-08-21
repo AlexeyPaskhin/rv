@@ -72,7 +72,7 @@ public abstract class AbstractPage implements IAbstractPage {
     }
 
     public void waitForPageTitleToBe(String title) {
-        new WebDriverWait(getDriver(), 10).until((ExpectedCondition<Boolean>) driver -> getDriver().getTitle().equals(title));
+        new WebDriverWait(getDriver(), 15).until((ExpectedCondition<Boolean>) driver -> getDriver().getTitle().equals(title));
     }
 
 }

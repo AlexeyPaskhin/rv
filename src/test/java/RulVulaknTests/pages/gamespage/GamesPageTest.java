@@ -12,6 +12,7 @@ import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.UnreachableBrowserException;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -29,25 +30,35 @@ public class GamesPageTest extends BaseTestPage {
     @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Booongo Game - for example, 'christmas_charm'")
     public void openBooongoGame(User user) {
-       SlotPage slotPage = home.getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getPass())
-                .clickLogin()
-                .openGameWithTitle("christmas_charm");
-        assertTrue(slotPage.getGameFrame().isPresent());
-        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
+        try {
+            SlotPage slotPage = home.getNotAuthorizedHeader()
+                    .typeEmailInHeadField(user.getLogin())
+                    .typePassInHeadField(user.getPass())
+                    .clickLogin()
+                    .openGameWithTitle("christmas_charm");
+            assertTrue(slotPage.getGameFrame().isPresent());
+            assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
+        } catch (UnreachableBrowserException e) {
+            e.printStackTrace();
+            fail("The driver have died");
+        }
     }
 
     @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
     @Description("open Ggs Game - for example, 'blade'")
     public void openGgsGame(User user) {
-       SlotPage slotPage = home.getNotAuthorizedHeader()
-                .typeEmailInHeadField(user.getLogin())
-                .typePassInHeadField(user.getPass())
-                .clickLogin()
-                .openGameWithTitle("blade");
-        assertTrue(slotPage.getGameFrame().isPresent());
-        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
+        try {
+            SlotPage slotPage = home.getNotAuthorizedHeader()
+                    .typeEmailInHeadField(user.getLogin())
+                    .typePassInHeadField(user.getPass())
+                    .clickLogin()
+                    .openGameWithTitle("blade");
+            assertTrue(slotPage.getGameFrame().isPresent());
+            assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
+        } catch (UnreachableBrowserException e) {
+            e.printStackTrace();
+            fail("The driver have died");
+        }
     }
 
 
