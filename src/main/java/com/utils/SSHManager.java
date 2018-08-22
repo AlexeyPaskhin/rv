@@ -212,8 +212,8 @@ public class SSHManager {
     }
 
     public String getSmsCode(User user) {
-        new WebDriverWait(getDriver(), 5).until((ExpectedCondition<Boolean>) driver -> {
-            executeSqlQueryAgainstPsupApp("select code from players where email = '" + user.getLogin() + "' and and code is not null");
+        new WebDriverWait(getDriver(), 10).until((ExpectedCondition<Boolean>) driver -> {
+            executeSqlQueryAgainstPsupApp("select code from players where email = '" + user.getLogin() + "' and code is not null");
             return response.size() != 0;
         });
         StringBuilder code = new StringBuilder();
