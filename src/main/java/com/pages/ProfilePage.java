@@ -60,6 +60,7 @@ public class ProfilePage extends AbstractPage {
 
     @Step
     public ProfilePage setToOldPassField(String pass) {
+        OLD_PASS_INPUT.waitForElementToBeClickable(5);
         OLD_PASS_INPUT.sendKeys(pass);
         return this;
     }
