@@ -110,6 +110,14 @@ public class PropertyLoader {
         return prop.getProperty("userAuthPass");
     }
 
+    protected String getProdAuthEmail() {
+        return prop.getProperty("prodUserAuthLogin");
+    }
+
+    protected String getProdAuthPass() {
+        return prop.getProperty("prodUserAuthPass");
+    }
+
     /*
      * email's and pass's for social registration from config.properties
      * */
@@ -191,9 +199,7 @@ public class PropertyLoader {
         return prop.getProperty("userRegisterPassMailRUAndroid");
     }
 
-    /*
-     * MasterCard credential from config.properties
-     * */
+     // MasterCard credentials from config.properties
     protected String getCardNumberMaster() {
         return prop.getProperty("cardNumberMaster");
     }
@@ -204,6 +210,19 @@ public class PropertyLoader {
 
     protected String getCardCvvMaster() {
         return prop.getProperty("cardCvvMaster");
+    }
+
+// MasterCard prod credentials from config.properties
+    protected String getProdCardNumberMaster() {
+        return prop.getProperty("prodCardNumberMaster");
+    }
+
+    protected String getProdCardHolderMaster() {
+        return prop.getProperty("prodCardHolderMaster");
+    }
+
+    protected String getProdCardCvvMaster() {
+        return prop.getProperty("prodCardCvvMaster");
     }
 
     // Email for recovery password

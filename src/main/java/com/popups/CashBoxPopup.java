@@ -54,14 +54,14 @@ public class CashBoxPopup extends AbstractPage implements SwitchToFrame {
 
     @Step
     public CashBoxDepositFrame switchToCashBoxDepositFrame() {
-        switсhToFrame(CASH_BOX_DEPOSIT_FRAME);
+        CASH_BOX_DEPOSIT_FRAME.waitForFrameToBeAvailableAndSwitchToIt(10);
         wait(1000);
         return new CashBoxDepositFrame();
     }
 
     @Step
     public CashBoxWithdrawalFrame switchToCashBoxWithdrawalFrame() {
-        switсhToFrame(CASH_BOX_WITHDRAWAL_FRAME);
+        CASH_BOX_WITHDRAWAL_FRAME.waitForFrameToBeAvailableAndSwitchToIt(10);
         wait(1000);
         return new CashBoxWithdrawalFrame();
     }

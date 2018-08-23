@@ -127,7 +127,7 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     @Step
     public CashBoxPopup pressCashBoxButton() {
-        CASH_BOX_BUTTON.waitForElementToBeVisible(5);
+        CASH_BOX_BUTTON.waitForElementToBeClickable(10);
         BLANK_IFRAME.waitForElementToBeInvisible(5);
         CASH_BOX_BUTTON.click();
         return new CashBoxPopup();

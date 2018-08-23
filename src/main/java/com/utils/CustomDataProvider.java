@@ -1,5 +1,8 @@
 package com.utils;
 
+import lombok.Getter;
+
+@Getter
 public class CustomDataProvider {
     private static PropertyLoader propertyLoader;
     private String email;
@@ -25,6 +28,9 @@ public class CustomDataProvider {
     private String emailAuth;
     private String passAuth;
 
+    private String prodEmailAuth;
+    private String prodPassAuth;
+
     /* email's and pass's for social registration */
     private String emailRegisterVK;
     private String passRegisterVK;
@@ -47,10 +53,14 @@ public class CustomDataProvider {
     private String emailRegisterMailRUAndroid;
     private String passRegisterMailRUAndroid;
 
-    /* credential for MasterCard */
+    /* credentials for MasterCard */
     private String cardNumberMaster;
     private String cardHolderMaster;
     private String cardCvvMaster;
+    /* prod credentials for MasterCard */
+    private String prodCardNumberMaster;
+    private String prodCardHolderMaster;
+    private String prodCardCvvMaster;
 
     // password recovery
     private String passRecoveryEmail;
@@ -90,6 +100,10 @@ public class CustomDataProvider {
         this.emailAuth = propertyLoader.getAuthEmail();
         this.passAuth = propertyLoader.getAuthPass();
 
+ /* email's and pass's for authorization via email on prod */
+        this.prodEmailAuth = propertyLoader.getProdAuthEmail();
+        this.prodPassAuth = propertyLoader.getProdAuthPass();
+
         /* email's and pass's for social registeration from PropertyLoader */
         this.emailRegisterVK = propertyLoader.getRegisterEmailVK();
         this.passRegisterVK = propertyLoader.getRegisterPassVK();
@@ -116,6 +130,11 @@ public class CustomDataProvider {
         this.cardNumberMaster = propertyLoader.getCardNumberMaster();
         this.cardHolderMaster = propertyLoader.getCardHolderMaster();
         this.cardCvvMaster = propertyLoader.getCardCvvMaster();
+
+        /* email and pass for authorization on prod from PropertyLoader */
+        this.cardNumberMaster = propertyLoader.getProdCardNumberMaster();
+        this.cardHolderMaster = propertyLoader.getProdCardHolderMaster();
+        this.cardCvvMaster = propertyLoader.getProdCardCvvMaster();
 
         /* password recovery e-mail */
         this.passRecoveryEmail = propertyLoader.getPassRecoveryEmail();

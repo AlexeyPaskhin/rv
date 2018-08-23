@@ -10,6 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.pages.Header.BLANK_IFRAME;
 import static com.utils.DriverManager.getDriver;
@@ -74,6 +76,10 @@ public abstract class AbstractPage implements IAbstractPage {
     @Step
     public WinningsPage clickWinningsBtn() {
         return getFooter().clickWinnings();
+    }
+
+    public void waitForPageTitleToBe(String title) {
+        new WebDriverWait(getDriver(), 15).until((ExpectedCondition<Boolean>) driver -> getDriver().getTitle().equals(title));
     }
 
 }

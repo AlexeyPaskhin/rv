@@ -79,6 +79,7 @@ public class HeaderNotAutorizedUser extends AbstractPage implements Header {
     public HomePage clickLogin() {
         LOGIN_BUTTON_IN_HEADER.waitForElementToBeClickable(5);
         LOGIN_BUTTON_IN_HEADER.click();
+        waitForPageToLoad();
         return new HomePage();
     }
 
