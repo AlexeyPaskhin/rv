@@ -67,7 +67,7 @@ public class RegistrationWithBonusTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"register","fb"})
+    @Test(dataProvider = "createUserForFB", dataProviderClass = RegisterData.class, groups = {"register", "fb"})
     @RemoveUser
     @Description("Social registration with 'Welcome Bonus' gifts from 'Register' pop-up - via Facebook")
     public void mainPageRegisterFBBonus(User user) {
@@ -422,8 +422,8 @@ public class RegistrationWithBonusTest extends BaseTestPage {
                 .typePass(user.getPass())
                 .agreeWithRules()
                 .clickRegisterButtonToHome()
-        .getWelcomeBonusGiftPopup()
-        .pressPlayWithBonus();
+                .getWelcomeBonusGiftPopup()
+                .pressPlayWithBonus();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -670,7 +670,8 @@ public class RegistrationWithBonusTest extends BaseTestPage {
                 .agreeWithRules()
                 .clickCompleteRegister()
                 .getWelcomeBonusGiftPopup()
-                .pressPlayWithBonus();;
+                .pressPlayWithBonus();
+        ;
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");

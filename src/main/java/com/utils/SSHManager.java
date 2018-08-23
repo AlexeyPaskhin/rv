@@ -186,6 +186,11 @@ public class SSHManager {
     }
 
     public String getLinkForConfirmationEmail(User user) {
+        new WebDriverWait(getDriver(), 15).until((ExpectedCondition<Boolean>) driver -> {
+            executeSqlQueryAgainstPsupApp("SELECT content_text from psup_mailer.messages where player_id = " + getUserID(user.getLogin()) +
+                    " and template= 'email-confirmation' and content_text is not null");
+            return response.size() != 0;
+        });
         StringBuilder content = new StringBuilder();
         executeSqlQueryAgainstPsupMailer("set names utf8; SELECT content_text from psup_mailer.messages where player_id = " + getUserID(user.getLogin()) +
                 " and template= 'email-confirmation'");
