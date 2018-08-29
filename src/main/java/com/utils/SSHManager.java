@@ -237,7 +237,7 @@ public class SSHManager {
                 "', '', 1, 100000, NULL, 'RUB');\n" +
                 "INSERT INTO psup_app.games_events\n" +
                 "(command_id, guid, player_id, game_sid, provider, balance_type, event_type, round_num, game_subtype, amount, amount_usd, created_at, created_real_at, event_data, denominator, balance_before, remaining_wager, currency_name)\n" +
-                "VALUES('0', '4c31fee872c611e7a0ba623435353165', " + getUserID(user.getLogin()) + ", '" + gameSid + "', 'booongo', 'real', 'win', 4187834, 'spin', " + winAmount +
+                "VALUES('0', '4c31fee872c611e7a0ba623435353165', " + getUserID(user.getLogin()) + ", '" + gameSid + "', 'autotest', 'real', 'win', 4187834, 'spin', " + winAmount +
                 ", 0, '" + LocalDateTime.now().toString().replace("T", " ") + "', '" + LocalDateTime.now().toString().replace("T", " ") +
                 "', '', 1, 90000, NULL, 'RUB')");
 

@@ -35,7 +35,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "19");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = headerAuthorizedUser.waitForNotificationWithSpecialTitleClosingUnnecessary("Полный атас")
                 .clickLinkInAchievementForTaskNotification();
@@ -51,7 +51,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "249");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Нерукотворный памятник")
@@ -68,7 +68,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "499");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Урал покорён")
@@ -85,7 +85,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Не расстрелять, а наградить!")
@@ -102,7 +102,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "2499");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Вождь одобряет")
@@ -119,7 +119,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "4999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Шайбу! Шайбу!")
@@ -136,7 +136,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "9999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Супер-игра!")
@@ -153,7 +153,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "24999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Князь всея Вулкана")
@@ -170,7 +170,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "49999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Любимец клуба")
@@ -187,7 +187,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "99999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Вверх, к звёздам!")
@@ -204,7 +204,7 @@ public class AhOnceAndAgainTest extends BaseTestPage {
         redisManager.setQuantityOfPlayedRoundsForPlayer(sshManager.getUserID(user.getLogin()), "249999");
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "100");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Фаворит императрицы")

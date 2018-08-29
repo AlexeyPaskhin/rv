@@ -27,6 +27,7 @@ public class HomePage extends AbstractPage {
 
     @Step
     public SlotPage openGameWithTitle(String title) {
+        waitForPageToLoad();
         eliminatePopUp();
         GAME_ITEM.getSubElementByXpath("/a[@data-game-id='" + title + "']").click();
         waitForPageToLoad();

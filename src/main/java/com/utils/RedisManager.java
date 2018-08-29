@@ -43,4 +43,10 @@ public class RedisManager {
             //DateTimeZone.UTC - zero meridian, our Redis have -3 time offset
         }
     }
+
+    public void setQuantityOfTotalWinsForPlayerForExactGame(String userId, String quantity, String gameTitle) {
+        try (Jedis jedis = pool.getResource()) {
+            jedis.set("achievements:player:" + userId + ":total_wins:" + gameTitle, quantity);
+        }
+    }
 }
