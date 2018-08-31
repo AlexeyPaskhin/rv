@@ -38,7 +38,12 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public boolean giftIconIsPresent() {
         refreshPage();
         waitForPageToLoad();
-        return GIFT_ICON.isPresent();
+        try {
+            GIFT_ICON.waitForElementToBeVisible(10);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public double getUserBalance() {
