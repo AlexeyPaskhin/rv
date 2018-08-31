@@ -47,6 +47,8 @@ public abstract class AbstractPage implements IAbstractPage {
             } catch (NoSuchElementException e1) {
                 e.printStackTrace();
             }
+        } catch (StaleElementReferenceException e) {
+            e.printStackTrace();
         }
     }
 
