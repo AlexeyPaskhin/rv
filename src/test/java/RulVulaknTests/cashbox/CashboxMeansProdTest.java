@@ -62,7 +62,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .switchToSocialFrame();
         try {
-            home.waitForPageTitleToBe("Yandex.Money");
+            home.waitForUrlToContain("yandex");
         } catch (TimeoutException e) {
             e.printStackTrace();
             fail();
@@ -110,6 +110,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickAlphaClickPaymentMethod()
+                .setToAlphaClickPhoneField("1111111111")
                 .clickOnConfirmButton()
                 .switchToSocialFrame();
         try {

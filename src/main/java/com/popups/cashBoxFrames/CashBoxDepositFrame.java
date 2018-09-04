@@ -5,6 +5,7 @@ import com.Elements.InputBox;
 import com.Elements.RadioButton;
 import com.pages.AbstractPage;
 import io.qameta.allure.Step;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
 
     private Button CARD_PAYMENT_BUTTON = new Button(By.xpath("//div[@data-widget-id='1']"));
@@ -35,6 +37,9 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     private RadioButton CARD_DEPOSIT_10000_RUB = new RadioButton(By.xpath("//label[@id='label_amount_10000']"));
     private RadioButton CARD_DEPOSIT_30000_RUB = new RadioButton(By.xpath("//label[@id='label_amount_30000']"));
     private RadioButton INPUT_SUM_RADIOBUTTON = new RadioButton(By.xpath("//label[@id='label_custom_amount']"));
+
+    private InputBox PHONE_ALPHA_CLICK = new InputBox(By.xpath("//input[@name='params.user_phone']"));
+
     private Button CONFIRM_BUTTON = new Button(By.xpath("//button[@id='submit_button']"));
     private Button PROCEED_BUTTON = new Button(By.xpath("//span[text()='Продолжить']/.."));   //accessible only on prod
     private Button OKAY_BUTTON = new Button(By.xpath("//div[@class='payment_message success']//button[@class='pretty_button']"));
@@ -97,6 +102,13 @@ public class CashBoxDepositFrame extends AbstractPage implements SwitchToFrame {
     public CashBoxDepositFrame clickAlphaClickPaymentMethod() {
         ALPHA_CLICK_PAYMENT_BUTTON.waitForElementToBeClickable(5);
         ALPHA_CLICK_PAYMENT_BUTTON.click();
+        return this;
+    }
+
+    @Step
+    public CashBoxDepositFrame setToAlphaClickPhoneField(String phone) {
+        PHONE_ALPHA_CLICK.cleaIn();
+        PHONE_ALPHA_CLICK.fillIn(phone);
         return this;
     }
 
