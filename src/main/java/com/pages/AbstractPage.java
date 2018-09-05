@@ -75,8 +75,4 @@ public abstract class AbstractPage implements IAbstractPage {
         new WebDriverWait(getDriver(), 15).until((ExpectedCondition<Boolean>) driver -> getDriver().getTitle().equals(title));
     }
 
-    public void waitForUrlToContain(String text) {
-            new WebDriverWait(getDriver(), 15).until((ExpectedCondition<Boolean>) driver -> getDriver().getCurrentUrl().contains(text));
-    }
-
 }

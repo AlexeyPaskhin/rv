@@ -62,7 +62,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
                 .clickOnConfirmButton()
                 .switchToSocialFrame();
         try {
-            home.waitForUrlToContain("yandex");
+            home.waitForPageTitleToBe("Yandex.Money");
         } catch (TimeoutException e) {
             e.printStackTrace();
             fail();
