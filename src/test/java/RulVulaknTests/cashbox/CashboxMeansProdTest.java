@@ -110,6 +110,7 @@ public class CashboxMeansProdTest extends BaseTestPage {
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame()
                 .clickAlphaClickPaymentMethod()
+                .setToAlphaClickPhoneField("1111111111")
                 .clickOnConfirmButton()
                 .switchToSocialFrame();
         try {
