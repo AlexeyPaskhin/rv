@@ -13,6 +13,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import static com.utils.DriverManager.BROWSER;
 import static com.utils.DriverManager.getDriver;
 /**
  * Class for mapping the 'Fast Registration' form at Landing Pages
@@ -79,10 +80,13 @@ public class FastRegisterLP extends AbstractPage {
     @Step
     public FastRegisterLP agreeWithRules() {
         AGREE_CHECKBOX.waitForElementToBeClickable(3);
-        Actions builder = new Actions(getDriver());
-        Action action = builder.moveToElement(AGREE_CHECKBOX.slaveElement(), 5, 1).click().build();
-        action.perform(); //in mobile version our checkbox -- pseudo element ::before. and we have a href inside the label. so we are forced to click specific coordinates of the element
-//        AGREE_CHECKBOX.click();
+        if (BROWSER.toLowerCase().contains("android")) {
+            Actions builder = new Actions(getDriver());
+            Action action = builder.moveToElement(AGREE_CHECKBOX.slaveElement(), 5, 1).click().build();
+            action.perform(); //in mobile version our checkbox -- pseudo element ::before. and we have a href inside the label. so we are forced to click specific coordinates of the element
+        } else {
+           AGREE_CHECKBOX.getSubElementByXpath("/input[@type='checkbox']").click();
+        }
         return this;
     }
 
