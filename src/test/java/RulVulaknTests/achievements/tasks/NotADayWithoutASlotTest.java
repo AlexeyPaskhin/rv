@@ -40,7 +40,7 @@ public class NotADayWithoutASlotTest extends BaseTestPage {
         redisManager.addGameEventForDates(sshManager.getUserID(user.getLogin()), datesOfGaming);
 
         HashMap<String, String> idsOfCreatedEnries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "3000");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEnries.get("betId"), idsOfCreatedEnries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEnries.get("betId"), idsOfCreatedEnries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = headerAuthorizedUser.waitForNotificationWithSpecialTitleClosingUnnecessary("Активная игра")
                 .clickLinkInAchievementForTaskNotification();
@@ -58,7 +58,7 @@ public class NotADayWithoutASlotTest extends BaseTestPage {
         redisManager.addGameEventForDates(sshManager.getUserID(user.getLogin()), datesOfGaming);
 
         HashMap<String, String> idsOfCreatedEnries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "3000");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEnries.get("betId"), idsOfCreatedEnries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEnries.get("betId"), idsOfCreatedEnries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Да Вы композитор!")
@@ -77,7 +77,7 @@ public class NotADayWithoutASlotTest extends BaseTestPage {
         redisManager.addGameEventForDates(sshManager.getUserID(user.getLogin()), datesOfGaming);
 
         HashMap<String, String> idsOfCreatedEnries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "3000");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEnries.get("betId"), idsOfCreatedEnries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEnries.get("betId"), idsOfCreatedEnries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Любитель риска")
@@ -96,7 +96,7 @@ public class NotADayWithoutASlotTest extends BaseTestPage {
         redisManager.addGameEventForDates(sshManager.getUserID(user.getLogin()), datesOfGaming);
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "3000");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Затяжная партия")
@@ -115,7 +115,7 @@ public class NotADayWithoutASlotTest extends BaseTestPage {
         redisManager.addGameEventForDates(sshManager.getUserID(user.getLogin()), datesOfGaming);
 
         HashMap<String, String> idsOfCreatedEntries = sshManager.createRoundDataForUserInDB(user, "88_wild_dragon", "100", "3000");
-        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"));
+        restManager.makeCustomGameRoundsForUser(sshManager.getUserID(user.getLogin()), 1, idsOfCreatedEntries.get("betId"), idsOfCreatedEntries.get("winId"), "booongo");
 
         AchievementsTasksPage achievementsTasksPage = home.logInUser(user)
                 .waitForNotificationWithSpecialTitleClosingUnnecessary("Опытный слотонавт")

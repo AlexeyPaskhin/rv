@@ -25,6 +25,7 @@ public class AchievementsPage extends AbstractPage {
     private Element NAME_OF_ACHIEVEMENT_FOR_LOTTERIES_ITEM = IMAGE_ACHIEVEMENT_FOR_LOTTERIES_ITEM.getSubElementByXpath("/../../p[@class='achievement__name']");
 
     private Element TASKS_TAB = new Element(By.xpath("//a[@href='/users/achievements-tasks']"));
+    private Element COLLECTIONS_TAB = new Element(By.xpath("//a[@href='/users/achievements-collections']"));
 
     public Boolean achievementIsDisabled(Element achievementImage) {
         return achievementImage.getAttribute("src").contains("reward_disabled") &&
@@ -40,6 +41,12 @@ public class AchievementsPage extends AbstractPage {
     public AchievementsTasksPage clickTasksTab() {
         TASKS_TAB.click();
         return new AchievementsTasksPage();
+    }
+
+    @Step
+    public AchievementsCollectionsPage clickCollectionsTab() {
+        COLLECTIONS_TAB.click();
+        return new AchievementsCollectionsPage();
     }
 
 }
