@@ -38,7 +38,12 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
     public boolean giftIconIsPresent() {
         refreshPage();
         waitForPageToLoad();
-        return GIFT_ICON.isPresent();
+        try {
+            GIFT_ICON.waitForElementToBeVisible(10);
+            return true;
+        } catch (TimeoutException e) {
+            return false;
+        }
     }
 
     public double getUserBalance() {
@@ -104,7 +109,8 @@ public class HeaderAuthorizedUser extends AbstractPage implements Header {
 
     @Step
     public ProfilePage clickUserName() {
-        USER_NAME_LINK.waitForElementToBeClickable(5);
+        waitForPageToLoad();
+//        USER_NAME_LINK.waitForElementToBeClickable(5);
         eliminatePopUp();
         USER_NAME_LINK.click();
         return new ProfilePage();

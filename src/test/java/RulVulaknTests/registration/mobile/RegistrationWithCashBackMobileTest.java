@@ -109,7 +109,7 @@ public class RegistrationWithCashBackMobileTest extends BaseTestPage {
         checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
     }
 
-    @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidYA"})
+    @Test(dataProvider = "createUserForYAAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke", "androidLanding", "androidYA"})
     @LandingPage(pageNo = {"11"})
     @RemoveUser
     @Description("Social registration with '10% cash back' gifts from Landing page 11 - via Yandex.ru")
@@ -144,7 +144,7 @@ public class RegistrationWithCashBackMobileTest extends BaseTestPage {
         checkHomeMobilePageInNewlyRegisteredStateFromLP(page);
     }
 
-    @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidVK"})
+    @Test(dataProvider = "createUserForVKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke", "androidVK"})
     @LandingPage(pageNo = {"12"})
     @RemoveUser
     @Description("Social registration with '10% cash back' gifts from Landing page 12 - via VK.com")

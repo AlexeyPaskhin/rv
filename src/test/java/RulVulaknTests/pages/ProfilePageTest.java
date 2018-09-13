@@ -26,7 +26,7 @@ public class ProfilePageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
     ProfilePage profilePage;
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("Is User's name clickable for authorized user and linked to Profile page")
     public void isUserNameIconPresentAndClickableForAuthorizedUser(User user) {
         new HomePage()
@@ -42,7 +42,7 @@ public class ProfilePageTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("cancel Of Changing Password")
     public void cancelOfChangingPassword(User user) {
         profilePage = new HomePage()
@@ -56,7 +56,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertFalse(profilePage.getNEW_PASS_REPEAT_INPUT().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("successful Changing Password")
     public void successfulChangingPassword(User user) {
         String newPass = user.getPass() + "a";
@@ -86,11 +86,11 @@ public class ProfilePageTest extends BaseTestPage {
                     .successfulChangePass(newPass, user.getPass());
         } catch (Exception e) {
             e.printStackTrace();
-            fail("SOMETHING WRONG WITH TURNING BACK OLD PASS, DO IT MANUALLY!!!");
+             fail("SOMETHING WRONG WITH TURNING BACK OLD PASS, DO IT MANUALLY!!!");
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("changing Password With Wrong Old Pass")
     public void changingPasswordWithWrongOldPass(User user) {
         profilePage = new HomePage()
@@ -100,7 +100,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertTrue(profilePage.getWRONG_PASS_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("changing Password With Different New Passwords")
     public void changingPasswordWithDifferentNewPasswords(User user) {
         profilePage = new HomePage()
@@ -114,7 +114,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertTrue(profilePage.getNOT_EQUAL_PASS_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("confirm Email")
     public void confirmEmail(User user) {
         profilePage = new HomePage()
@@ -124,7 +124,8 @@ public class ProfilePageTest extends BaseTestPage {
         assertTrue(profilePage.getEMAIL_SENT_INSCRIPTION().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    //todo failing due to cashbox changes
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("opening Cash Box")
     public void openingCashBox(User user) {
         new HomePage()
@@ -136,7 +137,7 @@ public class ProfilePageTest extends BaseTestPage {
                 "BASIC PAYMENT METHODS ARE ABSENT AFTER OPENING CASH BOX FROM PROFILE");
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("click Receive Sms Code With Empty Phone")
     public void clickReceiveSmsCodeWithEmptyPhone(User user) {
         profilePage = new HomePage()
@@ -147,7 +148,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertTrue(profilePage.getINVALID_PHONE_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("click Receive Sms Code With Invalid Phone")
     public void clickReceiveSmsCodeWithInvalidPhone(User user) {
         profilePage = new HomePage()
@@ -158,7 +159,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertTrue(profilePage.getINVALID_PHONE_VALIDATION_MESSAGE().isPresent());
     }
 
-//    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+//    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
 //    @Description("click Receive Sms Code With Correct Phone")
 //    public void clickReceiveSmsCodeWithCorrectPhone(User user) {
 //        String phone = RandomGenerate.randomStringOfDigits(12);
@@ -172,7 +173,7 @@ public class ProfilePageTest extends BaseTestPage {
 //    }
     //we have the rewardForConfirmationOfPhone test which includes logic of this commented test and even more
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("saving Entered Phone")
     public void savingEnteredPhone(User user) {
         String phone = RandomGenerate.randomStringOfDigits(12);
@@ -189,7 +190,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertEquals(profilePage.getPHONE_INPUT().getValue(), phone);
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("saving Entered Name")
     public void savingEnteredName(User user) {
         String name = RandomGenerate.randomString(5, 30);
@@ -206,7 +207,7 @@ public class ProfilePageTest extends BaseTestPage {
         assertEquals(profilePage.getFULL_NAME_INPUT().getValue(), name);
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("clicking Link Vip Club Details")
     public void clickingLinkVipClubDetails(User user) {
         VipPage vipPage = new HomePage()

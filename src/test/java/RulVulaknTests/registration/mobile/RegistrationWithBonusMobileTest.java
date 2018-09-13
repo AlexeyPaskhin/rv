@@ -29,7 +29,7 @@ public class RegistrationWithBonusMobileTest extends BaseTestPage {
         assertTrue(homeMobilePage.firstBonusPanelIsPresent(), "Bonus panel isn't displayed on page " + pageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke"})
     @Description("Registration with 'Welcome Bonus' gifts from button 'Register'")
     public void plainRegistrationBonus(User user) {
         new HomeMobilePage()
@@ -42,7 +42,7 @@ public class RegistrationWithBonusMobileTest extends BaseTestPage {
         checkHomeMobilePageInNewlyRegisteredState();
     }
 
-    @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidFB"})
+    @Test(dataProvider = "createUserForFBAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke", "androidFB"})
     @RemoveUser
     @Description("Social registration with 'Welcome Bonus' gifts from 'Register' pop-up - via Facebook")
     public void mainPageRegisterFBBonus(User user) {

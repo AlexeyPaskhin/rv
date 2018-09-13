@@ -60,6 +60,7 @@ public class ProfilePage extends AbstractPage {
 
     @Step
     public ProfilePage setToOldPassField(String pass) {
+        OLD_PASS_INPUT.waitForElementToBeClickable(5);
         OLD_PASS_INPUT.sendKeys(pass);
         return this;
     }
@@ -85,7 +86,7 @@ public class ProfilePage extends AbstractPage {
     @Step
     public ProfilePage failedSaveChanges() {
         SAVE_BUTTON.click();
-        SAVE_BUTTON.waitForElementToBeVisible(5);
+        waitForPageToLoad();
         return this;
     }
 
@@ -100,12 +101,11 @@ public class ProfilePage extends AbstractPage {
 
     @Step
     public ProfilePage failedChangePass(String oldPass, String newPass) {
-        clickChangePass()
+        return clickChangePass()
                 .setToOldPassField(oldPass)
                 .setToNewPassField(newPass)
                 .setToConfirmPassField(newPass)
                 .failedSaveChanges();
-        return this;
     }
 
     @Step

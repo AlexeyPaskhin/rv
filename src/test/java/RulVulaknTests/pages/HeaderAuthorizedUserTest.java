@@ -89,7 +89,7 @@ public class HeaderAuthorizedUserTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "cashbox", "header"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "header"})
     @Description("Open (and close) cashbox pop-up from header for authorized user")
     public void openCashBoxPopUpFromHeader(User user) {
         new HomePage()
@@ -109,7 +109,7 @@ public class HeaderAuthorizedUserTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "cashbox", "header"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "header"})
     @Description("Press button Exit in Header")
     public void pressButtonExitInHeader(User user) {
         new HomePage()

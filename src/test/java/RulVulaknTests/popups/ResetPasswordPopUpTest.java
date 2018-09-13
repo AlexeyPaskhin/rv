@@ -29,7 +29,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
     CustomDataProvider dataProvider = new CustomDataProvider();
 
-    @Test(groups = {"resetpass"})
+    @Test(groups = {"resetpass", "regression"})
     @Description("Send reset password request from link in Header for un-authorized user")
     public void resetPasswordFromHeaderForUnAuthorizedUser() {
         new HeaderNotAutorizedUser()
@@ -45,7 +45,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         }
     }
 
-    @Test(groups = {"resetpass", "negative"})
+    @Test(groups = {"resetpass", "negative", "regression"})
     @Description("Check validation Error message 'Enter real e-mail' in field 'Enter e-mail' - Reset password pop-up")
     public void checkValidationErrorMessageInFieldEmail() {
         new HeaderNotAutorizedUser()
@@ -61,7 +61,7 @@ public class ResetPasswordPopUpTest extends BaseTestPage {
         }
     }
 
-    @Test(groups = {"resetpass", "negative"})
+    @Test(groups = {"resetpass", "negative", "regression"})
     @Description("Check validation Error message 'Field should not be empty' in field 'Enter e-mail' - Reset password pop-up")
     public void checkEmptyEmailFieldErrorMessage() {
         new HeaderNotAutorizedUser()

@@ -79,7 +79,7 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
         checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
     }
 
-    @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidLanding", "androidMR"})
+    @Test(dataProvider = "createUserForMailRUAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke", "androidLanding", "androidMR"})
     @RemoveUser
     @Description("Social registration without gifts from 'Registration' pop-up - via Mail.ru")
     public void mainPageRegisterMailRuWithoutBonus(User user) {
@@ -95,7 +95,7 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
         checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
     }
 
-    @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android", "androidOK"})
+    @Test(dataProvider = "createUserForOKAndroid", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke", "androidOK"})
     @RemoveUser
     @Description("Social registration without gifts from 'Registration' pop-up - via OK.ru")
     public void mainPageRegisterOkWithoutBonus(User user) {

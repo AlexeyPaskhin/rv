@@ -12,7 +12,7 @@ import static org.testng.Assert.*;
 
 public class RegistrationNegativeMobileTest extends BaseTestPage {
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidRegister", "android"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidRegister", "androidSmoke"})
     @Description("Registration negative case - enter invalid email.")
     public void tryRegisterWithInvalidEmail(User user) {
         RegisterMobilePage registerMobilePage = new HomeMobilePage()

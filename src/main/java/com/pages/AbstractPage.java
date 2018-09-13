@@ -7,6 +7,7 @@ import com.utils.CustomDataProvider;
 import io.qameta.allure.Step;
 import lombok.Getter;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -37,9 +38,17 @@ public abstract class AbstractPage implements IAbstractPage {
 
     public void eliminatePopUp() {
         try {
-            BLANK_IFRAME.waitForElementToBeInvisible(5);
+            if (BLANK_IFRAME.isPresent()) {
+                BLANK_IFRAME.waitForElementToBeInvisible(5);
+            }
         } catch (TimeoutException e) {
-            CLOSE_POP_UP_BUTTON.click();
+            try {
+                CLOSE_POP_UP_BUTTON.click();
+            } catch (NoSuchElementException e1) {
+                e.printStackTrace();
+            }
+        } catch (StaleElementReferenceException e) {
+            e.printStackTrace();
         }
     }
 
