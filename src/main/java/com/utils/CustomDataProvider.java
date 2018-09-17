@@ -132,9 +132,9 @@ public class CustomDataProvider {
         this.cardCvvMaster = propertyLoader.getCardCvvMaster();
 
         /* email and pass for authorization on prod from PropertyLoader */
-        this.cardNumberMaster = propertyLoader.getProdCardNumberMaster();
-        this.cardHolderMaster = propertyLoader.getProdCardHolderMaster();
-        this.cardCvvMaster = propertyLoader.getProdCardCvvMaster();
+        this.prodCardNumberMaster = propertyLoader.getProdCardNumberMaster();
+        this.prodCardHolderMaster = propertyLoader.getProdCardHolderMaster();
+        this.prodCardCvvMaster = propertyLoader.getProdCardCvvMaster();
 
         /* password recovery e-mail */
         this.passRecoveryEmail = propertyLoader.getPassRecoveryEmail();
