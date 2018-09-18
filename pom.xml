@@ -20,6 +20,44 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>net.gpedro.integrations.slack</groupId>
+            <artifactId>slack-webhook</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.9.0</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
         <dependency>
             <groupId>io.appium</groupId>
@@ -101,7 +139,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.2</version>
+            <version>2.9.5</version>
         </dependency>
         <dependency>
             <groupId>org.sikuli</groupId>
@@ -186,7 +224,8 @@
     </build>
 
     <properties>
-        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression,profile,mobile</groups>
+        <groups>social,register,landing,vk,fb,ya,ok,mailru,auth,cashbox,redhelper,negative,resetpass,regression,profile,
+            android,androidAuth, androidRegister, androidVK, androidFB, androidOK, androidMR, androidYA</groups>
         <aspectj.version>1.8.10</aspectj.version>
         <threads>1</threads>
     </properties>

@@ -1,18 +1,16 @@
 package RulVulaknTests;
 
-import com.Elements.Element;
 import com.PreContidions.LandingPage;
 import com.PreContidions.RemoveUser;
+import com.listeners.RussianVulcanListener;
 import com.pages.HeaderAuthorizedUser;
 import com.pages.HeaderNotAutorizedUser;
 import com.pages.HomePage;
+import com.pages.mobile.HomeMobilePage;
 import com.utils.*;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.SessionNotCreatedException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -21,22 +19,28 @@ import java.net.MalformedURLException;
 
 import static com.utils.DriverManager.*;
 
+@Listeners({RussianVulcanListener.class})
 public class BaseTestPage {
     protected final static Logger logger = LogManager.getLogger(BaseTestPage.class);
     public CustomDataProvider customDataProvider;
     public HomePage home;
-    public SSHManager manager = null;
+    protected HomeMobilePage homeMobilePage;
+    public SSHManager sshManager = null;
+    public RestManager restManager;
+    protected RedisManager redisManager;
     public HeaderNotAutorizedUser headerNotAutorizedUser;
     public HeaderAuthorizedUser headerAuthorizedUser;
-    public WebDriver driver;
+    public WebDriver driver = null;
 
     @BeforeClass(alwaysRun = true)
     public void setUp() {
         try {
-            manager = new SSHManager();
+            sshManager = new SSHManager();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        restManager = new RestManager();
+        redisManager = new RedisManager();
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -51,7 +55,7 @@ public class BaseTestPage {
                 User us = (User) o[0];
                 String oldName = us.getLogin();
                 String newName = "autotest+" + RandomGenerate.randomString(20) + "@playtini.ua";
-                manager.updateUserForSocial(oldName, newName);
+                sshManager.updateUserForSocial(oldName, newName);
             }
         }
         // if test get user from data provider we log user login and pass
@@ -69,53 +73,77 @@ public class BaseTestPage {
                     ? setupDriver(System.getProperty("browser"))
                     : setupDriver(customDataProvider.getBrowser());
             attachDriver(driver);
+            logger.info("Driver " + sessionId + " " + getDriver() + " was created");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+        String basicUrl = System.getProperty(("basicURL")) != null && !System.getProperty("basicURL").isEmpty()
+                ? System.getProperty("basicURL")
+                : customDataProvider.getBasicURL();
         // if landing page annotation is present then open landing page (default 1) else open homepage
         if (method.isAnnotationPresent(LandingPage.class)) {
             String pageNumber = o[1].toString();
-            getDriver().get(customDataProvider.getBasicURL() + "lp/" + pageNumber);
+            getDriver().get(basicUrl + "lp/" + pageNumber);
         } else {
-            getDriver().get(customDataProvider.getBasicURL());
+            getDriver().get(basicUrl);
         }
-        //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
-        Cookie ck = new Cookie("lottery_reminder_shown", "true");
-        getDriver().manage().addCookie(ck);
-        Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
-        getDriver().manage().addCookie(pushSubscribe);
+        try {
+          setCookies();
+        } catch (WebDriverException e) {
+            e.printStackTrace();
+            getDriver().navigate().refresh();
+            setCookies();
+        }
         home = new HomePage();
+        homeMobilePage = new HomeMobilePage();
         headerNotAutorizedUser = new HeaderNotAutorizedUser();
         headerAuthorizedUser = new HeaderAuthorizedUser();
     }
 
+    private void setCookies() {
+        //TODO: implement cookie like browser from console ( if isLotteryEnabled =true then set cookies)
+        Cookie ck = new Cookie("lottery_reminder_shown", "true");
+        getDriver().manage().addCookie(ck);
+        Cookie lotteryResultsShown = new Cookie("lottery_results_shown", "true");
+        getDriver().manage().addCookie(lotteryResultsShown);
+        Cookie pushSubscribe = new Cookie("push-subscr-cooldown", "false");
+        getDriver().manage().addCookie(pushSubscribe);
+    }
+
     @AfterMethod(alwaysRun = true)
     public void tearDown(Method method, Object[] o) {
-        if (getDriver() != null) {
-            //Getting current user ID in database
-            if (o.length > 0) {
-                if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
-                    User us = (User) o[0];
-                    manager.getUserID(us.getLogin());
+        try {
+            if (getDriver() != null) {
+                //Getting current user ID in database
+                if (o.length > 0) {
+                    if (o[0] instanceof User && method.isAnnotationPresent(RemoveUser.class)) {
+                        User us = (User) o[0];
+                        logger.info("New user ID is: " + sshManager.getUserID(us.getLogin()));
+                    }
                 }
-            }
-            getDriver().manage().deleteAllCookies();
+                getDriver().manage().deleteAllCookies();
 //        getDriver().close();
 
-            if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
-                try {
+                if (DriverManager.BROWSER.equalsIgnoreCase("firefox")) {
+                    try {
+                        getDriver().quit();
+                    } catch (SessionNotCreatedException e) {
+                        logger.error(e);
+                    }
+                } else {
                     getDriver().quit();
-                } catch (SessionNotCreatedException e) {
-                    logger.error(e);
                 }
-            } else {
-                getDriver().quit();
+                logger.info("Driver " + sessionId + " " + getDriver() + " was killed");
             }
+        } finally {
+            sessionId = null;
+            removeDriver();
         }
     }
 
     @AfterClass(alwaysRun = true)
     public void releaseResources() {
-        manager.disconnectFromConsole();
+        sshManager.disconnectFromConsole();
+        redisManager.close();
     }
 }

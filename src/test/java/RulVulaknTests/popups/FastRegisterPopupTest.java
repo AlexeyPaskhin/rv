@@ -21,9 +21,7 @@ public class FastRegisterPopupTest extends BaseTestPage {
     RulesPage rules;
     LogInPopUp authPopup;
 
-    // TODO: 2018-01-29  Add unic group here
-
-    @Test(groups = {"register"})
+    @Test(groups = {"regression"})
     @Description("Test for checking rules and conditionals link in Fast Register pop-up")
     public void checkIsRulesAndConditionsLInkWorks() {
         new HeaderNotAutorizedUser()
@@ -40,7 +38,7 @@ public class FastRegisterPopupTest extends BaseTestPage {
         }
     }
 
-    @Test(groups = {"register"})
+    @Test(groups = {"regression"})
     @Description("Test for checking is button Close works")
     public void checkIsCloseButtonWorks() {
         new HeaderNotAutorizedUser()
@@ -55,7 +53,7 @@ public class FastRegisterPopupTest extends BaseTestPage {
         }
     }
 
-    @Test(groups = {"register"})
+    @Test(groups = {"regression"})
     @Description("Test for checking is 'Vhod v kazino' link is works")
     public void checkIsAuthLinkWorks() {
         new HeaderNotAutorizedUser()

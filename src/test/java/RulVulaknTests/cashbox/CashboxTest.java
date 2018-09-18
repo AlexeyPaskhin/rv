@@ -20,6 +20,8 @@ import org.testng.annotations.Test;
 
 import java.util.Random;
 
+import static org.testng.Assert.*;
+
 @Listeners({RussianVulcanListener.class})
 public class CashboxTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
@@ -50,7 +52,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -81,7 +83,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == 500D, "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == 500D, "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -111,7 +113,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == 1000, "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == 1000, "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -141,7 +143,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == 3000, "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == 3000, "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -171,7 +173,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == 10000, "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == 10000, "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -201,7 +203,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToParent();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == 30000, "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == 30000, "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -313,7 +315,7 @@ public class CashboxTest extends BaseTestPage {
         double balanceBefore = headerAuthorizedUser.getUserBalance();
         headerAuthorizedUser.waitForBalanceChange(headerAuthorizedUser.getUserBalance());
         try {
-            Assert.assertTrue(headerAuthorizedUser.getUserBalance() == balanceBefore + Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
+            assertTrue(headerAuthorizedUser.getUserBalance() == balanceBefore + Double.parseDouble(randomDeposit), "USER BALANCE NOT CHANGED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -330,7 +332,7 @@ public class CashboxTest extends BaseTestPage {
                 .pressCashBoxButton()
                 .switchToCashBoxDepositFrame();
         try {
-            Assert.assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInDepositFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
+            assertTrue(new CashBoxDepositFrame().checkPaymentsMethodInDepositFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -370,7 +372,7 @@ public class CashboxTest extends BaseTestPage {
                 .clickCardPaymentMethod()
                 .checkDepositCardIsSaved();
         try {
-            Assert.assertTrue(new CashBoxDepositFrame().checkDepositCardIsSaved(), "FIRST PAYMENT DON'T PASS");
+            assertTrue(new CashBoxDepositFrame().checkDepositCardIsSaved(), "FIRST PAYMENT DON'T PASS");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -389,7 +391,7 @@ public class CashboxTest extends BaseTestPage {
                 .switchToCashBoxWithdrawalFrame()
                 .checkPaymentsMethodInWithdrawalFrame();
         try {
-            Assert.assertTrue(new CashBoxWithdrawalFrame().checkPaymentsMethodInWithdrawalFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
+            assertTrue(new CashBoxWithdrawalFrame().checkPaymentsMethodInWithdrawalFrame().size() == 3, "BASIC PAYMENT METHODS ARE ABSENT");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -431,7 +433,7 @@ public class CashboxTest extends BaseTestPage {
                 .typePhoneNumberInCardDepositFrame("9101234567")
                 .clickGetButton();
         try {
-            Assert.assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
+            assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -453,7 +455,7 @@ public class CashboxTest extends BaseTestPage {
                 .typeCardWithdrawalSum(randomWithdrawal)
                 .clickGetButton();
         try {
-            Assert.assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
+            assertTrue(new CashBoxWithdrawalFrame().successMessageIsPresent(), "WITHDRAWAL FAILED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -497,7 +499,7 @@ public class CashboxTest extends BaseTestPage {
                 .clickGetButton();
 
         try {
-            Assert.assertTrue(new CashBoxWithdrawalFrame().notEnoughMessageIsPresent(), "WITHDRAWAL FAILED");
+            assertTrue(new CashBoxWithdrawalFrame().notEnoughMessageIsPresent(), "WITHDRAWAL FAILED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -579,7 +581,7 @@ public class CashboxTest extends BaseTestPage {
                 .clickTabPaymentHistory()
                 .clickOnMakeDepositFromHistoryTab();
         try {
-            Assert.assertTrue(new CashBoxPopup().depositTabIsActive(), "HISTORY TAB NOT EMPTY");
+            assertTrue(new CashBoxPopup().depositTabIsActive(), "HISTORY TAB NOT EMPTY");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -627,7 +629,7 @@ public class CashboxTest extends BaseTestPage {
                 .clickTabPaymentHistory()
                 .clickOnCancelWithdrawalFromHistoryTab();
         try {
-            Assert.assertTrue(new CashBoxPopup().canceledWithdrawalStringPresent(), "WITHDRAWAL NOT CANCELED");
+            assertTrue(new CashBoxPopup().canceledWithdrawalStringPresent(), "WITHDRAWAL NOT CANCELED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();
@@ -644,7 +646,7 @@ public class CashboxTest extends BaseTestPage {
                 .pressCashBoxButton()
                 .clickCloseCashboxPopup();
         try {
-            Assert.assertTrue(new HeaderAuthorizedUser().userZoneIsPresent(), "POPUP NOT CLOSED");
+            assertTrue(new HeaderAuthorizedUser().userZoneIsPresent(), "POPUP NOT CLOSED");
         } catch (Exception e) {
             logger.error(e);
             Assert.fail();

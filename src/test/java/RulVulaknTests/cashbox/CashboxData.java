@@ -28,12 +28,27 @@ public class CashboxData {
     @DataProvider
     public Object[][] userAuthProvider() {
         User user = new User.Builder()
-                .withLogin(customDataProvider.getAuthEmail())
-                .withPass(customDataProvider.getAuthPass())
+                .withLogin(customDataProvider.getEmailAuth())
+                .withPass(customDataProvider.getPassAuth())
                 .build();
         Card card = new Card.Builder()
                 .withNumber(customDataProvider.getCardNumberMaster())
                 .withHolder(customDataProvider.getCardHolderMaster())
+                .withCvv(customDataProvider.getCardCvvMaster())
+                .build();
+
+        return new Object[][]{{user, card}};
+    }
+
+    @DataProvider
+    public Object[][] prodUserAuthProvider() {
+        User user = new User.Builder()
+                .withLogin(customDataProvider.getProdEmailAuth())
+                .withPass(customDataProvider.getProdPassAuth())
+                .build();
+        Card card = new Card.Builder()
+                .withNumber(customDataProvider.getProdCardNumberMaster())
+                .withHolder(customDataProvider.getProdCardHolderMaster())
                 .withCvv(customDataProvider.getCardCvvMaster())
                 .build();
 

@@ -11,12 +11,12 @@ import org.openqa.selenium.By;
  */
 public class LandingWithChooseBonusType implements RegistrationFormType {
 
-    private InputBox EMAIL_INPUT = new InputBox(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@name='email']"));
-    private InputBox PASSWORD_INPUT = new InputBox(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@name='password']"));
+    private InputBox EMAIL_INPUT = new InputBox(By.xpath("//form[@data-form-role='register']//input[@name='email']"));
+    private InputBox PASSWORD_INPUT = new InputBox(By.xpath("//form[@data-form-role='register']//input[@name='password']"));
     private RadioButton CURRENCY_RUB_RADIO = new RadioButton(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@name='currency' and @value='RUB']"));
     private RadioButton CURRENCY_USD_RADIO = new RadioButton(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@name='currency' and @value='USD']"));
-    private Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//div[contains(@id,'popup_register-landing')]//input[@type='checkbox']"));
-    private Button REGISTER_BUTTON = new Button(By.xpath("//div[contains(@id,'popup_register-landing')]//button[@class='btn-popup-register']"));
+    private Checkbox AGREE_CHECKBOX = new Checkbox(By.xpath("//form[@data-form-role='register']//label[@class='fullwidth agree']"));
+    private Button REGISTER_BUTTON = new Button(By.xpath("//form[@data-form-role='register']/button[@type='submit']"));
 
     @Override
     public InputBox getEmailInput() {

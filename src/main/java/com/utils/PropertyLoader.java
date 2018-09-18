@@ -110,6 +110,14 @@ public class PropertyLoader {
         return prop.getProperty("userAuthPass");
     }
 
+    protected String getProdAuthEmail() {
+        return prop.getProperty("prodUserAuthLogin");
+    }
+
+    protected String getProdAuthPass() {
+        return prop.getProperty("prodUserAuthPass");
+    }
+
     /*
      * email's and pass's for social registration from config.properties
      * */
@@ -120,13 +128,28 @@ public class PropertyLoader {
     protected String getRegisterPassVK() {
         return prop.getProperty("userRegisterPassVK");
     }
+    protected String getRegisterEmailVKAndroid() {
+        return prop.getProperty("userRegisterLoginVKAndroid");
+    }
+
+    protected String getRegisterPassVKAndroid() {
+        return prop.getProperty("userRegisterPassVKAndroid");
+    }
 
     protected String getRegisterEmailFB() {
         return prop.getProperty("userRegisterLoginFB");
     }
 
+    protected String getRegisterEmailFBAndroid() {
+        return prop.getProperty("userRegisterLoginFBAndroid");
+    }
+
     protected String getRegisterPassFB() {
         return prop.getProperty("userRegisterPassFB");
+    }
+
+    protected String getRegisterPassFBAndroid() {
+        return prop.getProperty("userRegisterPassFBAndroid");
     }
 
     protected String getRegisterEmailOK() {
@@ -137,12 +160,28 @@ public class PropertyLoader {
         return prop.getProperty("userRegisterPassOK");
     }
 
+    protected String getRegisterEmailOKAndroid() {
+        return prop.getProperty("userRegisterLoginOKAndroid");
+    }
+
+    protected String getRegisterPassOKAndroid() {
+        return prop.getProperty("userRegisterPassOKAndroid");
+    }
+
     protected String getRegisterEmailYA() {
         return prop.getProperty("userRegisterLoginYA");
     }
 
     protected String getRegisterPassYA() {
         return prop.getProperty("userRegisterPassYA");
+    }
+
+    protected String getRegisterEmailYAAndroid() {
+        return prop.getProperty("userRegisterLoginYAAndroid");
+    }
+
+    protected String getRegisterPassYAAndroid() {
+        return prop.getProperty("userRegisterPassYAAndroid");
     }
 
     protected String getRegisterEmailMailRU() {
@@ -152,10 +191,15 @@ public class PropertyLoader {
     protected String getRegisterPassMailRU() {
         return prop.getProperty("userRegisterPassMailRU");
     }
+   protected String getRegisterEmailMailRUAndroid() {
+        return prop.getProperty("userRegisterLoginMailRUAndroid");
+    }
 
-    /*
-     * MasterCard credential from config.properties
-     * */
+    protected String getRegisterPassMailRUAndroid() {
+        return prop.getProperty("userRegisterPassMailRUAndroid");
+    }
+
+     // MasterCard credentials from config.properties
     protected String getCardNumberMaster() {
         return prop.getProperty("cardNumberMaster");
     }
@@ -166,6 +210,19 @@ public class PropertyLoader {
 
     protected String getCardCvvMaster() {
         return prop.getProperty("cardCvvMaster");
+    }
+
+// MasterCard prod credentials from config.properties
+    protected String getProdCardNumberMaster() {
+        return prop.getProperty("prodCardNumberMaster");
+    }
+
+    protected String getProdCardHolderMaster() {
+        return prop.getProperty("prodCardHolderMaster");
+    }
+
+    protected String getProdCardCvvMaster() {
+        return prop.getProperty("prodCardCvvMaster");
     }
 
     // Email for recovery password

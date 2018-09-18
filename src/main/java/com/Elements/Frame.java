@@ -11,7 +11,7 @@ public class Frame extends Element{
         super(by);
     }
 
-    public void waitForFrameAVailable(long seconds){
+    public void waitForFrameToBeAvailableAndSwitchToIt(long seconds){
         new WebDriverWait(getDriver(),seconds).until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
     }
 }
