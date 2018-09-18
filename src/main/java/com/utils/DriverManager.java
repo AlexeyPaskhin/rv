@@ -57,7 +57,6 @@ public class DriverManager {
 
         if (browser.equalsIgnoreCase(CHROME)) {
 //            System.setProperty("webdriver.chrome.driver", CHROME_DRIVER_PATH);
-            WebDriverManager.chromedriver().setup();
             DesiredCapabilities cap = DesiredCapabilities.chrome(); // browser capability
             cap.setBrowserName("chrome");
 //            cap.setVersion("66.0");
@@ -66,6 +65,7 @@ public class DriverManager {
             //event firing driver is an implementation of WebDriverEventHandler from logger package
             /* for local -> new ChromeDriver())
                for remote Wed Driver add -> new RemoteWebDriver(url, cap))                          */
+//            WebDriverManager.chromedriver().setup();
 //            driver = new EventFiringWebDriver( new ChromeDriver()).register(events);
             RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
             sessionId = remoteWebDriver.getSessionId().toString();
@@ -73,7 +73,6 @@ public class DriverManager {
 
         } else if (browser.equalsIgnoreCase(FIREFOX)) {
 //            System.setProperty("webdriver.gecko.driver", FIREFOX_DRIVER_PATH);
-            WebDriverManager.firefoxdriver().setup();
             FirefoxOptions firefoxOptions = new FirefoxOptions();
 
             DesiredCapabilities cap = DesiredCapabilities.firefox(); // browser capability
@@ -85,6 +84,7 @@ public class DriverManager {
             // firefoxOptions.addArguments("--headless");
             firefoxOptions.addArguments("--screenshot");
 
+//            WebDriverManager.firefoxdriver().setup();
 //            driver = new EventFiringWebDriver(new FirefoxDriver()).register(events);
             RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
             sessionId = remoteWebDriver.getSessionId().toString();
@@ -92,19 +92,18 @@ public class DriverManager {
 
         } else if (browser.equalsIgnoreCase(EDGE)) {
 //            System.setProperty("webdriver.edge.driver", EDGE_DRIVER_PATH);
-            WebDriverManager.edgedriver().setup();
             DesiredCapabilities cap = DesiredCapabilities.edge(); // browser capability
 //            cap.setBrowserName("edge");
             cap.setCapability("enableVNC", true); // Is Interactive mode work?
             cap.setCapability("enableVideo", true); // Is VIDEO recording work?
 
+            WebDriverManager.edgedriver().setup();
             driver = new EventFiringWebDriver(new EdgeDriver()).register(events);
 //            driver = new EventFiringWebDriver(new RemoteWebDriver(url, cap)).register(events);
 
 //            TODO implement EDGE
         } else if (browser.equalsIgnoreCase(OPERA)) {
 //            System.setProperty("webdriver.opera.driver", OPERA_DRIVER_PATH);
-            WebDriverManager.operadriver().setup();
 
             DesiredCapabilities cap = DesiredCapabilities.operaBlink(); // browser capability
             cap.setBrowserName("opera");
@@ -122,6 +121,7 @@ public class DriverManager {
             oo.setBinary("C:\\Program Files\\Opera\\53.0.2907.88\\opera.exe");
             cap.setCapability("operaOptions", hashmap);
 
+//            WebDriverManager.operadriver().setup();
 //            driver = new EventFiringWebDriver(new OperaDriver(oo)).register(events);
             RemoteWebDriver remoteWebDriver = new RemoteWebDriver(url, cap);
             sessionId = remoteWebDriver.getSessionId().toString();
