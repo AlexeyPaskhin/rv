@@ -714,8 +714,8 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister();
-//                .getWelcomeBonusGiftPopup()
-//                .clickWithdrawFromGift();
+               .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -738,8 +738,8 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister();
-//                .getWelcomeBonusGiftPopup()
-//                .clickWithdrawFromGift();
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -763,8 +763,8 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .setEmail(user.getLogin())
                 .agreeWithRules()
                 .clickCompleteRegister();
-//                .getWelcomeBonusGiftPopup()
-//                .clickWithdrawFromGift();
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
@@ -787,8 +787,8 @@ public class RegistrationWithoutGiftsTest extends BaseTestPage {
                 .clickRegister()
                 .agreeWithRules()
                 .clickCompleteRegister();
-//                .getWelcomeBonusGiftPopup()
-//                .clickWithdrawFromGift();
+                .getWelcomeBonusGiftPopup()
+                .clickWithdrawFromGift();
         try {
             Assert.assertTrue(headerAuthorizedUser.userZoneIsPresent(), "USER ZONE NOT PRESENT");
             Assert.assertFalse(headerNotAutorizedUser.registerButtonIsPresent(), "REGISTER BUTTON IS DISPLAYED");
