@@ -24,7 +24,6 @@ public class WelcomeBonusGiftPopup extends AbstractPage {
     public HomePage clickWithdrawFromGift() {
 //        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
 //        WITHDRAW_FROM_GIFT.click();
-//        waitForPageToLoad();
         return new HomePage();
     }
 
@@ -32,7 +31,6 @@ public class WelcomeBonusGiftPopup extends AbstractPage {
     public HomePage pressPlayWithBonus() {
 //        PLAY_WITH_BONUS.waitForElementToBeClickable(10);
 //        PLAY_WITH_BONUS.click();
-//        waitForPageToLoad();
         return new HomePage();
     }
 }
