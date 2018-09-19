@@ -22,15 +22,17 @@ public class WelcomeBonusGiftPopup extends AbstractPage {
 
     @Step
     public HomePage clickWithdrawFromGift() {
-        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
-        WITHDRAW_FROM_GIFT.click();
+//        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
+//        WITHDRAW_FROM_GIFT.click();
+//        waitForPageToLoad();
         return new HomePage();
     }
 
     @Step
     public HomePage pressPlayWithBonus() {
-        PLAY_WITH_BONUS.waitForElementToBeClickable(10);
-        PLAY_WITH_BONUS.click();
+//        PLAY_WITH_BONUS.waitForElementToBeClickable(10);
+//        PLAY_WITH_BONUS.click();
+//        waitForPageToLoad();
         return new HomePage();
     }
 }
