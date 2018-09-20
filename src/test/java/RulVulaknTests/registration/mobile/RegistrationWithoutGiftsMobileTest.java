@@ -21,6 +21,13 @@ import static org.testng.Assert.*;
  * + from registration pop-up
  */
 
+/**
+ * Some methods at this class is the same as RegistrationWithBonusTest (tha same methods)
+ * We hided Welcome Bonus Pop-up and this logic is unuseful
+ *
+ * We use Registration Without Gift buttons just in landings
+ */
+
 public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
 
     private void checkHomeMobilePageInNewlyRegisteredStateWithoutGifts() {
@@ -34,7 +41,8 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
         assertFalse(homeMobilePage.getLOGIN_BUTTON().isPresent(), "REGISTER BUTTON IS DISPLAYED ON PAGE " + pageNumber);
         assertFalse(homeMobilePage.firstBonusPanelIsPresent(), "Bonus panel is displayed after refusal from bonuses on page " + pageNumber);
     }
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
+
+   /* @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
     @Description("Registration without gifts from button 'Register'")
     public void plainRegistrationWithoutBonus(User user) {
         new HomeMobilePage()
@@ -126,7 +134,7 @@ public class RegistrationWithoutGiftsMobileTest extends BaseTestPage {
                 .getWelcomeBonusGiftPopup()
                 .clickWithdrawFromGift();
         checkHomeMobilePageInNewlyRegisteredStateWithoutGifts();
-    }
+    }*/
 
     @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"androidLanding", "androidRegister", "android"})
     @LandingPage(pageNo = {"1", "4", "14", "2", "5"})
