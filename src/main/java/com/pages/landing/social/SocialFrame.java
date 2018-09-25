@@ -1,17 +1,26 @@
 package com.pages.landing.social;
 
-import com.pages.AbstractPage;
 import com.pages.IAbstractPage;
+import com.pages.mobile.HomeMobilePage;
 import com.popups.ConfirmEmailPopup;
 
-import static com.utils.DriverManager.getDriver;
-
 public interface SocialFrame extends IAbstractPage {
+
     SocialFrame setEmail(String email);
 
     SocialFrame setPassword(String password);
 
     ConfirmEmailPopup clickRegister();
+    
+    HomeMobilePage clickLogInMobile();
+
+    ConfirmEmailPopup clickRegisterMobile();
+
+    /**
+     * when we stay on a social page - for example, when go on our group in social network
+     */
+    SocialFrame clickLogInNotForVulkanAuth();
+
 
 //    default void switchToSocialFrame() {
 //        AbstractPage.parentWindow = getDriver().getWindowHandle();

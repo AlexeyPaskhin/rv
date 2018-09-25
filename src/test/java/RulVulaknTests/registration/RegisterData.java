@@ -73,6 +73,33 @@ public class RegisterData {
     }
 
     @DataProvider
+    public Object[][] createUserForVKAndroid(Method method) {
+        Object[][] obj;
+        User user;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][2];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailVKAndroid())
+                        .withPass(customDataProvider.getRegisterPassVKAndroid())
+                        .build();
+                obj[i][0] = user;
+                obj[i][1] = pageNumber[i];
+            }
+        } else {
+            obj = new Object[1][1];
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailVKAndroid())
+                    .withPass(customDataProvider.getRegisterPassVKAndroid())
+                    .build();
+            obj[0][0] = user;
+        }
+        return obj;
+    }
+
+    @DataProvider
     public Object[][] createUserForFB(Method method) {
         Object[][] obj;
         User user = null;
@@ -93,6 +120,33 @@ public class RegisterData {
             user = new User.Builder()
                     .withLogin(customDataProvider.getRegisterEmailFB())
                     .withPass(customDataProvider.getRegisterPassFB())
+                    .build();
+            obj[0][0] = user;
+        }
+        return obj;
+    }
+
+    @DataProvider
+    public Object[][] createUserForFBAndroid(Method method) {
+        Object[][] obj;
+        User user;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][2];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailFBAndroid())
+                        .withPass(customDataProvider.getRegisterPassFBAndroid())
+                        .build();
+                obj[i][0] = user;
+                obj[i][1] = pageNumber[i];
+            }
+        } else {
+            obj = new Object[1][1];
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailFBAndroid())
+                    .withPass(customDataProvider.getRegisterPassFBAndroid())
                     .build();
             obj[0][0] = user;
         }
@@ -127,6 +181,33 @@ public class RegisterData {
     }
 
     @DataProvider
+    public Object[][] createUserForOKAndroid(Method method) {
+        Object[][] obj;
+        User user = null;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][2];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailOKAndroid())
+                        .withPass(customDataProvider.getRegisterPassOKAndroid())
+                        .build();
+                obj[i][0] = user;
+                obj[i][1] = pageNumber[i];
+            }
+        } else {
+            obj = new Object[1][1];
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailOKAndroid())
+                    .withPass(customDataProvider.getRegisterPassOKAndroid())
+                    .build();
+            obj[0][0] = user;
+        }
+        return obj;
+    }
+
+    @DataProvider
     public Object[][] createUserForMailRU(Method method) {
         Object[][] obj;
         User user = null;
@@ -154,6 +235,33 @@ public class RegisterData {
     }
 
     @DataProvider
+    public Object[][] createUserForMailRUAndroid(Method method) {
+        Object[][] obj;
+        User user = null;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][2];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailMailRUAndroid())
+                        .withPass(customDataProvider.getRegisterPassMailRUAndroid())
+                        .build();
+                obj[i][0] = user;
+                obj[i][1] = pageNumber[i];
+            }
+        } else {
+            obj = new Object[1][1];
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailMailRUAndroid())
+                    .withPass(customDataProvider.getRegisterPassMailRUAndroid())
+                    .build();
+            obj[0][0] = user;
+        }
+        return obj;
+    }
+
+    @DataProvider
     public Object[][] createUserForYA(Method method) {
         Object[][] obj;
         User user = null;
@@ -174,6 +282,33 @@ public class RegisterData {
             user = new User.Builder()
                     .withLogin(customDataProvider.getRegisterEmailYA())
                     .withPass(customDataProvider.getRegisterPassYA())
+                    .build();
+            obj[0][0] = user;
+        }
+        return obj;
+    }
+
+    @DataProvider
+    public Object[][] createUserForYAAndroid(Method method) {
+        Object[][] obj;
+        User user = null;
+        if (method.isAnnotationPresent(LandingPage.class)) {
+            String[] pageNumber = method.getAnnotation(LandingPage.class).pageNo();
+            obj = new Object[pageNumber.length][2];
+
+            for (int i = 0; i < pageNumber.length; i++) {
+                user = new User.Builder()
+                        .withLogin(customDataProvider.getRegisterEmailYAAndroid())
+                        .withPass(customDataProvider.getRegisterPassYAAndroid())
+                        .build();
+                obj[i][0] = user;
+                obj[i][1] = pageNumber[i];
+            }
+        } else {
+            obj = new Object[1][1];
+            user = new User.Builder()
+                    .withLogin(customDataProvider.getRegisterEmailYAAndroid())
+                    .withPass(customDataProvider.getRegisterPassYAAndroid())
                     .build();
             obj[0][0] = user;
         }

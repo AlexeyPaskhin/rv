@@ -16,16 +16,21 @@ public class WelcomeBonusGiftPopup extends AbstractPage {
     private static final Button WITHDRAW_FROM_GIFT = new Button(By.xpath("//button[@class='welcome-btn-reject']"));
     private static final Button PLAY_WITH_BONUS = new Button(By.xpath("//button[@class='btn-save-gift']"));
 
+    public WelcomeBonusGiftPopup() {
+        waitForPageToLoad();
+    }
+
     @Step
     public HomePage clickWithdrawFromGift() {
-        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(5);
-        WITHDRAW_FROM_GIFT.click();
+//        WITHDRAW_FROM_GIFT.waitForElementToBeClickable(10);
+//        WITHDRAW_FROM_GIFT.click();
         return new HomePage();
     }
 
     @Step
     public HomePage pressPlayWithBonus() {
-        PLAY_WITH_BONUS.click();
+//        PLAY_WITH_BONUS.waitForElementToBeClickable(10);
+//        PLAY_WITH_BONUS.click();
         return new HomePage();
     }
 }

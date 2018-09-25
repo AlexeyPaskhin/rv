@@ -3,6 +3,7 @@ package com.pages.landing.social;
 import com.Elements.Button;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.mobile.HomeMobilePage;
 import com.popups.ConfirmEmailPopup;
 import org.openqa.selenium.By;
 
@@ -37,6 +38,23 @@ public class MailRuRegisterPage extends AbstractPage implements SocialFrame {
         waitForCountOfWindows(1);
         switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
+    }
+
+    @Override
+    public HomeMobilePage clickLogInMobile() {
+        LOGIN_BUTTON.click();
+        return new HomeMobilePage();
+    }
+
+    @Override
+    public ConfirmEmailPopup clickRegisterMobile() {
+        LOGIN_BUTTON.click();
+        return new ConfirmEmailPopup();
+    }
+
+    @Override
+    public SocialFrame clickLogInNotForVulkanAuth() {
+        return null;
     }
 
     public ConfirmEmailPopup switchToConfirmEmail() {

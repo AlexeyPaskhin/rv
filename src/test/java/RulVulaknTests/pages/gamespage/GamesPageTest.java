@@ -1,13 +1,19 @@
 package RulVulaknTests.pages.gamespage;
 
 import RulVulaknTests.BaseTestPage;
+import RulVulaknTests.authorization.AuthorizationData;
 import com.Elements.Element;
 import com.google.common.collect.Multimap;
+import com.listeners.RussianVulcanListener;
 import com.pages.GamesPage;
+import com.pages.SlotPage;
+import com.utils.User;
 import io.qameta.allure.Description;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.remote.UnreachableBrowserException;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -17,8 +23,35 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.testng.Assert.*;
 
+@Listeners({RussianVulcanListener.class})
 public class GamesPageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(GamesPageTest.class);
+
+    @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
+    @Description("open Booongo Game - for example, 'christmas_charm'")
+    public void openBooongoGame(User user) {
+        SlotPage slotPage = home.getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openGameWithTitle("christmas_charm");
+        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("christmas_charm"));
+        slotPage.switchToGameFrame();
+        assertTrue(slotPage.getBOOONGO_INNER_CONTENT().isPresent()); //checking that a game isn't broken
+    }
+
+    @Test(dataProvider = "prodAuthorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"prodSmoke"}, alwaysRun = true)
+    @Description("open Ggs Game - for example, 'blade'")
+    public void openGgsGame(User user) {
+        SlotPage slotPage = home.getNotAuthorizedHeader()
+                .typeEmailInHeadField(user.getLogin())
+                .typePassInHeadField(user.getPass())
+                .clickLogin()
+                .openGameWithTitle("blade");
+        assertTrue(slotPage.getGameFrame().getAttribute("src").contains("blade"));
+        slotPage.switchToGameFrame();
+        assertTrue(slotPage.getGGS_INNER_CONTENT().isPresent()); //checking that a game isn't broken
+    }
 
 
     @Test(groups = {"regression"})

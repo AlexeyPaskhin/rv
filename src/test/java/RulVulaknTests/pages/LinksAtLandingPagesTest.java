@@ -33,7 +33,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
     RulesPage rulesPage;
 
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Games Link From Landing Pages")
     public void goToGamesLinkFromLandingPages(User user, String landingPageNumber) {
@@ -43,7 +43,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber + ". So the page isn't loaded!");
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Gaminators Link From Landing Pages")
     public void goToGaminatorsLinkFromLandingPages(User user, String landingPageNumber) {
@@ -53,7 +53,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go T oLotteries Link From Landing Pages")
     public void goToLotteriesLinkFromLandingPages(User user, String landingPageNumber) {
@@ -63,17 +63,17 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Bonuses Link From Landing Pages")
     public void goToBonusesLinkFromLandingPages(User user, String landingPageNumber) {
         bonusesPage = new LandingPageWithLinks()
                 .clickBonuses();
-        assertTrue(bonusesPage.isBonusesPageOpened(), "The bonuses page isn't opened " +
+        assertTrue(bonusesPage.isOpened(), "The bonuses page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "3", "4", "5", "6", "9"})
     @Description("go To Vip Club Link From Landing Pages")
     public void goToVipClubLinkFromLandingPages(User user, String landingPageNumber) {
@@ -83,18 +83,18 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "4", "5", "6", "9"})
     @Description("go To Contacts Link From Landing Pages")
     public void goToContactsLinkFromLandingPages(User user, String landingPageNumber) {
         contactsPage = new LandingPageWithLinks()
                 .clickContacts();
-        assertTrue(contactsPage.feedBackPageIsDisplayed(), "The contacts page isn't opened " +
+        assertTrue(contactsPage.feedBackBlockIsDisplayed(), "The contacts page isn't opened " +
                 "at the landing page " + landingPageNumber);
     }
 
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "3", "4", "6", "9", "10", "11", "13", "14", "15"})
     @Description("go To Logo Link From Landing Pages")
     public void goToLogoLinkFromLandingPages(User user, String landingPageNumber) {
@@ -105,7 +105,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"7", "8", "12"})
     @Description("go To Main Page Through Closing Pop Up At Landing Pages")
     public void goToMainPageThroughClosingPopUpAtLandingPages(User user, String landingPageNumber) {
@@ -116,7 +116,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"3", "6", "8", "9", "10", "11", "13"})
     @Description("go To Rules Page Through Unhidden Link At Landing Pages")
     public void goToRulesPageThroughUnhiddenLinkAtLandingPages(User user, String landingPageNumber) {
@@ -126,7 +126,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"1", "2", "4", "5", "14"})
     @Description("go To Rules Page Through Hidden By Registration Button Link At Landing Pages")
     public void goToRulesPageThroughHiddenByRegistrationButtonLinkAtLandingPages(User user, String landingPageNumber) {
@@ -137,7 +137,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"7"})
     @Description("go To Rules Page Through Hidden By Choose Gift Button Link At 7 Landing Page")
     public void goToRulesPageThroughHiddenByChooseGiftButtonLinkAt7LandingPage(User user, String landingPageNumber) {
@@ -150,7 +150,7 @@ public class LinksAtLandingPagesTest extends BaseTestPage {
                 "at the landing page " + landingPageNumber);
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landingLinks"})
     @LandingPage(pageNo = {"12"})
     @Description("go ToRules Page Through Hidden By Choose Gift Button Link At 12 Landing Page")
     public void goToRulesPageThroughHiddenByChooseGiftButtonLinkAt12LandingPage(User user, String landingPageNumber) {

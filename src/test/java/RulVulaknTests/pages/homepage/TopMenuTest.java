@@ -1,13 +1,16 @@
 package RulVulaknTests.pages.homepage;
 
 import RulVulaknTests.BaseTestPage;
+import com.listeners.RussianVulcanListener;
 import com.pages.*;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
+@Listeners({RussianVulcanListener.class})
 public class TopMenuTest extends BaseTestPage {
 
     @Test(groups = {"regression"})
@@ -35,7 +38,7 @@ public class TopMenuTest extends BaseTestPage {
 
     @Test(groups = {"regression"})
     public void checkTournamentsLink() {
-        TournamentsPage tournamentsPage = new HomePage().getHeader().clickTournametsLink();
+        TournamentsPage tournamentsPage = new HomePage().getHeader().clickTournamentsLink();
 
 //        assertThat(tournamentsPage.BannerExists(), is(true)); // only if banner present
         assertThat(tournamentsPage.tournamentsExists(), is(true));

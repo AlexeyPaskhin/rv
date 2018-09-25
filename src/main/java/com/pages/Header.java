@@ -11,6 +11,7 @@ public interface Header {
     Button NEWS = new Button(By.xpath("//a[@href='/news']"));
     Button VIP_CLUB = new Button(By.xpath("//a[@href='/vip']"));
     Frame BLANK_IFRAME = new Frame(By.xpath("//iframe [@src=\"/blank-iframe\"]"));
+    Button CONTACTS = new Button(By.xpath("//a[@href='/contacts']"));
 
     default GamesPage clickGamesLink() {
         GAMES.click();
@@ -24,7 +25,7 @@ public interface Header {
         return new LotteriesPage();
     }
 
-    default TournamentsPage clickTournametsLink() {
+    default TournamentsPage clickTournamentsLink() {
         TOURNAMENTS.click();
         return new TournamentsPage();
     }
@@ -37,5 +38,10 @@ public interface Header {
     default VipPage clickVIPLink() {
         VIP_CLUB.click();
         return new VipPage();
+    }
+
+    default ContactsPage clickContactsLink() {
+        CONTACTS.click();
+        return new ContactsPage();
     }
 }

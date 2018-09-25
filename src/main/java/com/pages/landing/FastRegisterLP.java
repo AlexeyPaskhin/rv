@@ -9,7 +9,11 @@ import com.popups.FastRegisterPopup;
 import com.popups.WelcomeBonusGiftPopup;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
+import static com.utils.DriverManager.BROWSER;
 import static com.utils.DriverManager.getDriver;
 /**
  * Class for mapping the 'Fast Registration' form at Landing Pages
@@ -23,6 +27,8 @@ public class FastRegisterLP extends AbstractPage {
     private RadioButton CURRENCY_USD_RADIO;
     private Checkbox AGREE_CHECKBOX;
     private Button REGISTER_BUTTON;
+
+    private Element NOT_MARKED_CHECKBOX_ERROR;
     // pop-up - Social networks buttons
     private static final Button VK_BUTTON = new Button(By.xpath("//div[@class='social-vk']"));
     private static final Button FB_BUTTON = new Button(By.xpath("//div[@class='social-fb']"));
@@ -41,6 +47,7 @@ public class FastRegisterLP extends AbstractPage {
         this.CURRENCY_USD_RADIO = registrationType.getCurrencyUsdRadio();
         this.AGREE_CHECKBOX = registrationType.getAgreeCheckbox();
         this.REGISTER_BUTTON = registrationType.getRegisterButton();
+        NOT_MARKED_CHECKBOX_ERROR = AGREE_CHECKBOX.getSubElementByXpath("/../span[@class='errors']");
     }
 
     @Step
@@ -72,20 +79,38 @@ public class FastRegisterLP extends AbstractPage {
 
     @Step
     public FastRegisterLP agreeWithRules() {
-        AGREE_CHECKBOX.click();
+        AGREE_CHECKBOX.waitForElementToBeClickable(3);
+        if (BROWSER.toLowerCase().contains("android")) {
+            Actions builder = new Actions(getDriver());
+            Action action = builder.moveToElement(AGREE_CHECKBOX.slaveElement(), 5, 1).click().build();
+            action.perform(); //in mobile version our checkbox -- pseudo element ::before. and we have a href inside the label. so we are forced to click specific coordinates of the element
+        } else {
+           AGREE_CHECKBOX.getSubElementByXpath("/input[@type='checkbox']").click();
+        }
         return this;
     }
 
     @Step
     public WelcomeBonusGiftPopup clickRegisterButtonToGift() {
         REGISTER_BUTTON.clickUntilDisappeared();
-        waitForPageToLoad();
+        try {
+            NOT_MARKED_CHECKBOX_ERROR.waitForElementToBeInvisible(2);
+        } catch (TimeoutException e) {
+            agreeWithRules();  //sometimes under pressure on server the driver cannot click the checkbox at first time
+            clickRegisterButtonToGift();
+        }
         return new WelcomeBonusGiftPopup();
     }
 
     @Step("Click Register button to Home")
     public HomePage clickRegisterButtonToHome() {
         REGISTER_BUTTON.clickUntilDisappeared();
+        try {
+            NOT_MARKED_CHECKBOX_ERROR.waitForElementToBeInvisible(2);
+        } catch (TimeoutException e) {
+            agreeWithRules();  //sometimes under pressure on server the driver cannot click the checkbox at first time
+            clickRegisterButtonToHome();
+        }
         return new HomePage();
     }
 

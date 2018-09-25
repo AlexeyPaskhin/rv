@@ -26,7 +26,7 @@ public class ProfilePageTest extends BaseTestPage {
     private final static Logger logger = LogManager.getLogger(CashboxTest.class);
     ProfilePage profilePage;
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("Is User's name clickable for authorized user and linked to Profile page")
     public void isUserNameIconPresentAndClickableForAuthorizedUser(User user) {
         new HomePage()
@@ -42,7 +42,7 @@ public class ProfilePageTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("cancel Of Changing Password")
     public void cancelOfChangingPassword(User user) {
         profilePage = new HomePage()
@@ -50,13 +50,13 @@ public class ProfilePageTest extends BaseTestPage {
                 .clickUserName()
                 .clickChangePass()
                 .clickCancelChangePass();
-        assertTrue(profilePage.CHANGE_PASS_BUTTON.isPresent() && profilePage.CHANGE_PASS_BUTTON.isVisible());
-        assertFalse(profilePage.OLD_PASS_INPUT.isPresent() && profilePage.OLD_PASS_INPUT.isVisible());
-        assertFalse(profilePage.NEW_PASS_INPUT.isPresent() && profilePage.NEW_PASS_INPUT.isVisible());
-        assertFalse(profilePage.NEW_PASS_REPEAT_INPUT.isPresent() && profilePage.NEW_PASS_REPEAT_INPUT.isVisible());
+        assertTrue(profilePage.getCHANGE_PASS_BUTTON().isPresent());
+        assertFalse(profilePage.getOLD_PASS_INPUT().isPresent());
+        assertFalse(profilePage.getNEW_PASS_INPUT().isPresent());
+        assertFalse(profilePage.getNEW_PASS_REPEAT_INPUT().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("successful Changing Password")
     public void successfulChangingPassword(User user) {
         String newPass = user.getPass() + "a";
@@ -70,8 +70,7 @@ public class ProfilePageTest extends BaseTestPage {
                         .setToConfirmPassField(newPass)
                         .successfulSaveChanges();
 
-        assertTrue(confirmPopUp.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isPresent() &&
-                confirmPopUp.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isVisible());
+        assertTrue(confirmPopUp.CLOSE_POPUP_SUCCESS_CHANGES_BUTTON.isPresent());
         try {
             //check that new pass is valid
             confirmPopUp.closeConfirmPopUp();
@@ -87,22 +86,21 @@ public class ProfilePageTest extends BaseTestPage {
                     .successfulChangePass(newPass, user.getPass());
         } catch (Exception e) {
             e.printStackTrace();
-            fail("SOMETHING WRONG WITH TURNING BACK OLD PASS, DO IT MANUALLY!!!");
+             fail("SOMETHING WRONG WITH TURNING BACK OLD PASS, DO IT MANUALLY!!!");
         }
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("changing Password With Wrong Old Pass")
     public void changingPasswordWithWrongOldPass(User user) {
         profilePage = new HomePage()
                 .logInUser(user)
                 .clickUserName()
                 .failedChangePass(user.getPass() + "kek", "111111a");
-        assertTrue(profilePage.WRONG_PASS_VALIDATION_MESSAGE.isPresent() &&
-                profilePage.WRONG_PASS_VALIDATION_MESSAGE.isVisible());
+        assertTrue(profilePage.getWRONG_PASS_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("changing Password With Different New Passwords")
     public void changingPasswordWithDifferentNewPasswords(User user) {
         profilePage = new HomePage()
@@ -113,22 +111,21 @@ public class ProfilePageTest extends BaseTestPage {
                 .setToNewPassField("111111a")
                 .setToConfirmPassField("saglnagnjri")
                 .failedSaveChanges();
-        assertTrue(profilePage.NOT_EQUAL_PASS_VALIDATION_MESSAGE.isPresent() &&
-                profilePage.NOT_EQUAL_PASS_VALIDATION_MESSAGE.isVisible());
+        assertTrue(profilePage.getNOT_EQUAL_PASS_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("confirm Email")
     public void confirmEmail(User user) {
         profilePage = new HomePage()
                 .logInUser(user)
                 .clickUserName()
                 .clickConfirmEmail();
-        assertTrue(profilePage.EMAIL_SENT_INSCRIPTION.isPresent() &&
-                profilePage.EMAIL_SENT_INSCRIPTION.isVisible());
+        assertTrue(profilePage.getEMAIL_SENT_INSCRIPTION().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    //todo failing due to cashbox changes
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("opening Cash Box")
     public void openingCashBox(User user) {
         new HomePage()
@@ -140,45 +137,43 @@ public class ProfilePageTest extends BaseTestPage {
                 "BASIC PAYMENT METHODS ARE ABSENT AFTER OPENING CASH BOX FROM PROFILE");
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("click Receive Sms Code With Empty Phone")
     public void clickReceiveSmsCodeWithEmptyPhone(User user) {
         profilePage = new HomePage()
                 .logInUser(user)
                 .clickUserName()
                 .setToPhoneField("")
-                .clickReceiveCode();
-        assertTrue(profilePage.INVALID_PHONE_VALIDATION_MESSAGE.isPresent() &&
-                profilePage.INVALID_PHONE_VALIDATION_MESSAGE.isVisible());
+                .clickReceiveSmsCode();
+        assertTrue(profilePage.getINVALID_PHONE_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("click Receive Sms Code With Invalid Phone")
     public void clickReceiveSmsCodeWithInvalidPhone(User user) {
         profilePage = new HomePage()
                 .logInUser(user)
                 .clickUserName()
                 .setToPhoneField("+3806358719")
-                .clickReceiveCode();
-        assertTrue(profilePage.INVALID_PHONE_VALIDATION_MESSAGE.isPresent() &&
-                profilePage.INVALID_PHONE_VALIDATION_MESSAGE.isVisible());
+                .clickReceiveSmsCode();
+        assertTrue(profilePage.getINVALID_PHONE_VALIDATION_MESSAGE().isPresent());
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
-    @Description("click Receive Sms Code With Correct Phone")
-    public void clickReceiveSmsCodeWithCorrectPhone(User user) {
-        profilePage = new HomePage()
-                .logInUser(user)
-                .clickUserName()
-                .setToPhoneField("+380235871912")
-                .clickReceiveCode();
-        assertFalse(profilePage.INVALID_PHONE_VALIDATION_MESSAGE.isPresent() &&
-                profilePage.INVALID_PHONE_VALIDATION_MESSAGE.isVisible());
-        assertTrue(profilePage.CONFIRM_SMS_CODE_BUTTON.isPresent() &&
-                profilePage.CONFIRM_SMS_CODE_BUTTON.isVisible());
-    }
+//    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
+//    @Description("click Receive Sms Code With Correct Phone")
+//    public void clickReceiveSmsCodeWithCorrectPhone(User user) {
+//        String phone = RandomGenerate.randomStringOfDigits(12);
+//        profilePage = new HomePage()
+//                .logInUser(user)
+//                .clickUserName()
+//                .setToPhoneField(phone)
+//                .clickReceiveSmsCode();
+//        assertFalse(profilePage.getINVALID_PHONE_VALIDATION_MESSAGE().isPresent());
+//        assertTrue(profilePage.getCONFIRM_SMS_CODE_BUTTON().isPresent());
+//    }
+    //we have the rewardForConfirmationOfPhone test which includes logic of this commented test and even more
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("saving Entered Phone")
     public void savingEnteredPhone(User user) {
         String phone = RandomGenerate.randomStringOfDigits(12);
@@ -192,10 +187,10 @@ public class ProfilePageTest extends BaseTestPage {
                 .successfulSaveChanges();
         profilePage = new ProfilePage();
         profilePage.refreshPage();
-        assertEquals(profilePage.PHONE_INPUT.getValue(), phone);
+        assertEquals(profilePage.getPHONE_INPUT().getValue(), phone);
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("saving Entered Name")
     public void savingEnteredName(User user) {
         String name = RandomGenerate.randomString(5, 30);
@@ -209,10 +204,10 @@ public class ProfilePageTest extends BaseTestPage {
                 .successfulSaveChanges();
         profilePage = new ProfilePage();
         profilePage.refreshPage();
-        assertEquals(profilePage.FULL_NAME_INPUT.getValue(), name);
+        assertEquals(profilePage.getFULL_NAME_INPUT().getValue(), name);
     }
 
-    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"regression", "profile"})
+    @Test(dataProvider = "authorizationUserEmail", dataProviderClass = AuthorizationData.class, groups = {"profile"})
     @Description("clicking Link Vip Club Details")
     public void clickingLinkVipClubDetails(User user) {
         VipPage vipPage = new HomePage()

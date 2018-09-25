@@ -3,6 +3,7 @@ package com.pages.landing.social;
 import com.Elements.Button;
 import com.Elements.InputBox;
 import com.pages.AbstractPage;
+import com.pages.mobile.HomeMobilePage;
 import com.popups.ConfirmEmailPopup;
 import com.utils.PropertyLoader;
 import org.apache.log4j.LogManager;
@@ -51,7 +52,24 @@ public class FBregisterPage extends AbstractPage implements SocialFrame {
         waitForCountOfWindows(1);
         switchToWindow(this.parentWindow);
         return new ConfirmEmailPopup();
+    }
 
+    @Override
+    public ConfirmEmailPopup clickRegisterMobile() {
+        LOGIN_BUTTON.click();
+        return new ConfirmEmailPopup();
+    }
+
+    @Override
+    public HomeMobilePage clickLogInMobile() {
+        LOGIN_BUTTON.click();
+        return new HomeMobilePage();
+    }
+
+    @Override
+    public SocialFrame clickLogInNotForVulkanAuth() {
+        LOGIN_BUTTON.click();
+        return this;
     }
 
     public ConfirmEmailPopup switchToConfirmEmail() {

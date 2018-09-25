@@ -26,7 +26,7 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
 
     // TODO: 2018-05-07 Add cheking CASH BACK logic to LP
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"plainRegAuth"})
     @LandingPage(pageNo = {"11"})
     @Description("Registration with '10% cash back' gifts from Landing page 11")
     public void landingFormRegisterCashBack(User user, String page) {
@@ -185,7 +185,7 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"12"})
     @Description("Registration with '10% cash back' gifts from Landing page 12")
     public void landingChooseContRegisterCashBack(User user, String page) {
@@ -351,7 +351,7 @@ public class RegistrationWithCashBackTest extends BaseTestPage {
         }
     }
 
-    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "register"})
+    @Test(dataProvider = "randomUserProvider", dataProviderClass = RegisterData.class, groups = {"landing", "plainRegAuth"})
     @LandingPage(pageNo = {"7"})
     @Description("Registration with '10% cash back' gifts from Landing page 7")
     public void landingChooseRegisterCashBack(User user, String page) {
